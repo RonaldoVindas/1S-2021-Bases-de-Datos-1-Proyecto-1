@@ -1,0 +1,35 @@
+/*==================================================CREACIÓN DE TABLAS======================================================*/
+create table relationtype(
+  relationtype_id Number(11),
+  realtiontype_name varchar2(20),
+
+);
+/
+/*==================================================COMENTARIOS EN TABLAS Y COLUMNAS======================================================*/
+
+esto tenemos que rellenarlo :V
+
+/*==================================================CREACIÓN DE LLAVES PRIMARIAS======================================================*/
+
+
+alter table relationtype
+  add constraint pk_relationtype primary key (relationtype_id)
+  using index
+  tablespace nombrependiente_ind pctfree 20
+  storage (initial 10k next 10k pctincrease 0);
+
+
+/*==================================================CAMPOS DE AUDITORÍA PARA TABLAS======================================================*/
+
+
+ALTER TABLE relationtype
+ADD creation_date DATE
+ADD creation_user VARCHAR(10)
+ADD date_last_modification DATE
+ADD user_last_modification VARCHAR(10);
+
+
+
+/*==================================================CREACIÓN DE SECUENCIAS PARA TABLAS======================================================*/
+
+

@@ -1,0 +1,35 @@
+/*==================================================CREACIÓN DE TABLAS======================================================*/
+create table Status(
+  status_id  Number(11),
+  status_name varchar2(40)
+  description varchar2(140)
+);
+/
+/*==================================================COMENTARIOS EN TABLAS Y COLUMNAS======================================================*/
+
+esto tenemos que rellenarlo :V
+
+/*==================================================CREACIÓN DE LLAVES PRIMARIAS======================================================*/
+
+
+alter table status
+  add constraint pk_status primary key (status_id)
+  using index
+  tablespace nombrependiente_ind pctfree 20
+  storage (initial 10k next 10k pctincrease 0);
+
+
+/*==================================================CAMPOS DE AUDITORÍA PARA TABLAS======================================================*/
+
+
+ALTER TABLE status
+ADD creation_date DATE
+ADD creation_user VARCHAR(10)
+ADD date_last_modification DATE
+ADD user_last_modification VARCHAR(10);
+
+
+
+/*==================================================CREACIÓN DE SECUENCIAS PARA TABLAS======================================================*/
+
+

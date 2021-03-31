@@ -1,0 +1,59 @@
+/*==================================================CREACIÓN DE TABLAS======================================================*/
+create table PersonLendItem(
+  person1_id  Number(11),
+  person2_id  Number(11),
+  item_id Number(11),
+  lend_date DATE,
+  return_date DATE,
+  amount_days Number(10)
+  
+  
+
+);
+/
+/*==================================================COMENTARIOS EN TABLAS Y COLUMNAS======================================================*/
+
+esto tenemos que rellenarlo :V
+
+/*==================================================CREACIÓN DE LLAVES PRIMARIAS======================================================*/
+
+
+alter table PersonLendItem
+  add constraint pk_PersonLendItem primary key (person1_id,person2_id,item_id)
+  using index
+  tablespace nombrependiente_ind pctfree 20
+  storage (initial 10k next 10k pctincrease 0);
+
+
+
+/*==================================================CREACIÓN DE LLAVES FORANEAS======================================================*/
+
+ALTER TABLE PersonLendItem
+ADD CONSTRAINT fk_PersonLendItem_person1_id FOREIGN KEY
+(person1_id) REFERENCES person(person1_id);
+/
+ALTER TABLE PersonLendItem
+ADD CONSTRAINT fk_PersonLendItem_person2_id FOREIGN KEY
+(person2_id) REFERENCES person(person2_id);
+/
+ALTER TABLE PersonLendItem
+ADD CONSTRAINT fk_PersonLendItem_item_id FOREIGN KEY
+(item_id) REFERENCES item(item_id);
+
+
+
+
+/*==================================================CAMPOS DE AUDITORÍA PARA TABLAS======================================================*/
+
+
+ALTER TABLE PersonLendItem
+ADD creation_date DATE
+ADD creation_user VARCHAR(10)
+ADD date_last_modification DATE
+ADD user_last_modification VARCHAR(10);
+
+
+
+/*==================================================CREACIÓN DE SECUENCIAS PARA TABLAS======================================================*/
+
+

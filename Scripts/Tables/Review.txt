@@ -1,0 +1,35 @@
+/*==================================================CREACIÓN DE TABLAS======================================================*/
+create table review(
+  review_id Number(11),
+  stars Number(5),
+  
+);
+/
+/*==================================================COMENTARIOS EN TABLAS Y COLUMNAS======================================================*/
+
+esto tenemos que rellenarlo :V
+
+/*==================================================CREACIÓN DE LLAVES PRIMARIAS======================================================*/
+
+
+alter table review
+  add constraint review primary key (review_id)
+  using index
+  tablespace nombrependiente_ind pctfree 20
+  storage (initial 10k next 10k pctincrease 0);
+
+
+/*==================================================CAMPOS DE AUDITORÍA PARA TABLAS======================================================*/
+
+
+ALTER TABLE review
+ADD creation_date DATE
+ADD creation_user VARCHAR(10)
+ADD date_last_modification DATE
+ADD user_last_modification VARCHAR(10);
+
+
+
+/*==================================================CREACIÓN DE SECUENCIAS PARA TABLAS======================================================*/
+
+

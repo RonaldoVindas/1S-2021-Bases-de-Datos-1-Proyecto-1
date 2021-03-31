@@ -1,0 +1,53 @@
+/*==================================================CREACIÓN DE TABLAS======================================================*/
+create table Person(
+  person_id  Number(11),
+  first_name varchar(20),
+  last_name varchar(20),
+  email varchar2(40),
+  password varchar2(15),
+  phone_number varchar(15),
+  birth_day varchar2(11),
+  age varchar(3),
+  persontype_id Number(11)
+  
+
+
+);
+/
+/*==================================================COMENTARIOS EN TABLAS Y COLUMNAS======================================================*/
+
+esto tenemos que rellenarlo :V
+
+/*==================================================CREACIÓN DE LLAVES PRIMARIAS======================================================*/
+
+
+alter table Person
+  add constraint pk_person primary key (person_id)
+  using index
+  tablespace nombrependiente_ind pctfree 20
+  storage (initial 10k next 10k pctincrease 0);
+
+
+
+/*==================================================CREACIÓN DE LLAVES FORANEAS======================================================*/
+
+ALTER TABLE Person
+ADD CONSTRAINT fk_person_persontype_id  FOREIGN KEY
+(persontype_id) REFERENCES persontype(persontype_id );
+
+
+
+
+
+/*==================================================CAMPOS DE AUDITORÍA PARA TABLAS======================================================*/
+
+
+ALTER TABLE Person
+ADD creation_date DATE
+ADD creation_user VARCHAR(10)
+ADD date_last_modification DATE
+ADD user_last_modification VARCHAR(10);
+
+
+
+/*==================================================CREACIÓN DE SECUENCIAS PARA TABLAS======================================================*/

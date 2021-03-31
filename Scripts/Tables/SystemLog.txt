@@ -1,0 +1,50 @@
+/*==================================================CREACIÓN DE TABLAS======================================================*/
+create table Systemlog(
+  systemlog_id  Number(11),
+  description varchar2(140),
+  sys_date DATE,
+  time TIME,
+  object varchar(15),
+  tipe_change varchar(15)
+  person_id Number(11)
+
+
+);
+/
+/*==================================================COMENTARIOS EN TABLAS Y COLUMNAS======================================================*/
+
+esto tenemos que rellenarlo :V
+
+/*==================================================CREACIÓN DE LLAVES PRIMARIAS======================================================*/
+
+
+alter table systemlog
+  add constraint pk_systemlog primary key (systemlog_id)
+  using index
+  tablespace nombrependiente_ind pctfree 20
+  storage (initial 10k next 10k pctincrease 0);
+
+
+
+/*==================================================CREACIÓN DE LLAVES FORANEAS======================================================*/
+
+ALTER TABLE systemlog
+ADD CONSTRAINT fk_systemlog_person_id FOREIGN KEY
+(person_id) REFERENCES person(person_id);
+
+
+
+
+
+/*==================================================CAMPOS DE AUDITORÍA PARA TABLAS======================================================*/
+
+
+ALTER TABLE systemlog
+ADD creation_date DATE
+ADD creation_user VARCHAR(10)
+ADD date_last_modification DATE
+ADD user_last_modification VARCHAR(10);
+
+
+
+/*==================================================CREACIÓN DE SECUENCIAS PARA TABLAS======================================================*/

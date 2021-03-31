@@ -1,0 +1,50 @@
+/*==================================================CREACIÓN DE TABLAS======================================================*/
+create table ItemHasReview(
+  item_id  Number(11),
+  review_id Number(11)
+
+);
+/
+/*==================================================COMENTARIOS EN TABLAS Y COLUMNAS======================================================*/
+
+esto tenemos que rellenarlo :V
+
+/*==================================================CREACIÓN DE LLAVES PRIMARIAS======================================================*/
+
+
+alter table ItemHasReview
+  add constraint pk_ItemHasReview primary key (item_id ,review_id)
+  using index
+  tablespace nombrependiente_ind pctfree 20
+  storage (initial 10k next 10k pctincrease 0);
+
+
+
+/*==================================================CREACIÓN DE LLAVES FORANEAS======================================================*/
+
+ALTER TABLE ItemHasReview
+ADD CONSTRAINT fk_ItemHasReview_item_id FOREIGN KEY
+(item_id) REFERENCES item(item_id);
+/
+ALTER TABLE ItemHasReview
+ADD CONSTRAINT fk_ItemHasReview_genre_id FOREIGN KEY
+(review_id) REFERENCES genre (review_id);
+
+
+
+
+
+/*==================================================CAMPOS DE AUDITORÍA PARA TABLAS======================================================*/
+
+
+ALTER TABLE ItemHasReview
+ADD creation_date DATE
+ADD creation_user VARCHAR(10)
+ADD date_last_modification DATE
+ADD user_last_modification VARCHAR(10);
+
+
+
+/*==================================================CREACIÓN DE SECUENCIAS PARA TABLAS======================================================*/
+
+

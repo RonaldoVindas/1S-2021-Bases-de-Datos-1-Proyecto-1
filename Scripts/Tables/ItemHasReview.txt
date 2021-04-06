@@ -7,7 +7,18 @@ create table ItemHasReview(
 /
 /*==================================================COMENTARIOS EN TABLAS Y COLUMNAS======================================================*/
 
-esto tenemos que rellenarlo :V
+COMMENT ON TABLE ItemHasReview
+IS 'Repository to storage information about the review an Item has.';
+
+/
+COMMENT ON Column ItemHasReview.item_id
+IS 'item identification code.';
+
+/
+COMMENT ON Column ItemHasReview.review_id
+IS 'review identification code.';
+
+
 
 /*==================================================CREACIÓN DE LLAVES PRIMARIAS======================================================*/
 
@@ -15,7 +26,7 @@ esto tenemos que rellenarlo :V
 alter table ItemHasReview
   add constraint pk_ItemHasReview primary key (item_id ,review_id)
   using index
-  tablespace nombrependiente_ind pctfree 20
+  tablespace pe_ind pctfree 20
   storage (initial 10k next 10k pctincrease 0);
 
 
@@ -45,6 +56,29 @@ ADD user_last_modification VARCHAR(10);
 
 
 
-/*==================================================CREACIÓN DE SECUENCIAS PARA TABLAS======================================================*/
+/*==================================================CREACIÓN DE TRIGGERS PARA TABLAS======================================================*/
+
+CREATE OR REPLACE TRIGGER pe.beforeInsertItemHasReview
+BEFORE INSERT
+ON pe.ItemHasReview
+FOR EACH ROW
+BEGIN
+    :new.creation_date := SYSDATE;
+    :new.creation_user := USER;
+END beforeInsertItemHasReview; 
+
+/
+
+CREATE OR REPLACE TRIGGER pe.beforeUPDATEItemHasReview
+BEFORE UPDATE
+ON pe.ItemHasReview
+FOR EACH ROW
+BEGIN
+    :new.date_last_modification:= SYSDATE;
+    :new.user_last_modification:= USER;
+END beforeUPDATEItemHasReview;
+
+
+
 
 

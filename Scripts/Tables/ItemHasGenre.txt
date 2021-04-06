@@ -7,7 +7,18 @@ create table ItemHasGenre(
 /
 /*==================================================COMENTARIOS EN TABLAS Y COLUMNAS======================================================*/
 
-esto tenemos que rellenarlo :V
+COMMENT ON TABLE ItemHasGenre
+IS 'Repository to storage information about the Genres an Item has.';
+
+/
+
+COMMENT ON Column ItemHasGenre.genre_id
+IS 'genre identification code.';
+
+/
+
+COMMENT ON Column ItemHasGenre.item_id
+IS 'item identification code.';
 
 /*==================================================CREACIÓN DE LLAVES PRIMARIAS======================================================*/
 
@@ -45,6 +56,25 @@ ADD user_last_modification VARCHAR(10);
 
 
 
-/*==================================================CREACIÓN DE SECUENCIAS PARA TABLAS======================================================*/
+/*==================================================CREACIÓN DE TRIGGERS PARA TABLAS======================================================*/
 
+CREATE OR REPLACE TRIGGER pe.beforeInsertItemHasGenre
+BEFORE INSERT
+ON pe.ItemHasGenre
+FOR EACH ROW
+BEGIN
+    :new.creation_date := SYSDATE;
+    :new.creation_user := USER;
+END beforeInsertItemHasGenre; 
+
+/
+
+CREATE OR REPLACE TRIGGER pe.beforeUPDATEitemHasGenre
+BEFORE UPDATE
+ON pe.ItemHasGenre
+FOR EACH ROW
+BEGIN
+    :new.date_last_modification:= SYSDATE;
+    :new.user_last_modification:= USER;
+END beforeUPDATEitemHasGenre;
 

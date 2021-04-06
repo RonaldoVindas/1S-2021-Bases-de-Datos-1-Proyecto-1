@@ -6,7 +6,18 @@ create table ItemType(
 /
 /*==================================================COMENTARIOS EN TABLAS Y COLUMNAS======================================================*/
 
-esto tenemos que rellenarlo :V
+COMMENT ON TABLE ItemType
+IS 'Repository to storage information about ItemType.';
+
+/
+
+COMMENT ON Column ItemType.itemtype_id
+IS 'itemtype identification code.';
+
+/
+
+COMMENT ON Column itemtype.itemtype_id
+IS 'itemtype name.';
 
 /*==================================================CREACIÓN DE LLAVES PRIMARIAS======================================================*/
 
@@ -14,7 +25,7 @@ esto tenemos que rellenarlo :V
 alter table ItemType
   add constraint pk_ItemType primary key (itemtype_id)
   using index
-  tablespace nombrependiente_ind pctfree 20
+  tablespace pe_ind pctfree 20
   storage (initial 10k next 10k pctincrease 0);
 
 
@@ -32,3 +43,33 @@ ADD user_last_modification VARCHAR(10);
 /*==================================================CREACIÓN DE SECUENCIAS PARA TABLAS======================================================*/
 
 
+CREATE SEQUENCE s_ItemType
+START WITH 0
+INCREMENT BY 1
+MINVALUE 0
+MAXVALUE 99999999999
+NOCACHE
+NOCYCLE;
+
+/*==================================================CREACIÓN DE TRIGGERS PARA TABLAS======================================================*/
+
+CREATE OR REPLACE TRIGGER pe.beforeInsertItemType
+BEFORE INSERT
+ON pe.ItemType
+FOR EACH ROW
+BEGIN
+    :new.itemtype_id := s_ItemType.nextval;
+    :new.creation_date := SYSDATE;
+    :new.creation_user := USER;
+END beforeInsertItemType; 
+
+/
+
+CREATE OR REPLACE TRIGGER pe.beforeUPDATEItemType
+BEFORE UPDATE
+ON pe.ItemType
+FOR EACH ROW
+BEGIN
+    :new.date_last_modification:= SYSDATE;
+    :new.user_last_modification:= USER;
+END beforeUPDATEItemType; 

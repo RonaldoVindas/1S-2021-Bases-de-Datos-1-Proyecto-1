@@ -7,7 +7,23 @@ create table Parameter(
 /
 /*==================================================COMENTARIOS EN TABLAS Y COLUMNAS======================================================*/
 
-esto tenemos que rellenarlo :V
+COMMENT ON TABLE Parameter
+IS 'Repository to storage information about Parameters.';
+
+/
+
+COMMENT ON Column Parameter.Parameter_id
+IS 'Parameter identification code.';
+
+/
+
+COMMENT ON Column Parameter.value
+IS 'Parameter value.';
+
+/
+COMMENT ON Column Parameter.name
+IS 'Parameter name.';
+
 
 /*==================================================CREACIÓN DE LLAVES PRIMARIAS======================================================*/
 
@@ -15,7 +31,7 @@ esto tenemos que rellenarlo :V
 alter table Parameter
   add constraint pk_Parameter primary key (Parameter_id)
   using index
-  tablespace nombrependiente_ind pctfree 20
+  tablespace pe_ind pctfree 20
   storage (initial 10k next 10k pctincrease 0);
 
 
@@ -32,4 +48,33 @@ ADD user_last_modification VARCHAR(10);
 
 /*==================================================CREACIÓN DE SECUENCIAS PARA TABLAS======================================================*/
 
+CREATE SEQUENCE s_Parameter
+START WITH 0
+INCREMENT BY 1
+MINVALUE 0
+MAXVALUE 99999999999
+NOCACHE
+NOCYCLE;
 
+/*==================================================CREACIÓN DE TRIGGERS PARA TABLAS======================================================*/
+
+CREATE OR REPLACE TRIGGER pe.beforeInsertParameter
+BEFORE INSERT
+ON pe.Parameter
+FOR EACH ROW
+BEGIN
+    :new.Parameter_id := s_Parameter.nextval;
+    :new.creation_date := SYSDATE;
+    :new.creation_user := USER;
+END beforeInsertParameter; 
+
+/
+
+CREATE OR REPLACE TRIGGER pe.beforeUPDATEParameter
+BEFORE UPDATE
+ON pe.Parameter
+FOR EACH ROW
+BEGIN
+    :new.date_last_modification:= SYSDATE;
+    :new.user_last_modification:= USER;
+END beforeUPDATEParameter; 

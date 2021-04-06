@@ -6,14 +6,43 @@ create table PersonLendItem(
   lend_date DATE,
   return_date DATE,
   amount_days Number(10)
-  
-  
-
 );
 /
 /*==================================================COMENTARIOS EN TABLAS Y COLUMNAS======================================================*/
 
-esto tenemos que rellenarlo :V
+COMMENT ON TABLE PersonLendItem
+IS 'Repository to storage information about the items a person lends.';
+
+/
+
+COMMENT ON Column PersonLendItem.person1_id
+IS 'Person1 identification code.';
+
+/
+
+COMMENT ON Column PersonLendItem.person2_id
+IS 'Person2 identification code.';
+
+/
+
+COMMENT ON Column PersonLendItem.item_id
+IS 'Item identification code.';
+
+/
+
+COMMENT ON Column PersonLendItem.lend_date
+IS 'Item Lend Date.';
+
+/
+
+COMMENT ON Column PersonLendItem.return_date
+IS 'Item Return Date.';
+
+/
+
+COMMENT ON Column PersonLendItem.amount_days
+IS 'Total amount of days.';
+
 
 /*==================================================CREACIÓN DE LLAVES PRIMARIAS======================================================*/
 
@@ -56,4 +85,26 @@ ADD user_last_modification VARCHAR(10);
 
 /*==================================================CREACIÓN DE SECUENCIAS PARA TABLAS======================================================*/
 
+No aplica
 
+/*==================================================CREACIÓN DE TRIGGERS PARA TABLAS======================================================*/
+
+CREATE OR REPLACE TRIGGER pe.beforeInsertPersonLendItem
+BEFORE INSERT
+ON pe.PersonLendItem
+FOR EACH ROW
+BEGIN
+    :new.creation_date := SYSDATE;
+    :new.creation_user := USER;
+END beforeInsertPersonLendItem; 
+
+/
+
+CREATE OR REPLACE TRIGGER pe.beforeUPDATEPersonLendItem
+BEFORE UPDATE
+ON pe.PersonLendItem
+FOR EACH ROW
+BEGIN
+    :new.date_last_modification:= SYSDATE;
+    :new.user_last_modification:= USER;
+END beforeUPDATEPersonLendItem; 

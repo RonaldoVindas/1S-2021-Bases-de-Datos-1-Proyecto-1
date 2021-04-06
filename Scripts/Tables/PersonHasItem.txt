@@ -7,17 +7,26 @@ create table PersonHasItem(
 /
 /*==================================================COMENTARIOS EN TABLAS Y COLUMNAS======================================================*/
 
-esto tenemos que rellenarlo :V
+COMMENT ON TABLE PersonHasItem
+IS 'Repository to storage information the items a person has.';
+
+/
+
+COMMENT ON Column PersonHasItem.person_id
+IS 'Person identification code.';
+
+/
+
+COMMENT ON Column PersonHasItem.item_id
+IS 'Item identification code.';
 
 /*==================================================CREACIÓN DE LLAVES PRIMARIAS======================================================*/
-
 
 alter table PersonHasItem
   add constraint pk_PersonHasItem primary key (person_id ,item_id)
   using index
   tablespace nombrependiente_ind pctfree 20
   storage (initial 10k next 10k pctincrease 0);
-
 
 
 /*==================================================CREACIÓN DE LLAVES FORANEAS======================================================*/
@@ -46,4 +55,26 @@ ADD user_last_modification VARCHAR(10);
 
 /*==================================================CREACIÓN DE SECUENCIAS PARA TABLAS======================================================*/
 
+No aplica
 
+/*==================================================CREACIÓN DE TRIGGERS PARA TABLAS======================================================*/
+
+CREATE OR REPLACE TRIGGER pe.beforeInsertPersonHasItem
+BEFORE INSERT
+ON pe.PersonHasItem
+FOR EACH ROW
+BEGIN
+    :new.creation_date := SYSDATE;
+    :new.creation_user := USER;
+END beforeInsertcanton; 
+
+/
+
+CREATE OR REPLACE TRIGGER cl.beforeUPDATEPersonHasItem
+BEFORE UPDATE
+ON pe.PersonHasItem
+FOR EACH ROW
+BEGIN
+    :new.date_last_modification:= SYSDATE;
+    :new.user_last_modification:= USER;
+END beforeUPDATEPersonHasItem; 

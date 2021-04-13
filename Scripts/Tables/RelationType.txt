@@ -1,35 +1,70 @@
-/*==================================================CREACIÓN DE TABLAS======================================================*/
-create table relationtype(
-  relationtype_id Number(11),
-  realtiontype_name varchar2(20),
+/*==================================================CREACIÓN DE TABLAS======================================================================*/
 
+CREATE TABLE relationType
+(
+  relationType_id NUMBER (8),
+  realtionType_name VARCHAR2 (100)
 );
+
+/*==================================================COMENTARIOS EN TABLAS Y COLUMNAS========================================================*/
+
+COMMENT ON TABLE relationType
+IS 'Repository to storage information about relationTypes.';
+
 /
-/*==================================================COMENTARIOS EN TABLAS Y COLUMNAS======================================================*/
 
-esto tenemos que rellenarlo :V
+COMMENT ON COLUMN relationType.relationType_id
+IS 'relationType identification code.';
 
-/*==================================================CREACIÓN DE LLAVES PRIMARIAS======================================================*/
+/
 
+COMMENT ON COLUMN relationType.relationType_name
+IS 'relationType name.';
 
-alter table relationtype
-  add constraint pk_relationtype primary key (relationtype_id)
-  using index
-  tablespace nombrependiente_ind pctfree 20
-  storage (initial 10k next 10k pctincrease 0);
+/*==================================================CREACIÓN DE LLAVES PRIMARIAS============================================================*/
 
+ALTER TABLE relationType
+  ADD CONSTRAINT pk_relationType PRIMARY KEY (relationtype_id)
+  USING INDEX
+  TABLESPACE nombrependiente_ind PCTFREE 20
+  STORAGE (INITIAL 10K NEXT 10K PCTINCREASE 0);
 
-/*==================================================CAMPOS DE AUDITORÍA PARA TABLAS======================================================*/
+/*==================================================CAMPOS DE AUDITORÍA PARA TABLAS=========================================================*/
 
-
-ALTER TABLE relationtype
+ALTER TABLE relationType
 ADD creation_date DATE
-ADD creation_user VARCHAR(10)
+ADD creation_user VARCHAR2 (100)
 ADD date_last_modification DATE
-ADD user_last_modification VARCHAR(10);
-
-
+ADD user_last_modification VARCHAR2 (100);
 
 /*==================================================CREACIÓN DE SECUENCIAS PARA TABLAS======================================================*/
 
+CREATE SEQUENCE s_relationType
+START WITH 0
+INCREMENT BY 1
+MINVALUE 0
+MAXVALUE 99999999999
+NOCACHE
+NOCYCLE;
 
+/*==================================================CREACIÓN DE TRIGGERS PARA TABLAS========================================================*/
+
+CREATE OR REPLACE TRIGGER pe.beforeINSERTrelationType
+BEFORE INSERT
+ON pe.relationType
+FOR EACH ROW
+BEGIN
+	:new.relationType_id := s_relationType.NEXTVAL;
+	:new.creation_date := SYSDATE;
+	:new.creation_user := USER;
+END beforeINSERTrelationType;
+
+/
+
+CREATE OR REPLACE TRIGGER pe.beforeUPDATErelationType
+BEFORE UPDATE
+ON pe.relationType
+BEGIN
+    :new.date_last_modification:= SYSDATE;
+    :new.user_last_modification:= USER;
+END beforeUPDATErelationType;

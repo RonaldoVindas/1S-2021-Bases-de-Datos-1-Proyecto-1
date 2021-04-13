@@ -1,51 +1,39 @@
 /*==================================================CREACIÓN DE TABLAS======================================================*/
-create table PersonHasItem(
-  person_id  Number(11),
-  item_id Number(11)
+create table PersonType(
+  persontype_id Number(11),
+  persontype_name varchar2(20),
 
 );
 /
 /*==================================================COMENTARIOS EN TABLAS Y COLUMNAS======================================================*/
 
-COMMENT ON TABLE PersonHasItem
-IS 'Repository to storage information the items a person has.';
+COMMENT ON TABLE PersonType
+IS 'Repository to storage information about the person types in the database.';
 
 /
 
-COMMENT ON Column PersonHasItem.person_id
-IS 'Person identification code.';
+COMMENT ON Column PersonLendItem.persontype_id
+IS 'Person Type identification code.';
 
 /
 
-COMMENT ON Column PersonHasItem.item_id
-IS 'Item identification code.';
+COMMENT ON Column PersonLendItem.persontype_name
+IS 'Person Type name.';
 
 /*==================================================CREACIÓN DE LLAVES PRIMARIAS======================================================*/
 
-alter table PersonHasItem
-  add constraint pk_PersonHasItem primary key (person_id ,item_id)
+
+alter table PersonType
+  add constraint pk_PersonType primary key (persontype_id)
   using index
-  tablespace nombrependiente_ind pctfree 20
+  tablespace pe_ind pctfree 20
   storage (initial 10k next 10k pctincrease 0);
-
-
-/*==================================================CREACIÓN DE LLAVES FORANEAS======================================================*/
-
-ALTER TABLE PersonHasItem
-ADD CONSTRAINT fk_PersonHasItem_person_id FOREIGN KEY
-(person_id) REFERENCES person(person_id);
-/
-ALTER TABLE PersonHasItem
-ADD CONSTRAINT fk_PersonHasItem_item_id FOREIGN KEY
-(item_id) REFERENCES item(item_id);
-
-
 
 
 /*==================================================CAMPOS DE AUDITORÍA PARA TABLAS======================================================*/
 
 
-ALTER TABLE PersonHasItem
+ALTER TABLE PersonType
 ADD creation_date DATE
 ADD creation_user VARCHAR(10)
 ADD date_last_modification DATE
@@ -55,26 +43,33 @@ ADD user_last_modification VARCHAR(10);
 
 /*==================================================CREACIÓN DE SECUENCIAS PARA TABLAS======================================================*/
 
-No aplica
+CREATE SEQUENCE s_PersonType
+START WITH 0
+INCREMENT BY 1
+MINVALUE 0
+MAXVALUE 999999999999
+NOCACHE
+NOCYCLE;
 
 /*==================================================CREACIÓN DE TRIGGERS PARA TABLAS======================================================*/
 
-CREATE OR REPLACE TRIGGER pe.beforeInsertPersonHasItem
+CREATE OR REPLACE TRIGGER pe.beforeInsertPersonType
 BEFORE INSERT
-ON pe.PersonHasItem
+ON pe.PersonType
 FOR EACH ROW
 BEGIN
+    :new.persontype_id := s_PersonType.nextval;
     :new.creation_date := SYSDATE;
     :new.creation_user := USER;
-END beforeInsertcanton; 
+END beforeInsertPersonType; 
 
 /
 
-CREATE OR REPLACE TRIGGER cl.beforeUPDATEPersonHasItem
+CREATE OR REPLACE TRIGGER pe.beforeUPDATEPersonType
 BEFORE UPDATE
-ON pe.PersonHasItem
+ON pe.PersonType
 FOR EACH ROW
 BEGIN
     :new.date_last_modification:= SYSDATE;
     :new.user_last_modification:= USER;
-END beforeUPDATEPersonHasItem; 
+END beforeUPDATEPersonType; 

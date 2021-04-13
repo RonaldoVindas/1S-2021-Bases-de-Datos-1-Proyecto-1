@@ -9,11 +9,10 @@ create table Person(
   birth_day DATE,
   age varchar(3),
   persontype_id Number(11)
-  
-
-
 );
+
 /
+
 /*==================================================COMENTARIOS EN TABLAS Y COLUMNAS======================================================*/
 
 COMMENT ON TABLE Person
@@ -69,7 +68,7 @@ IS 'Person type identification.';
 alter table Person
   add constraint pk_person primary key (person_id)
   using index
-  tablespace nombrependiente_ind pctfree 20
+  tablespace pe_ind pctfree 20
   storage (initial 10k next 10k pctincrease 0);
 
 

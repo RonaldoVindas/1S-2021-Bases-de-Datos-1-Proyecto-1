@@ -1,71 +1,76 @@
-Create or replace package control_Parameter is
-PROCEDURE insert_Parameter (pvalue IN VARCHAR2,pname IN VARCHAR2);
-PROCEDURE remove_Parameter (pParameter_id IN NUMBER);
-PROCEDURE update_Parameter(pParameter_id IN NUMBER,pvalue IN VARCHAR2,pname IN VARCHAR2);
-FUNCTION getParameterValue(pParameter_id IN NUMBER) RETURN VARCHAR2;
-FUNCTION getParameterName(pParameter_id IN NUMBER) RETURN VARCHAR2;
-FUNCTION get_Parameter_id(pname varchar2) return number;
+Create or replace package control_status is
 
-end control_Parameter;
+PROCEDURE insert_status (pname IN VARCHAR2, pdescription IN VARCHAR2);
+PROCEDURE remove_status (pid IN NUMBER);
+PROCEDURE update_status(pname IN VARCHAR2, pdescription IN VARCHAR2);
+
+FUNCTION getstatusId(pname varchar2) return number;
+FUNCTION getstatusName(pid IN NUMBER) RETURN VARCHAR;
+FUNCTION getstatusDescription(pid IN NUMBER) RETURN VARCHAR;
+
+end control_status;
+
 /
-CREATE OR REPLACE PACKAGE BODY control_Parameter IS
 
-PROCEDURE insert_Parameter(pvalue IN VARCHAR2,pname IN VARCHAR2) AS
-BEGIN
-	INSERT INTO Parameter(value,name)
-	VALUES(pvalue,pname);
-END insert_Parameter;
+CREATE OR REPLACE PACKAGE BODY control_status IS
 
-PROCEDURE remove_Parameter (pParameter_id IN NUMBER) AS
-e_invalid_Parameter EXCEPTION;
+PROCEDURE insert_status (pname IN VARCHAR2, pdescription IN VARCHAR2) AS
 BEGIN
-	DELETE FROM Parameter
-	WHERE Parameter_id = pParameter_id;
+	INSERT INTO status(status_name, description)
+	VALUES(pname, pdescription);
+END insert_status;
+
+PROCEDURE remove_status (pid IN NUMBER) AS
+e_invalid_status EXCEPTION;
+BEGIN
+	DELETE FROM status
+	WHERE status_id = pid;
 	COMMIT;
     IF SQL%NOTFOUND THEN 
-        RAISE e_invalid_Parameter;
+        RAISE e_invalid_status;
     END IF;
     EXCEPTION
-    WHEN e_invalid_Parameter THEN
-        DBMS_OUTPUT.PUT_LINE('No such Parameter_id.');
+    WHEN e_invalid_status THEN
+        DBMS_OUTPUT.PUT_LINE('No such Status.');
         DBMS_OUTPUT.PUT_LINE(SQLERRM);
         DBMS_OUTPUT.PUT_LINE(SQLCODE);
     WHEN OTHERS THEN
         DBMS_OUTPUT.PUT_LINE('An error has ocurred in the attempt to remove.');
         DBMS_OUTPUT.PUT_LINE(SQLERRM);
         DBMS_OUTPUT.PUT_LINE(SQLCODE);
-END remove_Parameter;
+END remove_status;
 
-PROCEDURE update_Parameter(pParameter_id IN NUMBER,pvalue IN VARCHAR2,pname IN VARCHAR2) AS
-e_invalid_Parameter EXCEPTION;
+PROCEDURE update_status (pid IN NUMBER,pname IN VARCHAR2,pdescription IN VARCHAR2) AS
+e_invalid_status EXCEPTION;
 BEGIN
-	UPDATE Parameter
-	SET value,name = pvalue,pname
-	WHERE Parameter_id = pParameter_id;
+	UPDATE status
+	SET status_name, description = pname, pdescription
+	WHERE status_id = pid;
 	COMMIT;
     IF SQL%NOTFOUND THEN 
-        RAISE e_invalid_Parameter;
+        RAISE e_invalid_status;
     END IF;
     EXCEPTION
-    WHEN e_invalid_Parameter THEN
-        DBMS_OUTPUT.PUT_LINE('No such Parameter.');
+    WHEN e_invalid_status THEN
+        DBMS_OUTPUT.PUT_LINE('No such Status.');
         DBMS_OUTPUT.PUT_LINE(SQLERRM);
         DBMS_OUTPUT.PUT_LINE(SQLCODE);
     WHEN OTHERS THEN
         DBMS_OUTPUT.PUT_LINE('An error has ocurred in the attempt to update.');
         DBMS_OUTPUT.PUT_LINE(SQLERRM);
         DBMS_OUTPUT.PUT_LINE(SQLCODE);
-END update_Parameter;
+END update_status;
 
-FUNCTION getParameterValue(pParameter_id IN NUMBER) RETURN VARCHAR2
+
+FUNCTION getstatusId(pname IN VARCHAR) RETURN NUMBER
 IS 
-    vcValue VARCHAR2(10);
+    vcId NUMBER(8);
     BEGIN
-        SELECT value 
-        INTO vcValue
-        FROM Parameter
-        WHERE Parameter_id = pParameter_id;
-        RETURN (vcValue);
+        SELECT pstatus_id
+        INTO vcId
+        FROM status
+        WHERE status_name = pname;
+        RETURN (vcId);
         EXCEPTION
             WHEN TOO_MANY_ROWS THEN
             DBMS_OUTPUT.PUT_LINE ('Your SELECT statement retrieved multiple rows.');
@@ -78,15 +83,17 @@ IS
             WHEN OTHERS THEN
             DBMS_OUTPUT.PUT_LINE ('Unexpected error.');
     END;
+    
 
-FUNCTION getParameterName(pParameter_id IN NUMBER) RETURN VARCHAR2
+FUNCTION getstatusName(pid IN NUMBER) RETURN VARCHAR2
+
 IS 
-    vcName VARCHAR2(40);
+    vcName VARCHAR2(100);
     BEGIN
-        SELECT name  
-        INTO vcName 
-        FROM Parameter
-        WHERE Parameter_id = pParameter_id;
+        SELECT status_name
+        INTO vcName
+        FROM status
+        WHERE status_id = pid;
         RETURN (vcName);
         EXCEPTION
             WHEN TOO_MANY_ROWS THEN
@@ -101,15 +108,16 @@ IS
             DBMS_OUTPUT.PUT_LINE ('Unexpected error.');
     END;
 
-FUNCTION get_Parameter_id(pname varchar2) return number
+FUNCTION getstatusDescription(pid IN NUMBER) RETURN VARCHAR2
+
 IS 
-    vcParameter_id Number(11);
+    vcDescription VARCHAR2(100);
     BEGIN
-        SELECT Parameter_id
-        INTO vcParameter_id
-        FROM Parameter
-        WHERE name = pname;
-        RETURN (vcParameter_id);
+        SELECT description
+        INTO vcDescription
+        FROM status
+        WHERE status_id = pid;
+        RETURN (vcDescription);
         EXCEPTION
             WHEN TOO_MANY_ROWS THEN
             DBMS_OUTPUT.PUT_LINE ('Your SELECT statement retrieved multiple rows.');
@@ -122,5 +130,5 @@ IS
             WHEN OTHERS THEN
             DBMS_OUTPUT.PUT_LINE ('Unexpected error.');
     END;
-end control_Parameter;
 
+end control_status;

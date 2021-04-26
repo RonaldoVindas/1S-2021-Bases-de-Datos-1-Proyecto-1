@@ -7,7 +7,7 @@ create table Person(
   password varchar2(15) CONSTRAINT person_password_nn NOT NULL,
   phone_number varchar(15) CONSTRAINT person_phonenum_nn NOT NULL,
   birth_day DATE,
-  age varchar(3),
+  --age varchar(3),
   persontype_id Number(11)
 );
 

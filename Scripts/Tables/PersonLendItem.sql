@@ -5,7 +5,9 @@ create table PersonLendItem(
   item_id Number(11),
   lend_date DATE,
   return_date DATE,
-  amount_days Number(10)
+  amount_days Number(10),
+  tolerance_days_yellow Number (2),
+  tolerance_days_red Number(2),
 );
 /
 /*==================================================COMENTARIOS EN TABLAS Y COLUMNAS======================================================*/
@@ -42,6 +44,15 @@ IS 'Item Return Date.';
 
 COMMENT ON Column PersonLendItem.amount_days
 IS 'Total amount of days.';
+
+COMMENT ON Column PersonLendItem.tolerance_days_yellow
+IS 'Item Return Tolerance Days Yellow.';
+
+/
+
+COMMENT ON Column PersonLendItem.tolerance_days_red
+IS 'Item Return Tolerance Days Red.';
+
 
 
 /*==================================================CREACIÓN DE LLAVES PRIMARIAS======================================================*/

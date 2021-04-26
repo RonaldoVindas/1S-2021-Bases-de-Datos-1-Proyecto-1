@@ -3,7 +3,7 @@ create table Item(
   item_id NUMBER(11),
   title VARCHAR2(50) CONSTRAINT item_title_nn NOT NULL,
   edition VARCHAR(30),
-  --cover_image ---------------------------TIPO DE DATO DE IMAGEN----------AVERIGUAR!
+  cover_image BLOB ---------------------------TIPO DE DATO DE IMAGEN----------AVERIGUAR BIEN!
   barcode VARCHAR(12) CONSTRAINT item_barcode_nn NOT NULL,
   itemtype_id NUMBER(11),
   status_id NUMBER(8),
@@ -29,10 +29,10 @@ IS 'Item edition.';
 
 /
 
-/*
+
 COMMENT ON Column Item.cover_image
 IS 'Item cover image.';
-*/
+
 
 /
 

@@ -1,21 +1,15 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package lend.izi.collection;
 
-/**
- *
- * @author pc
- */
+import App_Windows.Main_Menu;
+
+// Creado por Ronaldo Vinas Barboza 1176101338
+
 public class LendIziCollection {
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String[] args) {
-        // TODO code application logic here
+        Main_Menu result = new Main_Menu();
+        result.setVisible(true);
     }
     
 }

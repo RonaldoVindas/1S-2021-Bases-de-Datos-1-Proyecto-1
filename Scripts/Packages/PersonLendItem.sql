@@ -1,10 +1,10 @@
 Create or replace package control_personlenditem is
 
 
-PROCEDURE insert_personlenditem (pperson1_id IN NUMBER, pperson2_id IN NUMBER, pitem_id, plend_date IN DATE, preturn_date IN DATE, pamount_days IN NUMBER);
+PROCEDURE insert_personlenditem (pperson1_id IN NUMBER, pperson2_id IN NUMBER, pitem_id, plend_date IN DATE, preturn_date IN DATE, pamount_days IN NUMBER, ptoleranceDaysYellow IN NUMBER, ptoleranceDaysRed IN NUMBER);
 PROCEDURE remove_personlenditem (pperson1_id IN NUMBER);
 
-PROCEDURE update_personlenditem (ppersonid1_old in NUMBER,pperson1_id IN NUMBER, pperson2_id IN NUMBER, pitem_id, plend_date IN DATE, preturn_date IN DATE, pamount_days IN NUMBER);
+PROCEDURE update_personlenditem (ppersonid1_old in NUMBER, pperson1_id IN NUMBER, pperson2_id IN NUMBER, pitem_id, plend_date IN DATE, preturn_date IN DATE, pamount_days IN NUMBER, ptoleranceDaysYellow IN NUMBER, ptoleranceDaysRed IN NUMBER);
 
 
 FUNCTION getpersonlenditemPerson1ID(pperson2_id IN NUMBER) RETURN NUMBER;
@@ -24,10 +24,11 @@ end control_personlenditem;
 CREATE OR REPLACE PACKAGE BODY control_personhasitem IS
 
 
-PROCEDURE insert_personlenditem (pperson1_id IN NUMBER, pperson2_id IN NUMBER, pitem_id, plend_date IN DATE, preturn_date IN DATE, pamount_days IN NUMBER) AS
+PROCEDURE insert_personlenditem (pperson1_id IN NUMBER, pperson2_id IN NUMBER, pitem_id, plend_date IN DATE, preturn_date IN DATE, pamount_days IN NUMBER, ptoleranceDaysYellow IN NUMBER, ptoleranceDaysRed IN NUMBER) AS
 BEGIN
 	INSERT INTO personlenditem (person1_id, person2_id, item_id, lend_date, return_date, amount_days)
-	VALUES (pperson1_id, pperson2_id, pitem_id, plend_date, preturn_date, (select to_date (return_date, 'yyyy-mm-dd') - trunc(lend_date) from dual)      );    --Select se encarga de calcular la cantidad de días entre la fecha de préstamos y la fecha de retorno del ítem
+	VALUES (pperson1_id, pperson2_id, pitem_id, plend_date, preturn_date, (select to_date (return_date, 'yyyy-mm-dd') - trunc(lend_date) from dual), ptoleranceDaysYellow, ptoleranceDaysRed);
+	--Select se encarga de calcular la cantidad de días entre la fecha de préstamos y la fecha de retorno del ítem
 END personlenditem;
 
 
@@ -52,12 +53,12 @@ BEGIN
 END remove_personlenditem;
 
 
-PROCEDURE update_personhasitem (ppersonid_old in NUMBER, pperson_id IN NUMBER, pitem_id IN NUMBER) AS
+PROCEDURE update_personlenditem (ppersonid1_old in NUMBER, pperson1_id IN NUMBER, pperson2_id IN NUMBER, pitem_id, plend_date IN DATE, preturn_date IN DATE, pamount_days IN NUMBER, ptoleranceDaysYellow IN NUMBER, ptoleranceDaysRed IN NUMBER) AS
 e_invalid_personhasitem EXCEPTION;
 BEGIN
 	UPDATE personhasitem
-	SET person_id, item_id = pperson_id, pitem_id
-	WHERE person_id = ppersonid_old;
+	SET person1_id, person2_id, item_id, lend_date, return_date, amount_days, tolerance_days_yellow, tolerance_days_red = pperson1_id, pperson2_id, pitem_id, plend_date, preturn_date, pamount_days, ptoleranceDaysYellow, ptoleranceDaysRed
+	WHERE person1_id = ppersonid_old;
 	COMMIT;
     IF SQL%NOTFOUND THEN 
         RAISE e_invalid_personhasitem;
@@ -71,7 +72,7 @@ BEGIN
         DBMS_OUTPUT.PUT_LINE('An error has ocurred in the attempt to update.');
         DBMS_OUTPUT.PUT_LINE(SQLERRM);
         DBMS_OUTPUT.PUT_LINE(SQLCODE);
-END update_personhasitem;
+END update_personlenditem;
 
 
 FUNCTION getpersonlenditemPerson1ID(pperson2_id IN NUMBER) RETURN NUMBER

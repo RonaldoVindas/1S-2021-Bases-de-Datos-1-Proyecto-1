@@ -1,6 +1,6 @@
 Create or replace package control_review is
 
-PROCEDURE insert_review (pstars IN VARCHAR2);
+PROCEDURE insert_review (pstars IN NUMBER);
 PROCEDURE remove_review (pid IN NUMBER);
 PROCEDURE update_review (pid IN NUMBER, pstars IN NUMBER);
 
@@ -40,7 +40,7 @@ BEGIN
         DBMS_OUTPUT.PUT_LINE(SQLCODE);
 END remove_review;
 
-PROCEDURE update_review (pid IN NUMBER, pstrs IN NUMBER) AS
+PROCEDURE update_review (pid IN NUMBER, pstars IN NUMBER) AS
 e_invalid_review EXCEPTION;
 BEGIN
 	UPDATE review
@@ -84,13 +84,13 @@ IS
     END;
     
 
-FUNCTION getreviewStars(pid IN NUMBER) RETURN VARCHAR2
+FUNCTION getreviewStars(pid IN NUMBER) RETURN NUMBER
 
 IS 
-    vcStar VARCHAR2(1);
+    vcStars NUMBER(1);
     BEGIN
         SELECT stars
-        INTO vcName
+        INTO vcStars
         FROM review
         WHERE review_id = pid;
         RETURN (vcStars);

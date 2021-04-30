@@ -3,11 +3,11 @@ Create or replace package control_person1knowsperson2 is
 
 PROCEDURE insert_person1knowsperson2 (pid_person1 IN NUMBER, pid_person2 IN NUMBER, prelationtype_id IN NUMBER);
 PROCEDURE remove_person1knowsperson2 (pid_person2 IN NUMBER);
-PROCEDURE update_person1knowsperson2 (pidperson1_old in NUMBER, pid_person1 IN NUMBER, pid_person2 IN NUMBER, prelationtype_id IN NUMBER);
+PROCEDURE update_person1knowsperson2 (pid_person1_old in NUMBER, pid_person1 IN NUMBER, pid_person2 IN NUMBER, prelationtype_id IN NUMBER);
 
-FUNCTION getperson1knowsperson2person1Id(pid_person2 IN NUMBER) RETURN NUMBER;
-FUNCTION getperson1knowsperson2person2Id(pid_person1 IN NUMBER) RETURN NUMBER;
-FUNCTION getperson1knowsperson2relationtypeId(pid IN NUMBER) RETURN NUMBER;
+FUNCTION getper1knowsper2person1Id(pid_person2 IN NUMBER) RETURN NUMBER;
+FUNCTION getper1knowsper2person2Id(pid_person1 IN NUMBER) RETURN NUMBER;
+FUNCTION getper1knowsper2reltypeId(pid IN NUMBER) RETURN NUMBER;
 
 
 end control_person1knowsperson2;
@@ -19,17 +19,17 @@ CREATE OR REPLACE PACKAGE BODY control_person1knowsperson2 IS
 
 PROCEDURE insert_person1knowsperson2 (pid_person1 IN NUMBER, pid_person2 IN NUMBER, prelationtype_id IN NUMBER) AS
 BEGIN
-	INSERT INTO person1knowsperson2(person1_id, person2_id, relationtype_id)
-	VALUES(pid, pfirname, plasname, pemail, EncryptPassword(ppasword), pphonenumber, pdate, ppersontype_id);
+    INSERT INTO person1knowsperson2(person1_id, person2_id, relationtype_id)
+    VALUES(pid_person1,pid_person2, prelationtype_id );
 END insert_person1knowsperson2;
 
 
-PROCEDURE remove_person1knowsperson2 (pid_person1 IN NUMBER) AS
+PROCEDURE remove_person1knowsperson2 (pid_person2 IN NUMBER) AS
 e_invalid_person1knowsperson2 EXCEPTION;
 BEGIN
-	DELETE FROM person1knowsperson2
-	WHERE person1_id = pid_person1;
-	COMMIT;
+    DELETE FROM person1knowsperson2
+    WHERE person2_id = pid_person2;
+    COMMIT;
     IF SQL%NOTFOUND THEN 
         RAISE e_invalid_person1knowsperson2;
     END IF;
@@ -45,13 +45,15 @@ BEGIN
 END remove_person1knowsperson2;
 
 
-PROCEDURE update_person1knowsperson2(pid_person1_old IN NUMBER, pid_person1 IN NUMBER, pid_person2 IN NUMBER, pid_relationtype IN NUMBER) AS
+PROCEDURE update_person1knowsperson2 (pid_person1_old in NUMBER, pid_person1 IN NUMBER, pid_person2 IN NUMBER, prelationtype_id IN NUMBER) AS
 e_invalid_person1knowsperson2 EXCEPTION;
 BEGIN
-	UPDATE person1knowsperson2
-	SET person1_id, person2_id, relationtype_id = pid_person1, pid_person2,pid_relationtype 
-	WHERE person_id = pid_person1_old;
-	COMMIT;
+    UPDATE person1knowsperson2
+    SET person1_id = pid_person1,
+        person2_id = pid_person2,
+        relationtype_id = prelationtype_id
+    WHERE person1_id = pid_person1_old;
+    COMMIT;
     IF SQL%NOTFOUND THEN 
         RAISE e_invalid_person1knowsperson2;
     END IF;
@@ -67,7 +69,7 @@ BEGIN
 END update_person1knowsperson2;
 
 
-FUNCTION getperson1knowsperson2person1Id(pid_person2 IN NUMBER)RETURN NUMBER
+FUNCTION getper1knowsper2person1Id(pid_person2 IN NUMBER) RETURN NUMBER
 IS 
     vcId NUMBER(11);
     BEGIN
@@ -89,7 +91,7 @@ IS
             DBMS_OUTPUT.PUT_LINE ('Unexpected error.');
     END;
     
-FUNCTION getperson1knowsperson2person2Id(pid_person1 IN NUMBER)RETURN NUMBER
+FUNCTION getper1knowsper2person2Id(pid_person1 IN NUMBER) RETURN NUMBER
 IS 
     vcId NUMBER(11);
     BEGIN
@@ -112,14 +114,14 @@ IS
     END;
 
 
-FUNCTION getperson1knowsperson2relationtypeId(pid_person1 IN NUMBER)RETURN NUMBER
+FUNCTION getper1knowsper2reltypeId(pid IN NUMBER)  RETURN NUMBER
 IS 
     vcId NUMBER(11);
     BEGIN
         SELECT relationtype_id
         INTO vcId
         FROM person1knowsperson2
-        WHERE person1_id = pid_person1;
+        WHERE person1_id = pid;
         RETURN (vcId);
         EXCEPTION
             WHEN TOO_MANY_ROWS THEN

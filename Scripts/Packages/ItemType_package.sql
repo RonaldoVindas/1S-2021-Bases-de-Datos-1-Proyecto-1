@@ -39,8 +39,8 @@ PROCEDURE update_ItemType(pitemtype_id IN NUMBER,pitemType_name IN VARCHAR2) AS
 e_invalid_ItemType EXCEPTION;
 BEGIN
 	UPDATE ItemType
-	SET itemtype_id  = pitemType_name
-	WHERE itemtype = pitemtype_id
+	SET itemType_name  = pitemType_name
+	WHERE itemtype_id = pitemtype_id;
 	COMMIT;
     IF SQL%NOTFOUND THEN 
         RAISE e_invalid_ItemType;

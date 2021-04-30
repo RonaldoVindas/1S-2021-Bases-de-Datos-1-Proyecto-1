@@ -5,8 +5,8 @@ PROCEDURE remove_publisher (pid IN NUMBER);
 PROCEDURE update_publisher (pid IN NUMBER, pname IN VARCHAR2);
 
 
-FUNCTION getpublisherId(pname IN VARCHAR) RETURN NUMBER;
-FUNCTION getpublisherName(pid IN NUMBER) RETURN VARCHAR;
+FUNCTION getpublisherId(pname IN VARCHAR2) RETURN NUMBER;
+FUNCTION getpublisherName(pid IN NUMBER) RETURN VARCHAR2;
 
 end control_publisher;
 
@@ -40,7 +40,7 @@ BEGIN
         DBMS_OUTPUT.PUT_LINE(SQLCODE);
 END remove_publisher;
 
-PROCEDURE update_publisher(pid IN NUMBER, pname IN VARCHAR2) AS
+PROCEDURE update_publisher (pid IN NUMBER, pname IN VARCHAR2) AS
 e_invalid_publisher EXCEPTION;
 BEGIN
 	UPDATE publisher
@@ -61,7 +61,7 @@ BEGIN
         DBMS_OUTPUT.PUT_LINE(SQLCODE);
 END update_publisher;
 
-FUNCTION getpublisherId(pname IN VARCHAR) RETURN NUMBER
+FUNCTION getpublisherId(pname IN VARCHAR2) RETURN NUMBER
 IS 
     vcId NUMBER(8);
     BEGIN
@@ -85,7 +85,6 @@ IS
     
 
 FUNCTION getpublisherName(pid IN NUMBER) RETURN VARCHAR2
-
 IS 
     vcName VARCHAR2(100);
     BEGIN

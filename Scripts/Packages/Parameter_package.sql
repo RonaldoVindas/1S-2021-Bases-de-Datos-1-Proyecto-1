@@ -40,7 +40,8 @@ PROCEDURE update_Parameter(pParameter_id IN NUMBER,pvalue IN VARCHAR2,pname IN V
 e_invalid_Parameter EXCEPTION;
 BEGIN
 	UPDATE Parameter
-	SET value,name = pvalue,pname
+	SET value = pvalue,
+        name = pname
 	WHERE Parameter_id = pParameter_id;
 	COMMIT;
     IF SQL%NOTFOUND THEN 

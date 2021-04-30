@@ -47,7 +47,8 @@ PROCEDURE update_personcreatesitem (ppersonid_old in NUMBER, pperson_id IN NUMBE
 e_invalid_personcreatesitem EXCEPTION;
 BEGIN
 	UPDATE personcreatesitem
-	SET person_id, item_id = pperson_id, pitem_id
+	SET person_id = pperson_id, 
+        item_id  = pitem_id
 	WHERE person_id = ppersonid_old;
 	COMMIT;
     IF SQL%NOTFOUND THEN 

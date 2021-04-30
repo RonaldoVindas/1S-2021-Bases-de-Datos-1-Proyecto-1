@@ -5,27 +5,52 @@
  */
 package App_Windows;
 
+import java.awt.Color;
+import java.awt.Image;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.border.MatteBorder;
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartFrame;
+import org.jfree.chart.ChartPanel;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.plot.PiePlot3D;
+import org.jfree.data.general.DefaultPieDataset;
+
 /**
  *
  * @author rony1
  */
 public class Users_Menu extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Admin_Menu
-     */
+    private ChartFrame frame;
+    
     public Users_Menu() {
+     
      this.setUndecorated(true);
      initComponents();
      Collection_InternalFrame.setVisible(false);
+            ItemInfo_InternalFrame.setVisible(false);
        AddPeople_InternalFrame.setVisible(false);
        LendItem_InternalFrame.setVisible(false);
        ReceiveItem_InternalFrame.setVisible(false); 
        ReviewItem_InternalFrame.setVisible(false);
+      
        Queries_InternalFrame.setVisible(false);
        AddItem_InternalFrame.setVisible(false);
      
      this.setLocationRelativeTo(null);
+     
+     byte[] photo = null;
+     
+     
+     
+     
     }
 
     /**
@@ -45,6 +70,29 @@ public class Users_Menu extends javax.swing.JFrame {
         jPanel5 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         Collection_Table = new javax.swing.JTable();
+        ItemInfo_InternalFrame = new javax.swing.JInternalFrame();
+        Background_Panel16 = new javax.swing.JPanel();
+        Title_Label16 = new javax.swing.JLabel();
+        Subtitle_Label16 = new javax.swing.JLabel();
+        Upper_Banner16 = new javax.swing.JLabel();
+        jPanel17 = new javax.swing.JPanel();
+        ItemType_Label1 = new javax.swing.JLabel();
+        Genre_Label1 = new javax.swing.JLabel();
+        ItemEdition_Label1 = new javax.swing.JLabel();
+        ItemBarcode_Label1 = new javax.swing.JLabel();
+        ItemTitle_Label1 = new javax.swing.JLabel();
+        Publisher_Label2 = new javax.swing.JLabel();
+        TitleItem_TextField = new javax.swing.JTextField();
+        EditionItem_TextField = new javax.swing.JTextField();
+        BarbcodeItem_TextField = new javax.swing.JTextField();
+        CommitChanges_Button = new javax.swing.JButton();
+        AddPhoto_Button1 = new javax.swing.JButton();
+        Cover_Image_Label1 = new javax.swing.JLabel();
+        RemoveItem_CheckBox = new javax.swing.JCheckBox();
+        UpdateStatusType_CheckBox2 = new javax.swing.JCheckBox();
+        ItemType_ComboBox1 = new javax.swing.JComboBox<>();
+        Publisher_ComboBox2 = new javax.swing.JComboBox<>();
+        Genre_TextField1 = new javax.swing.JComboBox<>();
         AddPeople_InternalFrame = new javax.swing.JInternalFrame();
         Background_Panel1 = new javax.swing.JPanel();
         Title_Label1 = new javax.swing.JLabel();
@@ -56,6 +104,9 @@ public class Users_Menu extends javax.swing.JFrame {
         RelationType_ComboBox = new javax.swing.JComboBox<>();
         PersonEmail_Label = new javax.swing.JLabel();
         AddPeople_Button = new javax.swing.JButton();
+        jScrollPane11 = new javax.swing.JScrollPane();
+        RelationType_Table = new javax.swing.JTable();
+        RemovePersonKnowsPerson_CheckBox = new javax.swing.JCheckBox();
         LendItem_InternalFrame = new javax.swing.JInternalFrame();
         Background_Panel2 = new javax.swing.JPanel();
         Title_Label2 = new javax.swing.JLabel();
@@ -125,13 +176,14 @@ public class Users_Menu extends javax.swing.JFrame {
         ItemBarcode_Label = new javax.swing.JLabel();
         ItemTitle_Label = new javax.swing.JLabel();
         Publisher_Label1 = new javax.swing.JLabel();
-        Publisher_ComboBox = new javax.swing.JComboBox<>();
-        ItemType_TextField = new javax.swing.JTextField();
+        ItemType_ComboBox = new javax.swing.JComboBox<>();
         ItemTitle_TextField = new javax.swing.JTextField();
         ItemEdition_TextField = new javax.swing.JTextField();
         ItemBarbcode_TextField = new javax.swing.JTextField();
         AddItem_Button = new javax.swing.JButton();
         AddPhoto_Button = new javax.swing.JButton();
+        Cover_Image_Label = new javax.swing.JLabel();
+        Publisher_ComboBox1 = new javax.swing.JComboBox<>();
         Menu_Panel = new javax.swing.JPanel();
         Divisor_Panel = new javax.swing.JPanel();
         Banner_Label = new javax.swing.JLabel();
@@ -145,7 +197,6 @@ public class Users_Menu extends javax.swing.JFrame {
         AddAnItem_Button = new javax.swing.JButton();
         MainMenu_Button = new javax.swing.JButton();
         Exit_Button = new javax.swing.JButton();
-        Admin_Label = new javax.swing.JLabel();
         Wallpaper_Label = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -191,6 +242,11 @@ public class Users_Menu extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        Collection_Table.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                Collection_TableMouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(Collection_Table);
 
         jPanel5.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 820, 510));
@@ -200,6 +256,155 @@ public class Users_Menu extends javax.swing.JFrame {
         Collection_InternalFrame.getContentPane().add(Background_Panel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 900, 700));
 
         getContentPane().add(Collection_InternalFrame, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 0, 900, 720));
+
+        ItemInfo_InternalFrame.setBackground(new java.awt.Color(0, 0, 0));
+        ItemInfo_InternalFrame.setBorder(javax.swing.BorderFactory.createMatteBorder(5, 5, 5, 5, new java.awt.Color(233, 85, 4)));
+        ItemInfo_InternalFrame.setClosable(true);
+        ItemInfo_InternalFrame.setForeground(new java.awt.Color(0, 0, 0));
+        ItemInfo_InternalFrame.setMaximumSize(new java.awt.Dimension(900, 720));
+        ItemInfo_InternalFrame.setMinimumSize(new java.awt.Dimension(900, 720));
+        ItemInfo_InternalFrame.setNormalBounds(new java.awt.Rectangle(0, 0, 0, 0));
+        ItemInfo_InternalFrame.setVisible(false);
+        ItemInfo_InternalFrame.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        Background_Panel16.setBackground(new java.awt.Color(102, 102, 102));
+        Background_Panel16.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        Title_Label16.setFont(new java.awt.Font("Bahnschrift", 0, 36)); // NOI18N
+        Title_Label16.setForeground(new java.awt.Color(255, 255, 255));
+        Title_Label16.setText("See your Item Info!");
+        Background_Panel16.add(Title_Label16, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 40, -1, -1));
+
+        Subtitle_Label16.setFont(new java.awt.Font("Bahnschrift", 0, 14)); // NOI18N
+        Subtitle_Label16.setForeground(new java.awt.Color(255, 255, 255));
+        Subtitle_Label16.setText("See details or change them...");
+        Background_Panel16.add(Subtitle_Label16, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 80, -1, -1));
+
+        Upper_Banner16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Banner3.png"))); // NOI18N
+        Background_Panel16.add(Upper_Banner16, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 900, 100));
+
+        jPanel17.setBackground(new java.awt.Color(51, 51, 51));
+        jPanel17.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        ItemType_Label1.setFont(new java.awt.Font("Bahnschrift", 0, 24)); // NOI18N
+        ItemType_Label1.setForeground(new java.awt.Color(255, 255, 255));
+        ItemType_Label1.setText("Item Type:");
+        jPanel17.add(ItemType_Label1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 260, -1, -1));
+
+        Genre_Label1.setFont(new java.awt.Font("Bahnschrift", 0, 24)); // NOI18N
+        Genre_Label1.setForeground(new java.awt.Color(255, 255, 255));
+        Genre_Label1.setText("Genre:");
+        jPanel17.add(Genre_Label1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 420, -1, -1));
+
+        ItemEdition_Label1.setFont(new java.awt.Font("Bahnschrift", 0, 24)); // NOI18N
+        ItemEdition_Label1.setForeground(new java.awt.Color(255, 255, 255));
+        ItemEdition_Label1.setText("Item Edition:");
+        jPanel17.add(ItemEdition_Label1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 110, -1, -1));
+
+        ItemBarcode_Label1.setFont(new java.awt.Font("Bahnschrift", 0, 24)); // NOI18N
+        ItemBarcode_Label1.setForeground(new java.awt.Color(255, 255, 255));
+        ItemBarcode_Label1.setText("Item Barcode:");
+        jPanel17.add(ItemBarcode_Label1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 180, -1, -1));
+
+        ItemTitle_Label1.setFont(new java.awt.Font("Bahnschrift", 0, 24)); // NOI18N
+        ItemTitle_Label1.setForeground(new java.awt.Color(255, 255, 255));
+        ItemTitle_Label1.setText("Item Title:");
+        jPanel17.add(ItemTitle_Label1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, -1, -1));
+
+        Publisher_Label2.setFont(new java.awt.Font("Bahnschrift", 0, 24)); // NOI18N
+        Publisher_Label2.setForeground(new java.awt.Color(255, 255, 255));
+        Publisher_Label2.setText("Publisher:");
+        jPanel17.add(Publisher_Label2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 340, -1, -1));
+
+        TitleItem_TextField.setBackground(new java.awt.Color(255, 255, 255));
+        TitleItem_TextField.setForeground(new java.awt.Color(0, 0, 0));
+        TitleItem_TextField.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(233, 85, 4)));
+        jPanel17.add(TitleItem_TextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 70, 260, 30));
+
+        EditionItem_TextField.setBackground(new java.awt.Color(255, 255, 255));
+        EditionItem_TextField.setForeground(new java.awt.Color(0, 0, 0));
+        EditionItem_TextField.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(233, 85, 4)));
+        jPanel17.add(EditionItem_TextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, 260, 30));
+
+        BarbcodeItem_TextField.setBackground(new java.awt.Color(255, 255, 255));
+        BarbcodeItem_TextField.setForeground(new java.awt.Color(0, 0, 0));
+        BarbcodeItem_TextField.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(233, 85, 4)));
+        jPanel17.add(BarbcodeItem_TextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 220, 260, 30));
+
+        CommitChanges_Button.setBackground(new java.awt.Color(255, 240, 0));
+        CommitChanges_Button.setFont(new java.awt.Font("Bahnschrift", 0, 18)); // NOI18N
+        CommitChanges_Button.setForeground(new java.awt.Color(0, 0, 0));
+        CommitChanges_Button.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/ButtonWhite.png"))); // NOI18N
+        CommitChanges_Button.setText("Commit Changes");
+        CommitChanges_Button.setBorderPainted(false);
+        CommitChanges_Button.setContentAreaFilled(false);
+        CommitChanges_Button.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        CommitChanges_Button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CommitChanges_ButtonActionPerformed(evt);
+            }
+        });
+        jPanel17.add(CommitChanges_Button, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 450, 190, 40));
+
+        AddPhoto_Button1.setFont(new java.awt.Font("Bahnschrift", 0, 18)); // NOI18N
+        AddPhoto_Button1.setForeground(new java.awt.Color(255, 255, 255));
+        AddPhoto_Button1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Camera_Icon32.png"))); // NOI18N
+        AddPhoto_Button1.setText("   Change Cover Image!");
+        AddPhoto_Button1.setBorder(null);
+        AddPhoto_Button1.setBorderPainted(false);
+        AddPhoto_Button1.setContentAreaFilled(false);
+        AddPhoto_Button1.setFocusable(false);
+        AddPhoto_Button1.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        AddPhoto_Button1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AddPhoto_Button1ActionPerformed(evt);
+            }
+        });
+        jPanel17.add(AddPhoto_Button1, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 80, 280, 60));
+        jPanel17.add(Cover_Image_Label1, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 160, 250, 250));
+
+        RemoveItem_CheckBox.setFont(new java.awt.Font("Bahnschrift", 0, 14)); // NOI18N
+        RemoveItem_CheckBox.setForeground(new java.awt.Color(255, 255, 255));
+        RemoveItem_CheckBox.setText("Remove");
+        RemoveItem_CheckBox.setFocusable(false);
+        RemoveItem_CheckBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RemoveItem_CheckBoxActionPerformed(evt);
+            }
+        });
+        jPanel17.add(RemoveItem_CheckBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 50, 80, -1));
+
+        UpdateStatusType_CheckBox2.setFont(new java.awt.Font("Bahnschrift", 0, 14)); // NOI18N
+        UpdateStatusType_CheckBox2.setForeground(new java.awt.Color(255, 255, 255));
+        UpdateStatusType_CheckBox2.setText("Update");
+        UpdateStatusType_CheckBox2.setFocusable(false);
+        UpdateStatusType_CheckBox2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                UpdateStatusType_CheckBox2ActionPerformed(evt);
+            }
+        });
+        jPanel17.add(UpdateStatusType_CheckBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 50, 80, -1));
+
+        ItemType_ComboBox1.setBackground(new java.awt.Color(255, 255, 255));
+        ItemType_ComboBox1.setForeground(new java.awt.Color(0, 0, 0));
+        ItemType_ComboBox1.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(233, 85, 4)));
+        jPanel17.add(ItemType_ComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 300, 260, 30));
+
+        Publisher_ComboBox2.setBackground(new java.awt.Color(255, 255, 255));
+        Publisher_ComboBox2.setForeground(new java.awt.Color(0, 0, 0));
+        Publisher_ComboBox2.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(233, 85, 4)));
+        jPanel17.add(Publisher_ComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 380, 260, 30));
+
+        Genre_TextField1.setBackground(new java.awt.Color(255, 255, 255));
+        Genre_TextField1.setForeground(new java.awt.Color(0, 0, 0));
+        Genre_TextField1.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(233, 85, 4)));
+        jPanel17.add(Genre_TextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 460, 260, 30));
+
+        Background_Panel16.add(jPanel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 130, 840, 530));
+
+        ItemInfo_InternalFrame.getContentPane().add(Background_Panel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 900, 700));
+
+        getContentPane().add(ItemInfo_InternalFrame, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 0, 900, 720));
 
         AddPeople_InternalFrame.setBackground(new java.awt.Color(0, 0, 0));
         AddPeople_InternalFrame.setBorder(javax.swing.BorderFactory.createMatteBorder(5, 5, 5, 5, new java.awt.Color(255, 240, 0)));
@@ -216,13 +421,13 @@ public class Users_Menu extends javax.swing.JFrame {
 
         Title_Label1.setFont(new java.awt.Font("Bahnschrift", 0, 36)); // NOI18N
         Title_Label1.setForeground(new java.awt.Color(255, 255, 255));
-        Title_Label1.setText("Add People!");
+        Title_Label1.setText("Add People and See Your Friends!");
         Background_Panel1.add(Title_Label1, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 40, -1, -1));
 
         Subtitle_Label1.setFont(new java.awt.Font("Bahnschrift", 0, 14)); // NOI18N
         Subtitle_Label1.setForeground(new java.awt.Color(255, 255, 255));
         Subtitle_Label1.setText("Family, friends, coworkers, everyone is here!");
-        Background_Panel1.add(Subtitle_Label1, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 80, -1, -1));
+        Background_Panel1.add(Subtitle_Label1, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 80, -1, -1));
 
         Upper_Banner1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Banner3.png"))); // NOI18N
         Background_Panel1.add(Upper_Banner1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 900, 100));
@@ -258,8 +463,35 @@ public class Users_Menu extends javax.swing.JFrame {
         AddPeople_Button.setText("Add!");
         AddPeople_Button.setBorderPainted(false);
         AddPeople_Button.setContentAreaFilled(false);
+        AddPeople_Button.setFocusable(false);
         AddPeople_Button.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jPanel1.add(AddPeople_Button, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 380, 320, 100));
+
+        RelationType_Table.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane11.setViewportView(RelationType_Table);
+
+        jPanel1.add(jScrollPane11, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 70, 470, 230));
+
+        RemovePersonKnowsPerson_CheckBox.setFont(new java.awt.Font("Bahnschrift", 0, 14)); // NOI18N
+        RemovePersonKnowsPerson_CheckBox.setForeground(new java.awt.Color(255, 255, 255));
+        RemovePersonKnowsPerson_CheckBox.setText("Remove");
+        RemovePersonKnowsPerson_CheckBox.setFocusable(false);
+        RemovePersonKnowsPerson_CheckBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RemovePersonKnowsPerson_CheckBoxActionPerformed(evt);
+            }
+        });
+        jPanel1.add(RemovePersonKnowsPerson_CheckBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 30, 110, -1));
 
         Background_Panel1.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 130, 840, 530));
 
@@ -299,6 +531,11 @@ public class Users_Menu extends javax.swing.JFrame {
         Day_TextField.setBackground(new java.awt.Color(255, 255, 255));
         Day_TextField.setForeground(new java.awt.Color(0, 0, 0));
         Day_TextField.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(242, 150, 0)));
+        Day_TextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Day_TextFieldActionPerformed(evt);
+            }
+        });
         jPanel2.add(Day_TextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 270, 80, 30));
 
         jLabel3.setFont(new java.awt.Font("Bahnschrift", 0, 18)); // NOI18N
@@ -324,6 +561,7 @@ public class Users_Menu extends javax.swing.JFrame {
         Lend_Button.setText("Lend-Izi!");
         Lend_Button.setBorderPainted(false);
         Lend_Button.setContentAreaFilled(false);
+        Lend_Button.setFocusable(false);
         Lend_Button.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jPanel2.add(Lend_Button, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 380, 320, 100));
 
@@ -420,6 +658,7 @@ public class Users_Menu extends javax.swing.JFrame {
         Receive_Button.setText("Receive - Izi");
         Receive_Button.setBorderPainted(false);
         Receive_Button.setContentAreaFilled(false);
+        Receive_Button.setFocusable(false);
         Receive_Button.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         Receive_Button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -496,6 +735,7 @@ public class Users_Menu extends javax.swing.JFrame {
         Review_Button.setText("Review!");
         Review_Button.setBorderPainted(false);
         Review_Button.setContentAreaFilled(false);
+        Review_Button.setFocusable(false);
         Review_Button.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         Review_Button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -555,7 +795,7 @@ public class Users_Menu extends javax.swing.JFrame {
 
         Subtitle_Label15.setFont(new java.awt.Font("Bahnschrift", 0, 14)); // NOI18N
         Subtitle_Label15.setForeground(new java.awt.Color(255, 255, 255));
-        Subtitle_Label15.setText("See info about your collection...");
+        Subtitle_Label15.setText("See infor about your database...");
         Background_Panel15.add(Subtitle_Label15, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 80, -1, -1));
 
         Upper_Banner15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Banner3.png"))); // NOI18N
@@ -573,6 +813,11 @@ public class Users_Menu extends javax.swing.JFrame {
         SelectStdistic_ComboBox1.setForeground(new java.awt.Color(0, 0, 0));
         SelectStdistic_ComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Books by Genre", "Borrowed Books", "Borrowed Books by Genre", "Borroed Books by Age" }));
         SelectStdistic_ComboBox1.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(13, 172, 103)));
+        SelectStdistic_ComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SelectStdistic_ComboBox1ActionPerformed(evt);
+            }
+        });
         jPanel16.add(SelectStdistic_ComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, 260, 30));
 
         jTable9.setModel(new javax.swing.table.DefaultTableModel(
@@ -677,15 +922,10 @@ public class Users_Menu extends javax.swing.JFrame {
         Publisher_Label1.setText("Publisher:");
         jPanel8.add(Publisher_Label1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 340, -1, -1));
 
-        Publisher_ComboBox.setBackground(new java.awt.Color(255, 255, 255));
-        Publisher_ComboBox.setForeground(new java.awt.Color(0, 0, 0));
-        Publisher_ComboBox.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(204, 204, 204)));
-        jPanel8.add(Publisher_ComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 380, 260, 30));
-
-        ItemType_TextField.setBackground(new java.awt.Color(255, 255, 255));
-        ItemType_TextField.setForeground(new java.awt.Color(0, 0, 0));
-        ItemType_TextField.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(204, 204, 204)));
-        jPanel8.add(ItemType_TextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 300, 260, 30));
+        ItemType_ComboBox.setBackground(new java.awt.Color(255, 255, 255));
+        ItemType_ComboBox.setForeground(new java.awt.Color(0, 0, 0));
+        ItemType_ComboBox.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(204, 204, 204)));
+        jPanel8.add(ItemType_ComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 300, 260, 30));
 
         ItemTitle_TextField.setBackground(new java.awt.Color(255, 255, 255));
         ItemTitle_TextField.setForeground(new java.awt.Color(0, 0, 0));
@@ -719,13 +959,25 @@ public class Users_Menu extends javax.swing.JFrame {
 
         AddPhoto_Button.setFont(new java.awt.Font("Bahnschrift", 0, 18)); // NOI18N
         AddPhoto_Button.setForeground(new java.awt.Color(255, 255, 255));
-        AddPhoto_Button.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Photo_Icon64.png"))); // NOI18N
-        AddPhoto_Button.setText("Add a Cover Image!");
+        AddPhoto_Button.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Camera_Icon32.png"))); // NOI18N
+        AddPhoto_Button.setText("   Add a Cover Image!");
+        AddPhoto_Button.setBorder(null);
         AddPhoto_Button.setBorderPainted(false);
         AddPhoto_Button.setContentAreaFilled(false);
-        AddPhoto_Button.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        AddPhoto_Button.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jPanel8.add(AddPhoto_Button, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 50, 270, 240));
+        AddPhoto_Button.setFocusable(false);
+        AddPhoto_Button.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        AddPhoto_Button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AddPhoto_ButtonActionPerformed(evt);
+            }
+        });
+        jPanel8.add(AddPhoto_Button, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 30, 280, 60));
+        jPanel8.add(Cover_Image_Label, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 100, 250, 250));
+
+        Publisher_ComboBox1.setBackground(new java.awt.Color(255, 255, 255));
+        Publisher_ComboBox1.setForeground(new java.awt.Color(0, 0, 0));
+        Publisher_ComboBox1.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(204, 204, 204)));
+        jPanel8.add(Publisher_ComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 380, 260, 30));
 
         Background_Panel7.add(jPanel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 130, 840, 530));
 
@@ -761,6 +1013,7 @@ public class Users_Menu extends javax.swing.JFrame {
         Lateral_Button1.setText("         See Collection!");
         Lateral_Button1.setAlignmentX(5.0F);
         Lateral_Button1.setBorderPainted(false);
+        Lateral_Button1.setFocusable(false);
         Lateral_Button1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         Lateral_Button1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
@@ -846,7 +1099,7 @@ public class Users_Menu extends javax.swing.JFrame {
         Lateral_Button6.setFont(new java.awt.Font("Bahnschrift", 0, 20)); // NOI18N
         Lateral_Button6.setForeground(new java.awt.Color(0, 0, 0));
         Lateral_Button6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/LateralButton6.png"))); // NOI18N
-        Lateral_Button6.setText("  Do A Query");
+        Lateral_Button6.setText("  Do a Query");
         Lateral_Button6.setAlignmentX(5.0F);
         Lateral_Button6.setBorderPainted(false);
         Lateral_Button6.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -926,6 +1179,7 @@ public class Users_Menu extends javax.swing.JFrame {
         MainMenu_Button.setText("Main         Menu");
         MainMenu_Button.setBorderPainted(false);
         MainMenu_Button.setContentAreaFilled(false);
+        MainMenu_Button.setFocusable(false);
         MainMenu_Button.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         MainMenu_Button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -946,14 +1200,6 @@ public class Users_Menu extends javax.swing.JFrame {
         });
         getContentPane().add(Exit_Button, new org.netbeans.lib.awtextra.AbsoluteConstraints(1250, 0, 30, 30));
 
-        Admin_Label.setFont(new java.awt.Font("Bahnschrift", 0, 20)); // NOI18N
-        Admin_Label.setForeground(new java.awt.Color(255, 255, 255));
-        Admin_Label.setText("Admin");
-        Admin_Label.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-        Admin_Label.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        Admin_Label.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
-        getContentPane().add(Admin_Label, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 250, 60, 20));
-
         Wallpaper_Label.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Menu_Wallpaper.png"))); // NOI18N
         getContentPane().add(Wallpaper_Label, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1280, 720));
 
@@ -962,10 +1208,12 @@ public class Users_Menu extends javax.swing.JFrame {
 
     private void Lateral_Button1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Lateral_Button1ActionPerformed
      Collection_InternalFrame.setVisible(false);
+            ItemInfo_InternalFrame.setVisible(false);
        AddPeople_InternalFrame.setVisible(false);
        LendItem_InternalFrame.setVisible(false);
        ReceiveItem_InternalFrame.setVisible(false); 
        ReviewItem_InternalFrame.setVisible(false);
+      
        Queries_InternalFrame.setVisible(false);
        AddItem_InternalFrame.setVisible(false);
 
@@ -976,23 +1224,26 @@ public class Users_Menu extends javax.swing.JFrame {
 
     private void Lateral_Button3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Lateral_Button3ActionPerformed
       Collection_InternalFrame.setVisible(false);
+            ItemInfo_InternalFrame.setVisible(false);
        AddPeople_InternalFrame.setVisible(false);
        LendItem_InternalFrame.setVisible(false);
        ReceiveItem_InternalFrame.setVisible(false); 
        ReviewItem_InternalFrame.setVisible(false);
+      
        Queries_InternalFrame.setVisible(false);
        AddItem_InternalFrame.setVisible(false);
-       
-       
+
        LendItem_InternalFrame.setVisible(true);
     }//GEN-LAST:event_Lateral_Button3ActionPerformed
 
     private void Lateral_Button4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Lateral_Button4ActionPerformed
        Collection_InternalFrame.setVisible(false);
+            ItemInfo_InternalFrame.setVisible(false);
        AddPeople_InternalFrame.setVisible(false);
        LendItem_InternalFrame.setVisible(false);
        ReceiveItem_InternalFrame.setVisible(false); 
        ReviewItem_InternalFrame.setVisible(false);
+      
        Queries_InternalFrame.setVisible(false);
        AddItem_InternalFrame.setVisible(false);
        
@@ -1001,10 +1252,12 @@ public class Users_Menu extends javax.swing.JFrame {
 
     private void Lateral_Button5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Lateral_Button5ActionPerformed
        Collection_InternalFrame.setVisible(false);
+            ItemInfo_InternalFrame.setVisible(false);
        AddPeople_InternalFrame.setVisible(false);
        LendItem_InternalFrame.setVisible(false);
        ReceiveItem_InternalFrame.setVisible(false); 
        ReviewItem_InternalFrame.setVisible(false);
+      
        Queries_InternalFrame.setVisible(false);
        AddItem_InternalFrame.setVisible(false);
        
@@ -1013,10 +1266,12 @@ public class Users_Menu extends javax.swing.JFrame {
 
     private void Lateral_Button6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Lateral_Button6ActionPerformed
        Collection_InternalFrame.setVisible(false);
+            ItemInfo_InternalFrame.setVisible(false);
        AddPeople_InternalFrame.setVisible(false);
        LendItem_InternalFrame.setVisible(false);
        ReceiveItem_InternalFrame.setVisible(false); 
        ReviewItem_InternalFrame.setVisible(false);
+      
        Queries_InternalFrame.setVisible(false);
        AddItem_InternalFrame.setVisible(false);
        
@@ -1024,11 +1279,13 @@ public class Users_Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_Lateral_Button6ActionPerformed
 
     private void Lateral_Button2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Lateral_Button2ActionPerformed
-      Collection_InternalFrame.setVisible(false);
+       Collection_InternalFrame.setVisible(false);
+            ItemInfo_InternalFrame.setVisible(false);
        AddPeople_InternalFrame.setVisible(false);
        LendItem_InternalFrame.setVisible(false);
        ReceiveItem_InternalFrame.setVisible(false); 
        ReviewItem_InternalFrame.setVisible(false);
+      
        Queries_InternalFrame.setVisible(false);
        AddItem_InternalFrame.setVisible(false);
 
@@ -1097,13 +1354,15 @@ public class Users_Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_AddItem_PanelMouseExited
 
     private void AddAnItem_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddAnItem_ButtonActionPerformed
-       Collection_InternalFrame.setVisible(false);
+      Collection_InternalFrame.setVisible(false);
+            ItemInfo_InternalFrame.setVisible(false);
        AddPeople_InternalFrame.setVisible(false);
        LendItem_InternalFrame.setVisible(false);
        ReceiveItem_InternalFrame.setVisible(false); 
        ReviewItem_InternalFrame.setVisible(false);
+      
        Queries_InternalFrame.setVisible(false);
-       AddItem_InternalFrame.setVisible(false);
+       AddItem_InternalFrame.setVisible(false);;
        
        AddItem_InternalFrame.setVisible(true);
     }//GEN-LAST:event_AddAnItem_ButtonActionPerformed
@@ -1121,11 +1380,13 @@ public class Users_Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_AddAnItem_ButtonMouseExited
 
     private void MainMenu_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MainMenu_ButtonActionPerformed
-       Collection_InternalFrame.setVisible(false);
+      Collection_InternalFrame.setVisible(false);
+            ItemInfo_InternalFrame.setVisible(false);
        AddPeople_InternalFrame.setVisible(false);
        LendItem_InternalFrame.setVisible(false);
        ReceiveItem_InternalFrame.setVisible(false); 
        ReviewItem_InternalFrame.setVisible(false);
+      
        Queries_InternalFrame.setVisible(false);
        AddItem_InternalFrame.setVisible(false);
 
@@ -1142,6 +1403,75 @@ public class Users_Menu extends javax.swing.JFrame {
     private void AddItem_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddItem_ButtonActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_AddItem_ButtonActionPerformed
+
+    private void AddPhoto_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddPhoto_ButtonActionPerformed
+       JFileChooser chooser = new JFileChooser();
+       chooser.showOpenDialog(null);
+       File f = chooser.getSelectedFile();
+       filename = f.getAbsolutePath();
+       ImageIcon cover = new ImageIcon(new ImageIcon(filename).getImage().getScaledInstance(250, 250, Image.SCALE_SMOOTH));
+       Cover_Image_Label.setIcon(cover);
+       
+       try{ 
+           File cover_image = new File(filename);
+           FileInputStream fis = new FileInputStream(cover_image);
+           ByteArrayOutputStream bos = new ByteArrayOutputStream();
+           byte [] buf = new byte[1024];
+            for(int readNum; (readNum = fis.read(buf)) != -1;){
+                bos.write(buf, 0, readNum);
+            }
+          photo = bos.toByteArray();
+       } catch(Exception e){
+           JOptionPane.showMessageDialog(null, e);       
+       }
+       
+    }//GEN-LAST:event_AddPhoto_ButtonActionPerformed
+
+    private void CommitChanges_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CommitChanges_ButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CommitChanges_ButtonActionPerformed
+
+    private void AddPhoto_Button1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddPhoto_Button1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_AddPhoto_Button1ActionPerformed
+
+    private void RemoveItem_CheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RemoveItem_CheckBoxActionPerformed
+       RemoveItem_CheckBox.setSelected(false);
+       CommitChanges_Button.setEnabled(true);
+    }//GEN-LAST:event_RemoveItem_CheckBoxActionPerformed
+
+    private void UpdateStatusType_CheckBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UpdateStatusType_CheckBox2ActionPerformed
+         RemoveItem_CheckBox.setSelected(false);
+         CommitChanges_Button.setEnabled(true);
+    }//GEN-LAST:event_UpdateStatusType_CheckBox2ActionPerformed
+
+    private void Collection_TableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Collection_TableMouseClicked
+       Collection_InternalFrame.setVisible(false);
+            ItemInfo_InternalFrame.setVisible(false);
+       AddPeople_InternalFrame.setVisible(false);
+       LendItem_InternalFrame.setVisible(false);
+       ReceiveItem_InternalFrame.setVisible(false); 
+       ReviewItem_InternalFrame.setVisible(false);
+      
+       Queries_InternalFrame.setVisible(false);
+       AddItem_InternalFrame.setVisible(false);  
+        
+ 
+        
+        ItemInfo_InternalFrame.setVisible(true);
+    }//GEN-LAST:event_Collection_TableMouseClicked
+
+    private void Day_TextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Day_TextFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Day_TextFieldActionPerformed
+
+    private void SelectStdistic_ComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SelectStdistic_ComboBox1ActionPerformed
+
+    }//GEN-LAST:event_SelectStdistic_ComboBox1ActionPerformed
+
+    private void RemovePersonKnowsPerson_CheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RemovePersonKnowsPerson_CheckBoxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_RemovePersonKnowsPerson_CheckBoxActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1187,30 +1517,44 @@ public class Users_Menu extends javax.swing.JFrame {
     private javax.swing.JButton AddPeople_Button;
     private javax.swing.JInternalFrame AddPeople_InternalFrame;
     private javax.swing.JButton AddPhoto_Button;
-    private javax.swing.JLabel Admin_Label;
+    private javax.swing.JButton AddPhoto_Button1;
     private javax.swing.JPanel Background_Panel;
     private javax.swing.JPanel Background_Panel1;
     private javax.swing.JPanel Background_Panel15;
+    private javax.swing.JPanel Background_Panel16;
     private javax.swing.JPanel Background_Panel2;
     private javax.swing.JPanel Background_Panel3;
     private javax.swing.JPanel Background_Panel4;
     private javax.swing.JPanel Background_Panel7;
     private javax.swing.JLabel Banner_Label;
+    private javax.swing.JTextField BarbcodeItem_TextField;
     private javax.swing.JInternalFrame Collection_InternalFrame;
     private javax.swing.JTable Collection_Table;
+    private javax.swing.JButton CommitChanges_Button;
+    private javax.swing.JLabel Cover_Image_Label;
+    private javax.swing.JLabel Cover_Image_Label1;
     private javax.swing.JTextField Day_TextField;
     private javax.swing.JPanel Divisor_Panel;
+    private javax.swing.JTextField EditionItem_TextField;
     private javax.swing.JButton Exit_Button;
     private javax.swing.JLabel Genre_Label;
+    private javax.swing.JLabel Genre_Label1;
     private javax.swing.JComboBox<String> Genre_TextField;
+    private javax.swing.JComboBox<String> Genre_TextField1;
     private javax.swing.JTextField ItemBarbcode_TextField;
     private javax.swing.JLabel ItemBarcode_Label;
+    private javax.swing.JLabel ItemBarcode_Label1;
     private javax.swing.JLabel ItemEdition_Label;
+    private javax.swing.JLabel ItemEdition_Label1;
     private javax.swing.JTextField ItemEdition_TextField;
+    private javax.swing.JInternalFrame ItemInfo_InternalFrame;
     private javax.swing.JLabel ItemTitle_Label;
+    private javax.swing.JLabel ItemTitle_Label1;
     private javax.swing.JTextField ItemTitle_TextField;
+    private javax.swing.JComboBox<String> ItemType_ComboBox;
+    private javax.swing.JComboBox<String> ItemType_ComboBox1;
     private javax.swing.JLabel ItemType_Label;
-    private javax.swing.JTextField ItemType_TextField;
+    private javax.swing.JLabel ItemType_Label1;
     private javax.swing.JButton Lateral_Button1;
     private javax.swing.JButton Lateral_Button2;
     private javax.swing.JButton Lateral_Button3;
@@ -1226,14 +1570,19 @@ public class Users_Menu extends javax.swing.JFrame {
     private javax.swing.JLabel PersonEmail_Label2;
     private javax.swing.JTextField PersonEmail_TextField;
     private javax.swing.JTextField PersonEmail_TextField2;
-    private javax.swing.JComboBox<String> Publisher_ComboBox;
+    private javax.swing.JComboBox<String> Publisher_ComboBox1;
+    private javax.swing.JComboBox<String> Publisher_ComboBox2;
     private javax.swing.JLabel Publisher_Label1;
+    private javax.swing.JLabel Publisher_Label2;
     private javax.swing.JInternalFrame Queries_InternalFrame;
     private javax.swing.JInternalFrame ReceiveItem_InternalFrame;
     private javax.swing.JButton Receive_Button;
     private javax.swing.JTextField RedTolerance_TextField;
     private javax.swing.JComboBox<String> RelationType_ComboBox;
     private javax.swing.JLabel RelationType_Label;
+    private javax.swing.JTable RelationType_Table;
+    private javax.swing.JCheckBox RemoveItem_CheckBox;
+    private javax.swing.JCheckBox RemovePersonKnowsPerson_CheckBox;
     private javax.swing.JLabel ReturnDate_Label;
     private javax.swing.JInternalFrame ReviewItem_InternalFrame;
     private javax.swing.JButton Review_Button;
@@ -1250,21 +1599,26 @@ public class Users_Menu extends javax.swing.JFrame {
     private javax.swing.JLabel Subtitle_Label;
     private javax.swing.JLabel Subtitle_Label1;
     private javax.swing.JLabel Subtitle_Label15;
+    private javax.swing.JLabel Subtitle_Label16;
     private javax.swing.JLabel Subtitle_Label2;
     private javax.swing.JLabel Subtitle_Label3;
     private javax.swing.JLabel Subtitle_Label4;
     private javax.swing.JLabel Subtitle_Label7;
+    private javax.swing.JTextField TitleItem_TextField;
     private javax.swing.JLabel Title_Label;
     private javax.swing.JLabel Title_Label1;
     private javax.swing.JLabel Title_Label15;
+    private javax.swing.JLabel Title_Label16;
     private javax.swing.JLabel Title_Label2;
     private javax.swing.JLabel Title_Label3;
     private javax.swing.JLabel Title_Label4;
     private javax.swing.JLabel Title_Label7;
     private javax.swing.JLabel ToleranceDays_Label;
+    private javax.swing.JCheckBox UpdateStatusType_CheckBox2;
     private javax.swing.JLabel Upper_Banner;
     private javax.swing.JLabel Upper_Banner1;
     private javax.swing.JLabel Upper_Banner15;
+    private javax.swing.JLabel Upper_Banner16;
     private javax.swing.JLabel Upper_Banner2;
     private javax.swing.JLabel Upper_Banner3;
     private javax.swing.JLabel Upper_Banner4;
@@ -1277,6 +1631,7 @@ public class Users_Menu extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel16;
+    private javax.swing.JPanel jPanel17;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
@@ -1284,6 +1639,7 @@ public class Users_Menu extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel8;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane10;
+    private javax.swing.JScrollPane jScrollPane11;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTable jTable1;
@@ -1291,4 +1647,6 @@ public class Users_Menu extends javax.swing.JFrame {
     private javax.swing.JTable jTable9;
     private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
+  byte[] photo = null;
+  String filename = null;
 }

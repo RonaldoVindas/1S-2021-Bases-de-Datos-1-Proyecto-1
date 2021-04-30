@@ -5,14 +5,14 @@ FUNCTION DecryptPassword(pdecrypt_password IN VARCHAR2) RETURN VARCHAR2;
 
 PROCEDURE insert_person (pid IN NUMBER, pfirname IN VARCHAR2, plasname IN VARCHAR2, pemail IN VARCHAR2, ppassword IN VARCHAR2, pphonenumber IN VARCHAR2, pdate IN DATE, ppersontype_id IN NUMBER);
 PROCEDURE remove_person (pid IN NUMBER);
-PROCEDURE update_person(pid IN NUMBER, pfirname IN VARCHAR2, plasname IN VARCHAR2, pemail IN VARCHAR2, ppassword IN VARCHAR2, pphonenumber IN VARCHAR2, pdate IN DATE, ppersontype_id IN NUMBER);
+PROCEDURE update_person(pid_old IN NUMBER, pid IN NUMBER, pfirname IN VARCHAR2, plasname IN VARCHAR2, pemail IN VARCHAR2, ppassword IN VARCHAR2, pphonenumber IN VARCHAR2, pdate IN DATE);
 
-FUNCTION getpersonId(pemail IN VARCHAR) RETURN NUMBER;
-FUNCTION getpersonFirstName(pid IN NUMBER) RETURN VARCHAR;
-FUNCTION getpersonLastName(pid IN NUMBER) RETURN VARCHAR;
-FUNCTION getpersonEmail(pid IN NUMBER) RETURN VARCHAR;
-FUNCTION getpersonPassword(pid IN NUMBER) RETURN VARCHAR;
-FUNCTION getpersonPhoneNumber(pid IN NUMBER) RETURN VARCHAR;
+FUNCTION getpersonId(pemail IN VARCHAR2) RETURN NUMBER;
+FUNCTION getpersonFirstName(pid IN NUMBER) RETURN VARCHAR2;
+FUNCTION getpersonLastName(pid IN NUMBER) RETURN VARCHAR2;
+FUNCTION getpersonEmail(pid IN NUMBER) RETURN VARCHAR2;
+FUNCTION getpersonPassword(pid IN NUMBER) RETURN VARCHAR2;
+FUNCTION getpersonPhoneNumber(pid IN NUMBER) RETURN VARCHAR2;
 FUNCTION getpersonBirthDay(pid IN NUMBER) RETURN DATE;
 FUNCTION getpersonPersonType(pid IN NUMBER) RETURN NUMBER;
 
@@ -50,7 +50,7 @@ AS
 PROCEDURE insert_person (pid IN NUMBER, pfirname IN VARCHAR2, plasname IN VARCHAR2, pemail IN VARCHAR2, ppassword IN VARCHAR2, pphonenumber IN VARCHAR2, pdate IN DATE, ppersontype_id IN NUMBER) AS
 BEGIN
 	INSERT INTO person(person_id,first_name,last_name,email,password,phone_number,birth_day,persontype_id)
-	VALUES(pid, pfirname, plasname, pemail, EncryptPassword(ppasword), pphonenumber, pdate, ppersontype_id);
+	VALUES(pid, pfirname, plasname, pemail, EncryptPassword(ppassword), pphonenumber, pdate, ppersontype_id);
 END insert_person;
 
 PROCEDURE remove_person (pid IN NUMBER) AS
@@ -74,11 +74,17 @@ BEGIN
 END remove_person;
 
 
-PROCEDURE update_person(pid_old IN NUMBER, pid IN NUMBER, pfirname IN VARCHAR2, plasname IN VARCHAR2, pemail IN VARCHAR2, ppassword IN VARCHAR2, pphonenumber IN VARCHAR2, pdate IN DATE, ppersontype_id IN NUMBER) AS
+PROCEDURE update_person(pid_old IN NUMBER, pid IN NUMBER, pfirname IN VARCHAR2, plasname IN VARCHAR2, pemail IN VARCHAR2, ppassword IN VARCHAR2, pphonenumber IN VARCHAR2, pdate IN DATE) AS
 e_invalid_person EXCEPTION;
 BEGIN
-	UPDATE person
-	SET person_id,first_name,last_name,email,password,phone_number,date = pid,pfirname,plasname,pemail,EncryptPassword(ppassword),pphonenumber,pdate 
+	UPDATE person 
+	SET person_id = pid,
+        first_name = pfirname,
+        last_name = plasname,
+        email = pemail,
+        password = EncryptPassword(ppassword),
+        phone_number = pphonenumber,
+        birth_day = pdate 
 	WHERE person_id = pid_old;
 	COMMIT;
     IF SQL%NOTFOUND THEN 
@@ -96,7 +102,7 @@ BEGIN
 END update_person;
 
 
-FUNCTION getpersonId(pemail IN VARCHAR)RETURN NUMBER
+FUNCTION getpersonId(pemail IN VARCHAR2)RETURN NUMBER
 IS 
     vcId NUMBER(11);
     BEGIN
@@ -189,7 +195,7 @@ IS
             DBMS_OUTPUT.PUT_LINE ('Unexpected error.');
     END;
 
-FUNCTION getpersonPassword(pid IN NUMBER) RETURN VARCHAR;
+FUNCTION getpersonPassword(pid IN NUMBER) RETURN VARCHAR2
 IS 
     vcPassword VARCHAR2(15);
     BEGIN
@@ -197,7 +203,7 @@ IS
         INTO vcPassword
         FROM person
         WHERE person_id = pid;
-        RETURN (DecryptPassword(vcEmail));
+        RETURN (DecryptPassword(vcPassword));
         EXCEPTION
             WHEN TOO_MANY_ROWS THEN
             DBMS_OUTPUT.PUT_LINE ('Your SELECT statement retrieved multiple rows.');
@@ -212,7 +218,7 @@ IS
     END;
 
 
-FUNCTION getpersonPhoneNumber(pid IN NUMBER) RETURN VARCHAR;
+FUNCTION getpersonPhoneNumber(pid IN NUMBER) RETURN VARCHAR2
 IS 
     vcPhoneNumber VARCHAR2(15);
     BEGIN
@@ -234,7 +240,33 @@ IS
             DBMS_OUTPUT.PUT_LINE ('Unexpected error.');
     END;
 
-FUNCTION getpersonPersonType(pid IN NUMBER) RETURN NUMBER;
+
+FUNCTION getpersonBirthDay(pid IN NUMBER) RETURN DATE
+IS 
+    vcBirthDay DATE;
+    BEGIN
+        SELECT birth_day
+        INTO vcBirthDay
+        FROM person
+        WHERE person_id = pid;
+        RETURN (vcBirthDay);
+        EXCEPTION
+            WHEN TOO_MANY_ROWS THEN
+            DBMS_OUTPUT.PUT_LINE ('Your SELECT statement retrieved multiple rows.');
+            WHEN NO_DATA_FOUND THEN
+            DBMS_OUTPUT.PUT_LINE ('Could not find a register with the name||pcnombre.');
+            WHEN STORAGE_ERROR THEN
+            DBMS_OUTPUT.PUT_LINE ('PL/SQL ran out of memory or memory is corrupted.');
+            WHEN VALUE_ERROR THEN
+            DBMS_OUTPUT.PUT_LINE ('An arithmetic, conversion, truncation, or size constraint error ocurred.');
+            WHEN OTHERS THEN
+            DBMS_OUTPUT.PUT_LINE ('Unexpected error.');
+    END;
+
+
+
+
+FUNCTION getpersonPersonType(pid IN NUMBER) RETURN NUMBER
 IS 
     vcPersonType NUMBER(11);
     BEGIN

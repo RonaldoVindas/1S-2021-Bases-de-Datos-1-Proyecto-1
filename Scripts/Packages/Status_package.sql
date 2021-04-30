@@ -2,11 +2,11 @@ Create or replace package control_status is
 
 PROCEDURE insert_status (pname IN VARCHAR2, pdescription IN VARCHAR2);
 PROCEDURE remove_status (pid IN NUMBER);
-PROCEDURE update_status(pname IN VARCHAR2, pdescription IN VARCHAR2);
+PROCEDURE update_status(pid IN NUMBER,pname IN VARCHAR2,pdescription IN VARCHAR2);
 
-FUNCTION getstatusId(pname varchar2) return number;
-FUNCTION getstatusName(pid IN NUMBER) RETURN VARCHAR;
-FUNCTION getstatusDescription(pid IN NUMBER) RETURN VARCHAR;
+FUNCTION getstatusId(pname in varchar2) return number;
+FUNCTION getstatusName(pid IN NUMBER) RETURN VARCHAR2;
+FUNCTION getstatusDescription(pid IN NUMBER) RETURN VARCHAR2;
 
 end control_status;
 
@@ -44,7 +44,8 @@ PROCEDURE update_status (pid IN NUMBER,pname IN VARCHAR2,pdescription IN VARCHAR
 e_invalid_status EXCEPTION;
 BEGIN
 	UPDATE status
-	SET status_name, description = pname, pdescription
+	SET status_name = pname,
+        description = pdescription
 	WHERE status_id = pid;
 	COMMIT;
     IF SQL%NOTFOUND THEN 
@@ -62,11 +63,11 @@ BEGIN
 END update_status;
 
 
-FUNCTION getstatusId(pname IN VARCHAR) RETURN NUMBER
+FUNCTION getstatusId(pname in varchar2) return number
 IS 
     vcId NUMBER(8);
     BEGIN
-        SELECT pstatus_id
+        SELECT status_id
         INTO vcId
         FROM status
         WHERE status_name = pname;
@@ -109,7 +110,6 @@ IS
     END;
 
 FUNCTION getstatusDescription(pid IN NUMBER) RETURN VARCHAR2
-
 IS 
     vcDescription VARCHAR2(100);
     BEGIN

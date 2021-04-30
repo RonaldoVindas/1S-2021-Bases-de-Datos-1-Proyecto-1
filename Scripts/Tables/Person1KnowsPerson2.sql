@@ -17,7 +17,7 @@ IS 'Person 1 identification code';
 
 /
 
-COMMENT ON Column person.person2_id
+COMMENT ON Column Person1KnowsPerson2.person2_id
 IS 'Person 2 identification code.';
 
 /
@@ -39,15 +39,15 @@ alter table Person1KnowsPerson2
 /*==================================================CREACIÓN DE LLAVES FORANEAS======================================================*/
 
 ALTER TABLE Person1KnowsPerson2
-ADD CONSTRAINT fk_Person1KnowsPerson2_person1_id FOREIGN KEY
+ADD CONSTRAINT fk_Per1KnowsPer2_person1id FOREIGN KEY
 (person1_id) REFERENCES person(person1_id);
 /
 ALTER TABLE Person1KnowsPerson2
-ADD CONSTRAINT fk_Person1KnowsPerson2_person2_id FOREIGN KEY
-(person2_id) REFERENCES person(person2_id);
+ADD CONSTRAINT fk_Per1KnowsPer2_person2id FOREIGN KEY
+(person2_id) REFERENCES person(person_id);
 /
 ALTER TABLE Person1KnowsPerson2
-ADD CONSTRAINT fk_Person1KnowsPerson2_relationtype_id FOREIGN KEY
+ADD CONSTRAINT fk_Per1KnowsPer2_relationid FOREIGN KEY
 (relationtype_id) REFERENCES relationtype(relationtype_id);
 
 

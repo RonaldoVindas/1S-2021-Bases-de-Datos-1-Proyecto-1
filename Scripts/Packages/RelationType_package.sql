@@ -5,8 +5,8 @@ PROCEDURE remove_relationtype (pid IN NUMBER);
 PROCEDURE update_relationtype (pid IN NUMBER, pname IN VARCHAR2);
 
 
-FUNCTION getrelationtypeId(pname IN VARCHAR) RETURN NUMBER;
-FUNCTION getrelationtypeName(pid IN NUMBER) RETURN VARCHAR;
+FUNCTION getrelationtypeId(pname IN VARCHAR2) RETURN NUMBER;
+FUNCTION getrelationtypeName(pid IN NUMBER) RETURN VARCHAR2;
 
 end control_relationtype;
 
@@ -18,7 +18,7 @@ PROCEDURE insert_relationtype (pname IN VARCHAR2) AS
 BEGIN
 	INSERT INTO relationtype(relationtype_name)
 	VALUES(pname);
-END insert_relation;
+END insert_relationtype;
 
 PROCEDURE remove_relationtype (pid IN NUMBER) AS
 e_invalid_relationtype EXCEPTION;
@@ -40,7 +40,7 @@ BEGIN
         DBMS_OUTPUT.PUT_LINE(SQLCODE);
 END remove_relationtype;
 
-PROCEDURE update_relationtype(pid IN NUMBER, pname IN VARCHAR2) AS
+PROCEDURE update_relationtype (pid IN NUMBER, pname IN VARCHAR2) AS
 e_invalid_relationtype EXCEPTION;
 BEGIN
 	UPDATE relationtype
@@ -61,7 +61,7 @@ BEGIN
         DBMS_OUTPUT.PUT_LINE(SQLCODE);
 END update_relationtype;
 
-FUNCTION getrelationtypeId(pname IN VARCHAR) RETURN NUMBER
+FUNCTION getrelationtypeId(pname IN VARCHAR2) RETURN NUMBER
 IS 
     vcId NUMBER(8);
     BEGIN

@@ -64,6 +64,7 @@ END beforeINSERTrelationType;
 CREATE OR REPLACE TRIGGER pe.beforeUPDATErelationType
 BEFORE UPDATE
 ON pe.relationType
+FOR EACH ROW
 BEGIN
     :new.date_last_modification:= SYSDATE;
     :new.user_last_modification:= USER;

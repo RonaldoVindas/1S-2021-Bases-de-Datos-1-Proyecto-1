@@ -1,7 +1,7 @@
 /*==================================================CREACIÓN DE TABLAS======================================================*/
 create table PersonType(
   persontype_id Number(11),
-  persontype_name varchar2(20),
+  persontype_name varchar2(20)
 
 );
 /
@@ -12,12 +12,12 @@ IS 'Repository to storage information about the person types in the database.';
 
 /
 
-COMMENT ON Column PersonLendItem.persontype_id
+COMMENT ON Column PersonType.persontype_id
 IS 'Person Type identification code.';
 
 /
 
-COMMENT ON Column PersonLendItem.persontype_name
+COMMENT ON Column PersonType.persontype_name
 IS 'Person Type name.';
 
 /*==================================================CREACIÓN DE LLAVES PRIMARIAS======================================================*/

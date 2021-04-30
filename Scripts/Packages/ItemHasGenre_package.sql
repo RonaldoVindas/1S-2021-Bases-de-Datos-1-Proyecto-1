@@ -25,7 +25,7 @@ BEGIN
         RAISE e_invalid_itemHasGenre;
     END IF;
     EXCEPTION
-    WHEN e_invalid_genre THEN
+    WHEN e_invalid_itemHasGenre THEN
         DBMS_OUTPUT.PUT_LINE('No such itemHasGenre.');
         DBMS_OUTPUT.PUT_LINE(SQLERRM);
         DBMS_OUTPUT.PUT_LINE(SQLCODE);
@@ -40,7 +40,8 @@ PROCEDURE update_itemHasGenre(oldpitem_id IN Number,pitem_id IN Number,pgenre_id
 e_invalid_itemHasGenre EXCEPTION;
 BEGIN
 	UPDATE itemHasGenre
-	SET item_id,genre_id = pitem_id ,pgenre_id 
+	SET item_id = pitem_id,
+        genre_id = pgenre_id 
 	WHERE item_id = oldpitem_id;
 	COMMIT;
     IF SQL%NOTFOUND THEN 
@@ -88,7 +89,7 @@ IS
         SELECT genre_id
         INTO vcgenre_id
         FROM itemHasGenre
-        WHERE genre_id = pgenre_id
+        WHERE genre_id = pgenre_id;
         RETURN (vcgenre_id);
         EXCEPTION
             WHEN TOO_MANY_ROWS THEN

@@ -11,16 +11,16 @@ CREATE OR REPLACE PACKAGE BODY control_genre IS
 
 PROCEDURE insert_genre (pname IN VARCHAR2,pdescription IN VARCHAR2) AS
 BEGIN
-	INSERT INTO genre(genre_name,description)
-	VALUES(pname,pdescription);
+    INSERT INTO genre(genre_name,description)
+    VALUES(pname,pdescription);
 END insert_genre;
 
 PROCEDURE remove_genre (pid_genre IN NUMBER) AS
 e_invalid_genre EXCEPTION;
 BEGIN
-	DELETE FROM genre
-	WHERE genre_id = pid_genre;
-	COMMIT;
+    DELETE FROM genre
+    WHERE genre_id = pid_genre;
+    COMMIT;
     IF SQL%NOTFOUND THEN 
         RAISE e_invalid_genre;
     END IF;
@@ -39,10 +39,10 @@ END remove_genre;
 PROCEDURE update_genre(pid_genre IN NUMBER,pname IN VARCHAR2, pdescription IN VARCHAR2) AS
 e_invalid_genre EXCEPTION;
 BEGIN
-	UPDATE genre
-	SET genre_name,description = pname,pdescription
-	WHERE genre_id = pid_genre;
-	COMMIT;
+    UPDATE genre
+    SET genre_name = pname, description = pdescription
+    WHERE genre_id = pid_genre;
+    COMMIT;
     IF SQL%NOTFOUND THEN 
         RAISE e_invalid_genre;
     END IF;
@@ -101,10 +101,10 @@ IS
             WHEN OTHERS THEN
             DBMS_OUTPUT.PUT_LINE ('Unexpected error.');
     END;
-    
-    
-    
-    
+
+
+
+
 FUNCTION get_genre_id(pname varchar2) return number
 IS 
     vcID Number(11);
@@ -112,7 +112,7 @@ IS
         SELECT genre_id
         INTO vcID
         FROM genre
-        WHERE name = pname;
+        WHERE genre_name = pname;
         RETURN (vcID);
         EXCEPTION
             WHEN TOO_MANY_ROWS THEN

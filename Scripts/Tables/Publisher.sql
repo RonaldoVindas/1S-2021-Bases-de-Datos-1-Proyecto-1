@@ -66,6 +66,7 @@ END beforeINSERTpublisher;
 CREATE OR REPLACE TRIGGER pe.beforeUPDATEpublisher
 BEFORE UPDATE
 ON pe.publisher
+FOR EACH ROW
 BEGIN
     :new.date_last_modification:= SYSDATE;
     :new.user_last_modification:= USER;

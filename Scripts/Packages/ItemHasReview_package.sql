@@ -1,16 +1,18 @@
 Create or replace package control_ItemHasReview is
+
 PROCEDURE insert_ItemHasReview (pitem_id IN Number,preview_id IN Number);
 PROCEDURE remove_ItemHasReview (pitem_id IN Number);
-ROCEDURE update_ItemHasReview(oldpitem_id IN Number,pitem_id IN Number,preview_id IN Number);
+PROCEDURE update_ItemHasReview(oldpitem_id IN Number,pitem_id IN Number,preview_id IN Number);
 FUNCTION getItemHasReviewitem_id(pitem_id IN NUMBER) RETURN NUMBER;
-FUNCTION getItemHasReviewreview_id(review_id IN NUMBER) RETURN NUMBER;
-end control_ItemHasReview
+FUNCTION getItemHasReviewreview_id(pitem_id IN NUMBER) RETURN NUMBER;
+
+end control_ItemHasReview;
 /
 CREATE OR REPLACE PACKAGE BODY control_ItemHasReview IS
 
 PROCEDURE insert_ItemHasReview (pitem_id IN Number,preview_id IN Number) AS
 BEGIN
-	INSERT INTO ItemHasReview(item_id,review_id )
+	INSERT INTO ItemHasReview(item_id,review_id)
 	VALUES(pitem_id,preview_id);
 END insert_ItemHasReview;
 
@@ -39,7 +41,8 @@ PROCEDURE update_ItemHasReview(oldpitem_id IN Number,pitem_id IN Number,preview_
 e_invalid_ItemHasReview EXCEPTION;
 BEGIN
 	UPDATE ItemHasReview
-	SET item_id,review_id = pitem_id ,preview_id
+	SET item_id = pitem_id,
+        review_id = preview_id
 	WHERE item_id = oldpitem_id;
 	COMMIT;
     IF SQL%NOTFOUND THEN 
@@ -78,14 +81,14 @@ IS
             DBMS_OUTPUT.PUT_LINE ('Unexpected error.');
     END;
 
-FUNCTION getItemHasReviewreview_id(review_id IN NUMBER) RETURN NUMBER
+FUNCTION getItemHasReviewreview_id(pitem_id IN NUMBER) RETURN NUMBER
 IS 
-    vcreview_idd NUMBER(11);
+    vcreview_id NUMBER(11);
     BEGIN
         SELECT review_id
         INTO vcreview_id
         FROM ItemHasReview
-        WHERE review_id = preview_id;
+        WHERE item_id = pitem_id;
         RETURN (vcreview_id);
         EXCEPTION
             WHEN TOO_MANY_ROWS THEN

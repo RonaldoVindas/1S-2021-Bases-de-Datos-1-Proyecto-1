@@ -12,12 +12,12 @@ IS 'Repository to storage information the items a person creates.';
 
 /
 
-COMMENT ON Column PersonHasItem.person_id
+COMMENT ON Column PersonCreatesItem.person_id
 IS 'Person identification code.';
 
 /
 
-COMMENT ON Column PersonHasItem.item_id
+COMMENT ON Column PersonCreatesItem.item_id
 IS 'Item identification code.';
 
 /*==================================================CREACIÓN DE LLAVES PRIMARIAS======================================================*/
@@ -70,7 +70,7 @@ END beforeInsertPersonCreatesItem;
 
 /
 
-CREATE OR REPLACE TRIGGER cl.beforeUPDATEPersonCreatesItem
+CREATE OR REPLACE TRIGGER pe.beforeUPDATEPersonCreatesItem
 BEFORE UPDATE
 ON pe.PersonCreatesItem
 FOR EACH ROW

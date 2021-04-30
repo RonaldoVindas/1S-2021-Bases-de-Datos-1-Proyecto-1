@@ -47,7 +47,8 @@ PROCEDURE update_personhasitem (ppersonid_old in NUMBER, pperson_id IN NUMBER, p
 e_invalid_personhasitem EXCEPTION;
 BEGIN
 	UPDATE personhasitem
-	SET person_id, item_id = pperson_id, pitem_id
+	SET person_id = pperson_id, 
+        item_id = pitem_id
 	WHERE person_id = ppersonid_old;
 	COMMIT;
     IF SQL%NOTFOUND THEN 
@@ -65,7 +66,7 @@ BEGIN
 END update_personhasitem;
 
 
-FUNCTION getpersonhasitemPersonID(pid_item IN NUMBER) RETURN NUMBER
+FUNCTION getpersonhasitemPersonID (pid_item IN NUMBER) RETURN NUMBER
 IS 
     vcId NUMBER(11);
     BEGIN
@@ -87,7 +88,7 @@ IS
             DBMS_OUTPUT.PUT_LINE ('Unexpected error.');
     END;
     
-FUNCTION getpersonhasitemItemID(pid_person IN NUMBER) RETURN NUMBER
+FUNCTION getpersonhasitemItemID (pid_person IN NUMBER) RETURN NUMBER
 IS 
     vcId NUMBER(11);
     BEGIN

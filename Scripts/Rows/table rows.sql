@@ -26,7 +26,7 @@ insert into Publisher(publisher_name) values('Lionsgate');
 insert into Publisher(publisher_name) values('Activision');
 insert into Publisher(publisher_name) values('Sega');
 insert into Publisher(publisher_name) values('Electronic Arts');
-insert into Publisher(publisher_name) values('square enix');	
+insert into Publisher(publisher_name) values('Square enix');	
 insert into Publisher(publisher_name) values('Konami');
 
 
@@ -87,23 +87,23 @@ __________________________tabla Person__________________________________________
 insert into  Person(first_name,last_name, email, password, phone_number,birth_day, persontype_id) values('Ronaldo','Vindas','rony1211@gmail.com','falcon12','88778841',DATE '1999-11-12',1);
 insert into  Person(first_name,last_name, email, password, phone_number,birth_day, persontype_id) values('Renzo','Barra','rony1211@gmail.com','Renzo12','98753215',DATE '1999-1-2',1);
 insert into  Person(first_name,last_name, email, password, phone_number,birth_day, persontype_id) values('Alvaro','Moreira','conker@gmail.com','conker19','87258021',DATE '1992-2-19',1);
-insert into  Person(first_name,last_name, email, password, phone_number,birth_day, persontype_id) values('Joseph','Chaves','jox@gmail.com','jox127','87946321',DATE '2000-5-15',0);
-insert into  Person(first_name,last_name, email, password, phone_number,birth_day, persontype_id) values('Emely','Zarate','Emezar18@gmail.com','Emezar18','26887451',DATE '1995-7-5',0);
-insert into  Person(first_name,last_name, email, password, phone_number,birth_day, persontype_id) values('Valeria','Aguilar','VAguilar@yahoo.com','agva68','22698725',DATE '2002-06-02',0);
-insert into  Person(first_name,last_name, email, password, phone_number,birth_day, persontype_id) values('Anthony','Vargas','Tony1522@gmail.com','tova15','22672146',DATE '2003-06-01',0);
-insert into  Person(first_name,last_name, email, password, phone_number,birth_day, persontype_id) values('Krissia','Pérez','KrissPM@hotmail.com','pekrpm105','22676548',DATE '1999-05-31',0);
-insert into  Person(first_name,last_name, email, password, phone_number,birth_day, persontype_id) values('Emmanuel','Jarquín','Emma123@gmail.com','jaem12','22651278',DATE '1998-05-30',0);
-insert into  Person(first_name,last_name, email, password, phone_number,birth_day, persontype_id) values('Jesús','Aguilar','ChusAM@gmail.com','agjeAm','82654820',DATE '1988-05-29',0);
-insert into  Person(first_name,last_name, email, password, phone_number,birth_day, persontype_id) values('Javier','Barquero','Raydertre@outlook.com','Bajaray','22621897',DATE '1972-05-28',0);
-insert into  Person(first_name,last_name, email, password, phone_number,birth_day, persontype_id) values('Rebecca','Madrigal','RebboxMad@gmail.com','MareMAD','89632570',DATE '2001-05-26',0);
-insert into  Person(first_name,last_name, email, password, phone_number,birth_day, persontype_id) values('Justin','Bogantes','Justino@tec.com','BoJu25','83654015',DATE '1985-05-24',0);
-insert into  Person(first_name,last_name, email, password, phone_number,birth_day, persontype_id) values('Alejandra','Rivera','alitadepol@yahoo.com','holahola','81254798',DATE '1993-05-23',0);
-insert into  Person(first_name,last_name, email, password, phone_number,birth_day, persontype_id) values('Joselyn','Rodríguez','Joss45451@gmail.com','Rojo54','78965215',DATE '1987-05-22',0);
-insert into  Person(first_name,last_name, email, password, phone_number,birth_day, persontype_id) values('Keylor','Navas','SanNavas@hotmail.com','Nakegol','89215821',DATE '1999-05-21',0);
-insert into  Person(first_name,last_name, email, password, phone_number,birth_day, persontype_id) values('Valery','Vega','VValery@yahoo.com.com','vevaer','89646851',DATE '2001-05-19',0);
-insert into  Person(first_name,last_name, email, password, phone_number,birth_day, persontype_id) values('Josue','Siles','Siles@gmail.com','130cm','72357801',DATE '1998-05-18',0);
-insert into  Person(first_name,last_name, email, password, phone_number,birth_day, persontype_id) values('Dennis','Ángulo','Dernudo@outlook.com','ande8','98746526',DATE '1993-05-17',0);
-insert into  Person(first_name,last_name, email, password, phone_number,birth_day, persontype_id) values('Ishtar','Saborio','servantesCD@outlook.com','DCishr','98746526',DATE '1994-01-10',0);
+insert into  Person(first_name,last_name, email, password, phone_number,birth_day, persontype_id) values('Joseph','Chaves','jox@gmail.com','jox127','87946321',DATE '2000-5-15',2);
+insert into  Person(first_name,last_name, email, password, phone_number,birth_day, persontype_id) values('Emely','Zarate','Emezar18@gmail.com','Emezar18','26887451',DATE '1995-7-5',2);
+insert into  Person(first_name,last_name, email, password, phone_number,birth_day, persontype_id) values('Valeria','Aguilar','VAguilar@yahoo.com','agva68','22698725',DATE '2002-06-02',2);
+insert into  Person(first_name,last_name, email, password, phone_number,birth_day, persontype_id) values('Anthony','Vargas','Tony1522@gmail.com','tova15','22672146',DATE '2003-06-01',2);
+insert into  Person(first_name,last_name, email, password, phone_number,birth_day, persontype_id) values('Krissia','Pérez','KrissPM@hotmail.com','pekrpm105','22676548',DATE '1999-05-31',2);
+insert into  Person(first_name,last_name, email, password, phone_number,birth_day, persontype_id) values('Emmanuel','Jarquín','Emma123@gmail.com','jaem12','22651278',DATE '1998-05-30',2);
+insert into  Person(first_name,last_name, email, password, phone_number,birth_day, persontype_id) values('Jesús','Aguilar','ChusAM@gmail.com','agjeAm','82654820',DATE '1988-05-29',2);
+insert into  Person(first_name,last_name, email, password, phone_number,birth_day, persontype_id) values('Javier','Barquero','Raydertre@outlook.com','Bajaray','22621897',DATE '1972-05-28',2);
+insert into  Person(first_name,last_name, email, password, phone_number,birth_day, persontype_id) values('Rebecca','Madrigal','RebboxMad@gmail.com','MareMAD','89632570',DATE '2001-05-26',2);
+insert into  Person(first_name,last_name, email, password, phone_number,birth_day, persontype_id) values('Justin','Bogantes','Justino@tec.com','BoJu25','83654015',DATE '1985-05-24',2);
+insert into  Person(first_name,last_name, email, password, phone_number,birth_day, persontype_id) values('Alejandra','Rivera','alitadepol@yahoo.com','holahola','81254798',DATE '1993-05-23',2);
+insert into  Person(first_name,last_name, email, password, phone_number,birth_day, persontype_id) values('Joselyn','Rodríguez','Joss45451@gmail.com','Rojo54','78965215',DATE '1987-05-22',2);
+insert into  Person(first_name,last_name, email, password, phone_number,birth_day, persontype_id) values('Keylor','Navas','SanNavas@hotmail.com','Nakegol','89215821',DATE '1999-05-21',2);
+insert into  Person(first_name,last_name, email, password, phone_number,birth_day, persontype_id) values('Valery','Vega','VValery@yahoo.com.com','vevaer','89646851',DATE '2001-05-19',2);
+insert into  Person(first_name,last_name, email, password, phone_number,birth_day, persontype_id) values('Josue','Siles','Siles@gmail.com','130cm','72357801',DATE '1998-05-18',2);
+insert into  Person(first_name,last_name, email, password, phone_number,birth_day, persontype_id) values('Dennis','Ángulo','Dernudo@outlook.com','ande8','98746526',DATE '1993-05-17',2);
+insert into  Person(first_name,last_name, email, password, phone_number,birth_day, persontype_id) values('Ishtar','Saborio','servantesCD@outlook.com','DCishr','98746526',DATE '1994-01-10',2);
 
 __________________________tabla item___________________________________________________
 
@@ -119,7 +119,7 @@ insert into item(title,edition,barcode,itemtype_id,status_id,publisher_id,genre_
 insert into item(title,edition,barcode,itemtype_id,status_id,publisher_id,genre_id) values('DUNE LA BATALLA DE CORRIN ','Best Seller','000000000010',1,1,9,6)
 insert into item(title,edition,barcode,itemtype_id,status_id,publisher_id,genre_id) values('DIARIO DE ANA FRANK','2007','000000000011',1,1,9,8)
 insert into item(title,edition,barcode,itemtype_id,status_id,publisher_id,genre_id) values('VIOLIN DEL DIABLO','Best Seller','000000000012',1,1,9,1)
-insert into item(title,edition,barcode,itemtype_id,status_id,publisher_id,genre_id) values('YOGA KITCHEN,'2020'','000000000013',1,1,11,7)
+insert into item(title,edition,barcode,itemtype_id,status_id,publisher_id,genre_id) values('YOGA KITCHEN','2020','000000000013',1,1,11,7)
 insert into item(title,edition,barcode,itemtype_id,status_id,publisher_id,genre_id) values('READY PLAYER ONE (ESPAÑOL)','2018','000000000014',1,1,12,6)
 insert into item(title,edition,barcode,itemtype_id,status_id,publisher_id,genre_id) values('LIFE AND ADVENTURES OF ROBINSON CRUSOE','2019','000000000015',1,1,13,2)
 insert into item(title,edition,barcode,itemtype_id,status_id,publisher_id,genre_id) values('John Wick','DVD','000000000016',2,1,14,9)
@@ -344,7 +344,7 @@ insert into PersonLendItem(person1_id,person2_id,item_id,lend_date,return_date,a
 insert into PersonLendItem(person1_id,person2_id,item_id,lend_date,return_date,amount_days,tolerance_days_yellow,tolerance_days_red) values(16,18,30,TO_DATE('2020/12/01', 'yyyy/mm/dd'),TO_DATE('2020/12/25', 'yyyy/mm/dd'),(select to_date (TO_DATE('2020/12/25', 'yyyy/mm/dd')) - trunc(TO_DATE('2020/12/01', 'yyyy/mm/dd')) from dual),5,1)
 insert into PersonLendItem(person1_id,person2_id,item_id,lend_date,return_date,amount_days,tolerance_days_yellow,tolerance_days_red) values(17,5,31,TO_DATE('2020/01/01', 'yyyy/mm/dd'),TO_DATE('2020/02/20', 'yyyy/mm/dd'),(select to_date (TO_DATE('2020/02/20', 'yyyy/mm/dd')) - trunc(TO_DATE('2020/01/01', 'yyyy/mm/dd')) from dual),5,3)
 insert into PersonLendItem(person1_id,person2_id,item_id,lend_date,return_date,amount_days,tolerance_days_yellow,tolerance_days_red) values(17,11,46,TO_DATE('2020/02/15', 'yyyy/mm/dd'),TO_DATE('2020/04/15', 'yyyy/mm/dd'),(select to_date (TO_DATE('2020/04/15', 'yyyy/mm/dd') - trunc(TO_DATE('2020/02/15', 'yyyy/mm/dd')) from dual),8,1)
-insert into PersonLendItem(person1_id,person2_id,item_id,lend_date,return_date,amount_days,tolerance_days_yellow,tolerance_days_red) values(18,16,33,TO_DATE('202/02/08', 'yyyy/mm/dd'),TO_DATE('2020/06/09', 'yyyy/mm/dd'),(select to_date (TO_DATE('2020/06/09', 'yyyy/mm/dd')) - trunc(TO_DATE('202/02/08', 'yyyy/mm/dd') from dual),7,2)
+insert into PersonLendItem(person1_id,person2_id,item_id,lend_date,return_date,amount_days,tolerance_days_yellow,tolerance_days_red) values(18,16,33,TO_DATE('2020/02/08', 'yyyy/mm/dd'),TO_DATE('2020/06/09', 'yyyy/mm/dd'),(select to_date (TO_DATE('2020/06/09', 'yyyy/mm/dd')) - trunc(TO_DATE('2020/02/08', 'yyyy/mm/dd') from dual),7,2)
 insert into PersonLendItem(person1_id,person2_id,item_id,lend_date,return_date,amount_days,tolerance_days_yellow,tolerance_days_red) values(18,19,44,TO_DATE('2020/04/01', 'yyyy/mm/dd'),TO_DATE('2020/08/20', 'yyyy/mm/dd'),(select to_date (TO_DATE('2020/08/20', 'yyyy/mm/dd')) - trunc(TO_DATE('2020/04/01', 'yyyy/mm/dd')) from dual),10,2)
 insert into PersonLendItem(person1_id,person2_id,item_id,lend_date,return_date,amount_days,tolerance_days_yellow,tolerance_days_red) values(19,14,38,TO_DATE('2020/03/27', 'yyyy/mm/dd'),TO_DATE('2020/05/28', 'yyyy/mm/dd'),(select to_date (TO_DATE('2020/05/28', 'yyyy/mm/dd')) - trunc(TO_DATE('2020/03/27', 'yyyy/mm/dd')) from dual),6,2)
 insert into PersonLendItem(person1_id,person2_id,item_id,lend_date,return_date,amount_days,tolerance_days_yellow,tolerance_days_red) values(19,10,39,TO_DATE('2020/05/10', 'yyyy/mm/dd'),TO_DATE('2020/09/13', 'yyyy/mm/dd'),(select to_date (TO_DATE('2020/09/13', 'yyyy/mm/dd')) - trunc(TO_DATE('2020/05/10', 'yyyy/mm/dd')) from dual),11,5)

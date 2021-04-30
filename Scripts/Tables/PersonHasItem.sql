@@ -70,7 +70,7 @@ END beforeInsertPersonHasItem;
 
 /
 
-CREATE OR REPLACE TRIGGER cl.beforeUPDATEPersonHasItem
+CREATE OR REPLACE TRIGGER pe.beforeUPDATEPersonHasItem
 BEFORE UPDATE
 ON pe.PersonHasItem
 FOR EACH ROW

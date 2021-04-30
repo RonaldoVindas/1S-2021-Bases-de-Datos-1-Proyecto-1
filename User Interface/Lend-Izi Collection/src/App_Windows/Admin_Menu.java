@@ -5,31 +5,61 @@
  */
 package App_Windows;
 
+import java.awt.Color;
+import java.awt.Image;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.border.MatteBorder;
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartFrame;
+import org.jfree.chart.ChartPanel;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.plot.PiePlot3D;
+import org.jfree.data.general.DefaultPieDataset;
+
 /**
  *
  * @author rony1
  */
 public class Admin_Menu extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Admin_Menu
-     */
+    private ChartFrame frame;
+    
     public Admin_Menu() {
+     
      this.setUndecorated(true);
      initComponents();
      Collection_InternalFrame.setVisible(false);
-     AddPeople_InternalFrame.setVisible(false);
-     LendItem_InternalFrame.setVisible(false);
-     ReceiveItem_InternalFrame.setVisible(false); 
-     ReviewItem_InternalFrame.setVisible(false);
-     RegisterValues_InternalFrame.setVisible(false);
-        RegisterRelationType_InternalFrame.setVisible(false);
-        RegisterItemType_InternalFrame.setVisible(false);
-        RegisterStatusType_InternalFrame.setVisible(false);
-     Stadistics_InternalFrame.setVisible(false);
-     AddItem_InternalFrame.setVisible(false);
+            ItemInfo_InternalFrame.setVisible(false);
+       AddPeople_InternalFrame.setVisible(false);
+       LendItem_InternalFrame.setVisible(false);
+       ReceiveItem_InternalFrame.setVisible(false); 
+       ReviewItem_InternalFrame.setVisible(false);
+       RegisterValues_InternalFrame.setVisible(false);
+            RegisterRelationType_InternalFrame.setVisible(false);
+            RegisterItemType_InternalFrame.setVisible(false);
+            RegisterStatusType_InternalFrame.setVisible(false);
+            RegisterGenreType_InternalFrame.setVisible(false);
+            RegisterPublisher_InternalFrame.setVisible(false);
+            RegisterAuthor_InternalFrame.setVisible(false);
+            
+       StatisticsQueries_InternalFrame.setVisible(false);
+            Statistics_InternalFrame.setVisible(false);
+            Queries_InternalFrame.setVisible(false);
+       AddItem_InternalFrame.setVisible(false);
      
      this.setLocationRelativeTo(null);
+     
+     byte[] photo = null;
+     
+     
+     
+     
     }
 
     /**
@@ -49,6 +79,29 @@ public class Admin_Menu extends javax.swing.JFrame {
         jPanel5 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         Collection_Table = new javax.swing.JTable();
+        ItemInfo_InternalFrame = new javax.swing.JInternalFrame();
+        Background_Panel16 = new javax.swing.JPanel();
+        Title_Label16 = new javax.swing.JLabel();
+        Subtitle_Label16 = new javax.swing.JLabel();
+        Upper_Banner16 = new javax.swing.JLabel();
+        jPanel17 = new javax.swing.JPanel();
+        ItemType_Label1 = new javax.swing.JLabel();
+        Genre_Label1 = new javax.swing.JLabel();
+        ItemEdition_Label1 = new javax.swing.JLabel();
+        ItemBarcode_Label1 = new javax.swing.JLabel();
+        ItemTitle_Label1 = new javax.swing.JLabel();
+        Publisher_Label2 = new javax.swing.JLabel();
+        TitleItem_TextField = new javax.swing.JTextField();
+        EditionItem_TextField = new javax.swing.JTextField();
+        BarbcodeItem_TextField = new javax.swing.JTextField();
+        CommitChanges_Button = new javax.swing.JButton();
+        AddPhoto_Button1 = new javax.swing.JButton();
+        Cover_Image_Label1 = new javax.swing.JLabel();
+        RemoveItem_CheckBox = new javax.swing.JCheckBox();
+        UpdateStatusType_CheckBox2 = new javax.swing.JCheckBox();
+        ItemType_ComboBox1 = new javax.swing.JComboBox<>();
+        Publisher_ComboBox2 = new javax.swing.JComboBox<>();
+        Genre_TextField1 = new javax.swing.JComboBox<>();
         AddPeople_InternalFrame = new javax.swing.JInternalFrame();
         Background_Panel1 = new javax.swing.JPanel();
         Title_Label1 = new javax.swing.JLabel();
@@ -60,6 +113,9 @@ public class Admin_Menu extends javax.swing.JFrame {
         RelationType_ComboBox = new javax.swing.JComboBox<>();
         PersonEmail_Label = new javax.swing.JLabel();
         AddPeople_Button = new javax.swing.JButton();
+        jScrollPane11 = new javax.swing.JScrollPane();
+        RelationType_Table = new javax.swing.JTable();
+        RemovePersonKnowsPerson_CheckBox = new javax.swing.JCheckBox();
         LendItem_InternalFrame = new javax.swing.JInternalFrame();
         Background_Panel2 = new javax.swing.JPanel();
         Title_Label2 = new javax.swing.JLabel();
@@ -234,7 +290,7 @@ public class Admin_Menu extends javax.swing.JFrame {
         AuthorFirstName_TextField = new javax.swing.JTextField();
         jLabel16 = new javax.swing.JLabel();
         AuthorLastName_TextField = new javax.swing.JTextField();
-        StadisticsQueries_InternalFrame = new javax.swing.JInternalFrame();
+        StatisticsQueries_InternalFrame = new javax.swing.JInternalFrame();
         Background_Panel14 = new javax.swing.JPanel();
         Title_Label14 = new javax.swing.JLabel();
         Subtitle_Label14 = new javax.swing.JLabel();
@@ -243,14 +299,15 @@ public class Admin_Menu extends javax.swing.JFrame {
         SelectField_Label13 = new javax.swing.JLabel();
         Queries_Button = new javax.swing.JButton();
         Stadistics_Button = new javax.swing.JButton();
-        Stadistics_InternalFrame = new javax.swing.JInternalFrame();
+        Statistics_InternalFrame = new javax.swing.JInternalFrame();
         Background_Panel6 = new javax.swing.JPanel();
         Title_Label6 = new javax.swing.JLabel();
         Subtitle_Label6 = new javax.swing.JLabel();
         Upper_Banner6 = new javax.swing.JLabel();
         jPanel7 = new javax.swing.JPanel();
         Select_Label = new javax.swing.JLabel();
-        SelectStdistic_ComboBox = new javax.swing.JComboBox<>();
+        SelectStatistic_ComboBox = new javax.swing.JComboBox<>();
+        CloseAllCharts_Button = new javax.swing.JButton();
         Queries_InternalFrame = new javax.swing.JInternalFrame();
         Background_Panel15 = new javax.swing.JPanel();
         Title_Label15 = new javax.swing.JLabel();
@@ -277,13 +334,14 @@ public class Admin_Menu extends javax.swing.JFrame {
         ItemBarcode_Label = new javax.swing.JLabel();
         ItemTitle_Label = new javax.swing.JLabel();
         Publisher_Label1 = new javax.swing.JLabel();
-        Publisher_ComboBox = new javax.swing.JComboBox<>();
-        ItemType_TextField = new javax.swing.JTextField();
+        ItemType_ComboBox = new javax.swing.JComboBox<>();
         ItemTitle_TextField = new javax.swing.JTextField();
         ItemEdition_TextField = new javax.swing.JTextField();
         ItemBarbcode_TextField = new javax.swing.JTextField();
         AddItem_Button = new javax.swing.JButton();
         AddPhoto_Button = new javax.swing.JButton();
+        Cover_Image_Label = new javax.swing.JLabel();
+        Publisher_ComboBox1 = new javax.swing.JComboBox<>();
         Menu_Panel = new javax.swing.JPanel();
         Divisor_Panel = new javax.swing.JPanel();
         Banner_Label = new javax.swing.JLabel();
@@ -344,6 +402,11 @@ public class Admin_Menu extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        Collection_Table.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                Collection_TableMouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(Collection_Table);
 
         jPanel5.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 820, 510));
@@ -353,6 +416,155 @@ public class Admin_Menu extends javax.swing.JFrame {
         Collection_InternalFrame.getContentPane().add(Background_Panel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 900, 700));
 
         getContentPane().add(Collection_InternalFrame, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 0, 900, 720));
+
+        ItemInfo_InternalFrame.setBackground(new java.awt.Color(0, 0, 0));
+        ItemInfo_InternalFrame.setBorder(javax.swing.BorderFactory.createMatteBorder(5, 5, 5, 5, new java.awt.Color(233, 85, 4)));
+        ItemInfo_InternalFrame.setClosable(true);
+        ItemInfo_InternalFrame.setForeground(new java.awt.Color(0, 0, 0));
+        ItemInfo_InternalFrame.setMaximumSize(new java.awt.Dimension(900, 720));
+        ItemInfo_InternalFrame.setMinimumSize(new java.awt.Dimension(900, 720));
+        ItemInfo_InternalFrame.setNormalBounds(new java.awt.Rectangle(0, 0, 0, 0));
+        ItemInfo_InternalFrame.setVisible(false);
+        ItemInfo_InternalFrame.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        Background_Panel16.setBackground(new java.awt.Color(102, 102, 102));
+        Background_Panel16.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        Title_Label16.setFont(new java.awt.Font("Bahnschrift", 0, 36)); // NOI18N
+        Title_Label16.setForeground(new java.awt.Color(255, 255, 255));
+        Title_Label16.setText("See your Item Info!");
+        Background_Panel16.add(Title_Label16, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 40, -1, -1));
+
+        Subtitle_Label16.setFont(new java.awt.Font("Bahnschrift", 0, 14)); // NOI18N
+        Subtitle_Label16.setForeground(new java.awt.Color(255, 255, 255));
+        Subtitle_Label16.setText("See details or change them...");
+        Background_Panel16.add(Subtitle_Label16, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 80, -1, -1));
+
+        Upper_Banner16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Banner3.png"))); // NOI18N
+        Background_Panel16.add(Upper_Banner16, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 900, 100));
+
+        jPanel17.setBackground(new java.awt.Color(51, 51, 51));
+        jPanel17.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        ItemType_Label1.setFont(new java.awt.Font("Bahnschrift", 0, 24)); // NOI18N
+        ItemType_Label1.setForeground(new java.awt.Color(255, 255, 255));
+        ItemType_Label1.setText("Item Type:");
+        jPanel17.add(ItemType_Label1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 260, -1, -1));
+
+        Genre_Label1.setFont(new java.awt.Font("Bahnschrift", 0, 24)); // NOI18N
+        Genre_Label1.setForeground(new java.awt.Color(255, 255, 255));
+        Genre_Label1.setText("Genre:");
+        jPanel17.add(Genre_Label1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 420, -1, -1));
+
+        ItemEdition_Label1.setFont(new java.awt.Font("Bahnschrift", 0, 24)); // NOI18N
+        ItemEdition_Label1.setForeground(new java.awt.Color(255, 255, 255));
+        ItemEdition_Label1.setText("Item Edition:");
+        jPanel17.add(ItemEdition_Label1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 110, -1, -1));
+
+        ItemBarcode_Label1.setFont(new java.awt.Font("Bahnschrift", 0, 24)); // NOI18N
+        ItemBarcode_Label1.setForeground(new java.awt.Color(255, 255, 255));
+        ItemBarcode_Label1.setText("Item Barcode:");
+        jPanel17.add(ItemBarcode_Label1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 180, -1, -1));
+
+        ItemTitle_Label1.setFont(new java.awt.Font("Bahnschrift", 0, 24)); // NOI18N
+        ItemTitle_Label1.setForeground(new java.awt.Color(255, 255, 255));
+        ItemTitle_Label1.setText("Item Title:");
+        jPanel17.add(ItemTitle_Label1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, -1, -1));
+
+        Publisher_Label2.setFont(new java.awt.Font("Bahnschrift", 0, 24)); // NOI18N
+        Publisher_Label2.setForeground(new java.awt.Color(255, 255, 255));
+        Publisher_Label2.setText("Publisher:");
+        jPanel17.add(Publisher_Label2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 340, -1, -1));
+
+        TitleItem_TextField.setBackground(new java.awt.Color(255, 255, 255));
+        TitleItem_TextField.setForeground(new java.awt.Color(0, 0, 0));
+        TitleItem_TextField.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(233, 85, 4)));
+        jPanel17.add(TitleItem_TextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 70, 260, 30));
+
+        EditionItem_TextField.setBackground(new java.awt.Color(255, 255, 255));
+        EditionItem_TextField.setForeground(new java.awt.Color(0, 0, 0));
+        EditionItem_TextField.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(233, 85, 4)));
+        jPanel17.add(EditionItem_TextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, 260, 30));
+
+        BarbcodeItem_TextField.setBackground(new java.awt.Color(255, 255, 255));
+        BarbcodeItem_TextField.setForeground(new java.awt.Color(0, 0, 0));
+        BarbcodeItem_TextField.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(233, 85, 4)));
+        jPanel17.add(BarbcodeItem_TextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 220, 260, 30));
+
+        CommitChanges_Button.setBackground(new java.awt.Color(255, 240, 0));
+        CommitChanges_Button.setFont(new java.awt.Font("Bahnschrift", 0, 18)); // NOI18N
+        CommitChanges_Button.setForeground(new java.awt.Color(0, 0, 0));
+        CommitChanges_Button.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/ButtonWhite.png"))); // NOI18N
+        CommitChanges_Button.setText("Commit Changes");
+        CommitChanges_Button.setBorderPainted(false);
+        CommitChanges_Button.setContentAreaFilled(false);
+        CommitChanges_Button.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        CommitChanges_Button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CommitChanges_ButtonActionPerformed(evt);
+            }
+        });
+        jPanel17.add(CommitChanges_Button, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 450, 190, 40));
+
+        AddPhoto_Button1.setFont(new java.awt.Font("Bahnschrift", 0, 18)); // NOI18N
+        AddPhoto_Button1.setForeground(new java.awt.Color(255, 255, 255));
+        AddPhoto_Button1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Camera_Icon32.png"))); // NOI18N
+        AddPhoto_Button1.setText("   Change Cover Image!");
+        AddPhoto_Button1.setBorder(null);
+        AddPhoto_Button1.setBorderPainted(false);
+        AddPhoto_Button1.setContentAreaFilled(false);
+        AddPhoto_Button1.setFocusable(false);
+        AddPhoto_Button1.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        AddPhoto_Button1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AddPhoto_Button1ActionPerformed(evt);
+            }
+        });
+        jPanel17.add(AddPhoto_Button1, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 80, 280, 60));
+        jPanel17.add(Cover_Image_Label1, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 160, 250, 250));
+
+        RemoveItem_CheckBox.setFont(new java.awt.Font("Bahnschrift", 0, 14)); // NOI18N
+        RemoveItem_CheckBox.setForeground(new java.awt.Color(255, 255, 255));
+        RemoveItem_CheckBox.setText("Remove");
+        RemoveItem_CheckBox.setFocusable(false);
+        RemoveItem_CheckBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RemoveItem_CheckBoxActionPerformed(evt);
+            }
+        });
+        jPanel17.add(RemoveItem_CheckBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 50, 80, -1));
+
+        UpdateStatusType_CheckBox2.setFont(new java.awt.Font("Bahnschrift", 0, 14)); // NOI18N
+        UpdateStatusType_CheckBox2.setForeground(new java.awt.Color(255, 255, 255));
+        UpdateStatusType_CheckBox2.setText("Update");
+        UpdateStatusType_CheckBox2.setFocusable(false);
+        UpdateStatusType_CheckBox2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                UpdateStatusType_CheckBox2ActionPerformed(evt);
+            }
+        });
+        jPanel17.add(UpdateStatusType_CheckBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 50, 80, -1));
+
+        ItemType_ComboBox1.setBackground(new java.awt.Color(255, 255, 255));
+        ItemType_ComboBox1.setForeground(new java.awt.Color(0, 0, 0));
+        ItemType_ComboBox1.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(233, 85, 4)));
+        jPanel17.add(ItemType_ComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 300, 260, 30));
+
+        Publisher_ComboBox2.setBackground(new java.awt.Color(255, 255, 255));
+        Publisher_ComboBox2.setForeground(new java.awt.Color(0, 0, 0));
+        Publisher_ComboBox2.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(233, 85, 4)));
+        jPanel17.add(Publisher_ComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 380, 260, 30));
+
+        Genre_TextField1.setBackground(new java.awt.Color(255, 255, 255));
+        Genre_TextField1.setForeground(new java.awt.Color(0, 0, 0));
+        Genre_TextField1.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(233, 85, 4)));
+        jPanel17.add(Genre_TextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 460, 260, 30));
+
+        Background_Panel16.add(jPanel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 130, 840, 530));
+
+        ItemInfo_InternalFrame.getContentPane().add(Background_Panel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 900, 700));
+
+        getContentPane().add(ItemInfo_InternalFrame, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 0, 900, 720));
 
         AddPeople_InternalFrame.setBackground(new java.awt.Color(0, 0, 0));
         AddPeople_InternalFrame.setBorder(javax.swing.BorderFactory.createMatteBorder(5, 5, 5, 5, new java.awt.Color(255, 240, 0)));
@@ -369,13 +581,13 @@ public class Admin_Menu extends javax.swing.JFrame {
 
         Title_Label1.setFont(new java.awt.Font("Bahnschrift", 0, 36)); // NOI18N
         Title_Label1.setForeground(new java.awt.Color(255, 255, 255));
-        Title_Label1.setText("Add People!");
+        Title_Label1.setText("Add People and See Your Friends!");
         Background_Panel1.add(Title_Label1, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 40, -1, -1));
 
         Subtitle_Label1.setFont(new java.awt.Font("Bahnschrift", 0, 14)); // NOI18N
         Subtitle_Label1.setForeground(new java.awt.Color(255, 255, 255));
         Subtitle_Label1.setText("Family, friends, coworkers, everyone is here!");
-        Background_Panel1.add(Subtitle_Label1, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 80, -1, -1));
+        Background_Panel1.add(Subtitle_Label1, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 80, -1, -1));
 
         Upper_Banner1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Banner3.png"))); // NOI18N
         Background_Panel1.add(Upper_Banner1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 900, 100));
@@ -411,8 +623,35 @@ public class Admin_Menu extends javax.swing.JFrame {
         AddPeople_Button.setText("Add!");
         AddPeople_Button.setBorderPainted(false);
         AddPeople_Button.setContentAreaFilled(false);
+        AddPeople_Button.setFocusable(false);
         AddPeople_Button.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jPanel1.add(AddPeople_Button, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 380, 320, 100));
+
+        RelationType_Table.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane11.setViewportView(RelationType_Table);
+
+        jPanel1.add(jScrollPane11, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 70, 470, 230));
+
+        RemovePersonKnowsPerson_CheckBox.setFont(new java.awt.Font("Bahnschrift", 0, 14)); // NOI18N
+        RemovePersonKnowsPerson_CheckBox.setForeground(new java.awt.Color(255, 255, 255));
+        RemovePersonKnowsPerson_CheckBox.setText("Remove");
+        RemovePersonKnowsPerson_CheckBox.setFocusable(false);
+        RemovePersonKnowsPerson_CheckBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RemovePersonKnowsPerson_CheckBoxActionPerformed(evt);
+            }
+        });
+        jPanel1.add(RemovePersonKnowsPerson_CheckBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 30, 110, -1));
 
         Background_Panel1.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 130, 840, 530));
 
@@ -452,6 +691,11 @@ public class Admin_Menu extends javax.swing.JFrame {
         Day_TextField.setBackground(new java.awt.Color(255, 255, 255));
         Day_TextField.setForeground(new java.awt.Color(0, 0, 0));
         Day_TextField.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(242, 150, 0)));
+        Day_TextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Day_TextFieldActionPerformed(evt);
+            }
+        });
         jPanel2.add(Day_TextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 270, 80, 30));
 
         jLabel3.setFont(new java.awt.Font("Bahnschrift", 0, 18)); // NOI18N
@@ -477,6 +721,7 @@ public class Admin_Menu extends javax.swing.JFrame {
         Lend_Button.setText("Lend-Izi!");
         Lend_Button.setBorderPainted(false);
         Lend_Button.setContentAreaFilled(false);
+        Lend_Button.setFocusable(false);
         Lend_Button.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jPanel2.add(Lend_Button, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 380, 320, 100));
 
@@ -573,6 +818,7 @@ public class Admin_Menu extends javax.swing.JFrame {
         Receive_Button.setText("Receive - Izi");
         Receive_Button.setBorderPainted(false);
         Receive_Button.setContentAreaFilled(false);
+        Receive_Button.setFocusable(false);
         Receive_Button.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         Receive_Button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -649,6 +895,7 @@ public class Admin_Menu extends javax.swing.JFrame {
         Review_Button.setText("Review!");
         Review_Button.setBorderPainted(false);
         Review_Button.setContentAreaFilled(false);
+        Review_Button.setFocusable(false);
         Review_Button.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         Review_Button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -728,6 +975,7 @@ public class Admin_Menu extends javax.swing.JFrame {
         StatusType_Button.setText("Status Types");
         StatusType_Button.setBorderPainted(false);
         StatusType_Button.setContentAreaFilled(false);
+        StatusType_Button.setFocusable(false);
         StatusType_Button.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         StatusType_Button.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         StatusType_Button.addActionListener(new java.awt.event.ActionListener() {
@@ -743,6 +991,7 @@ public class Admin_Menu extends javax.swing.JFrame {
         RelationType_Button.setText("Relation Types");
         RelationType_Button.setBorderPainted(false);
         RelationType_Button.setContentAreaFilled(false);
+        RelationType_Button.setFocusable(false);
         RelationType_Button.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         RelationType_Button.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         RelationType_Button.addActionListener(new java.awt.event.ActionListener() {
@@ -758,6 +1007,7 @@ public class Admin_Menu extends javax.swing.JFrame {
         Author_Button.setText("Authors");
         Author_Button.setBorderPainted(false);
         Author_Button.setContentAreaFilled(false);
+        Author_Button.setFocusable(false);
         Author_Button.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         Author_Button.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         Author_Button.addActionListener(new java.awt.event.ActionListener() {
@@ -773,6 +1023,7 @@ public class Admin_Menu extends javax.swing.JFrame {
         ItemTypes_Button.setText("Item Types");
         ItemTypes_Button.setBorderPainted(false);
         ItemTypes_Button.setContentAreaFilled(false);
+        ItemTypes_Button.setFocusable(false);
         ItemTypes_Button.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         ItemTypes_Button.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         ItemTypes_Button.addActionListener(new java.awt.event.ActionListener() {
@@ -788,6 +1039,7 @@ public class Admin_Menu extends javax.swing.JFrame {
         Genre_Button.setText("Item Genre Types");
         Genre_Button.setBorderPainted(false);
         Genre_Button.setContentAreaFilled(false);
+        Genre_Button.setFocusable(false);
         Genre_Button.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         Genre_Button.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         Genre_Button.addActionListener(new java.awt.event.ActionListener() {
@@ -803,6 +1055,7 @@ public class Admin_Menu extends javax.swing.JFrame {
         Publisher_Button.setText("Publishers");
         Publisher_Button.setBorderPainted(false);
         Publisher_Button.setContentAreaFilled(false);
+        Publisher_Button.setFocusable(false);
         Publisher_Button.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         Publisher_Button.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         Publisher_Button.addActionListener(new java.awt.event.ActionListener() {
@@ -855,6 +1108,7 @@ public class Admin_Menu extends javax.swing.JFrame {
         RemoveRelationType_CheckBox.setFont(new java.awt.Font("Bahnschrift", 0, 14)); // NOI18N
         RemoveRelationType_CheckBox.setForeground(new java.awt.Color(255, 255, 255));
         RemoveRelationType_CheckBox.setText("Remove");
+        RemoveRelationType_CheckBox.setFocusable(false);
         RemoveRelationType_CheckBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 RemoveRelationType_CheckBoxActionPerformed(evt);
@@ -865,6 +1119,7 @@ public class Admin_Menu extends javax.swing.JFrame {
         InsertRelationType_CheckBox.setFont(new java.awt.Font("Bahnschrift", 0, 14)); // NOI18N
         InsertRelationType_CheckBox.setForeground(new java.awt.Color(255, 255, 255));
         InsertRelationType_CheckBox.setText("Insert");
+        InsertRelationType_CheckBox.setFocusable(false);
         InsertRelationType_CheckBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 InsertRelationType_CheckBoxActionPerformed(evt);
@@ -875,6 +1130,7 @@ public class Admin_Menu extends javax.swing.JFrame {
         UpdateRelationType_CheckBox.setFont(new java.awt.Font("Bahnschrift", 0, 14)); // NOI18N
         UpdateRelationType_CheckBox.setForeground(new java.awt.Color(255, 255, 255));
         UpdateRelationType_CheckBox.setText("Update");
+        UpdateRelationType_CheckBox.setFocusable(false);
         UpdateRelationType_CheckBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 UpdateRelationType_CheckBoxActionPerformed(evt);
@@ -923,6 +1179,7 @@ public class Admin_Menu extends javax.swing.JFrame {
         RelationTypeCommit_Button.setText("Commit changes");
         RelationTypeCommit_Button.setBorderPainted(false);
         RelationTypeCommit_Button.setContentAreaFilled(false);
+        RelationTypeCommit_Button.setFocusable(false);
         RelationTypeCommit_Button.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 RelationTypeCommit_ButtonMouseEntered(evt);
@@ -998,6 +1255,7 @@ public class Admin_Menu extends javax.swing.JFrame {
         RemoveItemType_CheckBox.setFont(new java.awt.Font("Bahnschrift", 0, 14)); // NOI18N
         RemoveItemType_CheckBox.setForeground(new java.awt.Color(255, 255, 255));
         RemoveItemType_CheckBox.setText("Remove");
+        RemoveItemType_CheckBox.setFocusable(false);
         RemoveItemType_CheckBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 RemoveItemType_CheckBoxActionPerformed(evt);
@@ -1008,6 +1266,7 @@ public class Admin_Menu extends javax.swing.JFrame {
         InsertItemType_CheckBox.setFont(new java.awt.Font("Bahnschrift", 0, 14)); // NOI18N
         InsertItemType_CheckBox.setForeground(new java.awt.Color(255, 255, 255));
         InsertItemType_CheckBox.setText("Insert");
+        InsertItemType_CheckBox.setFocusable(false);
         InsertItemType_CheckBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 InsertItemType_CheckBoxActionPerformed(evt);
@@ -1018,6 +1277,7 @@ public class Admin_Menu extends javax.swing.JFrame {
         UpdateItemType_CheckBox.setFont(new java.awt.Font("Bahnschrift", 0, 14)); // NOI18N
         UpdateItemType_CheckBox.setForeground(new java.awt.Color(255, 255, 255));
         UpdateItemType_CheckBox.setText("Update");
+        UpdateItemType_CheckBox.setFocusable(false);
         UpdateItemType_CheckBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 UpdateItemType_CheckBoxActionPerformed(evt);
@@ -1066,6 +1326,7 @@ public class Admin_Menu extends javax.swing.JFrame {
         ItemTypeCommit_Button.setText("Commit changes");
         ItemTypeCommit_Button.setBorderPainted(false);
         ItemTypeCommit_Button.setContentAreaFilled(false);
+        ItemTypeCommit_Button.setFocusable(false);
         ItemTypeCommit_Button.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 ItemTypeCommit_ButtonMouseEntered(evt);
@@ -1141,6 +1402,7 @@ public class Admin_Menu extends javax.swing.JFrame {
         RemoveStatusType_CheckBox.setFont(new java.awt.Font("Bahnschrift", 0, 14)); // NOI18N
         RemoveStatusType_CheckBox.setForeground(new java.awt.Color(255, 255, 255));
         RemoveStatusType_CheckBox.setText("Remove");
+        RemoveStatusType_CheckBox.setFocusable(false);
         RemoveStatusType_CheckBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 RemoveStatusType_CheckBoxActionPerformed(evt);
@@ -1151,6 +1413,7 @@ public class Admin_Menu extends javax.swing.JFrame {
         InsertStatusType_CheckBox.setFont(new java.awt.Font("Bahnschrift", 0, 14)); // NOI18N
         InsertStatusType_CheckBox.setForeground(new java.awt.Color(255, 255, 255));
         InsertStatusType_CheckBox.setText("Insert");
+        InsertStatusType_CheckBox.setFocusable(false);
         InsertStatusType_CheckBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 InsertStatusType_CheckBoxActionPerformed(evt);
@@ -1161,6 +1424,7 @@ public class Admin_Menu extends javax.swing.JFrame {
         UpdateStatusType_CheckBox.setFont(new java.awt.Font("Bahnschrift", 0, 14)); // NOI18N
         UpdateStatusType_CheckBox.setForeground(new java.awt.Color(255, 255, 255));
         UpdateStatusType_CheckBox.setText("Update");
+        UpdateStatusType_CheckBox.setFocusable(false);
         UpdateStatusType_CheckBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 UpdateStatusType_CheckBoxActionPerformed(evt);
@@ -1191,6 +1455,11 @@ public class Admin_Menu extends javax.swing.JFrame {
         StatusTypeID_TextField.setBackground(new java.awt.Color(255, 255, 255));
         StatusTypeID_TextField.setForeground(new java.awt.Color(0, 0, 0));
         StatusTypeID_TextField.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(13, 172, 103)));
+        StatusTypeID_TextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                StatusTypeID_TextFieldActionPerformed(evt);
+            }
+        });
         jPanel11.add(StatusTypeID_TextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 80, 270, 30));
 
         RelationTypeCommitChanges_Panel2.setBackground(new java.awt.Color(255, 255, 255));
@@ -1209,6 +1478,7 @@ public class Admin_Menu extends javax.swing.JFrame {
         StatusCommit_Button.setText("Commit changes");
         StatusCommit_Button.setBorderPainted(false);
         StatusCommit_Button.setContentAreaFilled(false);
+        StatusCommit_Button.setFocusable(false);
         StatusCommit_Button.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 StatusCommit_ButtonMouseEntered(evt);
@@ -1284,6 +1554,7 @@ public class Admin_Menu extends javax.swing.JFrame {
         RemoveGenreType_CheckBox.setFont(new java.awt.Font("Bahnschrift", 0, 14)); // NOI18N
         RemoveGenreType_CheckBox.setForeground(new java.awt.Color(255, 255, 255));
         RemoveGenreType_CheckBox.setText("Remove");
+        RemoveGenreType_CheckBox.setFocusable(false);
         RemoveGenreType_CheckBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 RemoveGenreType_CheckBoxActionPerformed(evt);
@@ -1294,6 +1565,7 @@ public class Admin_Menu extends javax.swing.JFrame {
         InsertGenreType_CheckBox.setFont(new java.awt.Font("Bahnschrift", 0, 14)); // NOI18N
         InsertGenreType_CheckBox.setForeground(new java.awt.Color(255, 255, 255));
         InsertGenreType_CheckBox.setText("Insert");
+        InsertGenreType_CheckBox.setFocusable(false);
         InsertGenreType_CheckBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 InsertGenreType_CheckBoxActionPerformed(evt);
@@ -1304,6 +1576,7 @@ public class Admin_Menu extends javax.swing.JFrame {
         UpdateGenreType_CheckBox.setFont(new java.awt.Font("Bahnschrift", 0, 14)); // NOI18N
         UpdateGenreType_CheckBox.setForeground(new java.awt.Color(255, 255, 255));
         UpdateGenreType_CheckBox.setText("Update");
+        UpdateGenreType_CheckBox.setFocusable(false);
         UpdateGenreType_CheckBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 UpdateGenreType_CheckBoxActionPerformed(evt);
@@ -1352,6 +1625,7 @@ public class Admin_Menu extends javax.swing.JFrame {
         GenreCommit_Button.setText("Commit changes");
         GenreCommit_Button.setBorderPainted(false);
         GenreCommit_Button.setContentAreaFilled(false);
+        GenreCommit_Button.setFocusable(false);
         GenreCommit_Button.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 GenreCommit_ButtonMouseEntered(evt);
@@ -1427,6 +1701,7 @@ public class Admin_Menu extends javax.swing.JFrame {
         RemovePublisher_CheckBox.setFont(new java.awt.Font("Bahnschrift", 0, 14)); // NOI18N
         RemovePublisher_CheckBox.setForeground(new java.awt.Color(255, 255, 255));
         RemovePublisher_CheckBox.setText("Remove");
+        RemovePublisher_CheckBox.setFocusable(false);
         RemovePublisher_CheckBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 RemovePublisher_CheckBoxActionPerformed(evt);
@@ -1437,6 +1712,7 @@ public class Admin_Menu extends javax.swing.JFrame {
         InsertPublisher_CheckBox.setFont(new java.awt.Font("Bahnschrift", 0, 14)); // NOI18N
         InsertPublisher_CheckBox.setForeground(new java.awt.Color(255, 255, 255));
         InsertPublisher_CheckBox.setText("Insert");
+        InsertPublisher_CheckBox.setFocusable(false);
         InsertPublisher_CheckBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 InsertPublisher_CheckBoxActionPerformed(evt);
@@ -1447,6 +1723,7 @@ public class Admin_Menu extends javax.swing.JFrame {
         UpdatePublisher_CheckBox.setFont(new java.awt.Font("Bahnschrift", 0, 14)); // NOI18N
         UpdatePublisher_CheckBox.setForeground(new java.awt.Color(255, 255, 255));
         UpdatePublisher_CheckBox.setText("Update");
+        UpdatePublisher_CheckBox.setFocusable(false);
         UpdatePublisher_CheckBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 UpdatePublisher_CheckBoxActionPerformed(evt);
@@ -1495,6 +1772,7 @@ public class Admin_Menu extends javax.swing.JFrame {
         PublisherCommit_Button.setText("Commit changes");
         PublisherCommit_Button.setBorderPainted(false);
         PublisherCommit_Button.setContentAreaFilled(false);
+        PublisherCommit_Button.setFocusable(false);
         PublisherCommit_Button.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 PublisherCommit_ButtonMouseEntered(evt);
@@ -1570,6 +1848,7 @@ public class Admin_Menu extends javax.swing.JFrame {
         RemoveAuthor_CheckBox.setFont(new java.awt.Font("Bahnschrift", 0, 14)); // NOI18N
         RemoveAuthor_CheckBox.setForeground(new java.awt.Color(255, 255, 255));
         RemoveAuthor_CheckBox.setText("Remove");
+        RemoveAuthor_CheckBox.setFocusable(false);
         RemoveAuthor_CheckBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 RemoveAuthor_CheckBoxActionPerformed(evt);
@@ -1580,6 +1859,7 @@ public class Admin_Menu extends javax.swing.JFrame {
         InsertAuthor_CheckBox.setFont(new java.awt.Font("Bahnschrift", 0, 14)); // NOI18N
         InsertAuthor_CheckBox.setForeground(new java.awt.Color(255, 255, 255));
         InsertAuthor_CheckBox.setText("Insert");
+        InsertAuthor_CheckBox.setFocusable(false);
         InsertAuthor_CheckBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 InsertAuthor_CheckBoxActionPerformed(evt);
@@ -1590,6 +1870,7 @@ public class Admin_Menu extends javax.swing.JFrame {
         UpdateAuthor_CheckBox.setFont(new java.awt.Font("Bahnschrift", 0, 14)); // NOI18N
         UpdateAuthor_CheckBox.setForeground(new java.awt.Color(255, 255, 255));
         UpdateAuthor_CheckBox.setText("Update");
+        UpdateAuthor_CheckBox.setFocusable(false);
         UpdateAuthor_CheckBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 UpdateAuthor_CheckBoxActionPerformed(evt);
@@ -1638,6 +1919,7 @@ public class Admin_Menu extends javax.swing.JFrame {
         AuthorCommit_Button.setText("Commit changes");
         AuthorCommit_Button.setBorderPainted(false);
         AuthorCommit_Button.setContentAreaFilled(false);
+        AuthorCommit_Button.setFocusable(false);
         AuthorCommit_Button.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 AuthorCommit_ButtonMouseEntered(evt);
@@ -1696,22 +1978,22 @@ public class Admin_Menu extends javax.swing.JFrame {
 
         getContentPane().add(RegisterAuthor_InternalFrame, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 0, 900, 720));
 
-        StadisticsQueries_InternalFrame.setBackground(new java.awt.Color(0, 0, 0));
-        StadisticsQueries_InternalFrame.setBorder(javax.swing.BorderFactory.createMatteBorder(5, 5, 5, 5, new java.awt.Color(147, 46, 236)));
-        StadisticsQueries_InternalFrame.setClosable(true);
-        StadisticsQueries_InternalFrame.setForeground(new java.awt.Color(255, 255, 255));
-        StadisticsQueries_InternalFrame.setMaximumSize(new java.awt.Dimension(900, 720));
-        StadisticsQueries_InternalFrame.setMinimumSize(new java.awt.Dimension(900, 720));
-        StadisticsQueries_InternalFrame.setNormalBounds(new java.awt.Rectangle(0, 0, 0, 0));
-        StadisticsQueries_InternalFrame.setVisible(false);
-        StadisticsQueries_InternalFrame.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        StatisticsQueries_InternalFrame.setBackground(new java.awt.Color(0, 0, 0));
+        StatisticsQueries_InternalFrame.setBorder(javax.swing.BorderFactory.createMatteBorder(5, 5, 5, 5, new java.awt.Color(147, 46, 236)));
+        StatisticsQueries_InternalFrame.setClosable(true);
+        StatisticsQueries_InternalFrame.setForeground(new java.awt.Color(255, 255, 255));
+        StatisticsQueries_InternalFrame.setMaximumSize(new java.awt.Dimension(900, 720));
+        StatisticsQueries_InternalFrame.setMinimumSize(new java.awt.Dimension(900, 720));
+        StatisticsQueries_InternalFrame.setNormalBounds(new java.awt.Rectangle(0, 0, 0, 0));
+        StatisticsQueries_InternalFrame.setVisible(false);
+        StatisticsQueries_InternalFrame.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         Background_Panel14.setBackground(new java.awt.Color(102, 102, 102));
         Background_Panel14.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         Title_Label14.setFont(new java.awt.Font("Bahnschrift", 0, 36)); // NOI18N
         Title_Label14.setForeground(new java.awt.Color(255, 255, 255));
-        Title_Label14.setText("Stadistics And Queries!");
+        Title_Label14.setText("Statistics And Queries!");
         Background_Panel14.add(Title_Label14, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 40, -1, -1));
 
         Subtitle_Label14.setFont(new java.awt.Font("Bahnschrift", 0, 14)); // NOI18N
@@ -1736,6 +2018,7 @@ public class Admin_Menu extends javax.swing.JFrame {
         Queries_Button.setText("Queries");
         Queries_Button.setBorderPainted(false);
         Queries_Button.setContentAreaFilled(false);
+        Queries_Button.setFocusable(false);
         Queries_Button.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         Queries_Button.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         Queries_Button.addActionListener(new java.awt.event.ActionListener() {
@@ -1743,14 +2026,15 @@ public class Admin_Menu extends javax.swing.JFrame {
                 Queries_ButtonActionPerformed(evt);
             }
         });
-        jPanel15.add(Queries_Button, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 180, 200, 180));
+        jPanel15.add(Queries_Button, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 170, 200, 180));
 
         Stadistics_Button.setFont(new java.awt.Font("Bahnschrift", 0, 14)); // NOI18N
         Stadistics_Button.setForeground(new java.awt.Color(255, 255, 255));
         Stadistics_Button.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Stadistics_Icon128.png"))); // NOI18N
-        Stadistics_Button.setText("Stadistics");
+        Stadistics_Button.setText("Statistics");
         Stadistics_Button.setBorderPainted(false);
         Stadistics_Button.setContentAreaFilled(false);
+        Stadistics_Button.setFocusable(false);
         Stadistics_Button.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         Stadistics_Button.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         Stadistics_Button.addActionListener(new java.awt.event.ActionListener() {
@@ -1762,26 +2046,26 @@ public class Admin_Menu extends javax.swing.JFrame {
 
         Background_Panel14.add(jPanel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 130, 840, 530));
 
-        StadisticsQueries_InternalFrame.getContentPane().add(Background_Panel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 900, 700));
+        StatisticsQueries_InternalFrame.getContentPane().add(Background_Panel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 900, 700));
 
-        getContentPane().add(StadisticsQueries_InternalFrame, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 0, 900, 720));
+        getContentPane().add(StatisticsQueries_InternalFrame, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 0, 900, 720));
 
-        Stadistics_InternalFrame.setBackground(new java.awt.Color(0, 0, 0));
-        Stadistics_InternalFrame.setBorder(javax.swing.BorderFactory.createMatteBorder(5, 5, 5, 5, new java.awt.Color(147, 46, 236)));
-        Stadistics_InternalFrame.setClosable(true);
-        Stadistics_InternalFrame.setForeground(new java.awt.Color(0, 0, 0));
-        Stadistics_InternalFrame.setMaximumSize(new java.awt.Dimension(900, 720));
-        Stadistics_InternalFrame.setMinimumSize(new java.awt.Dimension(900, 720));
-        Stadistics_InternalFrame.setNormalBounds(new java.awt.Rectangle(0, 0, 0, 0));
-        Stadistics_InternalFrame.setVisible(false);
-        Stadistics_InternalFrame.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        Statistics_InternalFrame.setBackground(new java.awt.Color(0, 0, 0));
+        Statistics_InternalFrame.setBorder(javax.swing.BorderFactory.createMatteBorder(5, 5, 5, 5, new java.awt.Color(147, 46, 236)));
+        Statistics_InternalFrame.setClosable(true);
+        Statistics_InternalFrame.setForeground(new java.awt.Color(0, 0, 0));
+        Statistics_InternalFrame.setMaximumSize(new java.awt.Dimension(900, 720));
+        Statistics_InternalFrame.setMinimumSize(new java.awt.Dimension(900, 720));
+        Statistics_InternalFrame.setNormalBounds(new java.awt.Rectangle(0, 0, 0, 0));
+        Statistics_InternalFrame.setVisible(false);
+        Statistics_InternalFrame.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         Background_Panel6.setBackground(new java.awt.Color(102, 102, 102));
         Background_Panel6.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         Title_Label6.setFont(new java.awt.Font("Bahnschrift", 0, 36)); // NOI18N
         Title_Label6.setForeground(new java.awt.Color(255, 255, 255));
-        Title_Label6.setText("Stadistics in Database!");
+        Title_Label6.setText("Statistics in Database!");
         Background_Panel6.add(Title_Label6, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 40, -1, -1));
 
         Subtitle_Label6.setFont(new java.awt.Font("Bahnschrift", 0, 14)); // NOI18N
@@ -1800,17 +2084,36 @@ public class Admin_Menu extends javax.swing.JFrame {
         Select_Label.setText("Select:");
         jPanel7.add(Select_Label, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 40, -1, -1));
 
-        SelectStdistic_ComboBox.setBackground(new java.awt.Color(255, 255, 255));
-        SelectStdistic_ComboBox.setForeground(new java.awt.Color(0, 0, 0));
-        SelectStdistic_ComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Books by Genre", "Borrowed Books", "Borrowed Books by Genre", "Borroed Books by Age" }));
-        SelectStdistic_ComboBox.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(147, 46, 236)));
-        jPanel7.add(SelectStdistic_ComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, 260, 30));
+        SelectStatistic_ComboBox.setBackground(new java.awt.Color(255, 255, 255));
+        SelectStatistic_ComboBox.setForeground(new java.awt.Color(0, 0, 0));
+        SelectStatistic_ComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Books by Genre", "Borrowed Books", "Borrowed Books by Genre", "Borrowed Books by Age" }));
+        SelectStatistic_ComboBox.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(147, 46, 236)));
+        SelectStatistic_ComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SelectStatistic_ComboBoxActionPerformed(evt);
+            }
+        });
+        jPanel7.add(SelectStatistic_ComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, 260, 30));
+
+        CloseAllCharts_Button.setFont(new java.awt.Font("Bahnschrift", 0, 14)); // NOI18N
+        CloseAllCharts_Button.setForeground(new java.awt.Color(255, 255, 255));
+        CloseAllCharts_Button.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Close_Icon32.png"))); // NOI18N
+        CloseAllCharts_Button.setText("  Close Chart");
+        CloseAllCharts_Button.setBorderPainted(false);
+        CloseAllCharts_Button.setContentAreaFilled(false);
+        CloseAllCharts_Button.setFocusable(false);
+        CloseAllCharts_Button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CloseAllCharts_ButtonActionPerformed(evt);
+            }
+        });
+        jPanel7.add(CloseAllCharts_Button, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 70, 180, 50));
 
         Background_Panel6.add(jPanel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 130, 840, 530));
 
-        Stadistics_InternalFrame.getContentPane().add(Background_Panel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 900, 700));
+        Statistics_InternalFrame.getContentPane().add(Background_Panel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 900, 700));
 
-        getContentPane().add(Stadistics_InternalFrame, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 0, 900, 720));
+        getContentPane().add(Statistics_InternalFrame, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 0, 900, 720));
 
         Queries_InternalFrame.setBackground(new java.awt.Color(0, 0, 0));
         Queries_InternalFrame.setBorder(javax.swing.BorderFactory.createMatteBorder(5, 5, 5, 5, new java.awt.Color(147, 46, 236)));
@@ -1850,6 +2153,11 @@ public class Admin_Menu extends javax.swing.JFrame {
         SelectStdistic_ComboBox1.setForeground(new java.awt.Color(0, 0, 0));
         SelectStdistic_ComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Books by Genre", "Borrowed Books", "Borrowed Books by Genre", "Borroed Books by Age" }));
         SelectStdistic_ComboBox1.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(147, 46, 236)));
+        SelectStdistic_ComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SelectStdistic_ComboBox1ActionPerformed(evt);
+            }
+        });
         jPanel16.add(SelectStdistic_ComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, 260, 30));
 
         jTable9.setModel(new javax.swing.table.DefaultTableModel(
@@ -1954,15 +2262,10 @@ public class Admin_Menu extends javax.swing.JFrame {
         Publisher_Label1.setText("Publisher:");
         jPanel8.add(Publisher_Label1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 340, -1, -1));
 
-        Publisher_ComboBox.setBackground(new java.awt.Color(255, 255, 255));
-        Publisher_ComboBox.setForeground(new java.awt.Color(0, 0, 0));
-        Publisher_ComboBox.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(204, 204, 204)));
-        jPanel8.add(Publisher_ComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 380, 260, 30));
-
-        ItemType_TextField.setBackground(new java.awt.Color(255, 255, 255));
-        ItemType_TextField.setForeground(new java.awt.Color(0, 0, 0));
-        ItemType_TextField.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(204, 204, 204)));
-        jPanel8.add(ItemType_TextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 300, 260, 30));
+        ItemType_ComboBox.setBackground(new java.awt.Color(255, 255, 255));
+        ItemType_ComboBox.setForeground(new java.awt.Color(0, 0, 0));
+        ItemType_ComboBox.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(204, 204, 204)));
+        jPanel8.add(ItemType_ComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 300, 260, 30));
 
         ItemTitle_TextField.setBackground(new java.awt.Color(255, 255, 255));
         ItemTitle_TextField.setForeground(new java.awt.Color(0, 0, 0));
@@ -1996,13 +2299,25 @@ public class Admin_Menu extends javax.swing.JFrame {
 
         AddPhoto_Button.setFont(new java.awt.Font("Bahnschrift", 0, 18)); // NOI18N
         AddPhoto_Button.setForeground(new java.awt.Color(255, 255, 255));
-        AddPhoto_Button.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Photo_Icon64.png"))); // NOI18N
-        AddPhoto_Button.setText("Add a Cover Image!");
+        AddPhoto_Button.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Camera_Icon32.png"))); // NOI18N
+        AddPhoto_Button.setText("   Add a Cover Image!");
+        AddPhoto_Button.setBorder(null);
         AddPhoto_Button.setBorderPainted(false);
         AddPhoto_Button.setContentAreaFilled(false);
-        AddPhoto_Button.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        AddPhoto_Button.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jPanel8.add(AddPhoto_Button, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 50, 270, 240));
+        AddPhoto_Button.setFocusable(false);
+        AddPhoto_Button.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        AddPhoto_Button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AddPhoto_ButtonActionPerformed(evt);
+            }
+        });
+        jPanel8.add(AddPhoto_Button, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 30, 280, 60));
+        jPanel8.add(Cover_Image_Label, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 100, 250, 250));
+
+        Publisher_ComboBox1.setBackground(new java.awt.Color(255, 255, 255));
+        Publisher_ComboBox1.setForeground(new java.awt.Color(0, 0, 0));
+        Publisher_ComboBox1.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(204, 204, 204)));
+        jPanel8.add(Publisher_ComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 380, 260, 30));
 
         Background_Panel7.add(jPanel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 130, 840, 530));
 
@@ -2035,7 +2350,7 @@ public class Admin_Menu extends javax.swing.JFrame {
         Lateral_Button7.setFont(new java.awt.Font("Bahnschrift", 0, 20)); // NOI18N
         Lateral_Button7.setForeground(new java.awt.Color(255, 255, 255));
         Lateral_Button7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/LateralButton7.png"))); // NOI18N
-        Lateral_Button7.setText("                 Stadistics & Queries");
+        Lateral_Button7.setText("                 Statistics & Queries");
         Lateral_Button7.setAlignmentX(5.0F);
         Lateral_Button7.setBorderPainted(false);
         Lateral_Button7.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -2060,6 +2375,7 @@ public class Admin_Menu extends javax.swing.JFrame {
         Lateral_Button1.setText("         See Collection!");
         Lateral_Button1.setAlignmentX(5.0F);
         Lateral_Button1.setBorderPainted(false);
+        Lateral_Button1.setFocusable(false);
         Lateral_Button1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         Lateral_Button1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
@@ -2225,6 +2541,7 @@ public class Admin_Menu extends javax.swing.JFrame {
         MainMenu_Button.setText("Main         Menu");
         MainMenu_Button.setBorderPainted(false);
         MainMenu_Button.setContentAreaFilled(false);
+        MainMenu_Button.setFocusable(false);
         MainMenu_Button.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         MainMenu_Button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -2273,16 +2590,17 @@ public class Admin_Menu extends javax.swing.JFrame {
             RegisterPublisher_InternalFrame.setVisible(false);
             RegisterAuthor_InternalFrame.setVisible(false);
             
-       StadisticsQueries_InternalFrame.setVisible(false);
-            Stadistics_InternalFrame.setVisible(false);
+       StatisticsQueries_InternalFrame.setVisible(false);
+            Statistics_InternalFrame.setVisible(false);
             Queries_InternalFrame.setVisible(false);
        AddItem_InternalFrame.setVisible(false);
 
-       StadisticsQueries_InternalFrame.setVisible(true);
+       StatisticsQueries_InternalFrame.setVisible(true);
     }//GEN-LAST:event_Lateral_Button7ActionPerformed
 
     private void Lateral_Button1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Lateral_Button1ActionPerformed
      Collection_InternalFrame.setVisible(false);
+            ItemInfo_InternalFrame.setVisible(false);
        AddPeople_InternalFrame.setVisible(false);
        LendItem_InternalFrame.setVisible(false);
        ReceiveItem_InternalFrame.setVisible(false); 
@@ -2295,8 +2613,8 @@ public class Admin_Menu extends javax.swing.JFrame {
             RegisterPublisher_InternalFrame.setVisible(false);
             RegisterAuthor_InternalFrame.setVisible(false);
             
-       StadisticsQueries_InternalFrame.setVisible(false);
-            Stadistics_InternalFrame.setVisible(false);
+       StatisticsQueries_InternalFrame.setVisible(false);
+            Statistics_InternalFrame.setVisible(false);
             Queries_InternalFrame.setVisible(false);
        AddItem_InternalFrame.setVisible(false);
 
@@ -2307,6 +2625,7 @@ public class Admin_Menu extends javax.swing.JFrame {
 
     private void Lateral_Button3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Lateral_Button3ActionPerformed
       Collection_InternalFrame.setVisible(false);
+            ItemInfo_InternalFrame.setVisible(false);
        AddPeople_InternalFrame.setVisible(false);
        LendItem_InternalFrame.setVisible(false);
        ReceiveItem_InternalFrame.setVisible(false); 
@@ -2319,8 +2638,8 @@ public class Admin_Menu extends javax.swing.JFrame {
             RegisterPublisher_InternalFrame.setVisible(false);
             RegisterAuthor_InternalFrame.setVisible(false);
             
-       StadisticsQueries_InternalFrame.setVisible(false);
-            Stadistics_InternalFrame.setVisible(false);
+       StatisticsQueries_InternalFrame.setVisible(false);
+            Statistics_InternalFrame.setVisible(false);
             Queries_InternalFrame.setVisible(false);
        AddItem_InternalFrame.setVisible(false);
 
@@ -2329,6 +2648,7 @@ public class Admin_Menu extends javax.swing.JFrame {
 
     private void Lateral_Button4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Lateral_Button4ActionPerformed
        Collection_InternalFrame.setVisible(false);
+            ItemInfo_InternalFrame.setVisible(false);
        AddPeople_InternalFrame.setVisible(false);
        LendItem_InternalFrame.setVisible(false);
        ReceiveItem_InternalFrame.setVisible(false); 
@@ -2341,8 +2661,8 @@ public class Admin_Menu extends javax.swing.JFrame {
             RegisterPublisher_InternalFrame.setVisible(false);
             RegisterAuthor_InternalFrame.setVisible(false);
             
-       StadisticsQueries_InternalFrame.setVisible(false);
-            Stadistics_InternalFrame.setVisible(false);
+       StatisticsQueries_InternalFrame.setVisible(false);
+            Statistics_InternalFrame.setVisible(false);
             Queries_InternalFrame.setVisible(false);
        AddItem_InternalFrame.setVisible(false);
        
@@ -2350,7 +2670,8 @@ public class Admin_Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_Lateral_Button4ActionPerformed
 
     private void Lateral_Button5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Lateral_Button5ActionPerformed
-        Collection_InternalFrame.setVisible(false);
+       Collection_InternalFrame.setVisible(false);
+            ItemInfo_InternalFrame.setVisible(false);
        AddPeople_InternalFrame.setVisible(false);
        LendItem_InternalFrame.setVisible(false);
        ReceiveItem_InternalFrame.setVisible(false); 
@@ -2363,8 +2684,8 @@ public class Admin_Menu extends javax.swing.JFrame {
             RegisterPublisher_InternalFrame.setVisible(false);
             RegisterAuthor_InternalFrame.setVisible(false);
             
-       StadisticsQueries_InternalFrame.setVisible(false);
-            Stadistics_InternalFrame.setVisible(false);
+       StatisticsQueries_InternalFrame.setVisible(false);
+            Statistics_InternalFrame.setVisible(false);
             Queries_InternalFrame.setVisible(false);
        AddItem_InternalFrame.setVisible(false);
        
@@ -2372,7 +2693,8 @@ public class Admin_Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_Lateral_Button5ActionPerformed
 
     private void Lateral_Button6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Lateral_Button6ActionPerformed
-        Collection_InternalFrame.setVisible(false);
+       Collection_InternalFrame.setVisible(false);
+            ItemInfo_InternalFrame.setVisible(false);
        AddPeople_InternalFrame.setVisible(false);
        LendItem_InternalFrame.setVisible(false);
        ReceiveItem_InternalFrame.setVisible(false); 
@@ -2385,8 +2707,8 @@ public class Admin_Menu extends javax.swing.JFrame {
             RegisterPublisher_InternalFrame.setVisible(false);
             RegisterAuthor_InternalFrame.setVisible(false);
             
-       StadisticsQueries_InternalFrame.setVisible(false);
-            Stadistics_InternalFrame.setVisible(false);
+       StatisticsQueries_InternalFrame.setVisible(false);
+            Statistics_InternalFrame.setVisible(false);
             Queries_InternalFrame.setVisible(false);
        AddItem_InternalFrame.setVisible(false);
        
@@ -2394,7 +2716,8 @@ public class Admin_Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_Lateral_Button6ActionPerformed
 
     private void Lateral_Button2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Lateral_Button2ActionPerformed
-        Collection_InternalFrame.setVisible(false);
+       Collection_InternalFrame.setVisible(false);
+            ItemInfo_InternalFrame.setVisible(false);
        AddPeople_InternalFrame.setVisible(false);
        LendItem_InternalFrame.setVisible(false);
        ReceiveItem_InternalFrame.setVisible(false); 
@@ -2407,8 +2730,8 @@ public class Admin_Menu extends javax.swing.JFrame {
             RegisterPublisher_InternalFrame.setVisible(false);
             RegisterAuthor_InternalFrame.setVisible(false);
             
-       StadisticsQueries_InternalFrame.setVisible(false);
-            Stadistics_InternalFrame.setVisible(false);
+       StatisticsQueries_InternalFrame.setVisible(false);
+            Statistics_InternalFrame.setVisible(false);
             Queries_InternalFrame.setVisible(false);
        AddItem_InternalFrame.setVisible(false);
 
@@ -2485,7 +2808,8 @@ public class Admin_Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_AddItem_PanelMouseExited
 
     private void AddAnItem_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddAnItem_ButtonActionPerformed
-        Collection_InternalFrame.setVisible(false);
+      Collection_InternalFrame.setVisible(false);
+            ItemInfo_InternalFrame.setVisible(false);
        AddPeople_InternalFrame.setVisible(false);
        LendItem_InternalFrame.setVisible(false);
        ReceiveItem_InternalFrame.setVisible(false); 
@@ -2498,8 +2822,8 @@ public class Admin_Menu extends javax.swing.JFrame {
             RegisterPublisher_InternalFrame.setVisible(false);
             RegisterAuthor_InternalFrame.setVisible(false);
             
-       StadisticsQueries_InternalFrame.setVisible(false);
-            Stadistics_InternalFrame.setVisible(false);
+       StatisticsQueries_InternalFrame.setVisible(false);
+            Statistics_InternalFrame.setVisible(false);
             Queries_InternalFrame.setVisible(false);
        AddItem_InternalFrame.setVisible(false);
        
@@ -2519,7 +2843,8 @@ public class Admin_Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_AddAnItem_ButtonMouseExited
 
     private void MainMenu_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MainMenu_ButtonActionPerformed
-       Collection_InternalFrame.setVisible(false);
+      Collection_InternalFrame.setVisible(false);
+            ItemInfo_InternalFrame.setVisible(false);
        AddPeople_InternalFrame.setVisible(false);
        LendItem_InternalFrame.setVisible(false);
        ReceiveItem_InternalFrame.setVisible(false); 
@@ -2532,8 +2857,8 @@ public class Admin_Menu extends javax.swing.JFrame {
             RegisterPublisher_InternalFrame.setVisible(false);
             RegisterAuthor_InternalFrame.setVisible(false);
             
-       StadisticsQueries_InternalFrame.setVisible(false);
-            Stadistics_InternalFrame.setVisible(false);
+       StatisticsQueries_InternalFrame.setVisible(false);
+            Statistics_InternalFrame.setVisible(false);
             Queries_InternalFrame.setVisible(false);
        AddItem_InternalFrame.setVisible(false);
 
@@ -2598,7 +2923,8 @@ public class Admin_Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_RemoveRelationType_CheckBoxActionPerformed
 
     private void RelationType_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RelationType_ButtonActionPerformed
-      Collection_InternalFrame.setVisible(false);
+     Collection_InternalFrame.setVisible(false);
+            ItemInfo_InternalFrame.setVisible(false);
        AddPeople_InternalFrame.setVisible(false);
        LendItem_InternalFrame.setVisible(false);
        ReceiveItem_InternalFrame.setVisible(false); 
@@ -2611,8 +2937,8 @@ public class Admin_Menu extends javax.swing.JFrame {
             RegisterPublisher_InternalFrame.setVisible(false);
             RegisterAuthor_InternalFrame.setVisible(false);
             
-       StadisticsQueries_InternalFrame.setVisible(false);
-            Stadistics_InternalFrame.setVisible(false);
+       StatisticsQueries_InternalFrame.setVisible(false);
+            Statistics_InternalFrame.setVisible(false);
             Queries_InternalFrame.setVisible(false);
        AddItem_InternalFrame.setVisible(false);
         
@@ -2667,6 +2993,7 @@ public class Admin_Menu extends javax.swing.JFrame {
 
     private void ItemTypes_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ItemTypes_ButtonActionPerformed
       Collection_InternalFrame.setVisible(false);
+            ItemInfo_InternalFrame.setVisible(false);
        AddPeople_InternalFrame.setVisible(false);
        LendItem_InternalFrame.setVisible(false);
        ReceiveItem_InternalFrame.setVisible(false); 
@@ -2679,8 +3006,8 @@ public class Admin_Menu extends javax.swing.JFrame {
             RegisterPublisher_InternalFrame.setVisible(false);
             RegisterAuthor_InternalFrame.setVisible(false);
             
-       StadisticsQueries_InternalFrame.setVisible(false);
-            Stadistics_InternalFrame.setVisible(false);
+       StatisticsQueries_InternalFrame.setVisible(false);
+            Statistics_InternalFrame.setVisible(false);
             Queries_InternalFrame.setVisible(false);
        AddItem_InternalFrame.setVisible(false);
        
@@ -2735,6 +3062,7 @@ public class Admin_Menu extends javax.swing.JFrame {
 
     private void StatusType_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_StatusType_ButtonActionPerformed
       Collection_InternalFrame.setVisible(false);
+            ItemInfo_InternalFrame.setVisible(false);
        AddPeople_InternalFrame.setVisible(false);
        LendItem_InternalFrame.setVisible(false);
        ReceiveItem_InternalFrame.setVisible(false); 
@@ -2747,8 +3075,8 @@ public class Admin_Menu extends javax.swing.JFrame {
             RegisterPublisher_InternalFrame.setVisible(false);
             RegisterAuthor_InternalFrame.setVisible(false);
             
-       StadisticsQueries_InternalFrame.setVisible(false);
-            Stadistics_InternalFrame.setVisible(false);
+       StatisticsQueries_InternalFrame.setVisible(false);
+            Statistics_InternalFrame.setVisible(false);
             Queries_InternalFrame.setVisible(false);
        AddItem_InternalFrame.setVisible(false);
        
@@ -2802,6 +3130,7 @@ public class Admin_Menu extends javax.swing.JFrame {
 
     private void Genre_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Genre_ButtonActionPerformed
       Collection_InternalFrame.setVisible(false);
+            ItemInfo_InternalFrame.setVisible(false);
        AddPeople_InternalFrame.setVisible(false);
        LendItem_InternalFrame.setVisible(false);
        ReceiveItem_InternalFrame.setVisible(false); 
@@ -2814,8 +3143,8 @@ public class Admin_Menu extends javax.swing.JFrame {
             RegisterPublisher_InternalFrame.setVisible(false);
             RegisterAuthor_InternalFrame.setVisible(false);
             
-       StadisticsQueries_InternalFrame.setVisible(false);
-            Stadistics_InternalFrame.setVisible(false);
+       StatisticsQueries_InternalFrame.setVisible(false);
+            Statistics_InternalFrame.setVisible(false);
             Queries_InternalFrame.setVisible(false);
        AddItem_InternalFrame.setVisible(false);
        
@@ -2857,6 +3186,7 @@ public class Admin_Menu extends javax.swing.JFrame {
 
     private void Publisher_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Publisher_ButtonActionPerformed
       Collection_InternalFrame.setVisible(false);
+            ItemInfo_InternalFrame.setVisible(false);
        AddPeople_InternalFrame.setVisible(false);
        LendItem_InternalFrame.setVisible(false);
        ReceiveItem_InternalFrame.setVisible(false); 
@@ -2869,8 +3199,8 @@ public class Admin_Menu extends javax.swing.JFrame {
             RegisterPublisher_InternalFrame.setVisible(false);
             RegisterAuthor_InternalFrame.setVisible(false);
             
-       StadisticsQueries_InternalFrame.setVisible(false);
-            Stadistics_InternalFrame.setVisible(false);
+       StatisticsQueries_InternalFrame.setVisible(false);
+            Statistics_InternalFrame.setVisible(false);
             Queries_InternalFrame.setVisible(false);
        AddItem_InternalFrame.setVisible(false);
        
@@ -2879,7 +3209,8 @@ public class Admin_Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_Publisher_ButtonActionPerformed
 
     private void Author_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Author_ButtonActionPerformed
-       Collection_InternalFrame.setVisible(false);
+      Collection_InternalFrame.setVisible(false);
+            ItemInfo_InternalFrame.setVisible(false);
        AddPeople_InternalFrame.setVisible(false);
        LendItem_InternalFrame.setVisible(false);
        ReceiveItem_InternalFrame.setVisible(false); 
@@ -2892,8 +3223,8 @@ public class Admin_Menu extends javax.swing.JFrame {
             RegisterPublisher_InternalFrame.setVisible(false);
             RegisterAuthor_InternalFrame.setVisible(false);
             
-       StadisticsQueries_InternalFrame.setVisible(false);
-            Stadistics_InternalFrame.setVisible(false);
+       StatisticsQueries_InternalFrame.setVisible(false);
+            Statistics_InternalFrame.setVisible(false);
             Queries_InternalFrame.setVisible(false);
        AddItem_InternalFrame.setVisible(false);
        
@@ -2956,7 +3287,8 @@ public class Admin_Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_RelationTypeCommitChanges_Panel5MouseExited
 
     private void Queries_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Queries_ButtonActionPerformed
-        Collection_InternalFrame.setVisible(false);
+       Collection_InternalFrame.setVisible(false);
+            ItemInfo_InternalFrame.setVisible(false);
        AddPeople_InternalFrame.setVisible(false);
        LendItem_InternalFrame.setVisible(false);
        ReceiveItem_InternalFrame.setVisible(false); 
@@ -2969,8 +3301,8 @@ public class Admin_Menu extends javax.swing.JFrame {
             RegisterPublisher_InternalFrame.setVisible(false);
             RegisterAuthor_InternalFrame.setVisible(false);
             
-       StadisticsQueries_InternalFrame.setVisible(false);
-            Stadistics_InternalFrame.setVisible(false);
+       StatisticsQueries_InternalFrame.setVisible(false);
+            Statistics_InternalFrame.setVisible(false);
             Queries_InternalFrame.setVisible(false);
        AddItem_InternalFrame.setVisible(false);
        
@@ -2978,7 +3310,8 @@ public class Admin_Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_Queries_ButtonActionPerformed
 
     private void Stadistics_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Stadistics_ButtonActionPerformed
-        Collection_InternalFrame.setVisible(false);
+       Collection_InternalFrame.setVisible(false);
+            ItemInfo_InternalFrame.setVisible(false);
        AddPeople_InternalFrame.setVisible(false);
        LendItem_InternalFrame.setVisible(false);
        ReceiveItem_InternalFrame.setVisible(false); 
@@ -2991,13 +3324,250 @@ public class Admin_Menu extends javax.swing.JFrame {
             RegisterPublisher_InternalFrame.setVisible(false);
             RegisterAuthor_InternalFrame.setVisible(false);
             
-       StadisticsQueries_InternalFrame.setVisible(false);
-            Stadistics_InternalFrame.setVisible(false);
+       StatisticsQueries_InternalFrame.setVisible(false);
+            Statistics_InternalFrame.setVisible(false);
             Queries_InternalFrame.setVisible(false);
-       AddItem_InternalFrame.setVisible(false);       
+       AddItem_InternalFrame.setVisible(false);    
         
-        Stadistics_InternalFrame.setVisible(true);
+        Statistics_InternalFrame.setVisible(true);
     }//GEN-LAST:event_Stadistics_ButtonActionPerformed
+
+    private void SelectStdistic_ComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SelectStdistic_ComboBox1ActionPerformed
+
+
+    }//GEN-LAST:event_SelectStdistic_ComboBox1ActionPerformed
+
+    private void AddPhoto_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddPhoto_ButtonActionPerformed
+       JFileChooser chooser = new JFileChooser();
+       chooser.showOpenDialog(null);
+       File f = chooser.getSelectedFile();
+       filename = f.getAbsolutePath();
+       ImageIcon cover = new ImageIcon(new ImageIcon(filename).getImage().getScaledInstance(250, 250, Image.SCALE_SMOOTH));
+       Cover_Image_Label.setIcon(cover);
+       
+       try{ 
+           File cover_image = new File(filename);
+           FileInputStream fis = new FileInputStream(cover_image);
+           ByteArrayOutputStream bos = new ByteArrayOutputStream();
+           byte [] buf = new byte[1024];
+            for(int readNum; (readNum = fis.read(buf)) != -1;){
+                bos.write(buf, 0, readNum);
+            }
+          photo = bos.toByteArray();
+       } catch(Exception e){
+           JOptionPane.showMessageDialog(null, e);       
+       }
+       
+    }//GEN-LAST:event_AddPhoto_ButtonActionPerformed
+
+    private void CommitChanges_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CommitChanges_ButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CommitChanges_ButtonActionPerformed
+
+    private void AddPhoto_Button1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddPhoto_Button1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_AddPhoto_Button1ActionPerformed
+
+    private void RemoveItem_CheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RemoveItem_CheckBoxActionPerformed
+       RemoveItem_CheckBox.setSelected(false);
+       CommitChanges_Button.setEnabled(true);
+    }//GEN-LAST:event_RemoveItem_CheckBoxActionPerformed
+
+    private void UpdateStatusType_CheckBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UpdateStatusType_CheckBox2ActionPerformed
+         RemoveItem_CheckBox.setSelected(false);
+         CommitChanges_Button.setEnabled(true);
+    }//GEN-LAST:event_UpdateStatusType_CheckBox2ActionPerformed
+
+    private void Collection_TableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Collection_TableMouseClicked
+        Collection_InternalFrame.setVisible(false);
+            ItemInfo_InternalFrame.setVisible(false);
+       AddPeople_InternalFrame.setVisible(false);
+       LendItem_InternalFrame.setVisible(false);
+       ReceiveItem_InternalFrame.setVisible(false); 
+       ReviewItem_InternalFrame.setVisible(false);
+       RegisterValues_InternalFrame.setVisible(false);
+            RegisterRelationType_InternalFrame.setVisible(false);
+            RegisterItemType_InternalFrame.setVisible(false);
+            RegisterStatusType_InternalFrame.setVisible(false);
+            RegisterGenreType_InternalFrame.setVisible(false);
+            RegisterPublisher_InternalFrame.setVisible(false);
+            RegisterAuthor_InternalFrame.setVisible(false);
+            
+       StatisticsQueries_InternalFrame.setVisible(false);
+            Statistics_InternalFrame.setVisible(false);
+            Queries_InternalFrame.setVisible(false);
+       AddItem_InternalFrame.setVisible(false);    
+        
+ 
+        
+        ItemInfo_InternalFrame.setVisible(true);
+    }//GEN-LAST:event_Collection_TableMouseClicked
+
+    private void Day_TextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Day_TextFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Day_TextFieldActionPerformed
+
+    private void StatusTypeID_TextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_StatusTypeID_TextFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_StatusTypeID_TextFieldActionPerformed
+
+    private void SelectStatistic_ComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SelectStatistic_ComboBoxActionPerformed
+       
+        if (SelectStatistic_ComboBox.getSelectedItem().toString().equals("Books by Genre")){
+
+            DefaultPieDataset dataset = new DefaultPieDataset();
+            dataset.setValue("stat1", new Double(30));
+            dataset.setValue("stat2", new Double(20));
+            dataset.setValue("stat3", new Double(5));
+            dataset.setValue("stat4", new Double(13));
+            dataset.setValue("stat5", new Double(15));
+            dataset.setValue("stat5", new Double(17));
+
+
+            // create pir chart
+            JFreeChart chart = ChartFactory.createPieChart3D(
+                    "Lend_Izi Stats1", // chart title                   
+                    dataset, // data 
+                    true, // include legend                   
+                    true,
+                    false);
+            // set chart properties
+            PiePlot3D plot = (PiePlot3D) chart.getPlot();
+            plot.setStartAngle(270);    //Rotr gráfica
+            plot.setForegroundAlpha(0.60f);     //Transparencia
+            plot.setInteriorGap(0.05);
+            // create chart panel the add it to swing panel in  jframe
+            ChartPanel chartPanel = new ChartPanel(chart);
+            frame = new ChartFrame("Pie Chart", chart);
+
+
+
+            frame.setLocation(1050,490);       
+            frame.setUndecorated(true);  // quitar bordes 
+            frame.setSize(500,300);
+            frame.setResizable(false);
+            frame.setVisible(true);
+            }
+        else if (SelectStatistic_ComboBox.getSelectedItem().toString().equals("Borrowed Books")){
+             DefaultPieDataset dataset = new DefaultPieDataset();
+            dataset.setValue("stat1", new Double(30));
+            dataset.setValue("stat2", new Double(20));
+            dataset.setValue("stat3", new Double(5));
+            dataset.setValue("stat4", new Double(13));
+            dataset.setValue("stat5", new Double(15));
+            dataset.setValue("stat5", new Double(17));
+
+
+            // create pir chart
+            JFreeChart chart = ChartFactory.createPieChart3D(
+                    "Lend_Izi Stats2", // chart title                   
+                    dataset, // data 
+                    true, // include legend                   
+                    true,
+                    false);
+            // set chart properties
+            PiePlot3D plot = (PiePlot3D) chart.getPlot();
+            plot.setStartAngle(270);    //Rotr gráfica
+            plot.setForegroundAlpha(0.60f);     //Transparencia
+            plot.setInteriorGap(0.05);
+            // create chart panel the add it to swing panel in  jframe
+            ChartPanel chartPanel = new ChartPanel(chart);
+            frame = new ChartFrame("Pie Chart", chart);
+
+
+
+            frame.setLocation(1050,490);       
+            frame.setUndecorated(true);  // quitar bordes 
+            frame.setSize(500,300);
+            frame.setResizable(false);
+            frame.setVisible(true);
+            
+            }
+      
+        else if (SelectStatistic_ComboBox.getSelectedItem().toString().equals("Borrowed Books by Genre")){
+            
+            DefaultPieDataset dataset = new DefaultPieDataset();
+            dataset.setValue("stat1", new Double(30));
+            dataset.setValue("stat2", new Double(20));
+            dataset.setValue("stat3", new Double(5));
+            dataset.setValue("stat4", new Double(13));
+            dataset.setValue("stat5", new Double(15));
+            dataset.setValue("stat5", new Double(17));
+
+
+            // create pir chart
+            JFreeChart chart = ChartFactory.createPieChart3D(
+                    "Lend_Izi Stats3", // chart title                   
+                    dataset, // data 
+                    true, // include legend                   
+                    true,
+                    false);
+            // set chart properties
+            PiePlot3D plot = (PiePlot3D) chart.getPlot();
+            plot.setStartAngle(270);    //Rotr gráfica
+            plot.setForegroundAlpha(0.60f);     //Transparencia
+            plot.setInteriorGap(0.05);
+            // create chart panel the add it to swing panel in  jframe
+            ChartPanel chartPanel = new ChartPanel(chart);
+            frame = new ChartFrame("Pie Chart", chart);
+
+
+
+            frame.setLocation(1050,490);       
+            frame.setUndecorated(true);  // quitar bordes 
+            frame.setSize(500,300);
+            frame.setResizable(false);
+            frame.setVisible(true);
+            
+            }    
+       
+        else if (SelectStatistic_ComboBox.getSelectedItem().toString().equals("Borrowed Books by Age")){
+            
+            DefaultPieDataset dataset = new DefaultPieDataset();
+            dataset.setValue("stat1", new Double(30));
+            dataset.setValue("stat2", new Double(20));
+            dataset.setValue("stat3", new Double(5));
+            dataset.setValue("stat4", new Double(13));
+            dataset.setValue("stat5", new Double(15));
+            dataset.setValue("stat5", new Double(17));
+
+
+            // create pir chart
+            JFreeChart chart = ChartFactory.createPieChart3D(
+                    "Lend_Izi Stats4", // chart title                   
+                    dataset, // data 
+                    true, // include legend                   
+                    true,
+                    false);
+            // set chart properties
+            PiePlot3D plot = (PiePlot3D) chart.getPlot();
+            plot.setStartAngle(270);    //Rotr gráfica
+            plot.setForegroundAlpha(0.60f);     //Transparencia
+            plot.setInteriorGap(0.05);
+            // create chart panel the add it to swing panel in  jframe
+            ChartPanel chartPanel = new ChartPanel(chart);
+            frame = new ChartFrame("Pie Chart", chart);
+
+
+
+            frame.setLocation(1050,490);       
+            frame.setUndecorated(true);  // quitar bordes 
+            frame.setSize(500,300);
+            frame.setResizable(false);
+            frame.setVisible(true);
+            
+            }    
+        
+        
+    }//GEN-LAST:event_SelectStatistic_ComboBoxActionPerformed
+
+    private void CloseAllCharts_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CloseAllCharts_ButtonActionPerformed
+        frame.setVisible(false);
+    }//GEN-LAST:event_CloseAllCharts_ButtonActionPerformed
+
+    private void RemovePersonKnowsPerson_CheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RemovePersonKnowsPerson_CheckBoxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_RemovePersonKnowsPerson_CheckBoxActionPerformed
 
     /**
      * @param args the command line arguments
@@ -3042,6 +3612,7 @@ public class Admin_Menu extends javax.swing.JFrame {
     private javax.swing.JButton AddPeople_Button;
     private javax.swing.JInternalFrame AddPeople_InternalFrame;
     private javax.swing.JButton AddPhoto_Button;
+    private javax.swing.JButton AddPhoto_Button1;
     private javax.swing.JLabel Admin_Label;
     private javax.swing.JButton AuthorCommit_Button;
     private javax.swing.JTextField AuthorFirstName_TextField;
@@ -3056,6 +3627,7 @@ public class Admin_Menu extends javax.swing.JFrame {
     private javax.swing.JPanel Background_Panel13;
     private javax.swing.JPanel Background_Panel14;
     private javax.swing.JPanel Background_Panel15;
+    private javax.swing.JPanel Background_Panel16;
     private javax.swing.JPanel Background_Panel2;
     private javax.swing.JPanel Background_Panel3;
     private javax.swing.JPanel Background_Panel4;
@@ -3065,18 +3637,26 @@ public class Admin_Menu extends javax.swing.JFrame {
     private javax.swing.JPanel Background_Panel8;
     private javax.swing.JPanel Background_Panel9;
     private javax.swing.JLabel Banner_Label;
+    private javax.swing.JTextField BarbcodeItem_TextField;
+    private javax.swing.JButton CloseAllCharts_Button;
     private javax.swing.JInternalFrame Collection_InternalFrame;
     private javax.swing.JTable Collection_Table;
+    private javax.swing.JButton CommitChanges_Button;
+    private javax.swing.JLabel Cover_Image_Label;
+    private javax.swing.JLabel Cover_Image_Label1;
     private javax.swing.JTextField CreatedItemId_TextField;
     private javax.swing.JTextField Day_TextField;
     private javax.swing.JPanel Divisor_Panel;
+    private javax.swing.JTextField EditionItem_TextField;
     private javax.swing.JButton Exit_Button;
     private javax.swing.JButton GenreCommit_Button;
     private javax.swing.JTextField GenreTypeID_TextField;
     private javax.swing.JTextField GenreTypeName_TextField;
     private javax.swing.JButton Genre_Button;
     private javax.swing.JLabel Genre_Label;
+    private javax.swing.JLabel Genre_Label1;
     private javax.swing.JComboBox<String> Genre_TextField;
+    private javax.swing.JComboBox<String> Genre_TextField1;
     private javax.swing.JCheckBox InsertAuthor_CheckBox;
     private javax.swing.JCheckBox InsertGenreType_CheckBox;
     private javax.swing.JCheckBox InsertItemType_CheckBox;
@@ -3085,15 +3665,21 @@ public class Admin_Menu extends javax.swing.JFrame {
     private javax.swing.JCheckBox InsertStatusType_CheckBox;
     private javax.swing.JTextField ItemBarbcode_TextField;
     private javax.swing.JLabel ItemBarcode_Label;
+    private javax.swing.JLabel ItemBarcode_Label1;
     private javax.swing.JLabel ItemEdition_Label;
+    private javax.swing.JLabel ItemEdition_Label1;
     private javax.swing.JTextField ItemEdition_TextField;
+    private javax.swing.JInternalFrame ItemInfo_InternalFrame;
     private javax.swing.JLabel ItemTitle_Label;
+    private javax.swing.JLabel ItemTitle_Label1;
     private javax.swing.JTextField ItemTitle_TextField;
     private javax.swing.JButton ItemTypeCommit_Button;
     private javax.swing.JTextField ItemTypeID_TextField;
     private javax.swing.JTextField ItemTypeName_TextField;
+    private javax.swing.JComboBox<String> ItemType_ComboBox;
+    private javax.swing.JComboBox<String> ItemType_ComboBox1;
     private javax.swing.JLabel ItemType_Label;
-    private javax.swing.JTextField ItemType_TextField;
+    private javax.swing.JLabel ItemType_Label1;
     private javax.swing.JButton ItemTypes_Button;
     private javax.swing.JButton Lateral_Button1;
     private javax.swing.JButton Lateral_Button2;
@@ -3115,8 +3701,10 @@ public class Admin_Menu extends javax.swing.JFrame {
     private javax.swing.JTextField PublisherID_TextField;
     private javax.swing.JTextField PublisherName_TextField;
     private javax.swing.JButton Publisher_Button;
-    private javax.swing.JComboBox<String> Publisher_ComboBox;
+    private javax.swing.JComboBox<String> Publisher_ComboBox1;
+    private javax.swing.JComboBox<String> Publisher_ComboBox2;
     private javax.swing.JLabel Publisher_Label1;
+    private javax.swing.JLabel Publisher_Label2;
     private javax.swing.JButton Queries_Button;
     private javax.swing.JInternalFrame Queries_InternalFrame;
     private javax.swing.JInternalFrame ReceiveItem_InternalFrame;
@@ -3141,9 +3729,12 @@ public class Admin_Menu extends javax.swing.JFrame {
     private javax.swing.JButton RelationType_Button;
     private javax.swing.JComboBox<String> RelationType_ComboBox;
     private javax.swing.JLabel RelationType_Label;
+    private javax.swing.JTable RelationType_Table;
     private javax.swing.JCheckBox RemoveAuthor_CheckBox;
     private javax.swing.JCheckBox RemoveGenreType_CheckBox;
     private javax.swing.JCheckBox RemoveItemType_CheckBox;
+    private javax.swing.JCheckBox RemoveItem_CheckBox;
+    private javax.swing.JCheckBox RemovePersonKnowsPerson_CheckBox;
     private javax.swing.JCheckBox RemovePublisher_CheckBox;
     private javax.swing.JCheckBox RemoveRelationType_CheckBox;
     private javax.swing.JCheckBox RemoveStatusType_CheckBox;
@@ -3171,14 +3762,14 @@ public class Admin_Menu extends javax.swing.JFrame {
     private javax.swing.JLabel SelectITem_Label1;
     private javax.swing.JLabel SelectItem_Label2;
     private javax.swing.JLabel SelectStars_Label;
-    private javax.swing.JComboBox<String> SelectStdistic_ComboBox;
+    private javax.swing.JComboBox<String> SelectStatistic_ComboBox;
     private javax.swing.JComboBox<String> SelectStdistic_ComboBox1;
     private javax.swing.JLabel Select_Label;
     private javax.swing.JLabel Select_Label1;
     private javax.swing.JLabel Select_Label2;
-    private javax.swing.JInternalFrame StadisticsQueries_InternalFrame;
     private javax.swing.JButton Stadistics_Button;
-    private javax.swing.JInternalFrame Stadistics_InternalFrame;
+    private javax.swing.JInternalFrame StatisticsQueries_InternalFrame;
+    private javax.swing.JInternalFrame Statistics_InternalFrame;
     private javax.swing.JButton StatusCommit_Button;
     private javax.swing.JTextField StatusTypeID_TextField;
     private javax.swing.JTextField StatusTypeName_TextField;
@@ -3191,6 +3782,7 @@ public class Admin_Menu extends javax.swing.JFrame {
     private javax.swing.JLabel Subtitle_Label13;
     private javax.swing.JLabel Subtitle_Label14;
     private javax.swing.JLabel Subtitle_Label15;
+    private javax.swing.JLabel Subtitle_Label16;
     private javax.swing.JLabel Subtitle_Label2;
     private javax.swing.JLabel Subtitle_Label3;
     private javax.swing.JLabel Subtitle_Label4;
@@ -3199,6 +3791,7 @@ public class Admin_Menu extends javax.swing.JFrame {
     private javax.swing.JLabel Subtitle_Label7;
     private javax.swing.JLabel Subtitle_Label8;
     private javax.swing.JLabel Subtitle_Label9;
+    private javax.swing.JTextField TitleItem_TextField;
     private javax.swing.JLabel Title_Label;
     private javax.swing.JLabel Title_Label1;
     private javax.swing.JLabel Title_Label10;
@@ -3207,6 +3800,7 @@ public class Admin_Menu extends javax.swing.JFrame {
     private javax.swing.JLabel Title_Label13;
     private javax.swing.JLabel Title_Label14;
     private javax.swing.JLabel Title_Label15;
+    private javax.swing.JLabel Title_Label16;
     private javax.swing.JLabel Title_Label2;
     private javax.swing.JLabel Title_Label3;
     private javax.swing.JLabel Title_Label4;
@@ -3222,6 +3816,7 @@ public class Admin_Menu extends javax.swing.JFrame {
     private javax.swing.JCheckBox UpdatePublisher_CheckBox;
     private javax.swing.JCheckBox UpdateRelationType_CheckBox;
     private javax.swing.JCheckBox UpdateStatusType_CheckBox;
+    private javax.swing.JCheckBox UpdateStatusType_CheckBox2;
     private javax.swing.JLabel Upper_Banner;
     private javax.swing.JLabel Upper_Banner1;
     private javax.swing.JLabel Upper_Banner10;
@@ -3230,6 +3825,7 @@ public class Admin_Menu extends javax.swing.JFrame {
     private javax.swing.JLabel Upper_Banner13;
     private javax.swing.JLabel Upper_Banner14;
     private javax.swing.JLabel Upper_Banner15;
+    private javax.swing.JLabel Upper_Banner16;
     private javax.swing.JLabel Upper_Banner2;
     private javax.swing.JLabel Upper_Banner3;
     private javax.swing.JLabel Upper_Banner4;
@@ -3266,6 +3862,7 @@ public class Admin_Menu extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel14;
     private javax.swing.JPanel jPanel15;
     private javax.swing.JPanel jPanel16;
+    private javax.swing.JPanel jPanel17;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
@@ -3276,6 +3873,7 @@ public class Admin_Menu extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane10;
+    private javax.swing.JScrollPane jScrollPane11;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
@@ -3295,4 +3893,6 @@ public class Admin_Menu extends javax.swing.JFrame {
     private javax.swing.JTable jTable9;
     private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
+  byte[] photo = null;
+  String filename = null;
 }

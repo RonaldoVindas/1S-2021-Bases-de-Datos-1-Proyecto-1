@@ -7,7 +7,7 @@ create table PersonLendItem(
   return_date DATE,
   amount_days Number(10),
   tolerance_days_yellow Number (2),
-  tolerance_days_red Number(2),
+  tolerance_days_red Number(2)
 );
 /
 /*==================================================COMENTARIOS EN TABLAS Y COLUMNAS======================================================*/
@@ -70,11 +70,11 @@ alter table PersonLendItem
 
 ALTER TABLE PersonLendItem
 ADD CONSTRAINT fk_PersonLendItem_person1_id FOREIGN KEY
-(person1_id) REFERENCES person(person1_id);
+(person1_id) REFERENCES person(person_id);
 /
 ALTER TABLE PersonLendItem
 ADD CONSTRAINT fk_PersonLendItem_person2_id FOREIGN KEY
-(person2_id) REFERENCES person(person2_id);
+(person2_id) REFERENCES person(person_id);
 /
 ALTER TABLE PersonLendItem
 ADD CONSTRAINT fk_PersonLendItem_item_id FOREIGN KEY

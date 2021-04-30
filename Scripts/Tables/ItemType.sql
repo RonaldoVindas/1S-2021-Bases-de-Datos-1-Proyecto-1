@@ -1,7 +1,7 @@
 /*==================================================CREACIÓN DE TABLAS======================================================*/
 create table ItemType(
   itemtype_id Number(11),
-  itemType_name varchar2(20),
+  itemType_name varchar2(20)
 );
 /
 /*==================================================COMENTARIOS EN TABLAS Y COLUMNAS======================================================*/

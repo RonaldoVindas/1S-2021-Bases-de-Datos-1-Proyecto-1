@@ -5,17 +5,19 @@ PROCEDURE update_PersonType(pid IN NUMBER,pname IN VARCHAR2);
 FUNCTION getpersontypeId(pname IN VARCHAR2) RETURN NUMBER;
 FUNCTION getpersontypeName (pid IN NUMBER) return VARCHAR2;
 
+
 end control_PersonType;
 /
+
 CREATE OR REPLACE PACKAGE BODY control_PersonType IS
 
-PROCEDURE insert_PersonType(pname IN VARCHAR2) AS
+PROCEDURE insert_PersonType (pname IN VARCHAR2) AS
 BEGIN
-	INSERT INTO PersonType(name)
+	INSERT INTO PersonType(persontype_name)
 	VALUES(pname);
 END insert_PersonType;
 
-ROCEDURE remove_PersonType (pid IN NUMBER) AS
+PROCEDURE remove_PersonType (pid IN NUMBER) AS
 e_invalid_PersonType EXCEPTION;
 BEGIN
 	DELETE FROM PersonType
@@ -35,7 +37,7 @@ BEGIN
         DBMS_OUTPUT.PUT_LINE(SQLCODE);
 END remove_PersonType;
 
-PROCEDURE update_PersonType(pid IN NUMBER, pname IN VARCHAR2) AS
+PROCEDURE update_PersonType(pid IN NUMBER,pname IN VARCHAR2) AS
 e_invalid_PersonType EXCEPTION;
 BEGIN
 	UPDATE PersonType
@@ -58,7 +60,7 @@ END update_PersonType;
 
 
 
-FUNCTION getpersontypeId(pname IN varchar2) return number
+FUNCTION getpersontypeId(pname IN VARCHAR2) RETURN NUMBER
 IS 
     vcId Number(11);
     BEGIN
@@ -82,7 +84,7 @@ IS
 
 
 
-FUNCTION getpersontypeName(pid IN NUMBER) RETURN VARCHAR2
+FUNCTION getpersontypeName (pid IN NUMBER) return VARCHAR2
 IS 
     vcName VARCHAR2(20);
     BEGIN

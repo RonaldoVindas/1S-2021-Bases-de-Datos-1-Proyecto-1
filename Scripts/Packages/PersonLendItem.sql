@@ -1,43 +1,42 @@
 Create or replace package control_personlenditem is
 
 
-PROCEDURE insert_personlenditem (pperson1_id IN NUMBER, pperson2_id IN NUMBER, pitem_id, plend_date IN DATE, preturn_date IN DATE, pamount_days IN NUMBER, ptoleranceDaysYellow IN NUMBER, ptoleranceDaysRed IN NUMBER);
+PROCEDURE insert_personlenditem (pperson1_id IN NUMBER, pperson2_id IN NUMBER, pitem_id IN NUMBER, preturn_date IN DATE, pamount_days IN NUMBER, ptoleranceDaysYellow IN NUMBER, ptoleranceDaysRed IN NUMBER);
 PROCEDURE remove_personlenditem (pperson1_id IN NUMBER);
-
-PROCEDURE update_personlenditem (ppersonid1_old in NUMBER, pperson1_id IN NUMBER, pperson2_id IN NUMBER, pitem_id, plend_date IN DATE, preturn_date IN DATE, pamount_days IN NUMBER, ptoleranceDaysYellow IN NUMBER, ptoleranceDaysRed IN NUMBER);
-
+PROCEDURE update_personlenditem (ppersonid1_old in NUMBER, pperson1_id IN NUMBER, pperson2_id IN NUMBER, pitem_id IN NUMBER, plend_date IN DATE, preturn_date IN DATE, pamount_days IN NUMBER, ptoleranceDaysYellow IN NUMBER, ptoleranceDaysRed IN NUMBER);
 
 FUNCTION getpersonlenditemPerson1ID(pperson2_id IN NUMBER) RETURN NUMBER;
 FUNCTION getpersonlenditemPerson2ID(pperson1_id IN NUMBER) RETURN NUMBER;
-FUNCTION getpersonlenditemItemID (pperson1_id IN NUMBER) RETURN NUMBER;
-/*
+FUNCTION getpersonlenditemItemID (pperson1_id IN NUMBER, pperson2_id IN NUMBER) RETURN NUMBER;
+
 FUNCTION getpersonlenditemLendDate(pperson1_id IN NUMBER, pperson2_id IN NUMBER) RETURN DATE;
 FUNCTION getpersonlenditemReturnDate(pperson1_id IN NUMBER, pperson2_id IN NUMBER) RETURN DATE;
-*/
-
+FUNCTION getpersonlenditemAmountDays(pperson1_id IN NUMBER, pperson2_id IN NUMBER) RETURN NUMBER;
+FUNCTION getpersonlenditemToleranceDY(pperson1_id IN NUMBER, pperson2_id IN NUMBER) RETURN NUMBER;
+FUNCTION getpersonlenditemToleranceDR(pperson1_id IN NUMBER, pperson2_id IN NUMBER) RETURN NUMBER;
 
 
 end control_personlenditem;
 
 /
 
-CREATE OR REPLACE PACKAGE BODY control_personhasitem IS
+CREATE OR REPLACE PACKAGE BODY control_personlenditem IS
 
 
-PROCEDURE insert_personlenditem (pperson1_id IN NUMBER, pperson2_id IN NUMBER, pitem_id, plend_date IN DATE, preturn_date IN DATE, pamount_days IN NUMBER, ptoleranceDaysYellow IN NUMBER, ptoleranceDaysRed IN NUMBER) AS
+PROCEDURE insert_personlenditem (pperson1_id IN NUMBER, pperson2_id IN NUMBER, pitem_id IN NUMBER, preturn_date IN DATE, pamount_days IN NUMBER, ptoleranceDaysYellow IN NUMBER, ptoleranceDaysRed IN NUMBER) AS
 BEGIN
-	INSERT INTO personlenditem (person1_id, person2_id, item_id, lend_date, return_date, amount_days)
-	VALUES (pperson1_id, pperson2_id, pitem_id, plend_date, preturn_date, (select to_date (return_date, 'yyyy-mm-dd') - trunc(lend_date) from dual), ptoleranceDaysYellow, ptoleranceDaysRed);
-	--Select se encarga de calcular la cantidad de días entre la fecha de préstamos y la fecha de retorno del ítem
-END personlenditem;
+    INSERT INTO personlenditem (person1_id, person2_id, item_id, lend_date, return_date, amount_days, tolerance_days_yellow, tolerance_days_red)
+    VALUES (pperson1_id, pperson2_id, pitem_id, SYSDATE, preturn_date, (select to_date (preturn_date, 'yyyy-mm-dd') - trunc(SYSDATE) from dual), ptoleranceDaysYellow, ptoleranceDaysRed);
+    --Select se encarga de calcular la cantidad de días entre la fecha de préstamos y la fecha de retorno del ítem.
+END insert_personlenditem;
 
 
 PROCEDURE remove_personlenditem (pperson1_id IN NUMBER) AS
 e_invalid_personlenditem EXCEPTION;
 BEGIN
-	DELETE FROM personlenditem
-	WHERE person1_id = pperson1_id;
-	COMMIT;
+    DELETE FROM personlenditem
+    WHERE person1_id = pperson1_id;
+    COMMIT;
     IF SQL%NOTFOUND THEN 
         RAISE e_invalid_personlenditem;
     END IF;
@@ -53,13 +52,20 @@ BEGIN
 END remove_personlenditem;
 
 
-PROCEDURE update_personlenditem (ppersonid1_old in NUMBER, pperson1_id IN NUMBER, pperson2_id IN NUMBER, pitem_id, plend_date IN DATE, preturn_date IN DATE, pamount_days IN NUMBER, ptoleranceDaysYellow IN NUMBER, ptoleranceDaysRed IN NUMBER) AS
+PROCEDURE update_personlenditem (ppersonid1_old in NUMBER, pperson1_id IN NUMBER, pperson2_id IN NUMBER, pitem_id IN NUMBER, plend_date IN DATE, preturn_date IN DATE, pamount_days IN NUMBER, ptoleranceDaysYellow IN NUMBER, ptoleranceDaysRed IN NUMBER) AS
 e_invalid_personhasitem EXCEPTION;
 BEGIN
-	UPDATE personhasitem
-	SET person1_id, person2_id, item_id, lend_date, return_date, amount_days, tolerance_days_yellow, tolerance_days_red = pperson1_id, pperson2_id, pitem_id, plend_date, preturn_date, pamount_days, ptoleranceDaysYellow, ptoleranceDaysRed
-	WHERE person1_id = ppersonid_old;
-	COMMIT;
+    UPDATE personlenditem 
+    SET person1_id = pperson1_id,
+    person2_id = pperson2_id,
+    item_id = pitem_id,
+    lend_date = plend_date,
+    return_date = preturn_date,
+    amount_days = pamount_days,
+    tolerance_days_yellow = ptoleranceDaysYellow,
+    tolerance_days_red = ptoleranceDaysRed
+    WHERE person1_id = ppersonid1_old;
+    COMMIT;
     IF SQL%NOTFOUND THEN 
         RAISE e_invalid_personhasitem;
     END IF;
@@ -121,14 +127,14 @@ IS
     END;
     
 
-FUNCTION getpersonlenditemItemID(pperson1_id IN NUMBER) RETURN NUMBER
+FUNCTION getpersonlenditemItemID (pperson1_id IN NUMBER, pperson2_id IN NUMBER) RETURN NUMBER
 IS 
     vcId NUMBER(11);
     BEGIN
         SELECT item_id
         INTO vcId
         FROM personlenditem
-        WHERE person1_id = pperson1_id;
+        WHERE person1_id = pperson1_id AND person2_id = pperson2_id;
         RETURN (vcId);
         EXCEPTION
             WHEN TOO_MANY_ROWS THEN
@@ -144,17 +150,9 @@ IS
     END;
 
 
-/*Problemas en condiciones de búsqueda para Funciones get lend_date, get return_date, get amount_days
-
-
-
-
-======================================================================================================================================
-
-
 FUNCTION getpersonlenditemLendDate(pperson1_id IN NUMBER, pperson2_id IN NUMBER) RETURN DATE
 IS 
-    vcDATE NUMBER(11);
+    vcDATE DATE;
     BEGIN
         SELECT lend_date
         INTO vcDate
@@ -175,11 +173,11 @@ IS
     END;
 
 
-FUNCTION getpersonlenditemLendDate(pperson1_id IN NUMBER, pperson2_id IN NUMBER) RETURN DATE
+FUNCTION getpersonlenditemReturnDate(pperson1_id IN NUMBER, pperson2_id IN NUMBER) RETURN DATE
 IS 
-    vcDATE NUMBER(11);
+    vcDATE DATE;
     BEGIN
-        SELECT lend_date
+        SELECT return_date
         INTO vcDate
         FROM personlenditem
         WHERE person1_id = pperson1_id AND person2_id = pperson2_id;
@@ -198,7 +196,72 @@ IS
     END;
 
 
-*/
+FUNCTION getpersonlenditemAmountDays(pperson1_id IN NUMBER, pperson2_id IN NUMBER) RETURN NUMBER
+IS 
+    vcDays NUMBER(10);
+    BEGIN
+        SELECT amount_days
+        INTO vcDays
+        FROM personlenditem
+        WHERE person1_id = pperson1_id AND person2_id = pperson2_id;
+        RETURN (vcDays);
+        EXCEPTION
+            WHEN TOO_MANY_ROWS THEN
+            DBMS_OUTPUT.PUT_LINE ('Your SELECT statement retrieved multiple rows.');
+            WHEN NO_DATA_FOUND THEN
+            DBMS_OUTPUT.PUT_LINE ('Could not find a register with the name||pcnombre.');
+            WHEN STORAGE_ERROR THEN
+            DBMS_OUTPUT.PUT_LINE ('PL/SQL ran out of memory or memory is corrupted.');
+            WHEN VALUE_ERROR THEN
+            DBMS_OUTPUT.PUT_LINE ('An arithmetic, conversion, truncation, or size constraint error ocurred.');
+            WHEN OTHERS THEN
+            DBMS_OUTPUT.PUT_LINE ('Unexpected error.');
+    END;
+
+FUNCTION getpersonlenditemToleranceDY(pperson1_id IN NUMBER, pperson2_id IN NUMBER) RETURN NUMBER
+IS 
+    vcDays NUMBER(2);
+    BEGIN
+        SELECT tolerance_days_yellow
+        INTO vcDays
+        FROM personlenditem
+        WHERE person1_id = pperson1_id AND person2_id = pperson2_id;
+        RETURN (vcDays);
+        EXCEPTION
+            WHEN TOO_MANY_ROWS THEN
+            DBMS_OUTPUT.PUT_LINE ('Your SELECT statement retrieved multiple rows.');
+            WHEN NO_DATA_FOUND THEN
+            DBMS_OUTPUT.PUT_LINE ('Could not find a register with the name||pcnombre.');
+            WHEN STORAGE_ERROR THEN
+            DBMS_OUTPUT.PUT_LINE ('PL/SQL ran out of memory or memory is corrupted.');
+            WHEN VALUE_ERROR THEN
+            DBMS_OUTPUT.PUT_LINE ('An arithmetic, conversion, truncation, or size constraint error ocurred.');
+            WHEN OTHERS THEN
+            DBMS_OUTPUT.PUT_LINE ('Unexpected error.');
+    END;
+
+FUNCTION getpersonlenditemToleranceDR(pperson1_id IN NUMBER, pperson2_id IN NUMBER) RETURN NUMBER
+IS 
+    vcDays NUMBER(2);
+    BEGIN
+        SELECT tolerance_days_red
+        INTO vcDays
+        FROM personlenditem
+        WHERE person1_id = pperson1_id AND person2_id = pperson2_id;
+        RETURN (vcDays);
+        EXCEPTION
+            WHEN TOO_MANY_ROWS THEN
+            DBMS_OUTPUT.PUT_LINE ('Your SELECT statement retrieved multiple rows.');
+            WHEN NO_DATA_FOUND THEN
+            DBMS_OUTPUT.PUT_LINE ('Could not find a register with the name||pcnombre.');
+            WHEN STORAGE_ERROR THEN
+            DBMS_OUTPUT.PUT_LINE ('PL/SQL ran out of memory or memory is corrupted.');
+            WHEN VALUE_ERROR THEN
+            DBMS_OUTPUT.PUT_LINE ('An arithmetic, conversion, truncation, or size constraint error ocurred.');
+            WHEN OTHERS THEN
+            DBMS_OUTPUT.PUT_LINE ('Unexpected error.');
+    END;
+
 
 
 end control_personlenditem;

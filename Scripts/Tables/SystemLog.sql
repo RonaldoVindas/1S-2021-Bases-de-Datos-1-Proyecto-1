@@ -4,9 +4,9 @@ CREATE TABLE systemLog
   systemLog_id NUMBER(8),
   description VARCHAR2 (250),
   sys_date DATE,
-  time TIME,
+  time TIMESTAMP,
   object VARCHAR2 (100),
-  type_change VARCHAR2 (100)
+  type_change VARCHAR2 (100),
   person_id NUMBER (8)
 );
 /
@@ -100,7 +100,8 @@ END beforeINSERTsystemLog;
 CREATE OR REPLACE TRIGGER pe.beforeUPDATEsystemLog
 BEFORE UPDATE
 ON pe.systemLog
+FOR EACH ROW
 BEGIN
-    :new.date_last_modification:= SYSDATE;
-    :new.user_last_modification:= USER;
+    :new.date_last_modification := SYSDATE;
+    :new.user_last_modification := USER;
 END beforeUPDATEsystemLog;

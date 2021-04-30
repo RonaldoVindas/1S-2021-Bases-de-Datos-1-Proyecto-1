@@ -58,9 +58,9 @@ NOCYCLE;
 
 /*==================================================CREACIÓN DE TRIGGERS PARA TABLAS======================================================*/
 
-CREATE OR REPLACE TRIGGER pe.beforeInsertParameter
+CREATE OR REPLACE TRIGGER par.beforeInsertParameter
 BEFORE INSERT
-ON pe.Parameter
+ON par.Parameter
 FOR EACH ROW
 BEGIN
     :new.Parameter_id := s_Parameter.nextval;
@@ -70,9 +70,9 @@ END beforeInsertParameter;
 
 /
 
-CREATE OR REPLACE TRIGGER pe.beforeUPDATEParameter
+CREATE OR REPLACE TRIGGER par.beforeUPDATEParameter
 BEFORE UPDATE
-ON pe.Parameter
+ON par.Parameter
 FOR EACH ROW
 BEGIN
     :new.date_last_modification:= SYSDATE;

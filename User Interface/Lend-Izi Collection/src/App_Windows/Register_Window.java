@@ -196,9 +196,9 @@ public class Register_Window extends javax.swing.JFrame {
     }//GEN-LAST:event_Exit_ButtonActionPerformed
 
     private void Register_ButttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Register_ButttonActionPerformed
-      // User_Menu result = new User_Menu();
+       Users_Menu result = new Users_Menu();
        dispose();
-       //result.setVisible(true);
+       result.setVisible(true);
     }//GEN-LAST:event_Register_ButttonActionPerformed
 
     /**

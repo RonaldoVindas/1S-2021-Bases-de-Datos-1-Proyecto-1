@@ -39,7 +39,7 @@ ADD CONSTRAINT fk_ItemHasReview_item_id FOREIGN KEY
 /
 ALTER TABLE ItemHasReview
 ADD CONSTRAINT fk_ItemHasReview_genre_id FOREIGN KEY
-(review_id) REFERENCES genre (review_id);
+(review_id) REFERENCES review (review_id);
 
 
 /*==================================================CAMPOS DE AUDITORÍA PARA TABLAS======================================================*/

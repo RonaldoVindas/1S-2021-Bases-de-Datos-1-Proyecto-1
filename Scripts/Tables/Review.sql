@@ -64,6 +64,7 @@ END beforeINSERTreview;
 CREATE OR REPLACE TRIGGER pe.beforeUPDATEreview
 BEFORE UPDATE
 ON pe.review
+FOR EACH ROW
 BEGIN
     :new.date_last_modification:= SYSDATE;
     :new.user_last_modification:= USER;

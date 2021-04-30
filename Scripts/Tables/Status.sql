@@ -2,7 +2,7 @@
 CREATE TABLE status
 (
   status_id NUMBER(8),
-  status_name VARCHAR2 (100)
+  status_name VARCHAR2 (100),
   description VARCHAR2 (250)
 );
 
@@ -69,6 +69,7 @@ END beforeINSERTstatus;
 CREATE OR REPLACE TRIGGER pe.beforeUPDATEstatus
 BEFORE UPDATE
 ON pe.status
+FOR EACH ROW
 BEGIN
     :new.date_last_modification:= SYSDATE;
     :new.user_last_modification:= USER;

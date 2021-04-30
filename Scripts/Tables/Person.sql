@@ -24,7 +24,7 @@ IS 'Person identification code';
 
 /
 
-COMMENT ON Column person.firts_name
+COMMENT ON Column person.first_name
 IS 'Person first name.';
 
 /
@@ -54,8 +54,8 @@ IS 'Person birth day.';
 
 /
 
-COMMENT ON Column person.age
-IS 'Person age.';
+/*COMMENT ON Column person.age
+IS 'Person age.';*/
 
 /
 

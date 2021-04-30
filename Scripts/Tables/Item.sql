@@ -3,7 +3,7 @@ create table Item(
   item_id NUMBER(11),
   title VARCHAR2(50) CONSTRAINT item_title_nn NOT NULL,
   edition VARCHAR(30),
-  cover_image BLOB ---------------------------TIPO DE DATO DE IMAGEN----------AVERIGUAR BIEN!
+  cover_image BLOB, ---------------------------TIPO DE DATO DE IMAGEN----------AVERIGUAR BIEN!
   barcode VARCHAR(12) CONSTRAINT item_barcode_nn NOT NULL,
   itemtype_id NUMBER(11),
   status_id NUMBER(8),
@@ -77,7 +77,7 @@ alter table Item
 
 ALTER TABLE Item
 ADD CONSTRAINT fk_Item_itemtype_id FOREIGN KEY
-(itemtype_id) REFERENCES itemtype_id(ItemType);
+(itemtype_id) REFERENCES ItemType (itemtype_id);
 /
 ALTER TABLE Item
 ADD CONSTRAINT fk_Item_status_id FOREIGN KEY

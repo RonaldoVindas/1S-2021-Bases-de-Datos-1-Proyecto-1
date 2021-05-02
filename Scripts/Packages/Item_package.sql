@@ -3,6 +3,8 @@ Create or replace package control_item is
 PROCEDURE insert_item (ptitle IN VARCHAR2, pedition IN VARCHAR2, pcover IN BLOB, pbarcode IN VARCHAR2, pitemtype_id IN NUMBER, pstatus_id IN NUMBER, ppublisher_id IN NUMBER, pgenre_id IN NUMBER);
 PROCEDURE remove_item (pitem_id IN Number);
 PROCEDURE update_item (pitem_id IN Number, ptitle IN VARCHAR2, pedition IN VARCHAR2, pcover IN BLOB, pbarcode IN VARCHAR2, pitemtype_id IN NUMBER, pstatus_id IN NUMBER, ppublisher_id IN NUMBER, pgenre_id IN NUMBER);
+PROCEDURE update_item_cover (pitem IN NUMBER, pcover IN BLOB);
+PROCEDURE update_item_status (pitem IN NUMBER, pstatus IN NUMBER);
 
 FUNCTION getitemId(ptitle IN VARCHAR2) RETURN NUMBER;
 FUNCTION getitemTitle(pid IN NUMBER) RETURN VARCHAR2;
@@ -22,17 +24,17 @@ CREATE OR REPLACE PACKAGE BODY control_item IS
 
 PROCEDURE insert_item (ptitle IN VARCHAR2, pedition IN VARCHAR2, pcover IN BLOB, pbarcode IN VARCHAR2, pitemtype_id IN NUMBER, pstatus_id IN NUMBER, ppublisher_id IN NUMBER, pgenre_id IN NUMBER) AS
 BEGIN
-	INSERT INTO item(title, edition, cover_image, barcode, itemtype_id, status_id, publisher_id, genre_id)
-	VALUES(ptitle, pedition, pcover, pbarcode, pitemtype_id, pstatus_id, ppublisher_id, pgenre_id);
+    INSERT INTO item(title, edition, cover_image, barcode, itemtype_id, status_id, publisher_id, genre_id)
+    VALUES(ptitle, pedition, pcover, pbarcode, pitemtype_id, pstatus_id, ppublisher_id, pgenre_id);
 END insert_item;
 
 
 PROCEDURE remove_item (pitem_id IN Number) AS
 e_invalid_item EXCEPTION;
 BEGIN
-	DELETE FROM item
-	WHERE item_id = pitem_id;
-	COMMIT;
+    DELETE FROM item
+    WHERE item_id = pitem_id;
+    COMMIT;
     IF SQL%NOTFOUND THEN 
         RAISE e_invalid_item;
     END IF;
@@ -51,8 +53,8 @@ END remove_item;
 PROCEDURE update_item (pitem_id IN Number, ptitle IN VARCHAR2, pedition IN VARCHAR2, pcover IN BLOB, pbarcode IN VARCHAR2, pitemtype_id IN NUMBER, pstatus_id IN NUMBER, ppublisher_id IN NUMBER, pgenre_id IN NUMBER) AS
 e_invalid_item EXCEPTION;
 BEGIN
-	UPDATE item
-	SET title = ptitle,
+    UPDATE item
+    SET title = ptitle,
         edition = pedition, 
         cover_image = pcover, 
         barcode = pbarcode, 
@@ -61,8 +63,8 @@ BEGIN
         publisher_id = ppublisher_id, 
         genre_id = pgenre_id
 
-	WHERE item_id = pitem_id;
-	COMMIT;
+    WHERE item_id = pitem_id;
+    COMMIT;
     IF SQL%NOTFOUND THEN 
         RAISE e_invalid_item;
     END IF;
@@ -76,6 +78,52 @@ BEGIN
         DBMS_OUTPUT.PUT_LINE(SQLERRM);
         DBMS_OUTPUT.PUT_LINE(SQLCODE);
 END update_item;
+
+
+PROCEDURE update_item_cover (pitem IN NUMBER, pcover IN BLOB) AS
+e_invalid_item EXCEPTION;
+BEGIN
+    UPDATE item
+    SET
+        cover_image = pcover
+    WHERE item_id = pitem_id;
+    COMMIT;
+    IF SQL%NOTFOUND THEN 
+        RAISE e_invalid_item;
+    END IF;
+    EXCEPTION
+    WHEN e_invalid_item THEN
+        DBMS_OUTPUT.PUT_LINE('No such Item.');
+        DBMS_OUTPUT.PUT_LINE(SQLERRM);
+        DBMS_OUTPUT.PUT_LINE(SQLCODE);
+    WHEN OTHERS THEN
+        DBMS_OUTPUT.PUT_LINE('An error has ocurred in the attempt to update.');
+        DBMS_OUTPUT.PUT_LINE(SQLERRM);
+        DBMS_OUTPUT.PUT_LINE(SQLCODE);
+END update_item_cover;
+
+
+
+PROCEDURE update_item_status (pitem IN NUMBER, pstatus IN NUMBER) AS
+e_invalid_item EXCEPTION;
+BEGIN
+    UPDATE item
+    SET status_id = pstatus_id,       
+    WHERE item_id = pitem_id;
+    COMMIT;
+    IF SQL%NOTFOUND THEN 
+        RAISE e_invalid_item;
+    END IF;
+    EXCEPTION
+    WHEN e_invalid_item THEN
+        DBMS_OUTPUT.PUT_LINE('No such Item.');
+        DBMS_OUTPUT.PUT_LINE(SQLERRM);
+        DBMS_OUTPUT.PUT_LINE(SQLCODE);
+    WHEN OTHERS THEN
+        DBMS_OUTPUT.PUT_LINE('An error has ocurred in the attempt to update.');
+        DBMS_OUTPUT.PUT_LINE(SQLERRM);
+        DBMS_OUTPUT.PUT_LINE(SQLCODE);
+END update_item_status;
 
 
 

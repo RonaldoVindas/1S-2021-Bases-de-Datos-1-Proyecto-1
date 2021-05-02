@@ -2,9 +2,9 @@
 create table Item(
     item_id NUMBER(8),
     title VARCHAR2(50) CONSTRAINT item_title_nn NOT NULL,
-    edition VARCHAR2(50),
+    edition VARCHAR2(30),
     cover_image BLOB, ---------------------------TIPO DE DATO DE IMAGEN----------AVERIGUAR BIEN!
-    barcode VARCHAR2(50) CONSTRAINT item_barcode_nn NOT NULL,
+    barcode VARCHAR2(12) CONSTRAINT item_barcode_nn NOT NULL,
     itemtype_id NUMBER(8),
     status_id NUMBER(8),
     publisher_id NUMBER(8),

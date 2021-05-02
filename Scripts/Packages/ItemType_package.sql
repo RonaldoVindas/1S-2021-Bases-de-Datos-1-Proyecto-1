@@ -58,7 +58,7 @@ END update_ItemType;
 
 FUNCTION getitemType_name(pitemtype_id IN NUMBER) RETURN VARCHAR2
 IS 
-    vcitemType_name VARCHAR2(20);
+    vcitemType_name VARCHAR2(50);
     BEGIN
         SELECT itemType_name
         INTO vcitemType_name

@@ -62,7 +62,7 @@ END update_PersonType;
 
 FUNCTION getpersontypeId(pname IN VARCHAR2) RETURN NUMBER
 IS 
-    vcId Number(11);
+    vcId Number(9);
     BEGIN
         SELECT persontype_id
         INTO vcId
@@ -86,7 +86,7 @@ IS
 
 FUNCTION getpersontypeName (pid IN NUMBER) return VARCHAR2
 IS 
-    vcName VARCHAR2(20);
+    vcName VARCHAR2(50);
     BEGIN
         SELECT persontype_name  
         INTO vcName 

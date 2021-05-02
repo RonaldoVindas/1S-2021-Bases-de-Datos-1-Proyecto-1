@@ -130,7 +130,7 @@ IS
 FUNCTION getpersonFirstName(pid IN NUMBER) RETURN VARCHAR2
 
 IS 
-    vcFirstName VARCHAR2(20);
+    vcFirstName VARCHAR2(50);
     BEGIN
         SELECT first_name
         INTO vcFirstName
@@ -153,7 +153,7 @@ IS
 
 FUNCTION getpersonLastName(pid IN NUMBER) RETURN VARCHAR2
 IS 
-    vcLastName VARCHAR2(20);
+    vcLastName VARCHAR2(50);
     BEGIN
         SELECT last_name
         INTO vcLastName
@@ -197,7 +197,7 @@ IS
 
 FUNCTION getpersonPassword(pid IN NUMBER) RETURN VARCHAR2
 IS 
-    vcPassword VARCHAR2(15);
+    vcPassword VARCHAR2(25);
     BEGIN
         SELECT password
         INTO vcPassword
@@ -220,7 +220,7 @@ IS
 
 FUNCTION getpersonPhoneNumber(pid IN NUMBER) RETURN VARCHAR2
 IS 
-    vcPhoneNumber VARCHAR2(15);
+    vcPhoneNumber VARCHAR2(8);
     BEGIN
         SELECT phone_number
         INTO vcPhoneNumber

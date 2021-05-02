@@ -86,7 +86,7 @@ IS
 
 FUNCTION getpublisherName(pid IN NUMBER) RETURN VARCHAR2
 IS 
-    vcName VARCHAR2(100);
+    vcName VARCHAR2(50);
     BEGIN
         SELECT publisher_name
         INTO vcName

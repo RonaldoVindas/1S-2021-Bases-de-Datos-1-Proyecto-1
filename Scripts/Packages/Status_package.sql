@@ -111,7 +111,7 @@ IS
 
 FUNCTION getstatusDescription(pid IN NUMBER) RETURN VARCHAR2
 IS 
-    vcDescription VARCHAR2(100);
+    vcDescription VARCHAR2(250);
     BEGIN
         SELECT description
         INTO vcDescription

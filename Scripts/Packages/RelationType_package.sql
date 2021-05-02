@@ -87,7 +87,7 @@ IS
 FUNCTION getrelationtypeName(pid IN NUMBER) RETURN VARCHAR2
 
 IS 
-    vcName VARCHAR2(100);
+    vcName VARCHAR2(50);
     BEGIN
         SELECT relationtype_name
         INTO vcName

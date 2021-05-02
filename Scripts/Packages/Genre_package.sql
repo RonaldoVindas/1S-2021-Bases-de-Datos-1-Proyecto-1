@@ -60,7 +60,7 @@ END update_genre;
 
 FUNCTION getgenreName(pid_genre IN NUMBER) RETURN VARCHAR2
 IS 
-    vcName VARCHAR2(20);
+    vcName VARCHAR2(50);
     BEGIN
         SELECT genre_name
         INTO vcName
@@ -82,7 +82,7 @@ IS
 
 FUNCTION getgenreDescription(pid_genre IN NUMBER) RETURN VARCHAR2
 IS 
-    vcDescription VARCHAR2(140);
+    vcDescription VARCHAR2(250);
     BEGIN
         SELECT description
         INTO vcDescription

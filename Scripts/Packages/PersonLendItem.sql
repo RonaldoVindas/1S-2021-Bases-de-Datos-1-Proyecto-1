@@ -83,7 +83,7 @@ END update_personlenditem;
 
 FUNCTION getpersonlenditemPerson1ID(pperson2_id IN NUMBER) RETURN NUMBER
 IS 
-    vcId NUMBER(11);
+    vcId NUMBER(9);
     BEGIN
         SELECT person1_id
         INTO vcId
@@ -106,7 +106,7 @@ IS
 
 FUNCTION getpersonlenditemPerson2ID(pperson1_id IN NUMBER) RETURN NUMBER
 IS 
-    vcId NUMBER(11);
+    vcId NUMBER(9);
     BEGIN
         SELECT person2_id
         INTO vcId
@@ -129,7 +129,7 @@ IS
 
 FUNCTION getpersonlenditemItemID (pperson1_id IN NUMBER, pperson2_id IN NUMBER) RETURN NUMBER
 IS 
-    vcId NUMBER(11);
+    vcId NUMBER(9);
     BEGIN
         SELECT item_id
         INTO vcId
@@ -198,7 +198,7 @@ IS
 
 FUNCTION getpersonlenditemAmountDays(pperson1_id IN NUMBER, pperson2_id IN NUMBER) RETURN NUMBER
 IS 
-    vcDays NUMBER(10);
+    vcDays NUMBER(8);
     BEGIN
         SELECT amount_days
         INTO vcDays
@@ -220,7 +220,7 @@ IS
 
 FUNCTION getpersonlenditemToleranceDY(pperson1_id IN NUMBER, pperson2_id IN NUMBER) RETURN NUMBER
 IS 
-    vcDays NUMBER(2);
+    vcDays NUMBER(8);
     BEGIN
         SELECT tolerance_days_yellow
         INTO vcDays
@@ -242,7 +242,7 @@ IS
 
 FUNCTION getpersonlenditemToleranceDR(pperson1_id IN NUMBER, pperson2_id IN NUMBER) RETURN NUMBER
 IS 
-    vcDays NUMBER(2);
+    vcDays NUMBER(8);
     BEGIN
         SELECT tolerance_days_red
         INTO vcDays

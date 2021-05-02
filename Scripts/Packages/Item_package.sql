@@ -3,8 +3,8 @@ Create or replace package control_item is
 PROCEDURE insert_item (ptitle IN VARCHAR2, pedition IN VARCHAR2, pcover IN BLOB, pbarcode IN VARCHAR2, pitemtype_id IN NUMBER, pstatus_id IN NUMBER, ppublisher_id IN NUMBER, pgenre_id IN NUMBER);
 PROCEDURE remove_item (pitem_id IN Number);
 PROCEDURE update_item (pitem_id IN Number, ptitle IN VARCHAR2, pedition IN VARCHAR2, pcover IN BLOB, pbarcode IN VARCHAR2, pitemtype_id IN NUMBER, pstatus_id IN NUMBER, ppublisher_id IN NUMBER, pgenre_id IN NUMBER);
-PROCEDURE update_item_cover (pitem IN NUMBER, pcover IN BLOB);
-PROCEDURE update_item_status (pitem IN NUMBER, pstatus IN NUMBER);
+PROCEDURE update_item_cover (pitem_id IN NUMBER, pcover IN BLOB);
+PROCEDURE update_item_status (pitem_id IN NUMBER, pstatus_id IN NUMBER);
 
 FUNCTION getitemId(ptitle IN VARCHAR2) RETURN NUMBER;
 FUNCTION getitemTitle(pid IN NUMBER) RETURN VARCHAR2;
@@ -80,7 +80,7 @@ BEGIN
 END update_item;
 
 
-PROCEDURE update_item_cover (pitem IN NUMBER, pcover IN BLOB) AS
+PROCEDURE update_item_cover (pitem_id IN NUMBER, pcover IN BLOB) AS
 e_invalid_item EXCEPTION;
 BEGIN
     UPDATE item
@@ -104,11 +104,11 @@ END update_item_cover;
 
 
 
-PROCEDURE update_item_status (pitem IN NUMBER, pstatus IN NUMBER) AS
+PROCEDURE update_item_status (pitem_id IN NUMBER, pstatus_id IN NUMBER) AS
 e_invalid_item EXCEPTION;
 BEGIN
     UPDATE item
-    SET status_id = pstatus_id,       
+    SET status_id = pstatus_id
     WHERE item_id = pitem_id;
     COMMIT;
     IF SQL%NOTFOUND THEN 

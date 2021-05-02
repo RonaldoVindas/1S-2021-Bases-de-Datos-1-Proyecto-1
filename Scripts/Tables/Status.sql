@@ -2,8 +2,8 @@
 CREATE TABLE status
 (
   status_id NUMBER(8),
-  status_name VARCHAR2 (100),
-  description VARCHAR2 (250)
+  status_name VARCHAR2(50),
+  description VARCHAR2(250)
 );
 
 /*==================================================COMENTARIOS EN TABLAS Y COLUMNAS========================================================*/
@@ -11,17 +11,14 @@ CREATE TABLE status
 COMMENT ON TABLE status
 IS 'Repository to storage information about status.';
 
-/
 
 COMMENT ON COLUMN status.status_id
 IS 'status identification code.';
 
-/
 
 COMMENT ON COLUMN status.status_name
 IS 'status name.';
 
-/
 
 COMMENT ON COLUMN status.description
 IS 'status description.';
@@ -34,13 +31,13 @@ ALTER TABLE status
   TABLESPACE pe_ind PCTFREE 20
   STORAGE (INITIAL 10K NEXT 10K PCTINCREASE 0);
 
-/*==================================================CAMPOS DE AUDITORÍA PARA TABLAS=========================================================*/
+/*==================================================CAMPOS DE AUDITOR�?A PARA TABLAS=========================================================*/
 
 ALTER TABLE status
 ADD creation_date DATE
-ADD creation_user VARCHAR2 (100)
+ADD creation_user VARCHAR2(50)
 ADD date_last_modification DATE
-ADD user_last_modification VARCHAR2 (100);
+ADD user_last_modification VARCHAR2(50);
 
 /*==================================================CREACIÓN DE SECUENCIAS PARA TABLAS======================================================*/
 
@@ -48,7 +45,7 @@ CREATE SEQUENCE s_status
 START WITH 0
 INCREMENT BY 1
 MINVALUE 0
-MAXVALUE 99999999999
+MAXVALUE 99999999
 NOCACHE
 NOCYCLE;
 

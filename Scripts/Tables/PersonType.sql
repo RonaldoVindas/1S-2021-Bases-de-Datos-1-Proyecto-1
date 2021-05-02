@@ -1,43 +1,35 @@
 /*==================================================CREACIÓN DE TABLAS======================================================*/
 create table PersonType(
-  persontype_id Number(11),
-  persontype_name varchar2(20)
-
+  persontype_id NUMBER(8),
+  persontype_name VARCHAR2(50)
 );
-/
+
 /*==================================================COMENTARIOS EN TABLAS Y COLUMNAS======================================================*/
 
 COMMENT ON TABLE PersonType
 IS 'Repository to storage information about the person types in the database.';
 
-/
-
 COMMENT ON Column PersonType.persontype_id
 IS 'Person Type identification code.';
-
-/
 
 COMMENT ON Column PersonType.persontype_name
 IS 'Person Type name.';
 
 /*==================================================CREACIÓN DE LLAVES PRIMARIAS======================================================*/
+ALTER TABLE PersonType
+  ADD CONSTRAINT pk_PersonType PRIMARY KEY (persontype_id)
+  USING INDEX
+  TABLESPACE pe_ind PCTFREE 20
+  STORAGE (INITIAL 10K NEXT 10K PCTINCREASE 0);
 
-
-alter table PersonType
-  add constraint pk_PersonType primary key (persontype_id)
-  using index
-  tablespace pe_ind pctfree 20
-  storage (initial 10k next 10k pctincrease 0);
-
-
-/*==================================================CAMPOS DE AUDITORÍA PARA TABLAS======================================================*/
+/*==================================================CAMPOS DE AUDITOR�?A PARA TABLAS======================================================*/
 
 
 ALTER TABLE PersonType
 ADD creation_date DATE
-ADD creation_user VARCHAR(10)
+ADD creation_user VARCHAR2(50)
 ADD date_last_modification DATE
-ADD user_last_modification VARCHAR(10);
+ADD user_last_modification VARCHAR2(50);
 
 
 
@@ -47,7 +39,7 @@ CREATE SEQUENCE s_PersonType
 START WITH 0
 INCREMENT BY 1
 MINVALUE 0
-MAXVALUE 999999999999
+MAXVALUE 99999999
 NOCACHE
 NOCYCLE;
 

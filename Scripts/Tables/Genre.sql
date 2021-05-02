@@ -1,8 +1,8 @@
 -- ====================================CREACION DE TABLAS====================================
 CREATE TABLE genre(
-    genre_id NUMBER(11),
-    genre_name VARCHAR(50) CONSTRAINT genre_name_nn NOT NULL,
-    description VARCHAR2(150)
+    genre_id NUMBER(8),
+    genre_name VARCHAR2(50) CONSTRAINT genre_name_nn NOT NULL,
+    description VARCHAR2(250)
 );
 
 -- ====================================COMENTARIOS DE COLUMNAS====================================
@@ -28,16 +28,16 @@ ALTER TABLE genre
 -- ====================================CAMPOS DE AUDITORIA====================================
 ALTER TABLE genre
     ADD creation_date DATE
-    ADD creation_user VARCHAR(50)
+    ADD creation_user VARCHAR2(50)
     ADD date_last_modification DATE
-    ADD user_last_modification VARCHAR(50);
+    ADD user_last_modification VARCHAR2(50);
 
 -- ====================================SECUENCIA DE genre====================================
 CREATE SEQUENCE s_genre
 START WITH 0
 INCREMENT BY 1
 MINVALUE 0
-MAXVALUE 99999999999
+MAXVALUE 99999999
 NOCACHE
 NOCYCLE;
 

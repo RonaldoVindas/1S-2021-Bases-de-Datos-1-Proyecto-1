@@ -1,53 +1,39 @@
 /*==================================================CREACIÓN DE TABLAS======================================================*/
 create table ItemType(
-  itemtype_id Number(11),
-  itemType_name varchar2(20)
+  itemtype_id Number(8),
+  itemType_name VARCHAR2(50)
 );
-/
-/*==================================================COMENTARIOS EN TABLAS Y COLUMNAS======================================================*/
 
+/*==================================================COMENTARIOS EN TABLAS Y COLUMNAS======================================================*/
 COMMENT ON TABLE ItemType
 IS 'Repository to storage information about ItemType.';
 
-/
-
 COMMENT ON Column ItemType.itemtype_id
 IS 'itemtype identification code.';
-
-/
 
 COMMENT ON Column itemtype.itemtype_id
 IS 'itemtype name.';
 
 /*==================================================CREACIÓN DE LLAVES PRIMARIAS======================================================*/
-
-
 alter table ItemType
   add constraint pk_ItemType primary key (itemtype_id)
   using index
   tablespace pe_ind pctfree 20
   storage (initial 10k next 10k pctincrease 0);
 
-
-/*==================================================CAMPOS DE AUDITORÍA PARA TABLAS======================================================*/
-
-
+/*==================================================CAMPOS DE AUDITOR�?A PARA TABLAS======================================================*/
 ALTER TABLE itemtype
 ADD creation_date DATE
-ADD creation_user VARCHAR(10)
+ADD creation_user VARCHAR2(50)
 ADD date_last_modification DATE
-ADD user_last_modification VARCHAR(10);
-
-
+ADD user_last_modification VARCHAR2(50);
 
 /*==================================================CREACIÓN DE SECUENCIAS PARA TABLAS======================================================*/
-
-
 CREATE SEQUENCE s_ItemType
 START WITH 0
 INCREMENT BY 1
 MINVALUE 0
-MAXVALUE 99999999999
+MAXVALUE 99999999
 NOCACHE
 NOCYCLE;
 

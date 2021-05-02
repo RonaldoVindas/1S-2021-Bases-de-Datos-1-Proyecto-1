@@ -1,8 +1,7 @@
 /*==================================================CREACIÓN DE TABLAS======================================================================*/
-
 CREATE TABLE review
 (
-  review_id NUMBER (8),
+  review_id NUMBER(8),
   stars NUMBER (1)
 );
 
@@ -11,12 +10,8 @@ CREATE TABLE review
 COMMENT ON TABLE review
 IS 'Repository to storage information about review.';
 
-/
-
 COMMENT ON COLUMN review.review_id
 IS 'relationType identification code.';
-
-/
 
 COMMENT ON COLUMN review.stars
 IS 'review stars.';
@@ -29,13 +24,13 @@ ALTER TABLE review
   TABLESPACE pe_ind PCTFREE 20
   STORAGE (INITIAL 10K NEXT 10K PCTINCREASE 0);
 
-/*==================================================CAMPOS DE AUDITORÍA PARA TABLAS=========================================================*/
+/*==================================================CAMPOS DE AUDITOR�?A PARA TABLAS=========================================================*/
 
 ALTER TABLE review
 ADD creation_date DATE
-ADD creation_user VARCHAR2 (100)
+ADD creation_user VARCHAR2(50)
 ADD date_last_modification DATE
-ADD user_last_modification VARCHAR2 (100);
+ADD user_last_modification VARCHAR2(50);
 
 /*==================================================CREACIÓN DE SECUENCIAS PARA TABLAS======================================================*/
 
@@ -43,7 +38,7 @@ CREATE SEQUENCE s_review
 START WITH 0
 INCREMENT BY 1
 MINVALUE 0
-MAXVALUE 99999999999
+MAXVALUE 99999999
 NOCACHE
 NOCYCLE;
 

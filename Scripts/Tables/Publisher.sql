@@ -3,7 +3,7 @@
 CREATE TABLE publisher
 (
   publisher_id NUMBER (8),
-  publisher_name VARCHAR2 (100)
+  publisher_name VARCHAR2(50)
 );
 
 /*==================================================COMENTARIOS EN TABLAS Y COLUMNAS========================================================*/
@@ -11,12 +11,8 @@ CREATE TABLE publisher
 COMMENT ON TABLE publisher
 IS 'Repository to storage information about publishers.';
 
-/
-
 COMMENT ON COLUMN publisher.publisher_id
 IS 'publisher identification code.';
-
-/
 
 COMMENT ON COLUMN publisher.publisher_name
 IS 'publisher name.';
@@ -29,13 +25,13 @@ ALTER TABLE publisher
   TABLESPACE pe_ind PCTFREE 20
   STORAGE (INITIAL 10K NEXT 10K PCTINCREASE 0);
 
-/*==================================================CAMPOS DE AUDITOR√çA PARA TABLAS=========================================================*/
+/*==================================================CAMPOS DE AUDITOR√?A PARA TABLAS=========================================================*/
 
 ALTER TABLE publisher
 ADD creation_date DATE
-ADD creation_user VARCHAR2 (10)
+ADD creation_user VARCHAR2(50)
 ADD date_last_modification DATE
-ADD user_last_modification VARCHAR2 (10);
+ADD user_last_modification VARCHAR2(50);
 
 
 
@@ -45,7 +41,7 @@ CREATE SEQUENCE s_publisher
 START WITH 0
 INCREMENT BY 1
 MINVALUE 0
-MAXVALUE 99999999999
+MAXVALUE 99999999
 NOCACHE
 NOCYCLE;
 

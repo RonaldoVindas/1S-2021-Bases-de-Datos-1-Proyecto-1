@@ -1,7 +1,7 @@
 /*==================================================CREACIÓN DE TABLAS======================================================*/
 create table PersonLendItem(
-  person1_id  Number(8),
-  person2_id  Number(8),
+  person1_id  Number(9),
+  person2_id  Number(9),
   item_id Number(8),
   lend_date DATE,
   return_date DATE,

@@ -1,6 +1,6 @@
 /*==================================================CREACIÓN DE TABLAS======================================================*/
 create table Person(
-    person_id  Number(8),
+    person_id  Number(9),
     first_name varchar2(50) CONSTRAINT person_firname_nn NOT NULL,
     last_name varchar2(50) CONSTRAINT person_lasname_nn NOT NULL,
     email varchar2(50) CONSTRAINT person_email_nn NOT NULL,

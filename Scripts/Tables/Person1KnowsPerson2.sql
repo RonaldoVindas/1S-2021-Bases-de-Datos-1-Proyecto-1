@@ -1,7 +1,7 @@
 /*==================================================CREACIÓN DE TABLAS======================================================*/
 create table Person1KnowsPerson2(
-  person1_id  Number(8),
-  person2_id Number(8),
+  person1_id  Number(9),
+  person2_id Number(9),
   relationtype_id Number(8)
 );
 

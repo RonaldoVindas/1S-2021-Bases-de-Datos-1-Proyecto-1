@@ -1,6 +1,6 @@
 /*==================================================CREACIÓN DE TABLAS======================================================*/
 create table PersonHasItem(
-  person_id  Number(8),
+  person_id  Number(9),
   item_id Number(8)
 );
 

@@ -1,8 +1,8 @@
 Create or replace package control_item is
 
-PROCEDURE insert_item (ptitle IN VARCHAR2, pedition IN VARCHAR2, pcover IN BLOB, pbarcode IN VARCHAR2, pitemtype_id IN NUMBER, pstatus_id IN NUMBER, ppublisher_id IN NUMBER, pgenre_id IN NUMBER);
+PROCEDURE insert_item (ptitle IN VARCHAR2, pedition IN VARCHAR2, pcover IN BLOB, pbarcode IN VARCHAR2, pitemtype_id IN NUMBER, pstatus_id IN NUMBER, ppublisher_id IN NUMBER);
 PROCEDURE remove_item (pitem_id IN Number);
-PROCEDURE update_item (pitem_id IN Number, ptitle IN VARCHAR2, pedition IN VARCHAR2, pcover IN BLOB, pbarcode IN VARCHAR2, pitemtype_id IN NUMBER, pstatus_id IN NUMBER, ppublisher_id IN NUMBER, pgenre_id IN NUMBER);
+PROCEDURE update_item (pitem_id IN Number, ptitle IN VARCHAR2, pedition IN VARCHAR2, pcover IN BLOB, pbarcode IN VARCHAR2, pitemtype_id IN NUMBER, pstatus_id IN NUMBER, ppublisher_id IN NUMBER);
 PROCEDURE update_item_cover (pitem_id IN NUMBER, pcover IN BLOB);
 PROCEDURE update_item_status (pitem_id IN NUMBER, pstatus_id IN NUMBER);
 
@@ -14,7 +14,7 @@ FUNCTION getitemBarcode(pid IN NUMBER) RETURN VARCHAR2;
 FUNCTION getitemItemType(pid IN NUMBER) RETURN NUMBER;
 FUNCTION getitemStatus(pid IN NUMBER) RETURN NUMBER;
 FUNCTION getitemPublisher(pid IN NUMBER) RETURN NUMBER;
-FUNCTION getitemGenre(pid IN NUMBER) RETURN NUMBER;
+
 
 
 end control_item;
@@ -22,10 +22,10 @@ end control_item;
 /
 CREATE OR REPLACE PACKAGE BODY control_item IS
 
-PROCEDURE insert_item (ptitle IN VARCHAR2, pedition IN VARCHAR2, pcover IN BLOB, pbarcode IN VARCHAR2, pitemtype_id IN NUMBER, pstatus_id IN NUMBER, ppublisher_id IN NUMBER, pgenre_id IN NUMBER) AS
+PROCEDURE insert_item (ptitle IN VARCHAR2, pedition IN VARCHAR2, pcover IN BLOB, pbarcode IN VARCHAR2, pitemtype_id IN NUMBER, pstatus_id IN NUMBER, ppublisher_id IN NUMBER) AS
 BEGIN
-    INSERT INTO item(title, edition, cover_image, barcode, itemtype_id, status_id, publisher_id, genre_id)
-    VALUES(ptitle, pedition, pcover, pbarcode, pitemtype_id, pstatus_id, ppublisher_id, pgenre_id);
+    INSERT INTO item(title, edition, cover_image, barcode, itemtype_id, status_id, publisher_id)
+    VALUES(ptitle, pedition, pcover, pbarcode, pitemtype_id, pstatus_id, ppublisher_id);
 END insert_item;
 
 
@@ -50,7 +50,7 @@ BEGIN
 END remove_item;
 
 
-PROCEDURE update_item (pitem_id IN Number, ptitle IN VARCHAR2, pedition IN VARCHAR2, pcover IN BLOB, pbarcode IN VARCHAR2, pitemtype_id IN NUMBER, pstatus_id IN NUMBER, ppublisher_id IN NUMBER, pgenre_id IN NUMBER) AS
+PROCEDURE update_item (pitem_id IN Number, ptitle IN VARCHAR2, pedition IN VARCHAR2, pcover IN BLOB, pbarcode IN VARCHAR2, pitemtype_id IN NUMBER, pstatus_id IN NUMBER, ppublisher_id IN NUMBER) AS
 e_invalid_item EXCEPTION;
 BEGIN
     UPDATE item
@@ -60,9 +60,7 @@ BEGIN
         barcode = pbarcode, 
         itemtype_id = pitemtype_id, 
         status_id = pstatus_id, 
-        publisher_id = ppublisher_id, 
-        genre_id = pgenre_id
-
+        publisher_id = ppublisher_id
     WHERE item_id = pitem_id;
     COMMIT;
     IF SQL%NOTFOUND THEN 
@@ -308,29 +306,5 @@ IS
             WHEN OTHERS THEN
             DBMS_OUTPUT.PUT_LINE ('Unexpected error.');
     END;
-
-FUNCTION getitemGenre(pid IN NUMBER) RETURN NUMBER
-IS 
-    vcId NUMBER(11);
-    BEGIN
-        SELECT genre_id
-        INTO vcId
-        FROM item
-        WHERE item_id = pid;
-        RETURN (vcId);
-        EXCEPTION
-            WHEN TOO_MANY_ROWS THEN
-            DBMS_OUTPUT.PUT_LINE ('Your SELECT statement retrieved multiple rows.');
-            WHEN NO_DATA_FOUND THEN
-            DBMS_OUTPUT.PUT_LINE ('Could not find a register with the name||pcnombre.');
-            WHEN STORAGE_ERROR THEN
-            DBMS_OUTPUT.PUT_LINE ('PL/SQL ran out of memory or memory is corrupted.');
-            WHEN VALUE_ERROR THEN
-            DBMS_OUTPUT.PUT_LINE ('An arithmetic, conversion, truncation, or size constraint error ocurred.');
-            WHEN OTHERS THEN
-            DBMS_OUTPUT.PUT_LINE ('Unexpected error.');
-    END;
-
-
 
 end control_item;

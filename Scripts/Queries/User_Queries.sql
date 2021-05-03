@@ -28,6 +28,7 @@ CREATE OR REPLACE PACKAGE BODY users_queries IS
                     INNER JOIN genre ge ON i.genre_id = ge.genre_id
                     WHERE pTitle = i.title OR pAuthorFirstName = p.first_name OR pAuthorLastName = p.last_name OR pPublisher = i.publisher_id)
                 ORDER BY i.title;
+        RETURN vcCursor;
     END allBooks;
 -- Verifica si una cantidad de dias prestamo entra en categoria de Verde
 
@@ -96,5 +97,6 @@ CREATE OR REPLACE PACKAGE BODY users_queries IS
                     WHERE pPersonFirstName = p.first_name OR pPersonLastName = p.last_name OR s.status_name = allGreen(pNumberDays)
                     OR s.status_name = allYellow (pNumberDays, pNumberToleranceDays) OR s.status_name = allRed (pNumberDays, pNumberToleranceDays, pNumberToleranceDaysMax))
                 ORDER BY item.title;
+        RETURN vcCursor;
     END allLendedBooks;
 END;

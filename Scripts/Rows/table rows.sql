@@ -113,7 +113,7 @@ insert into  Person(person_id,first_name,last_name, email, password, phone_numbe
 insert into  Person(person_id,first_name,last_name, email, password, phone_number,birth_day, persontype_id) values(990000000,'Joanne','Rowling', 'J.K.Rowling@pottermore.com', '1234556', '98765432',DATE '1965-07-30',2);
 insert into  Person(person_id,first_name,last_name, email, password, phone_number,birth_day, persontype_id) values(990000001,'Stephen','King ', 'StephenKing@hotmail.com', '1234557', '98765433',DATE '1947-09-21',2);
 insert into  Person(person_id,first_name,last_name, email, password, phone_number,birth_day, persontype_id) values(990000002,'Isabel','Allende', 'Allende@hotmail.com', '1234558', '98765434',DATE '1942-08-02',2);
-insert into  Person(person_id,first_name,last_name, email, password, phone_number,birth_day, persontype_id) values(990000003,'Brian','Herbert', 'Herbert@hotmail.com', '1234559', '987654355',DATE '1947-06-29',2);
+insert into  Person(person_id,first_name,last_name, email, password, phone_number,birth_day, persontype_id) values(990000003,'Brian','Herbert', 'Herbert@hotmail.com', '1234559', '98765435',DATE '1947-06-29',2);
 insert into  Person(person_id,first_name,last_name, email, password, phone_number,birth_day, persontype_id) values(990000004,'Ana','Frank', 'AnaFrank@hotmail.com', '1234560', '98765436',DATE '1929-06-12',2);
 insert into  Person(person_id,first_name,last_name, email, password, phone_number,birth_day, persontype_id) values(990000005,'Joseph','Gelinek', 'JosephGelinek@hotmail.com', '1234561', '98765437',DATE '1758-12-03',2);
 insert into  Person(person_id,first_name,last_name, email, password, phone_number,birth_day, persontype_id) values(990000006,'kimberly','parsons', 'yohalife@hotmail.com', '1234562', '98765438',DATE '1983-07-30',2);
@@ -176,7 +176,7 @@ insert into item(title,edition,barcode,itemtype_id,status_id,publisher_id) value
 insert into item(title,edition,barcode,itemtype_id,status_id,publisher_id) values('DUNE LA BATALLA DE CORRIN','Best Seller','000000000010',0,0,8);
 insert into item(title,edition,barcode,itemtype_id,status_id,publisher_id) values('DIARIO DE ANA FRANK','2007','000000000011',0,0,8);
 insert into item(title,edition,barcode,itemtype_id,status_id,publisher_id) values('VIOLIN DEL DIABLO','Best Seller','000000000012',0,0,8);
-insert into item(title,edition,barcode,itemtype_id,status_id,publisher_id) values('YOGA KITCHEN','2020','000000000013',0,0,10,6);
+insert into item(title,edition,barcode,itemtype_id,status_id,publisher_id) values('YOGA KITCHEN','2020','000000000013',0,0,10);
 insert into item(title,edition,barcode,itemtype_id,status_id,publisher_id) values('READY PLAYER ONE (ESPAÑOL)','2018','000000000014',0,0,11);
 insert into item(title,edition,barcode,itemtype_id,status_id,publisher_id) values('LIFE AND ADVENTURES OF ROBINSON CRUSOE','2019','000000000015',0,0,12);
 insert into item(title,edition,barcode,itemtype_id,status_id,publisher_id) values('John Wick','DVD','000000000016',1,0,13);
@@ -407,7 +407,7 @@ insert into PersonLendItem(person1_id,person2_id,item_id,lend_date,return_date,a
 insert into PersonLendItem(person1_id,person2_id,item_id,lend_date,return_date,amount_days,tolerance_days_yellow,tolerance_days_red) values(100000015,100000006,38,TO_DATE('2020/05/10', 'yyyy/mm/dd'),TO_DATE('2020/09/13', 'yyyy/mm/dd'),(select to_date (TO_DATE('2020/09/13', 'yyyy/mm/dd')) - trunc(TO_DATE('2020/05/10', 'yyyy/mm/dd')) from dual),11,5);
 insert into PersonLendItem(person1_id,person2_id,item_id,lend_date,return_date,amount_days,tolerance_days_yellow,tolerance_days_red) values(100000016,100000004,6,TO_DATE('2021/01/02', 'yyyy/mm/dd'),TO_DATE('2021/02/12', 'yyyy/mm/dd'),(select to_date (TO_DATE('2021/02/12', 'yyyy/mm/dd')) - trunc(TO_DATE('2021/01/02', 'yyyy/mm/dd')) from dual),8,2);
 
-__________________________table PersonCREATESItem___________________________________________________
+--__________________________table PersonCREATESItem___________________________________________________
 
 INSERT INTO personcreatesitem(person_id,item_id) values(990000000,0);
 INSERT INTO personcreatesitem(person_id,item_id) values(990000000,1);
@@ -470,7 +470,7 @@ INSERT INTO personcreatesitem(person_id,item_id) values(990000046,57);
 INSERT INTO personcreatesitem(person_id,item_id) values(990000047,58);
 INSERT INTO personcreatesitem(person_id,item_id) values(990000048,59);
 
-__________________________table itemhasgenre__________________________________________________
+--__________________________table itemhasgenre__________________________________________________
 
 
 INSERT INTO ItemHasGenre(item_id,genre_id) values(0,2);

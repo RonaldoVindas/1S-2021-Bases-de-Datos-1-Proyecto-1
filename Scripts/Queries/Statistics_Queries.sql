@@ -1,20 +1,19 @@
--- AUTOR: Renzo Barra 4/24/2021
-CREATE OR REPLACE PACKAGE bookStatistics IS
+CREATE OR REPLACE PACKAGE Statistics_Queries IS
     FUNCTION totalBookGenre RETURN SYS_REFCURSOR;
     FUNCTION totalLendedBook RETURN SYS_REFCURSOR;
     FUNCTION totalLendedBookGenre RETURN SYS_REFCURSOR;
     FUNCTION totalLendedBookAge RETURN SYS_REFCURSOR;
-END bookStatistics;
+END Statistics_Queries;
 /
 
-CREATE OR REPLACE PACKAGE BODY bookStatistics IS
---Total y porcentaje de libros por clasificación
+CREATE OR REPLACE PACKAGE BODY Statistics_Queries IS
+--Total y porcentaje de libros por clasificaciÃ³n
     FUNCTION totalBookGenre RETURN SYS_REFCURSOR
         IS
             vcCursor SYS_REFCURSOR;
         BEGIN
             OPEN vcCursor FOR
-                SELECT COUNT(item_id) AS total_items, COUNT(item_id)/(SELECT COUNT(item_id) FROM itemHasGenre)*100 AS percentage, genre
+                SELECT COUNT(item_id) AS total_items, TRUNC( COUNT(item_id)/(SELECT COUNT(item_id) FROM itemHasGenre)*100,2) AS percentage, genre
                 FROM (
                     SELECT item_id, ge.genre_name AS genre
                     FROM itemHasGenre ihg
@@ -22,6 +21,8 @@ CREATE OR REPLACE PACKAGE BODY bookStatistics IS
                 GROUP BY genre;
         RETURN vcCursor;
     END totalBookGenre;
+
+
 -- Total y porcentaje de libros prestados 
     FUNCTION totalLendedBook RETURN SYS_REFCURSOR
         IS
@@ -36,7 +37,8 @@ CREATE OR REPLACE PACKAGE BODY bookStatistics IS
                 ORDER BY percentage DESC;
         RETURN vcCursor;
     END totalLendedBook;
--- Total y porcentaje de libros prestados y por clasificación
+    
+-- Total y porcentaje de libros prestados y por clasificaciÃ³n
     FUNCTION totalLendedBookGenre RETURN SYS_REFCURSOR
         IS
             vcCursor SYS_REFCURSOR;

@@ -91,9 +91,9 @@ insert into  PersonType(persontype_name) values('Author');
 --__________________________tabla Person___________________________________________________
 
 insert into  Person(person_id,first_name,last_name, email, password, phone_number,birth_day, persontype_id) values(117610138,'Ronaldo','Vindas','rony1211@gmail.com','falcon12','88778841',DATE '1999-11-12',0);
-insert into  Person(person_id,first_name,last_name, email, password, phone_number,birth_day, persontype_id) values(801200838,'Renzo','Barra','rony1211@gmail.com','Renzo12','98753215',DATE '1999-1-2',0);
+insert into  Person(person_id,first_name,last_name, email, password, phone_number,birth_day, persontype_id) values(801200838,'Renzo','Barra','edgy@gmail.com','Renzo12','98753215',DATE '1999-1-2',0);
 insert into  Person(person_id,first_name,last_name, email, password, phone_number,birth_day, persontype_id) values(402140028,'Alvaro','Moreira','conker@gmail.com','conker19','87258021',DATE '1992-2-19',0);
-insert into  Person(person_id,first_name,last_name, email, password, phone_number,birth_day, persontype_id) values(100000000,'Joseph','Chaves','jox@gmail.com','jox127','87946321',DATE '2000-5-15',1);
+insert into  Person(person_id,first_name,last_name, email, password, phone_number,birth_day, persontype_id) values(100000000,'Joseph','Chaves','jox@gmail.com','jox1270','87946321',DATE '2000-5-15',1);
 insert into  Person(person_id,first_name,last_name, email, password, phone_number,birth_day, persontype_id) values(100000001,'Emely','Zarate','Emezar18@gmail.com','Emezar18','26887451',DATE '1995-7-5',1);
 insert into  Person(person_id,first_name,last_name, email, password, phone_number,birth_day, persontype_id) values(100000002,'Valeria','Aguilar','VAguilar@yahoo.com','agva68','22698725',DATE '2002-06-02',1);
 insert into  Person(person_id,first_name,last_name, email, password, phone_number,birth_day, persontype_id) values(100000003,'Anthony','Vargas','Tony1522@gmail.com','tova15','22672146',DATE '2003-06-01',1);

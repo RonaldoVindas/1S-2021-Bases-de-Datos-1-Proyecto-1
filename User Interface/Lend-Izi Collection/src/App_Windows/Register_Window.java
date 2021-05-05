@@ -5,6 +5,17 @@
  */
 package App_Windows;
 
+import java.sql.Date;
+import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Locale;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import lend.izi.collection.LendIziCollection;
+
+
 /*
     Creado Por: Ronaldo Vindas B.    117610138
  */
@@ -45,7 +56,7 @@ public class Register_Window extends javax.swing.JFrame {
         Email_TextField = new javax.swing.JTextField();
         Password_TextField = new javax.swing.JTextField();
         PhoneNumber_TextField = new javax.swing.JTextField();
-        Birthday_TextField = new javax.swing.JTextField();
+        BirthdayMonth_TextField = new javax.swing.JTextField();
         BirthdayDay_TextField = new javax.swing.JTextField();
         BirthdayYear_TextField = new javax.swing.JTextField();
         Register_Buttton = new javax.swing.JButton();
@@ -76,42 +87,42 @@ public class Register_Window extends javax.swing.JFrame {
         jPanel2.setForeground(new java.awt.Color(255, 255, 255));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        Identification_Label.setFont(new java.awt.Font("Franklin Gothic Book", 1, 20)); // NOI18N
+        Identification_Label.setFont(new java.awt.Font("Bahnschrift", 0, 20)); // NOI18N
         Identification_Label.setForeground(new java.awt.Color(255, 255, 255));
         Identification_Label.setText("Identification:");
         jPanel2.add(Identification_Label, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
-        Identification_Label1.setFont(new java.awt.Font("Franklin Gothic Book", 1, 20)); // NOI18N
+        Identification_Label1.setFont(new java.awt.Font("Bahnschrift", 1, 20)); // NOI18N
         Identification_Label1.setForeground(new java.awt.Color(255, 255, 255));
-        Identification_Label1.setText("yyyy          mm           dd");
+        Identification_Label1.setText("yyyy              mm               dd");
         jPanel2.add(Identification_Label1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 460, 240, -1));
 
-        FirstName_Label.setFont(new java.awt.Font("Franklin Gothic Book", 1, 20)); // NOI18N
+        FirstName_Label.setFont(new java.awt.Font("Bahnschrift", 0, 20)); // NOI18N
         FirstName_Label.setForeground(new java.awt.Color(255, 255, 255));
         FirstName_Label.setText("First Name:");
         jPanel2.add(FirstName_Label, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, -1, -1));
 
-        LastName_Label.setFont(new java.awt.Font("Franklin Gothic Book", 1, 20)); // NOI18N
+        LastName_Label.setFont(new java.awt.Font("Bahnschrift", 0, 20)); // NOI18N
         LastName_Label.setForeground(new java.awt.Color(255, 255, 255));
         LastName_Label.setText("Last Name:");
         jPanel2.add(LastName_Label, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, -1, -1));
 
-        Email_Label.setFont(new java.awt.Font("Franklin Gothic Book", 1, 20)); // NOI18N
+        Email_Label.setFont(new java.awt.Font("Bahnschrift", 0, 20)); // NOI18N
         Email_Label.setForeground(new java.awt.Color(255, 255, 255));
         Email_Label.setText("Email:");
         jPanel2.add(Email_Label, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 210, -1, -1));
 
-        Password_Label.setFont(new java.awt.Font("Franklin Gothic Book", 1, 20)); // NOI18N
+        Password_Label.setFont(new java.awt.Font("Bahnschrift", 0, 20)); // NOI18N
         Password_Label.setForeground(new java.awt.Color(255, 255, 255));
         Password_Label.setText("Password:");
         jPanel2.add(Password_Label, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 270, -1, -1));
 
-        PhoneNumber_Label.setFont(new java.awt.Font("Franklin Gothic Book", 1, 20)); // NOI18N
+        PhoneNumber_Label.setFont(new java.awt.Font("Bahnschrift", 0, 20)); // NOI18N
         PhoneNumber_Label.setForeground(new java.awt.Color(255, 255, 255));
         PhoneNumber_Label.setText("Phone Number:");
         jPanel2.add(PhoneNumber_Label, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 330, -1, -1));
 
-        Birthday_Label.setFont(new java.awt.Font("Franklin Gothic Book", 1, 20)); // NOI18N
+        Birthday_Label.setFont(new java.awt.Font("Bahnschrift", 0, 20)); // NOI18N
         Birthday_Label.setForeground(new java.awt.Color(255, 255, 255));
         Birthday_Label.setText("Birthday:");
         jPanel2.add(Birthday_Label, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 400, -1, -1));
@@ -146,10 +157,10 @@ public class Register_Window extends javax.swing.JFrame {
         PhoneNumber_TextField.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(234, 85, 3)));
         jPanel2.add(PhoneNumber_TextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 370, 290, -1));
 
-        Birthday_TextField.setBackground(new java.awt.Color(255, 255, 255));
-        Birthday_TextField.setForeground(new java.awt.Color(0, 0, 0));
-        Birthday_TextField.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(234, 85, 3)));
-        jPanel2.add(Birthday_TextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 440, 90, -1));
+        BirthdayMonth_TextField.setBackground(new java.awt.Color(255, 255, 255));
+        BirthdayMonth_TextField.setForeground(new java.awt.Color(0, 0, 0));
+        BirthdayMonth_TextField.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(234, 85, 3)));
+        jPanel2.add(BirthdayMonth_TextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 440, 90, -1));
 
         BirthdayDay_TextField.setBackground(new java.awt.Color(255, 255, 255));
         BirthdayDay_TextField.setForeground(new java.awt.Color(0, 0, 0));
@@ -162,7 +173,7 @@ public class Register_Window extends javax.swing.JFrame {
         jPanel2.add(BirthdayYear_TextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 440, 90, -1));
 
         Register_Buttton.setBackground(new java.awt.Color(15, 172, 103));
-        Register_Buttton.setFont(new java.awt.Font("Franklin Gothic Demi", 1, 24)); // NOI18N
+        Register_Buttton.setFont(new java.awt.Font("Bahnschrift", 0, 24)); // NOI18N
         Register_Buttton.setForeground(new java.awt.Color(255, 255, 255));
         Register_Buttton.setText("Register!");
         Register_Buttton.setBorder(null);
@@ -175,7 +186,7 @@ public class Register_Window extends javax.swing.JFrame {
 
         MenuBlack_Panel.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 170, 590, 500));
 
-        RegisterNow_Label.setFont(new java.awt.Font("Franklin Gothic Demi Cond", 0, 36)); // NOI18N
+        RegisterNow_Label.setFont(new java.awt.Font("Bahnschrift", 0, 36)); // NOI18N
         RegisterNow_Label.setForeground(new java.awt.Color(255, 240, 1));
         RegisterNow_Label.setText("Register Now!");
         MenuBlack_Panel.add(RegisterNow_Label, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 100, -1, -1));
@@ -196,9 +207,39 @@ public class Register_Window extends javax.swing.JFrame {
     }//GEN-LAST:event_Exit_ButtonActionPerformed
 
     private void Register_ButttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Register_ButttonActionPerformed
-       Users_Menu result = new Users_Menu();
-       dispose();
-       result.setVisible(true);
+      
+            int person_id = Integer.parseInt(Identification_TextField.getText());
+            String person_firstname = FirstName_TextField.getText();
+            String person_lastname = LastName_TextField.getText();
+            String person_email = Email_TextField.getText();
+            String person_password = Password_TextField.getText();
+            String person_phonenumber = PhoneNumber_TextField.getText();
+            String year = BirthdayYear_TextField.getText();
+            String month = BirthdayMonth_TextField.getText();
+            String day = BirthdayDay_TextField.getText();
+            
+            String person_birthday = year + "-" + month + "-"+ day;
+            System.out.println(person_birthday);
+
+            
+            //Date person_birthday=Date.valueOf(sDate);//converting string into sql date.
+            //System.out.println(person_birthday);
+            
+            
+        try {
+            DBConnection.ConnectDB.insertPerson(person_id, person_firstname, person_lastname, person_email, person_password, person_password,person_birthday);
+            LendIziCollection.setIdentification(person_id);
+            LendIziCollection.setEmail(person_email);
+            
+            
+            
+            Users_Menu result = new Users_Menu();
+            dispose();
+            result.setVisible(true);
+        } catch (SQLException ex) {
+            Logger.getLogger(Register_Window.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     }//GEN-LAST:event_Register_ButttonActionPerformed
 
     /**
@@ -239,9 +280,9 @@ public class Register_Window extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Banner_Label;
     private javax.swing.JTextField BirthdayDay_TextField;
+    private javax.swing.JTextField BirthdayMonth_TextField;
     private javax.swing.JTextField BirthdayYear_TextField;
     private javax.swing.JLabel Birthday_Label;
-    private javax.swing.JTextField Birthday_TextField;
     private javax.swing.JLabel Email_Label;
     private javax.swing.JTextField Email_TextField;
     private javax.swing.JButton Exit_Button;

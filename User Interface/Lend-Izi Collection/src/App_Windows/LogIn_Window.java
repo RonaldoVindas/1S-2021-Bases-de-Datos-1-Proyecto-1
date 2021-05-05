@@ -5,10 +5,13 @@
  */
 package App_Windows;
 
-/**
- *
- * @author rony1
- */
+import DBConnection.ConnectDB;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import lend.izi.collection.LendIziCollection;
+
 public class LogIn_Window extends javax.swing.JFrame {
 
     /**
@@ -81,12 +84,12 @@ public class LogIn_Window extends javax.swing.JFrame {
                 Email_TextFieldActionPerformed(evt);
             }
         });
-        jPanel2.add(Email_TextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 290, -1));
+        jPanel2.add(Email_TextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 290, 20));
 
         Password_TextField.setBackground(new java.awt.Color(255, 255, 255));
         Password_TextField.setForeground(new java.awt.Color(0, 0, 0));
         Password_TextField.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(147, 46, 236)));
-        jPanel2.add(Password_TextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, 290, -1));
+        jPanel2.add(Password_TextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, 290, 20));
 
         Register_Buttton.setBackground(new java.awt.Color(0, 159, 232));
         Register_Buttton.setFont(new java.awt.Font("Franklin Gothic Demi", 1, 24)); // NOI18N
@@ -131,9 +134,65 @@ public class LogIn_Window extends javax.swing.JFrame {
     String email  = Email_TextField.getText();
     String password = Password_TextField.getText();
     
-    Admin_Menu result = new Admin_Menu();
-    dispose();
-    result.setVisible(true);
+    
+    
+    try{
+       int personId = DBConnection.ConnectDB.getPersonId(email);
+       LendIziCollection.setIdentification(personId);
+       System.out.println(personId);  ///-Verificar que recibe el id
+       String personEmail = DBConnection.ConnectDB.getPersonEmail( LendIziCollection.getIdentification() );
+       
+       
+       if (email.equals(personEmail)){
+           
+           String personPassword = DBConnection.ConnectDB.getPersonPassword( LendIziCollection.getIdentification() );
+           System.out.println(personPassword);      
+           if (password.equals(personPassword)){
+               
+               int personTypePerson = DBConnection.ConnectDB.getPersonTypePersonId( LendIziCollection.getIdentification());
+               System.out.println(personTypePerson);
+               
+               if (personTypePerson == 0){
+                   Admin_Menu result = new Admin_Menu();
+                   dispose();
+                   result.setVisible(true);
+               }
+               else if (personTypePerson == 1){
+                   Users_Menu result = new Users_Menu();
+                   dispose();
+                   result.setVisible(true);
+               }
+           }
+           else{  
+            JOptionPane.showMessageDialog(null,
+            "Invalid Password. Try Again",
+            "Error:",
+            JOptionPane.ERROR_MESSAGE);
+           }
+  
+       }
+      
+       
+    }
+    catch (SQLException ex) {
+           Logger.getLogger(Admin_Menu.class.getName()).log(Level.SEVERE, null, ex);
+           JOptionPane.showMessageDialog(null,
+            "Invalid Email or Password",
+            "Error:",
+            JOptionPane.ERROR_MESSAGE);
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     }//GEN-LAST:event_Register_ButttonActionPerformed
 

@@ -1,10 +1,11 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package App_Windows;
 
+
+
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.awt.Color;
 import java.awt.Image;
 import java.io.ByteArrayOutputStream;
@@ -21,11 +22,9 @@ import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.plot.PiePlot3D;
 import org.jfree.data.general.DefaultPieDataset;
+import DBConnection.ConnectDB;
 
-/**
- *
- * @author rony1
- */
+
 public class Admin_Menu extends javax.swing.JFrame {
 
     private ChartFrame frame;
@@ -98,7 +97,7 @@ public class Admin_Menu extends javax.swing.JFrame {
         AddPhoto_Button1 = new javax.swing.JButton();
         Cover_Image_Label1 = new javax.swing.JLabel();
         RemoveItem_CheckBox = new javax.swing.JCheckBox();
-        UpdateStatusType_CheckBox2 = new javax.swing.JCheckBox();
+        UpdateItem_CheckBox = new javax.swing.JCheckBox();
         ItemType_ComboBox1 = new javax.swing.JComboBox<>();
         Publisher_ComboBox2 = new javax.swing.JComboBox<>();
         Genre_TextField1 = new javax.swing.JComboBox<>();
@@ -248,6 +247,8 @@ public class Admin_Menu extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         SelectField_Label8 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
+        jLabel17 = new javax.swing.JLabel();
+        GenreTypeDescription_TextField = new javax.swing.JTextField();
         RegisterPublisher_InternalFrame = new javax.swing.JInternalFrame();
         Background_Panel12 = new javax.swing.JPanel();
         Title_Label12 = new javax.swing.JLabel();
@@ -526,6 +527,7 @@ public class Admin_Menu extends javax.swing.JFrame {
         RemoveItem_CheckBox.setFont(new java.awt.Font("Bahnschrift", 0, 14)); // NOI18N
         RemoveItem_CheckBox.setForeground(new java.awt.Color(255, 255, 255));
         RemoveItem_CheckBox.setText("Remove");
+        RemoveItem_CheckBox.setContentAreaFilled(false);
         RemoveItem_CheckBox.setFocusable(false);
         RemoveItem_CheckBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -534,16 +536,17 @@ public class Admin_Menu extends javax.swing.JFrame {
         });
         jPanel17.add(RemoveItem_CheckBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 50, 80, -1));
 
-        UpdateStatusType_CheckBox2.setFont(new java.awt.Font("Bahnschrift", 0, 14)); // NOI18N
-        UpdateStatusType_CheckBox2.setForeground(new java.awt.Color(255, 255, 255));
-        UpdateStatusType_CheckBox2.setText("Update");
-        UpdateStatusType_CheckBox2.setFocusable(false);
-        UpdateStatusType_CheckBox2.addActionListener(new java.awt.event.ActionListener() {
+        UpdateItem_CheckBox.setFont(new java.awt.Font("Bahnschrift", 0, 14)); // NOI18N
+        UpdateItem_CheckBox.setForeground(new java.awt.Color(255, 255, 255));
+        UpdateItem_CheckBox.setText("Update");
+        UpdateItem_CheckBox.setContentAreaFilled(false);
+        UpdateItem_CheckBox.setFocusable(false);
+        UpdateItem_CheckBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                UpdateStatusType_CheckBox2ActionPerformed(evt);
+                UpdateItem_CheckBoxActionPerformed(evt);
             }
         });
-        jPanel17.add(UpdateStatusType_CheckBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 50, 80, -1));
+        jPanel17.add(UpdateItem_CheckBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 50, 80, -1));
 
         ItemType_ComboBox1.setBackground(new java.awt.Color(255, 255, 255));
         ItemType_ComboBox1.setForeground(new java.awt.Color(0, 0, 0));
@@ -1108,6 +1111,7 @@ public class Admin_Menu extends javax.swing.JFrame {
         RemoveRelationType_CheckBox.setFont(new java.awt.Font("Bahnschrift", 0, 14)); // NOI18N
         RemoveRelationType_CheckBox.setForeground(new java.awt.Color(255, 255, 255));
         RemoveRelationType_CheckBox.setText("Remove");
+        RemoveRelationType_CheckBox.setContentAreaFilled(false);
         RemoveRelationType_CheckBox.setFocusable(false);
         RemoveRelationType_CheckBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1119,6 +1123,7 @@ public class Admin_Menu extends javax.swing.JFrame {
         InsertRelationType_CheckBox.setFont(new java.awt.Font("Bahnschrift", 0, 14)); // NOI18N
         InsertRelationType_CheckBox.setForeground(new java.awt.Color(255, 255, 255));
         InsertRelationType_CheckBox.setText("Insert");
+        InsertRelationType_CheckBox.setContentAreaFilled(false);
         InsertRelationType_CheckBox.setFocusable(false);
         InsertRelationType_CheckBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1130,6 +1135,7 @@ public class Admin_Menu extends javax.swing.JFrame {
         UpdateRelationType_CheckBox.setFont(new java.awt.Font("Bahnschrift", 0, 14)); // NOI18N
         UpdateRelationType_CheckBox.setForeground(new java.awt.Color(255, 255, 255));
         UpdateRelationType_CheckBox.setText("Update");
+        UpdateRelationType_CheckBox.setContentAreaFilled(false);
         UpdateRelationType_CheckBox.setFocusable(false);
         UpdateRelationType_CheckBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1255,6 +1261,7 @@ public class Admin_Menu extends javax.swing.JFrame {
         RemoveItemType_CheckBox.setFont(new java.awt.Font("Bahnschrift", 0, 14)); // NOI18N
         RemoveItemType_CheckBox.setForeground(new java.awt.Color(255, 255, 255));
         RemoveItemType_CheckBox.setText("Remove");
+        RemoveItemType_CheckBox.setContentAreaFilled(false);
         RemoveItemType_CheckBox.setFocusable(false);
         RemoveItemType_CheckBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1266,6 +1273,7 @@ public class Admin_Menu extends javax.swing.JFrame {
         InsertItemType_CheckBox.setFont(new java.awt.Font("Bahnschrift", 0, 14)); // NOI18N
         InsertItemType_CheckBox.setForeground(new java.awt.Color(255, 255, 255));
         InsertItemType_CheckBox.setText("Insert");
+        InsertItemType_CheckBox.setContentAreaFilled(false);
         InsertItemType_CheckBox.setFocusable(false);
         InsertItemType_CheckBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1277,6 +1285,7 @@ public class Admin_Menu extends javax.swing.JFrame {
         UpdateItemType_CheckBox.setFont(new java.awt.Font("Bahnschrift", 0, 14)); // NOI18N
         UpdateItemType_CheckBox.setForeground(new java.awt.Color(255, 255, 255));
         UpdateItemType_CheckBox.setText("Update");
+        UpdateItemType_CheckBox.setContentAreaFilled(false);
         UpdateItemType_CheckBox.setFocusable(false);
         UpdateItemType_CheckBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1402,6 +1411,7 @@ public class Admin_Menu extends javax.swing.JFrame {
         RemoveStatusType_CheckBox.setFont(new java.awt.Font("Bahnschrift", 0, 14)); // NOI18N
         RemoveStatusType_CheckBox.setForeground(new java.awt.Color(255, 255, 255));
         RemoveStatusType_CheckBox.setText("Remove");
+        RemoveStatusType_CheckBox.setContentAreaFilled(false);
         RemoveStatusType_CheckBox.setFocusable(false);
         RemoveStatusType_CheckBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1413,6 +1423,7 @@ public class Admin_Menu extends javax.swing.JFrame {
         InsertStatusType_CheckBox.setFont(new java.awt.Font("Bahnschrift", 0, 14)); // NOI18N
         InsertStatusType_CheckBox.setForeground(new java.awt.Color(255, 255, 255));
         InsertStatusType_CheckBox.setText("Insert");
+        InsertStatusType_CheckBox.setContentAreaFilled(false);
         InsertStatusType_CheckBox.setFocusable(false);
         InsertStatusType_CheckBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1424,6 +1435,7 @@ public class Admin_Menu extends javax.swing.JFrame {
         UpdateStatusType_CheckBox.setFont(new java.awt.Font("Bahnschrift", 0, 14)); // NOI18N
         UpdateStatusType_CheckBox.setForeground(new java.awt.Color(255, 255, 255));
         UpdateStatusType_CheckBox.setText("Update");
+        UpdateStatusType_CheckBox.setContentAreaFilled(false);
         UpdateStatusType_CheckBox.setFocusable(false);
         UpdateStatusType_CheckBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1554,6 +1566,7 @@ public class Admin_Menu extends javax.swing.JFrame {
         RemoveGenreType_CheckBox.setFont(new java.awt.Font("Bahnschrift", 0, 14)); // NOI18N
         RemoveGenreType_CheckBox.setForeground(new java.awt.Color(255, 255, 255));
         RemoveGenreType_CheckBox.setText("Remove");
+        RemoveGenreType_CheckBox.setContentAreaFilled(false);
         RemoveGenreType_CheckBox.setFocusable(false);
         RemoveGenreType_CheckBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1565,6 +1578,7 @@ public class Admin_Menu extends javax.swing.JFrame {
         InsertGenreType_CheckBox.setFont(new java.awt.Font("Bahnschrift", 0, 14)); // NOI18N
         InsertGenreType_CheckBox.setForeground(new java.awt.Color(255, 255, 255));
         InsertGenreType_CheckBox.setText("Insert");
+        InsertGenreType_CheckBox.setContentAreaFilled(false);
         InsertGenreType_CheckBox.setFocusable(false);
         InsertGenreType_CheckBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1576,6 +1590,7 @@ public class Admin_Menu extends javax.swing.JFrame {
         UpdateGenreType_CheckBox.setFont(new java.awt.Font("Bahnschrift", 0, 14)); // NOI18N
         UpdateGenreType_CheckBox.setForeground(new java.awt.Color(255, 255, 255));
         UpdateGenreType_CheckBox.setText("Update");
+        UpdateGenreType_CheckBox.setContentAreaFilled(false);
         UpdateGenreType_CheckBox.setFocusable(false);
         UpdateGenreType_CheckBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1645,8 +1660,8 @@ public class Admin_Menu extends javax.swing.JFrame {
 
         jLabel9.setFont(new java.awt.Font("Bahnschrift", 0, 18)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel9.setText("Genre Name:");
-        jPanel12.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 140, -1, -1));
+        jLabel9.setText("Genre Description:");
+        jPanel12.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 220, -1, -1));
 
         SelectField_Label8.setFont(new java.awt.Font("Bahnschrift", 0, 24)); // NOI18N
         SelectField_Label8.setForeground(new java.awt.Color(255, 255, 255));
@@ -1657,6 +1672,16 @@ public class Admin_Menu extends javax.swing.JFrame {
         jLabel10.setForeground(new java.awt.Color(255, 255, 255));
         jLabel10.setText("Genre Type Id:");
         jPanel12.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 50, -1, -1));
+
+        jLabel17.setFont(new java.awt.Font("Bahnschrift", 0, 18)); // NOI18N
+        jLabel17.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel17.setText("Genre Name:");
+        jPanel12.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 140, -1, -1));
+
+        GenreTypeDescription_TextField.setBackground(new java.awt.Color(255, 255, 255));
+        GenreTypeDescription_TextField.setForeground(new java.awt.Color(0, 0, 0));
+        GenreTypeDescription_TextField.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(13, 172, 103)));
+        jPanel12.add(GenreTypeDescription_TextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 260, 270, 30));
 
         Background_Panel11.add(jPanel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 130, 840, 530));
 
@@ -1701,6 +1726,7 @@ public class Admin_Menu extends javax.swing.JFrame {
         RemovePublisher_CheckBox.setFont(new java.awt.Font("Bahnschrift", 0, 14)); // NOI18N
         RemovePublisher_CheckBox.setForeground(new java.awt.Color(255, 255, 255));
         RemovePublisher_CheckBox.setText("Remove");
+        RemovePublisher_CheckBox.setContentAreaFilled(false);
         RemovePublisher_CheckBox.setFocusable(false);
         RemovePublisher_CheckBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1712,6 +1738,7 @@ public class Admin_Menu extends javax.swing.JFrame {
         InsertPublisher_CheckBox.setFont(new java.awt.Font("Bahnschrift", 0, 14)); // NOI18N
         InsertPublisher_CheckBox.setForeground(new java.awt.Color(255, 255, 255));
         InsertPublisher_CheckBox.setText("Insert");
+        InsertPublisher_CheckBox.setContentAreaFilled(false);
         InsertPublisher_CheckBox.setFocusable(false);
         InsertPublisher_CheckBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1723,6 +1750,7 @@ public class Admin_Menu extends javax.swing.JFrame {
         UpdatePublisher_CheckBox.setFont(new java.awt.Font("Bahnschrift", 0, 14)); // NOI18N
         UpdatePublisher_CheckBox.setForeground(new java.awt.Color(255, 255, 255));
         UpdatePublisher_CheckBox.setText("Update");
+        UpdatePublisher_CheckBox.setContentAreaFilled(false);
         UpdatePublisher_CheckBox.setFocusable(false);
         UpdatePublisher_CheckBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -3090,6 +3118,8 @@ public class Admin_Menu extends javax.swing.JFrame {
       
      GenreTypeID_TextField.setEnabled(true);
      GenreTypeName_TextField.setEnabled(false);
+     GenreTypeDescription_TextField.setEnabled(false);
+     
     }//GEN-LAST:event_RemoveGenreType_CheckBoxActionPerformed
 
     private void InsertGenreType_CheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InsertGenreType_CheckBoxActionPerformed
@@ -3098,6 +3128,7 @@ public class Admin_Menu extends javax.swing.JFrame {
       
       GenreTypeID_TextField.setEnabled(false);
       GenreTypeName_TextField.setEnabled(true);
+      GenreTypeDescription_TextField.setEnabled(true);
     }//GEN-LAST:event_InsertGenreType_CheckBoxActionPerformed
 
     private void UpdateGenreType_CheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UpdateGenreType_CheckBoxActionPerformed
@@ -3106,6 +3137,7 @@ public class Admin_Menu extends javax.swing.JFrame {
       
       GenreTypeID_TextField.setEnabled(true);
       GenreTypeName_TextField.setEnabled(true);
+      GenreTypeDescription_TextField.setEnabled(true);
     }//GEN-LAST:event_UpdateGenreType_CheckBoxActionPerformed
 
     private void GenreCommit_ButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_GenreCommit_ButtonMouseEntered
@@ -3117,7 +3149,36 @@ public class Admin_Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_GenreCommit_ButtonMouseExited
 
     private void GenreCommit_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GenreCommit_ButtonActionPerformed
-        // TODO add your handling code here:
+        String pgenre_name = GenreTypeName_TextField.getText();
+        String pgenre_description = GenreTypeDescription_TextField.getText();
+        
+        try {
+        if(InsertGenreType_CheckBox.isSelected()){
+            
+            ConnectDB.insertGenre(pgenre_name, pgenre_description);
+            JOptionPane.showMessageDialog(null, "New Genre Created Successfully");
+        }
+        else if(UpdateGenreType_CheckBox.isSelected()){
+            
+            /*ConnectDB.insertGenre(pgenre_name, pgenre_description);*/
+        }
+        } catch (SQLException ex) {
+           Logger.getLogger(Admin_Menu.class.getName()).log(Level.SEVERE, null, ex);
+            
+            
+            
+            
+        }
+        
+ 
+        
+        
+        
+        
+        
+        
+        
+        
     }//GEN-LAST:event_GenreCommit_ButtonActionPerformed
 
     private void RelationTypeCommitChanges_Panel3MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_RelationTypeCommitChanges_Panel3MouseEntered
@@ -3365,7 +3426,31 @@ public class Admin_Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_CommitChanges_ButtonActionPerformed
 
     private void AddPhoto_Button1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddPhoto_Button1ActionPerformed
-        // TODO add your handling code here:
+    if(UpdateItem_CheckBox.isSelected()){
+       JFileChooser chooser = new JFileChooser();
+       chooser.showOpenDialog(null);
+       File f = chooser.getSelectedFile();
+       filename = f.getAbsolutePath();
+       ImageIcon cover = new ImageIcon(new ImageIcon(filename).getImage().getScaledInstance(250, 250, Image.SCALE_SMOOTH));
+       Cover_Image_Label1.setIcon(cover);
+       
+       try{ 
+           File cover_image = new File(filename);
+           FileInputStream fis = new FileInputStream(cover_image);
+           ByteArrayOutputStream bos = new ByteArrayOutputStream();
+           byte [] buf = new byte[1024];
+            for(int readNum; (readNum = fis.read(buf)) != -1;){
+                bos.write(buf, 0, readNum);
+            }
+          photo = bos.toByteArray();
+          
+          DBConnection.ConnectDB.updateItemCover(0, photo);
+          JOptionPane.showMessageDialog(null,"Cover Image Updated.");
+       } catch(Exception e){
+           JOptionPane.showMessageDialog(null, e);       
+       }  
+    }
+  
     }//GEN-LAST:event_AddPhoto_Button1ActionPerformed
 
     private void RemoveItem_CheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RemoveItem_CheckBoxActionPerformed
@@ -3373,10 +3458,10 @@ public class Admin_Menu extends javax.swing.JFrame {
        CommitChanges_Button.setEnabled(true);
     }//GEN-LAST:event_RemoveItem_CheckBoxActionPerformed
 
-    private void UpdateStatusType_CheckBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UpdateStatusType_CheckBox2ActionPerformed
+    private void UpdateItem_CheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UpdateItem_CheckBoxActionPerformed
          RemoveItem_CheckBox.setSelected(false);
          CommitChanges_Button.setEnabled(true);
-    }//GEN-LAST:event_UpdateStatusType_CheckBox2ActionPerformed
+    }//GEN-LAST:event_UpdateItem_CheckBoxActionPerformed
 
     private void Collection_TableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Collection_TableMouseClicked
         Collection_InternalFrame.setVisible(false);
@@ -3399,7 +3484,12 @@ public class Admin_Menu extends javax.swing.JFrame {
        AddItem_InternalFrame.setVisible(false);    
         
  
-        
+        try {
+            format = DBConnection.ConnectDB.getItemCover(0);
+            Cover_Image_Label1.setIcon(format);
+        } catch (SQLException ex) {
+            Logger.getLogger(Admin_Menu.class.getName()).log(Level.SEVERE, null, ex);
+        }
         ItemInfo_InternalFrame.setVisible(true);
     }//GEN-LAST:event_Collection_TableMouseClicked
 
@@ -3650,6 +3740,7 @@ public class Admin_Menu extends javax.swing.JFrame {
     private javax.swing.JTextField EditionItem_TextField;
     private javax.swing.JButton Exit_Button;
     private javax.swing.JButton GenreCommit_Button;
+    private javax.swing.JTextField GenreTypeDescription_TextField;
     private javax.swing.JTextField GenreTypeID_TextField;
     private javax.swing.JTextField GenreTypeName_TextField;
     private javax.swing.JButton Genre_Button;
@@ -3813,10 +3904,10 @@ public class Admin_Menu extends javax.swing.JFrame {
     private javax.swing.JCheckBox UpdateAuthor_CheckBox;
     private javax.swing.JCheckBox UpdateGenreType_CheckBox;
     private javax.swing.JCheckBox UpdateItemType_CheckBox;
+    private javax.swing.JCheckBox UpdateItem_CheckBox;
     private javax.swing.JCheckBox UpdatePublisher_CheckBox;
     private javax.swing.JCheckBox UpdateRelationType_CheckBox;
     private javax.swing.JCheckBox UpdateStatusType_CheckBox;
-    private javax.swing.JCheckBox UpdateStatusType_CheckBox2;
     private javax.swing.JLabel Upper_Banner;
     private javax.swing.JLabel Upper_Banner1;
     private javax.swing.JLabel Upper_Banner10;
@@ -3846,6 +3937,7 @@ public class Admin_Menu extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -3895,4 +3987,5 @@ public class Admin_Menu extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
   byte[] photo = null;
   String filename = null;
+  private ImageIcon format = null;
 }

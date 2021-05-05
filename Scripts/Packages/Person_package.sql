@@ -3,9 +3,9 @@ Create or replace package control_person is
 FUNCTION EncryptPassword(pencrypt_password IN VARCHAR2) RETURN VARCHAR2;
 FUNCTION DecryptPassword(pdecrypt_password IN VARCHAR2) RETURN VARCHAR2;
 
-PROCEDURE insert_person (pid IN NUMBER, pfirname IN VARCHAR2, plasname IN VARCHAR2, pemail IN VARCHAR2, ppassword IN VARCHAR2, pphonenumber IN VARCHAR2, pdate IN DATE, ppersontype_id IN NUMBER);
+PROCEDURE insert_person (pid IN NUMBER, pfirname IN VARCHAR2, plasname IN VARCHAR2, pemail IN VARCHAR2, ppassword IN VARCHAR2, pphonenumber IN VARCHAR2, pdate IN VARCHAR2, ppersontype_id IN NUMBER);
 PROCEDURE remove_person (pid IN NUMBER);
-PROCEDURE update_person(pid_old IN NUMBER, pid IN NUMBER, pfirname IN VARCHAR2, plasname IN VARCHAR2, pemail IN VARCHAR2, ppassword IN VARCHAR2, pphonenumber IN VARCHAR2, pdate IN DATE);
+PROCEDURE update_person(pid_old IN NUMBER, pid IN NUMBER, pfirname IN VARCHAR2, plasname IN VARCHAR2, pemail IN VARCHAR2, ppassword IN VARCHAR2, pphonenumber IN VARCHAR2, pdate IN VARCHAR2);
 
 FUNCTION getpersonId(pemail IN VARCHAR2) RETURN NUMBER;
 FUNCTION getpersonFirstName(pid IN NUMBER) RETURN VARCHAR2;
@@ -47,10 +47,10 @@ AS
     END;
 
 
-PROCEDURE insert_person (pid IN NUMBER, pfirname IN VARCHAR2, plasname IN VARCHAR2, pemail IN VARCHAR2, ppassword IN VARCHAR2, pphonenumber IN VARCHAR2, pdate IN DATE, ppersontype_id IN NUMBER) AS
+PROCEDURE insert_person (pid IN NUMBER, pfirname IN VARCHAR2, plasname IN VARCHAR2, pemail IN VARCHAR2, ppassword IN VARCHAR2, pphonenumber IN VARCHAR2, pdate IN VARCHAR2, ppersontype_id IN NUMBER) AS
 BEGIN
 	INSERT INTO person(person_id,first_name,last_name,email,password,phone_number,birth_day,persontype_id)
-	VALUES(pid, pfirname, plasname, pemail, EncryptPassword(ppassword), pphonenumber, pdate, ppersontype_id);
+	VALUES(pid, pfirname, plasname, pemail, EncryptPassword(ppassword), pphonenumber, TO_DATE(pdate, 'YYYY-MM-DD'), ppersontype_id);
 END insert_person;
 
 PROCEDURE remove_person (pid IN NUMBER) AS
@@ -74,7 +74,7 @@ BEGIN
 END remove_person;
 
 
-PROCEDURE update_person(pid_old IN NUMBER, pid IN NUMBER, pfirname IN VARCHAR2, plasname IN VARCHAR2, pemail IN VARCHAR2, ppassword IN VARCHAR2, pphonenumber IN VARCHAR2, pdate IN DATE) AS
+PROCEDURE update_person(pid_old IN NUMBER, pid IN NUMBER, pfirname IN VARCHAR2, plasname IN VARCHAR2, pemail IN VARCHAR2, ppassword IN VARCHAR2, pphonenumber IN VARCHAR2, pdate IN VARCHAR2) AS
 e_invalid_person EXCEPTION;
 BEGIN
 	UPDATE person 
@@ -197,9 +197,9 @@ IS
 
 FUNCTION getpersonPassword(pid IN NUMBER) RETURN VARCHAR2
 IS 
-    vcPassword VARCHAR2(25);
+    vcPassword VARCHAR2(50);
     BEGIN
-        SELECT password
+        SELECT person.Password
         INTO vcPassword
         FROM person
         WHERE person_id = pid;

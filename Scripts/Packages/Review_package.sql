@@ -18,6 +18,7 @@ PROCEDURE insert_review (pstars IN NUMBER) AS
 BEGIN
 	INSERT INTO review(stars)
 	VALUES(pstars);
+    COMMIT;    
 END insert_review;
 
 PROCEDURE remove_review (pid IN NUMBER) AS

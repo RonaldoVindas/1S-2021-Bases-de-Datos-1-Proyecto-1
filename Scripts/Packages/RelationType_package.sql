@@ -17,7 +17,8 @@ CREATE OR REPLACE PACKAGE BODY control_relationtype IS
 PROCEDURE insert_relationtype (pname IN VARCHAR2) AS
 BEGIN
 	INSERT INTO relationtype(relationtype_name)
-	VALUES(pname);
+	VALUES(pname); 
+    COMMIT;  
 END insert_relationtype;
 
 PROCEDURE remove_relationtype (pid IN NUMBER) AS

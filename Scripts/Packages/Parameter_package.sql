@@ -14,6 +14,7 @@ PROCEDURE insert_Parameter(pvalue IN VARCHAR2,pname IN VARCHAR2) AS
 BEGIN
 	INSERT INTO Parameter(value,name)
 	VALUES(pvalue,pname);
+    COMMIT;
 END insert_Parameter;
 
 PROCEDURE remove_Parameter (pParameter_id IN NUMBER) AS

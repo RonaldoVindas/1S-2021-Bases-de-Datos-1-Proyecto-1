@@ -2,8 +2,8 @@ Create or replace package control_itemHasGenre is
 PROCEDURE insert_itemHasGenre (pitem_id IN Number,pgenre_id IN Number);
 PROCEDURE remove_itemHasGenre (pitem_id IN Number);
 PROCEDURE update_itemHasGenre(oldpitem_id IN Number,pitem_id IN Number,pgenre_id IN Number);
-FUNCTION getitemHasGenreitem_id(pitem_id IN NUMBER) RETURN NUMBER;
-FUNCTION getitemHasGenregenre_id(pgenre_id IN NUMBER) RETURN NUMBER;
+FUNCTION getitemHasGenreitem_id(pgenre_id IN NUMBER) RETURN NUMBER;
+FUNCTION getitemHasGenregenre_id(pitem_id IN NUMBER) RETURN NUMBER;
 end control_itemHasGenre;
 /
 CREATE OR REPLACE PACKAGE BODY control_itemHasGenre IS
@@ -12,6 +12,7 @@ PROCEDURE insert_itemHasGenre (pitem_id IN Number,pgenre_id IN Number) AS
 BEGIN
 	INSERT INTO itemHasGenre(item_id,genre_id)
 	VALUES(pitem_id,pgenre_id);
+    COMMIT;
 END insert_itemHasGenre;
 
 
@@ -60,14 +61,14 @@ END update_itemHasGenre;
 
 
 
-FUNCTION getitemHasGenreitem_id(pitem_id IN NUMBER) RETURN NUMBER
+FUNCTION getitemHasGenreitem_id(pgenre_id IN NUMBER) RETURN NUMBER
 IS 
     vcitem_id NUMBER(11);
     BEGIN
         SELECT item_id
         INTO vcitem_id
         FROM itemHasGenre
-        WHERE item_id = pitem_id;
+        WHERE genre_id = pgenre_id;
         RETURN (vcitem_id);
         EXCEPTION
             WHEN TOO_MANY_ROWS THEN
@@ -82,14 +83,14 @@ IS
             DBMS_OUTPUT.PUT_LINE ('Unexpected error.');
     END;
 
-FUNCTION getitemHasGenregenre_id(pgenre_id IN NUMBER) RETURN NUMBER
+FUNCTION getitemHasGenregenre_id(pitem_id IN NUMBER) RETURN NUMBER
 IS 
     vcgenre_id NUMBER(11);
     BEGIN
         SELECT genre_id
         INTO vcgenre_id
         FROM itemHasGenre
-        WHERE genre_id = pgenre_id;
+        WHERE item_id = pitem_id and rownum = 1;
         RETURN (vcgenre_id);
         EXCEPTION
             WHEN TOO_MANY_ROWS THEN

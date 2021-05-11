@@ -32,6 +32,7 @@ public class LogIn_Window extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        Debug_Button = new javax.swing.JButton();
         Exit_Button = new javax.swing.JButton();
         MenuBlack_Panel = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
@@ -41,12 +42,24 @@ public class LogIn_Window extends javax.swing.JFrame {
         Password_TextField = new javax.swing.JTextField();
         Register_Buttton = new javax.swing.JButton();
         Password_Label = new javax.swing.JLabel();
+        Return_Button = new javax.swing.JButton();
         RegisterNow_Label = new javax.swing.JLabel();
         Banner_Label = new javax.swing.JLabel();
         LogIn_Wallpaper = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        Debug_Button.setBorder(null);
+        Debug_Button.setContentAreaFilled(false);
+        Debug_Button.setFocusPainted(false);
+        Debug_Button.setFocusable(false);
+        Debug_Button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Debug_ButtonActionPerformed(evt);
+            }
+        });
+        getContentPane().add(Debug_Button, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 480, 30, 30));
 
         Exit_Button.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Exit Button.png"))); // NOI18N
         Exit_Button.setBorderPainted(false);
@@ -61,7 +74,7 @@ public class LogIn_Window extends javax.swing.JFrame {
         MenuBlack_Panel.setBackground(new java.awt.Color(0, 0, 0));
         MenuBlack_Panel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel2.setBackground(new java.awt.Color(0, 0, 0));
+        jPanel2.setBackground(new java.awt.Color(51, 51, 51));
         jPanel2.setBorder(javax.swing.BorderFactory.createMatteBorder(3, 3, 3, 3, new java.awt.Color(147, 46, 236)));
         jPanel2.setForeground(new java.awt.Color(255, 255, 255));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -74,7 +87,7 @@ public class LogIn_Window extends javax.swing.JFrame {
         ForgotPassword_Label.setFont(new java.awt.Font("Franklin Gothic Book", 1, 12)); // NOI18N
         ForgotPassword_Label.setForeground(new java.awt.Color(255, 255, 255));
         ForgotPassword_Label.setText("Forgot your password?");
-        jPanel2.add(ForgotPassword_Label, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 190, -1, -1));
+        jPanel2.add(ForgotPassword_Label, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 190, -1, -1));
 
         Email_TextField.setBackground(new java.awt.Color(255, 255, 255));
         Email_TextField.setForeground(new java.awt.Color(0, 0, 0));
@@ -109,6 +122,21 @@ public class LogIn_Window extends javax.swing.JFrame {
         jPanel2.add(Password_Label, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, -1, -1));
 
         MenuBlack_Panel.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 220, 530, 410));
+
+        Return_Button.setFont(new java.awt.Font("Bahnschrift", 0, 14)); // NOI18N
+        Return_Button.setForeground(new java.awt.Color(255, 255, 255));
+        Return_Button.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/BackArrow_Icon23.png"))); // NOI18N
+        Return_Button.setText("  Return");
+        Return_Button.setBorder(null);
+        Return_Button.setBorderPainted(false);
+        Return_Button.setContentAreaFilled(false);
+        Return_Button.setFocusable(false);
+        Return_Button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Return_ButtonActionPerformed(evt);
+            }
+        });
+        MenuBlack_Panel.add(Return_Button, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 120, 40));
 
         RegisterNow_Label.setFont(new java.awt.Font("Franklin Gothic Demi Cond", 0, 36)); // NOI18N
         RegisterNow_Label.setForeground(new java.awt.Color(255, 240, 0));
@@ -200,6 +228,19 @@ public class LogIn_Window extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_Email_TextFieldActionPerformed
 
+    private void Return_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Return_ButtonActionPerformed
+        LendIziCollection.setIdentification(0);
+        LendIziCollection.setEmail(null);
+        Main_Menu result = new Main_Menu();
+        dispose();
+        result.setVisible(true);
+    }//GEN-LAST:event_Return_ButtonActionPerformed
+
+    private void Debug_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Debug_ButtonActionPerformed
+       Email_TextField.setText("rony1211@gmail.com");
+       Password_TextField.setText("falcon12");
+    }//GEN-LAST:event_Debug_ButtonActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -238,6 +279,7 @@ public class LogIn_Window extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Banner_Label;
+    private javax.swing.JButton Debug_Button;
     private javax.swing.JLabel Email_Label;
     private javax.swing.JTextField Email_TextField;
     private javax.swing.JButton Exit_Button;
@@ -248,6 +290,7 @@ public class LogIn_Window extends javax.swing.JFrame {
     private javax.swing.JTextField Password_TextField;
     private javax.swing.JLabel RegisterNow_Label;
     private javax.swing.JButton Register_Buttton;
+    private javax.swing.JButton Return_Button;
     private javax.swing.JPanel jPanel2;
     // End of variables declaration//GEN-END:variables
 }

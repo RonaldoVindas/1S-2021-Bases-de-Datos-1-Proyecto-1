@@ -18,6 +18,7 @@ PROCEDURE insert_publisher (pname IN VARCHAR2) AS
 BEGIN
 	INSERT INTO publisher(publisher_name)
 	VALUES(pname);
+    COMMIT;    
 END insert_publisher;
 
 PROCEDURE remove_publisher (pid IN NUMBER) AS

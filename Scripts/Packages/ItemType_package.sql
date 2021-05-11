@@ -13,6 +13,7 @@ PROCEDURE insert_ItemType (pitemType_name IN VARCHAR2) AS
 BEGIN
 	INSERT INTO ItemType(itemType_name)
 	VALUES(pitemType_name);
+    COMMIT;
 END insert_ItemType;
 
 PROCEDURE remove_ItemType (pitemtype_id IN NUMBER) AS

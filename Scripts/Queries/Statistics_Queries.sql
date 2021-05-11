@@ -1,6 +1,7 @@
 CREATE OR REPLACE PACKAGE Statistics_Queries IS
     FUNCTION totalBookGenre RETURN SYS_REFCURSOR;
-    FUNCTION totalLendedBook RETURN SYS_REFCURSOR;
+    FUNCTION totalLendedBookNow RETURN SYS_REFCURSOR;
+    FUNCTION totalLendedBook RETURN SYS_REFCURSOR;    
     FUNCTION totalLendedBookGenre RETURN SYS_REFCURSOR;
     FUNCTION totalLendedBookAge RETURN SYS_REFCURSOR;
 END Statistics_Queries;
@@ -23,20 +24,39 @@ CREATE OR REPLACE PACKAGE BODY Statistics_Queries IS
     END totalBookGenre;
 
 
--- Total y porcentaje de libros prestados 
-    FUNCTION totalLendedBook RETURN SYS_REFCURSOR
+-- Total y porcentaje de libros prestados actualmente
+    FUNCTION totalLendedBookNow RETURN SYS_REFCURSOR
         IS
             vcCursor SYS_REFCURSOR;
         BEGIN
             OPEN vcCursor FOR
-                SELECT COUNT(item_id) AS total_lended_items, COUNT(item_id)/(SELECT COUNT(item_id) FROM PersonLendItem)*100 AS percentage
+                SELECT COUNT(item_id) AS total_lended_items, TRUNC(COUNT(item_id)/(SELECT COUNT(item_id) FROM PersonLendItem)*100, 2) AS percentage
                 FROM (
                     SELECT item_id
                     FROM PersonLendItem)
                 GROUP BY item_id
                 ORDER BY percentage DESC;
         RETURN vcCursor;
+    END totalLendedBookNow;
+
+
+
+-- Total y porcentaje de libros prestados desde siempre
+    FUNCTION totalLendedBook RETURN SYS_REFCURSOR
+        IS
+            vcCursor SYS_REFCURSOR;
+        BEGIN
+            OPEN vcCursor FOR
+                SELECT COUNT(item_id) AS total_lended_items,TRUNC (COUNT(item_id)/(SELECT COUNT(item_id) FROM Loan_History)*100,2) AS percentage
+                FROM (
+                    SELECT item_id
+                    FROM Loan_History)
+                GROUP BY item_id
+                ORDER BY percentage DESC;
+        RETURN vcCursor;
     END totalLendedBook;
+
+
     
 -- Total y porcentaje de libros prestados y por clasificación
     FUNCTION totalLendedBookGenre RETURN SYS_REFCURSOR
@@ -44,7 +64,7 @@ CREATE OR REPLACE PACKAGE BODY Statistics_Queries IS
             vcCursor SYS_REFCURSOR;
         BEGIN
             OPEN vcCursor FOR
-                SELECT COUNT(plitem) AS total_lended_items, COUNT(plitem)/(SELECT COUNT(plitem) FROM PersonLendItem)*100 AS percentage, genre
+                SELECT COUNT(plitem) AS total_lended_items, TRUNC(COUNT(plitem)/(SELECT COUNT(plitem) FROM PersonLendItem)*100,2) AS percentage, genre
                 FROM (
                     SELECT pLi.item_id AS plitem, ge.genre_name AS genre
                     FROM PersonLendItem pLi

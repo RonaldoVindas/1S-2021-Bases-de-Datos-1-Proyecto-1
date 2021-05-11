@@ -15,6 +15,7 @@ import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.MatteBorder;
+import lend.izi.collection.LendIziCollection;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartFrame;
 import org.jfree.chart.ChartPanel;
@@ -196,6 +197,7 @@ public class Users_Menu extends javax.swing.JFrame {
         AddItem_Panel = new javax.swing.JPanel();
         AddAnItem_Button = new javax.swing.JButton();
         MainMenu_Button = new javax.swing.JButton();
+        Return_Button = new javax.swing.JButton();
         Exit_Button = new javax.swing.JButton();
         Wallpaper_Label = new javax.swing.JLabel();
 
@@ -469,13 +471,10 @@ public class Users_Menu extends javax.swing.JFrame {
 
         RelationType_Table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+
             }
         ));
         jScrollPane11.setViewportView(RelationType_Table);
@@ -485,6 +484,8 @@ public class Users_Menu extends javax.swing.JFrame {
         RemovePersonKnowsPerson_CheckBox.setFont(new java.awt.Font("Bahnschrift", 0, 14)); // NOI18N
         RemovePersonKnowsPerson_CheckBox.setForeground(new java.awt.Color(255, 255, 255));
         RemovePersonKnowsPerson_CheckBox.setText("Remove");
+        RemovePersonKnowsPerson_CheckBox.setBorder(null);
+        RemovePersonKnowsPerson_CheckBox.setContentAreaFilled(false);
         RemovePersonKnowsPerson_CheckBox.setFocusable(false);
         RemovePersonKnowsPerson_CheckBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1010,7 +1011,7 @@ public class Users_Menu extends javax.swing.JFrame {
         Lateral_Button1.setFont(new java.awt.Font("Bahnschrift", 0, 20)); // NOI18N
         Lateral_Button1.setForeground(new java.awt.Color(255, 255, 255));
         Lateral_Button1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/LateralButton1.png"))); // NOI18N
-        Lateral_Button1.setText("         See Collection!");
+        Lateral_Button1.setText("             See Collection!");
         Lateral_Button1.setAlignmentX(5.0F);
         Lateral_Button1.setBorderPainted(false);
         Lateral_Button1.setFocusable(false);
@@ -1099,7 +1100,7 @@ public class Users_Menu extends javax.swing.JFrame {
         Lateral_Button6.setFont(new java.awt.Font("Bahnschrift", 0, 20)); // NOI18N
         Lateral_Button6.setForeground(new java.awt.Color(0, 0, 0));
         Lateral_Button6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/LateralButton6.png"))); // NOI18N
-        Lateral_Button6.setText("  Do a Query");
+        Lateral_Button6.setText(" Do a Query");
         Lateral_Button6.setAlignmentX(5.0F);
         Lateral_Button6.setBorderPainted(false);
         Lateral_Button6.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -1121,7 +1122,7 @@ public class Users_Menu extends javax.swing.JFrame {
         Lateral_Button2.setFont(new java.awt.Font("Bahnschrift", 0, 20)); // NOI18N
         Lateral_Button2.setForeground(new java.awt.Color(0, 0, 0));
         Lateral_Button2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/LateralButton2.png"))); // NOI18N
-        Lateral_Button2.setText("               Add known person");
+        Lateral_Button2.setText("                        Add known person");
         Lateral_Button2.setAlignmentX(5.0F);
         Lateral_Button2.setBorderPainted(false);
         Lateral_Button2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -1189,6 +1190,20 @@ public class Users_Menu extends javax.swing.JFrame {
         Menu_Panel.add(MainMenu_Button, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 70, 250, 40));
 
         getContentPane().add(Menu_Panel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 380, 720));
+
+        Return_Button.setFont(new java.awt.Font("Bahnschrift", 0, 14)); // NOI18N
+        Return_Button.setForeground(new java.awt.Color(255, 255, 255));
+        Return_Button.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Logout_Icon32.png"))); // NOI18N
+        Return_Button.setBorder(null);
+        Return_Button.setBorderPainted(false);
+        Return_Button.setContentAreaFilled(false);
+        Return_Button.setFocusable(false);
+        Return_Button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Return_ButtonActionPerformed(evt);
+            }
+        });
+        getContentPane().add(Return_Button, new org.netbeans.lib.awtextra.AbsoluteConstraints(1248, 40, -1, 30));
 
         Exit_Button.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Exit Button.png"))); // NOI18N
         Exit_Button.setBorderPainted(false);
@@ -1473,6 +1488,14 @@ public class Users_Menu extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_RemovePersonKnowsPerson_CheckBoxActionPerformed
 
+    private void Return_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Return_ButtonActionPerformed
+        LendIziCollection.setIdentification(0);
+        LendIziCollection.setEmail(null);
+        Main_Menu result = new Main_Menu();
+        dispose();
+        result.setVisible(true);
+    }//GEN-LAST:event_Return_ButtonActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1584,6 +1607,7 @@ public class Users_Menu extends javax.swing.JFrame {
     private javax.swing.JCheckBox RemoveItem_CheckBox;
     private javax.swing.JCheckBox RemovePersonKnowsPerson_CheckBox;
     private javax.swing.JLabel ReturnDate_Label;
+    private javax.swing.JButton Return_Button;
     private javax.swing.JInternalFrame ReviewItem_InternalFrame;
     private javax.swing.JButton Review_Button;
     private javax.swing.JComboBox<String> SelectIItem_ComboBox;

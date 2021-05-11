@@ -18,6 +18,7 @@ PROCEDURE insert_status (pname IN VARCHAR2, pdescription IN VARCHAR2) AS
 BEGIN
 	INSERT INTO status(status_name, description)
 	VALUES(pname, pdescription);
+    COMMIT;    
 END insert_status;
 
 PROCEDURE remove_status (pid IN NUMBER) AS

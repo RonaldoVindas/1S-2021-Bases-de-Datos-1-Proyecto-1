@@ -13,6 +13,7 @@ PROCEDURE insert_genre (pname IN VARCHAR2,pdescription IN VARCHAR2) AS
 BEGIN
     INSERT INTO genre(genre_name,description)
     VALUES(pname,pdescription);
+    COMMIT;
 END insert_genre;
 
 PROCEDURE remove_genre (pid_genre IN NUMBER) AS

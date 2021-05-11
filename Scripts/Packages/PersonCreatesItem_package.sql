@@ -19,6 +19,7 @@ PROCEDURE insert_personcreatesitem (pperson_id IN NUMBER, pitem_id IN NUMBER) AS
 BEGIN
 	INSERT INTO personcreatesitem(person_id, item_id)
 	VALUES(pperson_id, pitem_id);
+    COMMIT;
 END insert_personcreatesitem;
 
 

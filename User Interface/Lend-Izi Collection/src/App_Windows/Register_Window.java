@@ -39,6 +39,7 @@ public class Register_Window extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        Return_Button = new javax.swing.JButton();
         Exit_Button = new javax.swing.JButton();
         MenuBlack_Panel = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
@@ -69,6 +70,21 @@ public class Register_Window extends javax.swing.JFrame {
         setPreferredSize(new java.awt.Dimension(1280, 720));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        Return_Button.setFont(new java.awt.Font("Bahnschrift", 0, 14)); // NOI18N
+        Return_Button.setForeground(new java.awt.Color(255, 255, 255));
+        Return_Button.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/BackArrow_Icon23.png"))); // NOI18N
+        Return_Button.setText("  Return");
+        Return_Button.setBorder(null);
+        Return_Button.setBorderPainted(false);
+        Return_Button.setContentAreaFilled(false);
+        Return_Button.setFocusable(false);
+        Return_Button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Return_ButtonActionPerformed(evt);
+            }
+        });
+        getContentPane().add(Return_Button, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 120, 40));
+
         Exit_Button.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Exit Button.png"))); // NOI18N
         Exit_Button.setBorderPainted(false);
         Exit_Button.setContentAreaFilled(false);
@@ -82,7 +98,7 @@ public class Register_Window extends javax.swing.JFrame {
         MenuBlack_Panel.setBackground(new java.awt.Color(0, 0, 0));
         MenuBlack_Panel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel2.setBackground(new java.awt.Color(0, 0, 0));
+        jPanel2.setBackground(new java.awt.Color(51, 51, 51));
         jPanel2.setBorder(javax.swing.BorderFactory.createMatteBorder(3, 3, 3, 3, new java.awt.Color(243, 149, 1)));
         jPanel2.setForeground(new java.awt.Color(255, 255, 255));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -225,9 +241,13 @@ public class Register_Window extends javax.swing.JFrame {
             //Date person_birthday=Date.valueOf(sDate);//converting string into sql date.
             //System.out.println(person_birthday);
             
+
+            //Verificar que campos tengan datos correctos! antes de insertar
+            
+            
             
         try {
-            DBConnection.ConnectDB.insertPerson(person_id, person_firstname, person_lastname, person_email, person_password, person_password,person_birthday);
+            DBConnection.ConnectDB.insertPerson(person_id, person_firstname, person_lastname, person_email, person_password, person_password,person_birthday,1);
             LendIziCollection.setIdentification(person_id);
             LendIziCollection.setEmail(person_email);
             
@@ -241,6 +261,14 @@ public class Register_Window extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_Register_ButttonActionPerformed
+
+    private void Return_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Return_ButtonActionPerformed
+       LendIziCollection.setIdentification(0);
+       LendIziCollection.setEmail(null);
+       Main_Menu result = new Main_Menu();
+       dispose();
+       result.setVisible(true);
+    }//GEN-LAST:event_Return_ButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -301,6 +329,7 @@ public class Register_Window extends javax.swing.JFrame {
     private javax.swing.JTextField PhoneNumber_TextField;
     private javax.swing.JLabel RegisterNow_Label;
     private javax.swing.JButton Register_Buttton;
+    private javax.swing.JButton Return_Button;
     private javax.swing.JPanel jPanel2;
     // End of variables declaration//GEN-END:variables
 }

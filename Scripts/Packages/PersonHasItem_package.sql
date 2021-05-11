@@ -2,7 +2,7 @@ Create or replace package control_personhasitem is
 
 
 PROCEDURE insert_personhasitem (pperson_id IN NUMBER, pitem_id IN NUMBER);
-PROCEDURE remove_personhasitem (pperson_id IN NUMBER);
+PROCEDURE remove_personhasitem (pperson_id IN NUMBER, pitem_id IN NUMBER);
 PROCEDURE update_personhasitem (ppersonid_old in NUMBER, pperson_id IN NUMBER, pitem_id IN NUMBER);
 
 FUNCTION getpersonhasitemPersonID (pid_item IN NUMBER) RETURN NUMBER;
@@ -19,14 +19,15 @@ PROCEDURE insert_personhasitem (pperson_id IN NUMBER, pitem_id IN NUMBER) AS
 BEGIN
 	INSERT INTO personhasitem (person_id, item_id)
 	VALUES (pperson_id, pitem_id);
+    COMMIT;
 END insert_personhasitem;
 
 
-PROCEDURE remove_personhasitem (pperson_id IN NUMBER) AS
+PROCEDURE remove_personhasitem (pperson_id IN NUMBER, pitem_id IN NUMBER) AS
 e_invalid_personhasitem EXCEPTION;
 BEGIN
 	DELETE FROM personhasitem
-	WHERE person_id = pperson_id;
+	WHERE person_id = pperson_id AND item_id = pitem_id;
 	COMMIT;
     IF SQL%NOTFOUND THEN 
         RAISE e_invalid_personhasitem;

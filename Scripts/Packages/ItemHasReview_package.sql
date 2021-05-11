@@ -14,6 +14,7 @@ PROCEDURE insert_ItemHasReview (pitem_id IN Number,preview_id IN Number) AS
 BEGIN
 	INSERT INTO ItemHasReview(item_id,review_id)
 	VALUES(pitem_id,preview_id);
+    COMMIT;
 END insert_ItemHasReview;
 
 

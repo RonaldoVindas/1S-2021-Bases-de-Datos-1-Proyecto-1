@@ -15,6 +15,7 @@ PROCEDURE insert_PersonType (pname IN VARCHAR2) AS
 BEGIN
 	INSERT INTO PersonType(persontype_name)
 	VALUES(pname);
+    COMMIT;
 END insert_PersonType;
 
 PROCEDURE remove_PersonType (pid IN NUMBER) AS

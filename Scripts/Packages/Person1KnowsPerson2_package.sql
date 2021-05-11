@@ -2,7 +2,7 @@ Create or replace package control_person1knowsperson2 is
 
 
 PROCEDURE insert_person1knowsperson2 (pid_person1 IN NUMBER, pid_person2 IN NUMBER, prelationtype_id IN NUMBER);
-PROCEDURE remove_person1knowsperson2 (pid_person2 IN NUMBER);
+PROCEDURE remove_person1knowsperson2 (pid_person1 IN NUMBER, pid_person2 IN NUMBER);
 PROCEDURE update_person1knowsperson2 (pid_person1_old in NUMBER, pid_person1 IN NUMBER, pid_person2 IN NUMBER, prelationtype_id IN NUMBER);
 
 FUNCTION getper1knowsper2person1Id(pid_person2 IN NUMBER) RETURN NUMBER;
@@ -21,14 +21,15 @@ PROCEDURE insert_person1knowsperson2 (pid_person1 IN NUMBER, pid_person2 IN NUMB
 BEGIN
     INSERT INTO person1knowsperson2(person1_id, person2_id, relationtype_id)
     VALUES(pid_person1,pid_person2, prelationtype_id );
+    COMMIT;
 END insert_person1knowsperson2;
 
 
-PROCEDURE remove_person1knowsperson2 (pid_person2 IN NUMBER) AS
+PROCEDURE remove_person1knowsperson2 (pid_person1 IN NUMBER, pid_person2 IN NUMBER) AS
 e_invalid_person1knowsperson2 EXCEPTION;
 BEGIN
     DELETE FROM person1knowsperson2
-    WHERE person2_id = pid_person2;
+    WHERE person1_id = pid_person1 AND person2_id = pid_person2;
     COMMIT;
     IF SQL%NOTFOUND THEN 
         RAISE e_invalid_person1knowsperson2;

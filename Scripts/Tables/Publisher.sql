@@ -55,6 +55,8 @@ BEGIN
 	:new.publisher_id := s_publisher.NEXTVAL;
 	:new.creation_date := SYSDATE;
 	:new.creation_user := USER;
+    INSERT INTO systemLog(systemLog_id, description, object, type_change)
+    VALUES(s_systemlog.NEXTVAL, 'SE INSERTA UN PUBLISHER', 'PUBLISHER', 'INSERT');
 END beforeINSERTpublisher;
 
 /
@@ -66,4 +68,17 @@ FOR EACH ROW
 BEGIN
     :new.date_last_modification:= SYSDATE;
     :new.user_last_modification:= USER;
+    INSERT INTO systemLog(systemLog_id, description, object, type_change)
+    VALUES(s_systemlog.NEXTVAL, 'SE ACTUALIZA UN PUBLISHER', 'PUBLISHER', 'UPDATE');
 END beforeUPDATEpublisher;
+
+/
+
+CREATE OR REPLACE TRIGGER pe.beforeDELETEpublisher
+BEFORE DELETE
+ON pe.publisher
+FOR EACH ROW
+BEGIN
+    INSERT INTO systemLog(systemLog_id, description, object, type_change)
+    VALUES(s_systemlog.NEXTVAL, 'SE BORRA UN PUBLISHER', 'PUBLISHER', 'DELETE');
+END beforeDELETEpublisher;

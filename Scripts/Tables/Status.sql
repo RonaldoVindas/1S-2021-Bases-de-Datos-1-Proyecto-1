@@ -58,7 +58,9 @@ FOR EACH ROW
 BEGIN
 	:new.status_id := s_status.NEXTVAL;
 	:new.creation_date := SYSDATE;
-	:new.creation_user := USER;
+	:new.creation_user := USER; 
+    INSERT INTO systemLog(systemLog_id, description, object, type_change)
+    VALUES(s_systemlog.NEXTVAL, 'SE INSERTA UN STATUS', 'STATUS', 'INSERT');
 END beforeINSERTstatus;
 
 /
@@ -70,4 +72,17 @@ FOR EACH ROW
 BEGIN
     :new.date_last_modification:= SYSDATE;
     :new.user_last_modification:= USER;
+    INSERT INTO systemLog(systemLog_id, description, object, type_change)
+    VALUES(s_systemlog.NEXTVAL, 'SE ACTUALIZA UN STATUS', 'STATUS', 'UPDATE');
 END beforeUPDATEstatus;
+
+/
+
+CREATE OR REPLACE TRIGGER pe.beforeDELETEstatus
+BEFORE DELETE
+ON pe.status
+FOR EACH ROW
+BEGIN
+    INSERT INTO systemLog(systemLog_id, description, object, type_change)
+    VALUES(s_systemlog.NEXTVAL, 'SE BORRA UN STATUS', 'STATUS', 'DELETE');
+END beforeDELETEstatus;

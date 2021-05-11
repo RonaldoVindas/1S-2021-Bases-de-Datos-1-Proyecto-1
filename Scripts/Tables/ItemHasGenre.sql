@@ -46,6 +46,8 @@ FOR EACH ROW
 BEGIN
     :new.creation_date := SYSDATE;
     :new.creation_user := USER;
+    INSERT INTO systemLog(systemLog_id, description, object, type_change)
+    VALUES(s_systemlog.NEXTVAL, 'SE INSERTA UN ITEM HAS GENRE', 'ITEM HAS GENRE', 'INSERT');
 END beforeInsertItemHasGenre; 
 
 /
@@ -57,5 +59,17 @@ FOR EACH ROW
 BEGIN
     :new.date_last_modification:= SYSDATE;
     :new.user_last_modification:= USER;
+    INSERT INTO systemLog(systemLog_id, description, object, type_change)
+    VALUES(s_systemlog.NEXTVAL, 'SE ACTUALIZA UN ITEM HAS GENRE', 'ITEM HAS GENRE', 'UPDATE');
 END beforeUPDATEitemHasGenre;
 
+/
+
+CREATE OR REPLACE TRIGGER pe.beforeDELETEItemHasGenre
+BEFORE DELETE
+ON pe.ItemHasGenre
+FOR EACH ROW
+BEGIN
+    INSERT INTO systemLog(systemLog_id, description, object, type_change)
+    VALUES(s_systemlog.NEXTVAL, 'SE BORRA UN ITEM HAS GENRE', 'ITEM HAS GENRE', 'DELETE');
+END beforeDELETEItemHasGenre;

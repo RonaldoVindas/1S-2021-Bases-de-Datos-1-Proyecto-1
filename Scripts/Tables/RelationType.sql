@@ -53,6 +53,8 @@ BEGIN
 	:new.relationType_id := s_relationType.NEXTVAL;
 	:new.creation_date := SYSDATE;
 	:new.creation_user := USER;
+    INSERT INTO systemLog(systemLog_id, description, object, type_change)
+    VALUES(s_systemlog.NEXTVAL, 'SE INSERTA UN RELATION TYPE', 'RELATION TYPE', 'INSERT');
 END beforeINSERTrelationType;
 
 /
@@ -64,4 +66,17 @@ FOR EACH ROW
 BEGIN
     :new.date_last_modification:= SYSDATE;
     :new.user_last_modification:= USER;
+    INSERT INTO systemLog(systemLog_id, description, object, type_change)
+    VALUES(s_systemlog.NEXTVAL, 'SE ACTUALIZA UN RELATION TYPE', 'RELATION TYPE', 'UPDATE');
 END beforeUPDATErelationType;
+
+/
+
+CREATE OR REPLACE TRIGGER pe.beforeDELETErelationType
+BEFORE DELETE
+ON pe.relationType
+FOR EACH ROW
+BEGIN
+	INSERT INTO systemLog(systemLog_id, description, object, type_change)
+    VALUES(s_systemlog.NEXTVAL, 'SE BORRA UN RELATION TYPE', 'RELATION TYPE', 'DELETE');
+END beforeDELETErelationType;

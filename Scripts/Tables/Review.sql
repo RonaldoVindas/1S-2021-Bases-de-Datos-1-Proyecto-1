@@ -52,6 +52,8 @@ BEGIN
 	:new.review_id := s_review.NEXTVAL;
 	:new.creation_date := SYSDATE;
 	:new.creation_user := USER;
+    INSERT INTO systemLog(systemLog_id, description, object, type_change)
+    VALUES(s_systemlog.NEXTVAL, 'SE INSERTA UN REVIEW', 'REVIEW', 'INSERT');
 END beforeINSERTreview;
 
 /
@@ -63,4 +65,17 @@ FOR EACH ROW
 BEGIN
     :new.date_last_modification:= SYSDATE;
     :new.user_last_modification:= USER;
+    INSERT INTO systemLog(systemLog_id, description, object, type_change)
+    VALUES(s_systemlog.NEXTVAL, 'SE ACTUALIZA UN REVIEW', 'REVIEW', 'UPDATE');
 END beforeUPDATEreview;
+
+/
+
+CREATE OR REPLACE TRIGGER pe.beforeDELETEreview
+BEFORE DELETE
+ON pe.review
+FOR EACH ROW
+BEGIN
+	INSERT INTO systemLog(systemLog_id, description, object, type_change)
+    VALUES(s_systemlog.NEXTVAL, 'SE BORRA UN REVIEW', 'REVIEW', 'DELETE');
+END beforeDELETEreview;

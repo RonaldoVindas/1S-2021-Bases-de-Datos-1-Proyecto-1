@@ -49,6 +49,8 @@ BEGIN
     :new.genre_id := s_genre.nextval;
     :new.creation_date := SYSDATE;
     :new.creation_user := USER;
+    INSERT INTO systemLog(systemLog_id, description, object, type_change)
+    VALUES(s_systemlog.NEXTVAL, 'SE INSERTA UN GENRE', 'GENRE', 'INSERT');
 END beforeInsertGenre;
 
 /
@@ -59,4 +61,16 @@ FOR EACH ROW
 BEGIN
     :new.date_last_modification := SYSDATE;
     :new.user_last_modification := USER;
+    INSERT INTO systemLog(systemLog_id, description, object, type_change)
+    VALUES(s_systemlog.NEXTVAL, 'SE ACTUALIZA UN GENRE', 'GENRE', 'UPDATE');
 END beforeUpdateGenre;
+
+/
+
+CREATE OR REPLACE TRIGGER pe.beforeDELETEGenre
+BEFORE DELETE ON pe.genre
+FOR EACH ROW
+BEGIN
+    INSERT INTO systemLog(systemLog_id, description, object, type_change)
+    VALUES(s_systemlog.NEXTVAL, 'SE BORRA UN GENRE', 'GENRE', 'DELETE');
+END beforeDELETEGenre;

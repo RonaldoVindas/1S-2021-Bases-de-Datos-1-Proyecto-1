@@ -81,6 +81,8 @@ BEGIN
     :new.item_id := s_item.nextval;
     :new.creation_date := SYSDATE;
     :new.creation_user := USER;
+    INSERT INTO systemLog(systemLog_id, description, object, type_change)
+    VALUES(s_systemlog.NEXTVAL, 'SE INSERTA UN ITEM', 'ITEM', 'INSERT');
 END beforeInsertItem; 
 
 /
@@ -92,4 +94,17 @@ FOR EACH ROW
 BEGIN
     :new.date_last_modification:= SYSDATE;
     :new.user_last_modification:= USER;
+    INSERT INTO systemLog(systemLog_id, description, object, type_change)
+    VALUES(s_systemlog.NEXTVAL, 'SE ACTUALIZA UN ITEM', 'ITEM', 'UPDATE');
 END beforeUPDATEItem;
+
+/
+
+CREATE OR REPLACE TRIGGER pe.beforeDELETEItem
+BEFORE DELETE
+ON pe.Item
+FOR EACH ROW
+BEGIN
+    INSERT INTO systemLog(systemLog_id, description, object, type_change)
+    VALUES(s_systemlog.NEXTVAL, 'SE BORRA UN ITEM', 'ITEM', 'DELETE');
+END beforeDELETEItem;

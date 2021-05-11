@@ -58,6 +58,8 @@ FOR EACH ROW
 BEGIN
     :new.creation_date := SYSDATE;
     :new.creation_user := USER;
+    INSERT INTO systemLog(systemLog_id, description, object, type_change)
+    VALUES(s_systemlog.NEXTVAL, 'SE INSERTA UN PERSON KNOWS A PERSON', 'PERSON KNOWS A PERSON', 'INSERT');
 END beforeInsertPer1knowPer2; 
 
 /
@@ -69,4 +71,17 @@ FOR EACH ROW
 BEGIN
     :new.date_last_modification:= SYSDATE;
     :new.user_last_modification:= USER;
+    INSERT INTO systemLog(systemLog_id, description, object, type_change)
+    VALUES(s_systemlog.NEXTVAL, 'SE ACTUALIZA UN PERSON KNOWS A PERSON', 'PERSON KNOWS A PERSON', 'UPDATE');
 END beforeUPDATEPer1knowPer2; 
+
+/
+
+CREATE OR REPLACE TRIGGER pe.beforeDELETEPer1knowPer2
+BEFORE DELETE
+ON pe.Person1KnowsPerson2
+FOR EACH ROW
+BEGIN
+    INSERT INTO systemLog(systemLog_id, description, object, type_change)
+    VALUES(s_systemlog.NEXTVAL, 'SE BORRA UN PERSON KNOWS A PERSON', 'PERSON KNOWS A PERSON', 'DELETE');
+END beforeDELETEPer1knowPer2;

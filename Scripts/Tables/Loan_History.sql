@@ -73,6 +73,8 @@ BEGIN
     :new.loan_history_id := s_loan_history.nextval;
     :new.creation_date := SYSDATE;
     :new.creation_user := USER;
+    INSERT INTO systemLog(systemLog_id, description, object, type_change)
+    VALUES(s_systemlog.NEXTVAL, 'SE INSERTA UN LOAN HISTORY', 'LOAN HISTORY', 'INSERT');
 END beforeInsertloan_history; 
 
 /
@@ -84,4 +86,17 @@ FOR EACH ROW
 BEGIN
     :new.date_last_modification:= SYSDATE;
     :new.user_last_modification:= USER;
+    INSERT INTO systemLog(systemLog_id, description, object, type_change)
+    VALUES(s_systemlog.NEXTVAL, 'SE ACTUALIZA UN LOAN HISTORY', 'LOAN HISTORY', 'UPDATE');
 END beforeUPDATEloan_history;
+
+/
+
+CREATE OR REPLACE TRIGGER pe.beforeDELETEloan_history
+BEFORE DELETE
+ON pe.loan_history
+FOR EACH ROW
+BEGIN
+    INSERT INTO systemLog(systemLog_id, description, object, type_change)
+    VALUES(s_systemlog.NEXTVAL, 'SE BORRA UN LOAN HISTORY', 'LOAN HISTORY', 'DELETE');
+END beforeDELETEloan_history; 

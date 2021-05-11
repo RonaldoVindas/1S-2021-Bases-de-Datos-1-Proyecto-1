@@ -50,6 +50,8 @@ FOR EACH ROW
 BEGIN
     :new.creation_date := SYSDATE;
     :new.creation_user := USER;
+    INSERT INTO systemLog(systemLog_id, description, object, type_change)
+    VALUES(s_systemlog.NEXTVAL, 'SE INSERTA UN PERSON HAS ITEM', 'PERSON HAS ITEM', 'INSERT');
 END beforeInsertPersonHasItem; 
 
 /
@@ -61,4 +63,17 @@ FOR EACH ROW
 BEGIN
     :new.date_last_modification:= SYSDATE;
     :new.user_last_modification:= USER;
+    INSERT INTO systemLog(systemLog_id, description, object, type_change)
+    VALUES(s_systemlog.NEXTVAL, 'SE ACTUALIZA UN PERSON HAS ITEM', 'PERSON HAS ITEM', 'UPDATE');
 END beforeUPDATEPersonHasItem; 
+
+/
+
+CREATE OR REPLACE TRIGGER pe.beforeDELETEPersonHasItem
+BEFORE DELETE
+ON pe.PersonHasItem
+FOR EACH ROW
+BEGIN
+    INSERT INTO systemLog(systemLog_id, description, object, type_change)
+    VALUES(s_systemlog.NEXTVAL, 'SE BORRA UN PERSON HAS ITEM', 'PERSON HAS ITEM', 'DELETE');
+END beforeDELETEPersonHasItem;

@@ -45,6 +45,8 @@ FOR EACH ROW
 BEGIN
     :new.creation_date := SYSDATE;
     :new.creation_user := USER;
+    INSERT INTO systemLog(systemLog_id, description, object, type_change)
+    VALUES(s_systemlog.NEXTVAL, 'SE INSERTA UN ITEM HAS REVIEW', 'ITEM HAS REVIEW', 'INSERT');
 END beforeInsertItemHasReview; 
 
 /
@@ -56,4 +58,17 @@ FOR EACH ROW
 BEGIN
     :new.date_last_modification:= SYSDATE;
     :new.user_last_modification:= USER;
+    INSERT INTO systemLog(systemLog_id, description, object, type_change)
+    VALUES(s_systemlog.NEXTVAL, 'SE ACTUALIZA UN ITEM HAS REVIEW', 'ITEM HAS REVIEW', 'UPDATE');
 END beforeUPDATEItemHasReview;
+
+/
+
+CREATE OR REPLACE TRIGGER pe.beforeDELETEItemHasReview
+BEFORE DELETE
+ON pe.ItemHasReview
+FOR EACH ROW
+BEGIN
+    INSERT INTO systemLog(systemLog_id, description, object, type_change)
+    VALUES(s_systemlog.NEXTVAL, 'SE BORRA UN ITEM HAS REVIEW', 'ITEM HAS REVIEW', 'DELETE');
+END beforeDELETEItemHasReview;

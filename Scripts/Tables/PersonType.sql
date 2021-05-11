@@ -53,6 +53,8 @@ BEGIN
     :new.persontype_id := s_PersonType.nextval;
     :new.creation_date := SYSDATE;
     :new.creation_user := USER;
+    INSERT INTO systemLog(systemLog_id, description, object, type_change)
+    VALUES(s_systemlog.NEXTVAL, 'SE INSERTA UN PERSON TYPE', 'PERSON TYPE', 'INSERT');
 END beforeInsertPersonType; 
 
 /
@@ -64,4 +66,17 @@ FOR EACH ROW
 BEGIN
     :new.date_last_modification:= SYSDATE;
     :new.user_last_modification:= USER;
-END beforeUPDATEPersonType; 
+    INSERT INTO systemLog(systemLog_id, description, object, type_change)
+    VALUES(s_systemlog.NEXTVAL, 'SE ACTUALIZA UN PERSON TYPE', 'PERSON TYPE', 'UPDATE');
+END beforeUPDATEPersonType;
+
+/
+
+CREATE OR REPLACE TRIGGER pe.beforeDELETEPersonType
+BEFORE DELETE
+ON pe.PersonType
+FOR EACH ROW
+BEGIN
+    INSERT INTO systemLog(systemLog_id, description, object, type_change)
+    VALUES(s_systemlog.NEXTVAL, 'SE BORRA UN PERSON TYPE', 'PERSON TYPE', 'DELETE');
+END beforeDELETEPersonType;

@@ -46,7 +46,7 @@ BEGIN
     :new.creation_date := SYSDATE;
     :new.creation_user := USER;
     INSERT INTO systemLog(systemLog_id, description, object, type_change)
-    VALUES(s_systemlog.NEXTVAL, 'SE INSERTA UN ITEM HAS REVIEW', 'ITEM HAS REVIEW', 'INSERT');
+    VALUES(s_systemlog.NEXTVAL, 'AN ITEM HAS REVIEW IS INSERTED', 'ITEM HAS REVIEW', 'INSERT');
 END beforeInsertItemHasReview; 
 
 /
@@ -59,7 +59,7 @@ BEGIN
     :new.date_last_modification:= SYSDATE;
     :new.user_last_modification:= USER;
     INSERT INTO systemLog(systemLog_id, description, object, type_change)
-    VALUES(s_systemlog.NEXTVAL, 'SE ACTUALIZA UN ITEM HAS REVIEW', 'ITEM HAS REVIEW', 'UPDATE');
+    VALUES(s_systemlog.NEXTVAL, 'AN ITEM HAS REVIEW IS UPDATED', 'ITEM HAS REVIEW', 'UPDATE');
 END beforeUPDATEItemHasReview;
 
 /
@@ -70,5 +70,5 @@ ON pe.ItemHasReview
 FOR EACH ROW
 BEGIN
     INSERT INTO systemLog(systemLog_id, description, object, type_change)
-    VALUES(s_systemlog.NEXTVAL, 'SE BORRA UN ITEM HAS REVIEW', 'ITEM HAS REVIEW', 'DELETE');
+    VALUES(s_systemlog.NEXTVAL, 'AN ITEM HAS REVIEW IS DELETED', 'ITEM HAS REVIEW', 'DELETE');
 END beforeDELETEItemHasReview;

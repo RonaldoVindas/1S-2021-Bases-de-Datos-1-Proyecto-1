@@ -48,7 +48,7 @@ BEGIN
     :new.creation_date := SYSDATE;
     :new.creation_user := USER;
     INSERT INTO systemLog(systemLog_id, description, object, type_change)
-    VALUES(s_systemlog.NEXTVAL, 'SE INSERTA UN ITEM TYPE', 'ITEM TYPE', 'INSERT');
+    VALUES(s_systemlog.NEXTVAL, 'AN ITEM TYPE IS INSERTED', 'ITEM TYPE', 'INSERT');
 END beforeInsertItemType; 
 
 /
@@ -61,7 +61,7 @@ BEGIN
     :new.date_last_modification:= SYSDATE;
     :new.user_last_modification:= USER;
     INSERT INTO systemLog(systemLog_id, description, object, type_change)
-    VALUES(s_systemlog.NEXTVAL, 'SE ACTUALIZA UN ITEM TYPE', 'ITEM TYPE', 'UPDATE');
+    VALUES(s_systemlog.NEXTVAL, 'AN ITEM TYPE IS UPDATED', 'ITEM TYPE', 'UPDATE');
 END beforeUPDATEItemType; 
 
 /
@@ -72,5 +72,5 @@ ON pe.ItemType
 FOR EACH ROW
 BEGIN
     INSERT INTO systemLog(systemLog_id, description, object, type_change)
-    VALUES(s_systemlog.NEXTVAL, 'SE BORRA UN ITEM TYPE', 'ITEM TYPE', 'DELETE');
+    VALUES(s_systemlog.NEXTVAL, 'AN ITEM TYPE IS DELETED', 'ITEM TYPE', 'DELETE');
 END beforeDELETEItemType;

@@ -51,7 +51,7 @@ BEGIN
     :new.creation_date := SYSDATE;
     :new.creation_user := USER;
     INSERT INTO systemLog(systemLog_id, description, object, type_change)
-    VALUES(s_systemlog.NEXTVAL, 'SE INSERTA UN PERSON HAS ITEM', 'PERSON HAS ITEM', 'INSERT');
+    VALUES(s_systemlog.NEXTVAL, 'A PERSON HAS ITEM IS INSERTED', 'PERSON HAS ITEM', 'INSERT');
 END beforeInsertPersonHasItem; 
 
 /
@@ -64,7 +64,7 @@ BEGIN
     :new.date_last_modification:= SYSDATE;
     :new.user_last_modification:= USER;
     INSERT INTO systemLog(systemLog_id, description, object, type_change)
-    VALUES(s_systemlog.NEXTVAL, 'SE ACTUALIZA UN PERSON HAS ITEM', 'PERSON HAS ITEM', 'UPDATE');
+    VALUES(s_systemlog.NEXTVAL, 'A PERSON HAS ITEM IS UPDATED', 'PERSON HAS ITEM', 'UPDATE');
 END beforeUPDATEPersonHasItem; 
 
 /
@@ -75,5 +75,5 @@ ON pe.PersonHasItem
 FOR EACH ROW
 BEGIN
     INSERT INTO systemLog(systemLog_id, description, object, type_change)
-    VALUES(s_systemlog.NEXTVAL, 'SE BORRA UN PERSON HAS ITEM', 'PERSON HAS ITEM', 'DELETE');
+    VALUES(s_systemlog.NEXTVAL, 'A PERSON HAS ITEM IS DELETED', 'PERSON HAS ITEM', 'DELETE');
 END beforeDELETEPersonHasItem;

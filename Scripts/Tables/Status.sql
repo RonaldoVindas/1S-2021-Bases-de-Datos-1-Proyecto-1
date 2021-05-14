@@ -60,7 +60,7 @@ BEGIN
 	:new.creation_date := SYSDATE;
 	:new.creation_user := USER; 
     INSERT INTO systemLog(systemLog_id, description, object, type_change)
-    VALUES(s_systemlog.NEXTVAL, 'SE INSERTA UN STATUS', 'STATUS', 'INSERT');
+    VALUES(s_systemlog.NEXTVAL, 'A STATUS IS INSERTED', 'STATUS', 'INSERT');
 END beforeINSERTstatus;
 
 /
@@ -73,7 +73,7 @@ BEGIN
     :new.date_last_modification:= SYSDATE;
     :new.user_last_modification:= USER;
     INSERT INTO systemLog(systemLog_id, description, object, type_change)
-    VALUES(s_systemlog.NEXTVAL, 'SE ACTUALIZA UN STATUS', 'STATUS', 'UPDATE');
+    VALUES(s_systemlog.NEXTVAL, 'A STATUS IS UPDATED', 'STATUS', 'UPDATE');
 END beforeUPDATEstatus;
 
 /
@@ -84,5 +84,5 @@ ON pe.status
 FOR EACH ROW
 BEGIN
     INSERT INTO systemLog(systemLog_id, description, object, type_change)
-    VALUES(s_systemlog.NEXTVAL, 'SE BORRA UN STATUS', 'STATUS', 'DELETE');
+    VALUES(s_systemlog.NEXTVAL, 'A STATUS IS DELETED', 'STATUS', 'DELETE');
 END beforeDELETEstatus;

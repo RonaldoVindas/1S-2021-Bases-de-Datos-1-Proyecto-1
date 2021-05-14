@@ -79,7 +79,7 @@ BEGIN
     :new.creation_date := SYSDATE;
     :new.creation_user := USER;
     INSERT INTO systemLog(systemLog_id, description, object, type_change)
-    VALUES(s_systemlog.NEXTVAL, 'SE INSERTA UN PERSON LEND ITEM', 'PERSON LEND ITEM', 'INSERT');
+    VALUES(s_systemlog.NEXTVAL, 'A PERSON LEND ITEM IS INSERTED', 'PERSON LEND ITEM', 'INSERT');
 END beforeInsertPersonLendItem; 
 
 /
@@ -92,7 +92,7 @@ BEGIN
     :new.date_last_modification:= SYSDATE;
     :new.user_last_modification:= USER;
     INSERT INTO systemLog(systemLog_id, description, object, type_change)
-    VALUES(s_systemlog.NEXTVAL, 'SE ACTUALIZA UN PERSON LEND ITEM', 'PERSON LEND ITEM', 'UPDATE');
+    VALUES(s_systemlog.NEXTVAL, 'A PERSON LEND ITEM IS UPDATED', 'PERSON LEND ITEM', 'UPDATE');
 END beforeUPDATEPersonLendItem;
 
 /
@@ -103,5 +103,5 @@ ON pe.PersonLendItem
 FOR EACH ROW
 BEGIN
     INSERT INTO systemLog(systemLog_id, description, object, type_change)
-    VALUES(s_systemlog.NEXTVAL, 'SE BORRA UN PERSON LEND ITEM', 'PERSON LEND ITEM', 'DELETE');
+    VALUES(s_systemlog.NEXTVAL, 'A PERSON LEND ITEM IS DELETED', 'PERSON LEND ITEM', 'DELETE');
 END beforeDELETEPersonLendItem;

@@ -30,12 +30,10 @@ CREATE OR REPLACE PACKAGE BODY Statistics_Queries IS
             vcCursor SYS_REFCURSOR;
         BEGIN
             OPEN vcCursor FOR
-                SELECT COUNT(item_id) AS total_lended_items, TRUNC(COUNT(item_id)/(SELECT COUNT(item_id) FROM PersonLendItem)*100, 2) AS percentage
-                FROM (
-                    SELECT item_id
-                    FROM PersonLendItem)
-                GROUP BY item_id
-                ORDER BY percentage DESC;
+            SELECT (
+                    SELECT Distinct Count(item_id) from item where status_id = 0), (SELECT Count(item_id) from item where status_id > 0
+                    ) 
+            from personlenditem  where rownum = 1;
         RETURN vcCursor;
     END totalLendedBookNow;
 
@@ -47,15 +45,14 @@ CREATE OR REPLACE PACKAGE BODY Statistics_Queries IS
             vcCursor SYS_REFCURSOR;
         BEGIN
             OPEN vcCursor FOR
-                SELECT COUNT(item_id) AS total_lended_items,TRUNC (COUNT(item_id)/(SELECT COUNT(item_id) FROM Loan_History)*100,2) AS percentage
-                FROM (
-                    SELECT item_id
-                    FROM Loan_History)
-                GROUP BY item_id
-                ORDER BY percentage DESC;
+                select x.title, count(y.item_id) AS total_lended_items, TRUNC(count(x.item_id)/(select count(item_id)from loan_history )*100,2) as percentage
+                from item x
+                inner join loan_history y
+                on y.item_id = x.item_id
+                GROUP by x.title
+                order by  total_lended_items desc;
         RETURN vcCursor;
     END totalLendedBook;
-
 
     
 -- Total y porcentaje de libros prestados y por clasificación

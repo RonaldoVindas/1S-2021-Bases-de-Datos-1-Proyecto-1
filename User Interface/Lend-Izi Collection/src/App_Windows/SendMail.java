@@ -1,5 +1,12 @@
 package App_Windows;
 
+/*
+By:
+    Renzo Barra
+    Álvaro Moreira
+    Ronaldo Vindas
+*/
+
 import java.util.Properties;
 import javax.mail.Session;
 import javax.mail.Message;

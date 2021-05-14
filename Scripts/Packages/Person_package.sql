@@ -8,6 +8,7 @@ PROCEDURE remove_person (pid IN NUMBER);
 PROCEDURE update_person(pid_old IN NUMBER, pfirname IN VARCHAR2, plasname IN VARCHAR2, pemail IN VARCHAR2, ppassword IN VARCHAR2, pphonenumber IN VARCHAR2, pdate IN VARCHAR2);
 
 FUNCTION getpersonId(pemail IN VARCHAR2) RETURN NUMBER;
+FUNCTION getpersonId2(pfirname IN VARCHAR2, plasname IN VARCHAR2) RETURN NUMBER;
 FUNCTION getpersonFirstName(pid IN NUMBER) RETURN VARCHAR2;
 FUNCTION getpersonLastName(pid IN NUMBER) RETURN VARCHAR2;
 FUNCTION getpersonEmail(pid IN NUMBER) RETURN VARCHAR2;
@@ -125,7 +126,30 @@ IS
     END;
     
     
-    
+
+FUNCTION getpersonId2(pfirname IN VARCHAR2, plasname IN VARCHAR2) RETURN NUMBER
+IS 
+    vcId NUMBER(11);
+    BEGIN
+        SELECT person_id
+        INTO vcId
+        FROM person
+        WHERE first_name = pfirname AND last_name = plasname;
+        RETURN (vcId);
+        EXCEPTION
+            WHEN TOO_MANY_ROWS THEN
+            DBMS_OUTPUT.PUT_LINE ('Your SELECT statement retrieved multiple rows.');
+            WHEN NO_DATA_FOUND THEN
+            DBMS_OUTPUT.PUT_LINE ('Could not find a register with the name||pcnombre.');
+            WHEN STORAGE_ERROR THEN
+            DBMS_OUTPUT.PUT_LINE ('PL/SQL ran out of memory or memory is corrupted.');
+            WHEN VALUE_ERROR THEN
+            DBMS_OUTPUT.PUT_LINE ('An arithmetic, conversion, truncation, or size constraint error ocurred.');
+            WHEN OTHERS THEN
+            DBMS_OUTPUT.PUT_LINE ('Unexpected error.');
+    END;
+
+
     
 FUNCTION getpersonFirstName(pid IN NUMBER) RETURN VARCHAR2
 
@@ -194,6 +218,8 @@ IS
             WHEN OTHERS THEN
             DBMS_OUTPUT.PUT_LINE ('Unexpected error.');
     END;
+
+
 
 FUNCTION getpersonPassword(pid IN NUMBER) RETURN VARCHAR2
 IS 

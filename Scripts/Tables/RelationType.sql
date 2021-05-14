@@ -54,7 +54,7 @@ BEGIN
 	:new.creation_date := SYSDATE;
 	:new.creation_user := USER;
     INSERT INTO systemLog(systemLog_id, description, object, type_change)
-    VALUES(s_systemlog.NEXTVAL, 'SE INSERTA UN RELATION TYPE', 'RELATION TYPE', 'INSERT');
+    VALUES(s_systemlog.NEXTVAL, 'A RELATION TYPE IS INSERTED', 'RELATION TYPE', 'INSERT');
 END beforeINSERTrelationType;
 
 /
@@ -67,7 +67,7 @@ BEGIN
     :new.date_last_modification:= SYSDATE;
     :new.user_last_modification:= USER;
     INSERT INTO systemLog(systemLog_id, description, object, type_change)
-    VALUES(s_systemlog.NEXTVAL, 'SE ACTUALIZA UN RELATION TYPE', 'RELATION TYPE', 'UPDATE');
+    VALUES(s_systemlog.NEXTVAL, 'A RELATION TYPE IS UPDATED', 'RELATION TYPE', 'UPDATE');
 END beforeUPDATErelationType;
 
 /
@@ -78,5 +78,5 @@ ON pe.relationType
 FOR EACH ROW
 BEGIN
 	INSERT INTO systemLog(systemLog_id, description, object, type_change)
-    VALUES(s_systemlog.NEXTVAL, 'SE BORRA UN RELATION TYPE', 'RELATION TYPE', 'DELETE');
+    VALUES(s_systemlog.NEXTVAL, 'A RELATION TYPE IS DELETED', 'RELATION TYPE', 'DELETE');
 END beforeDELETErelationType;

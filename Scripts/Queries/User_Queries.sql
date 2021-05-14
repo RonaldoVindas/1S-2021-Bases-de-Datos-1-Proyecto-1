@@ -40,9 +40,9 @@ CREATE OR REPLACE PACKAGE BODY users_queries IS
             vcCursor SYS_REFCURSOR;
         BEGIN
             OPEN vcCursor FOR
-                SELECT cover, title, itemEdition, barcode, itemType, status, publisher, genre, firstName, lastName
+                SELECT title, itemEdition, barcode, itemType, status, publisher, genre, firstName, lastName
                 FROM (
-                    SELECT DBMS_LOB.SUBSTR(cover_image) AS cover, i.title AS title,i.edition AS itemEdition, i.barcode AS barcode, iT.itemType_name AS itemType,
+                    SELECT  i.title AS title,i.edition AS itemEdition, i.barcode AS barcode, iT.itemType_name AS itemType,
                     s.status_name AS status, pu.publisher_name AS publisher, LISTAGG(ge.genre_name, ', ') WITHIN GROUP(ORDER BY ge.genre_name) AS genre,
                     p.first_name AS firstName, p.last_name AS lastName
                     FROM item i
@@ -53,13 +53,13 @@ CREATE OR REPLACE PACKAGE BODY users_queries IS
                     INNER JOIN genre ge ON ihg.genre_id = ge.genre_id
                     INNER JOIN personCreatesItem pCi ON i.item_id = pCi.item_id
                     INNER JOIN person p ON pCi.person_id = p.person_id 
-                    GROUP BY DBMS_LOB.SUBSTR(cover_image), i.title, i.edition, i.barcode, iT.itemType_name, 
+                    GROUP BY i.title, i.edition, i.barcode, iT.itemType_name, 
                     s.status_name, pu.publisher_name, p.first_name, p.last_name)
                 WHERE title LIKE CONCAT(pTitle, '%')
                 AND firstName LIKE CONCAT(pAuthorFirstName, '%')
                 AND lastName LIKE CONCAT(pAuthorLastName, '%')
                 AND publisher LIKE CONCAT(pPublisher, '%')
-                GROUP BY cover, title, itemEdition, barcode, itemType, status, publisher, genre, firstName, lastName
+                GROUP BY title, itemEdition, barcode, itemType, status, publisher, genre, firstName, lastName
                 ORDER BY title ASC;
         RETURN vcCursor;
     END allItems;
@@ -72,10 +72,10 @@ CREATE OR REPLACE PACKAGE BODY users_queries IS
             vcCursor SYS_REFCURSOR;
         BEGIN
             OPEN vcCursor FOR
-                SELECT cover, title, itemEdition, barcode, itemType, status, publisher, genre,
+                SELECT title, itemEdition, barcode, itemType, status, publisher, genre,
                 firstName, lastName, lendDate, returnDate, amountDays, yellowDays, redDays
                 FROM (
-                    SELECT DBMS_LOB.SUBSTR(cover_image) AS cover, i.title AS title, i.edition AS itemEdition, i.barcode AS barcode, iT.itemType_name AS itemType,
+                    SELECT i.title AS title, i.edition AS itemEdition, i.barcode AS barcode, iT.itemType_name AS itemType,
                     s.status_name AS status, pu.publisher_name AS publisher, LISTAGG(ge.genre_name, ', ') WITHIN GROUP(ORDER BY ge.genre_name) AS genre,
                     p.first_name AS firstName, p.last_name AS lastName, pLi.lend_date AS lendDate, pLi.return_date AS returnDate, pLi.amount_days AS amountDays, pLi.tolerance_days_yellow AS yellowDays,
                     pLi.tolerance_days_red AS redDays
@@ -87,7 +87,7 @@ CREATE OR REPLACE PACKAGE BODY users_queries IS
                     INNER JOIN person p ON pLi.person2_id = p.person_id
                     INNER JOIN itemHasGenre ihg ON pLi.item_id = ihg.item_id
                     INNER JOIN genre ge ON ihg.genre_id = ge.genre_id
-                    GROUP BY DBMS_LOB.SUBSTR(cover_image), i.title, i.edition, i.barcode, 
+                    GROUP BY i.title, i.edition, i.barcode, 
                     iT.itemType_name, s.status_name, pu.publisher_name, p.first_name, p.last_name, 
                     pLi.amount_days, pLi.tolerance_days_yellow, pLi.tolerance_days_red, pLi.lend_date, pLi.return_date)
                 WHERE firstName LIKE CONCAT(pPersonFirstName, '%')
@@ -95,9 +95,9 @@ CREATE OR REPLACE PACKAGE BODY users_queries IS
                 AND amountDays <= NVL(pNumberDays, amountDays)
                 AND yellowDays <= NVL(pNumberToleranceDays, yellowDays)
                 AND redDays <= NVL(pNumberToleranceDaysMax, redDays)
-                AND TRUNC(ABS(lendDate - returnDate), 0) + yellowDays + redDays
+                AND TRUNC(lendDate - returnDate,0) + yellowDays + redDays
                 <= NVL(pNumberDays, amountDays) + NVL(pNumberToleranceDays, yellowDays) + NVL(pNumberToleranceDaysMax, redDays)
-                GROUP BY cover, title, itemEdition, barcode, itemType, 
+                GROUP BY title, itemEdition, barcode, itemType, 
                 status, publisher, genre, firstName, lastName, 
                 amountDays, yellowDays, redDays, lendDate, returnDate
                 ORDER BY title ASC;

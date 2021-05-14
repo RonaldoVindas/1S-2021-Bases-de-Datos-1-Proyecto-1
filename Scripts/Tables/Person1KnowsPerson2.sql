@@ -1,4 +1,4 @@
-/*==================================================CREACIÓN DE TABLAS======================================================*/
+  /*==================================================CREACIÓN DE TABLAS======================================================*/
 create table Person1KnowsPerson2(
   person1_id  Number(9),
   person2_id Number(9),
@@ -59,7 +59,7 @@ BEGIN
     :new.creation_date := SYSDATE;
     :new.creation_user := USER;
     INSERT INTO systemLog(systemLog_id, description, object, type_change)
-    VALUES(s_systemlog.NEXTVAL, 'SE INSERTA UN PERSON KNOWS A PERSON', 'PERSON KNOWS A PERSON', 'INSERT');
+    VALUES(s_systemlog.NEXTVAL, 'AN PERSON1KNOWpERSON2 IS INSERTED', 'PERSON KNOWS A PERSON', 'INSERT');
 END beforeInsertPer1knowPer2; 
 
 /
@@ -72,7 +72,7 @@ BEGIN
     :new.date_last_modification:= SYSDATE;
     :new.user_last_modification:= USER;
     INSERT INTO systemLog(systemLog_id, description, object, type_change)
-    VALUES(s_systemlog.NEXTVAL, 'SE ACTUALIZA UN PERSON KNOWS A PERSON', 'PERSON KNOWS A PERSON', 'UPDATE');
+    VALUES(s_systemlog.NEXTVAL, 'AN PERSON1KNOWpERSON2 IS UPDATED', 'PERSON KNOWS A PERSON', 'UPDATE');
 END beforeUPDATEPer1knowPer2; 
 
 /
@@ -83,5 +83,5 @@ ON pe.Person1KnowsPerson2
 FOR EACH ROW
 BEGIN
     INSERT INTO systemLog(systemLog_id, description, object, type_change)
-    VALUES(s_systemlog.NEXTVAL, 'SE BORRA UN PERSON KNOWS A PERSON', 'PERSON KNOWS A PERSON', 'DELETE');
+    VALUES(s_systemlog.NEXTVAL, 'AN PERSON1KNOWpERSON2 IS DELETED', 'PERSON KNOWS A PERSON', 'DELETE');
 END beforeDELETEPer1knowPer2;

@@ -5,6 +5,13 @@
  */
 package App_Windows;
 
+/*
+By:
+    Renzo Barra
+    Álvaro Moreira
+    Ronaldo Vindas
+*/
+
 import java.sql.Date;
 import java.sql.SQLException;
 import java.text.DateFormat;
@@ -93,12 +100,12 @@ public class Register_Window extends javax.swing.JFrame {
                 Exit_ButtonActionPerformed(evt);
             }
         });
-        getContentPane().add(Exit_Button, new org.netbeans.lib.awtextra.AbsoluteConstraints(1250, 0, 30, 30));
+        getContentPane().add(Exit_Button, new org.netbeans.lib.awtextra.AbsoluteConstraints(1260, 0, 30, 30));
 
         MenuBlack_Panel.setBackground(new java.awt.Color(0, 0, 0));
         MenuBlack_Panel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel2.setBackground(new java.awt.Color(51, 51, 51));
+        jPanel2.setBackground(new java.awt.Color(34, 34, 33));
         jPanel2.setBorder(javax.swing.BorderFactory.createMatteBorder(3, 3, 3, 3, new java.awt.Color(243, 149, 1)));
         jPanel2.setForeground(new java.awt.Color(255, 255, 255));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -106,87 +113,87 @@ public class Register_Window extends javax.swing.JFrame {
         Identification_Label.setFont(new java.awt.Font("Bahnschrift", 0, 20)); // NOI18N
         Identification_Label.setForeground(new java.awt.Color(255, 255, 255));
         Identification_Label.setText("Identification:");
-        jPanel2.add(Identification_Label, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
+        jPanel2.add(Identification_Label, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, -1, -1));
 
-        Identification_Label1.setFont(new java.awt.Font("Bahnschrift", 1, 20)); // NOI18N
+        Identification_Label1.setFont(new java.awt.Font("Bahnschrift", 0, 20)); // NOI18N
         Identification_Label1.setForeground(new java.awt.Color(255, 255, 255));
-        Identification_Label1.setText("yyyy              mm               dd");
-        jPanel2.add(Identification_Label1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 460, 240, -1));
+        Identification_Label1.setText("yyyy                   mm                       dd");
+        jPanel2.add(Identification_Label1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 480, 240, -1));
 
         FirstName_Label.setFont(new java.awt.Font("Bahnschrift", 0, 20)); // NOI18N
         FirstName_Label.setForeground(new java.awt.Color(255, 255, 255));
         FirstName_Label.setText("First Name:");
-        jPanel2.add(FirstName_Label, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, -1, -1));
+        jPanel2.add(FirstName_Label, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, -1, -1));
 
         LastName_Label.setFont(new java.awt.Font("Bahnschrift", 0, 20)); // NOI18N
         LastName_Label.setForeground(new java.awt.Color(255, 255, 255));
         LastName_Label.setText("Last Name:");
-        jPanel2.add(LastName_Label, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, -1, -1));
+        jPanel2.add(LastName_Label, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 170, -1, -1));
 
         Email_Label.setFont(new java.awt.Font("Bahnschrift", 0, 20)); // NOI18N
         Email_Label.setForeground(new java.awt.Color(255, 255, 255));
         Email_Label.setText("Email:");
-        jPanel2.add(Email_Label, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 210, -1, -1));
+        jPanel2.add(Email_Label, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 230, -1, -1));
 
         Password_Label.setFont(new java.awt.Font("Bahnschrift", 0, 20)); // NOI18N
         Password_Label.setForeground(new java.awt.Color(255, 255, 255));
         Password_Label.setText("Password:");
-        jPanel2.add(Password_Label, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 270, -1, -1));
+        jPanel2.add(Password_Label, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 290, -1, -1));
 
         PhoneNumber_Label.setFont(new java.awt.Font("Bahnschrift", 0, 20)); // NOI18N
         PhoneNumber_Label.setForeground(new java.awt.Color(255, 255, 255));
         PhoneNumber_Label.setText("Phone Number:");
-        jPanel2.add(PhoneNumber_Label, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 330, -1, -1));
+        jPanel2.add(PhoneNumber_Label, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 350, -1, -1));
 
         Birthday_Label.setFont(new java.awt.Font("Bahnschrift", 0, 20)); // NOI18N
         Birthday_Label.setForeground(new java.awt.Color(255, 255, 255));
         Birthday_Label.setText("Birthday:");
-        jPanel2.add(Birthday_Label, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 400, -1, -1));
+        jPanel2.add(Birthday_Label, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 420, -1, -1));
 
-        Identification_TextField.setBackground(new java.awt.Color(255, 255, 255));
-        Identification_TextField.setForeground(new java.awt.Color(0, 0, 0));
-        Identification_TextField.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(234, 85, 3)));
-        jPanel2.add(Identification_TextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 290, -1));
+        Identification_TextField.setBackground(new java.awt.Color(34, 34, 33));
+        Identification_TextField.setForeground(new java.awt.Color(255, 255, 255));
+        Identification_TextField.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(234, 85, 3)));
+        jPanel2.add(Identification_TextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, 290, -1));
 
-        FirstName_TextField.setBackground(new java.awt.Color(255, 255, 255));
-        FirstName_TextField.setForeground(new java.awt.Color(0, 0, 0));
-        FirstName_TextField.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(234, 85, 3)));
-        jPanel2.add(FirstName_TextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, 290, -1));
+        FirstName_TextField.setBackground(new java.awt.Color(34, 34, 33));
+        FirstName_TextField.setForeground(new java.awt.Color(255, 255, 255));
+        FirstName_TextField.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(234, 85, 3)));
+        jPanel2.add(FirstName_TextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, 290, -1));
 
-        LastName_TextField.setBackground(new java.awt.Color(255, 255, 255));
-        LastName_TextField.setForeground(new java.awt.Color(0, 0, 0));
-        LastName_TextField.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(234, 85, 3)));
-        jPanel2.add(LastName_TextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 180, 290, -1));
+        LastName_TextField.setBackground(new java.awt.Color(34, 34, 33));
+        LastName_TextField.setForeground(new java.awt.Color(255, 255, 255));
+        LastName_TextField.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(234, 85, 3)));
+        jPanel2.add(LastName_TextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 200, 290, -1));
 
-        Email_TextField.setBackground(new java.awt.Color(255, 255, 255));
-        Email_TextField.setForeground(new java.awt.Color(0, 0, 0));
-        Email_TextField.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(234, 85, 3)));
-        jPanel2.add(Email_TextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 240, 290, -1));
+        Email_TextField.setBackground(new java.awt.Color(34, 34, 33));
+        Email_TextField.setForeground(new java.awt.Color(255, 255, 255));
+        Email_TextField.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(234, 85, 3)));
+        jPanel2.add(Email_TextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 260, 290, -1));
 
-        Password_TextField.setBackground(new java.awt.Color(255, 255, 255));
-        Password_TextField.setForeground(new java.awt.Color(0, 0, 0));
-        Password_TextField.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(234, 85, 3)));
-        jPanel2.add(Password_TextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 300, 290, -1));
+        Password_TextField.setBackground(new java.awt.Color(34, 34, 33));
+        Password_TextField.setForeground(new java.awt.Color(255, 255, 255));
+        Password_TextField.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(234, 85, 3)));
+        jPanel2.add(Password_TextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 320, 290, -1));
 
-        PhoneNumber_TextField.setBackground(new java.awt.Color(255, 255, 255));
-        PhoneNumber_TextField.setForeground(new java.awt.Color(0, 0, 0));
-        PhoneNumber_TextField.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(234, 85, 3)));
-        jPanel2.add(PhoneNumber_TextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 370, 290, -1));
+        PhoneNumber_TextField.setBackground(new java.awt.Color(34, 34, 33));
+        PhoneNumber_TextField.setForeground(new java.awt.Color(255, 255, 255));
+        PhoneNumber_TextField.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(234, 85, 3)));
+        jPanel2.add(PhoneNumber_TextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 390, 290, -1));
 
-        BirthdayMonth_TextField.setBackground(new java.awt.Color(255, 255, 255));
-        BirthdayMonth_TextField.setForeground(new java.awt.Color(0, 0, 0));
-        BirthdayMonth_TextField.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(234, 85, 3)));
-        jPanel2.add(BirthdayMonth_TextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 440, 90, -1));
+        BirthdayMonth_TextField.setBackground(new java.awt.Color(34, 34, 33));
+        BirthdayMonth_TextField.setForeground(new java.awt.Color(255, 255, 255));
+        BirthdayMonth_TextField.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(234, 85, 3)));
+        jPanel2.add(BirthdayMonth_TextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 460, 90, -1));
 
-        BirthdayDay_TextField.setBackground(new java.awt.Color(255, 255, 255));
-        BirthdayDay_TextField.setForeground(new java.awt.Color(0, 0, 0));
-        BirthdayDay_TextField.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(234, 85, 3)));
-        jPanel2.add(BirthdayDay_TextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 440, 90, -1));
+        BirthdayDay_TextField.setBackground(new java.awt.Color(34, 34, 33));
+        BirthdayDay_TextField.setForeground(new java.awt.Color(255, 255, 255));
+        BirthdayDay_TextField.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(234, 85, 3)));
+        jPanel2.add(BirthdayDay_TextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 460, 90, -1));
 
-        BirthdayYear_TextField.setBackground(new java.awt.Color(255, 255, 255));
-        BirthdayYear_TextField.setForeground(new java.awt.Color(0, 0, 0));
-        BirthdayYear_TextField.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(234, 85, 3)));
-        jPanel2.add(BirthdayYear_TextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 440, 90, -1));
+        BirthdayYear_TextField.setBackground(new java.awt.Color(34, 34, 33));
+        BirthdayYear_TextField.setForeground(new java.awt.Color(255, 255, 255));
+        BirthdayYear_TextField.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(234, 85, 3)));
+        jPanel2.add(BirthdayYear_TextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 460, 90, -1));
 
         Register_Buttton.setBackground(new java.awt.Color(15, 172, 103));
         Register_Buttton.setFont(new java.awt.Font("Bahnschrift", 0, 24)); // NOI18N
@@ -198,9 +205,9 @@ public class Register_Window extends javax.swing.JFrame {
                 Register_ButttonActionPerformed(evt);
             }
         });
-        jPanel2.add(Register_Buttton, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 180, 200, 150));
+        jPanel2.add(Register_Buttton, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 210, 200, 150));
 
-        MenuBlack_Panel.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 170, 590, 500));
+        MenuBlack_Panel.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 170, 590, 530));
 
         RegisterNow_Label.setFont(new java.awt.Font("Bahnschrift", 0, 36)); // NOI18N
         RegisterNow_Label.setForeground(new java.awt.Color(255, 240, 1));
@@ -213,7 +220,7 @@ public class Register_Window extends javax.swing.JFrame {
         getContentPane().add(MenuBlack_Panel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 640, 720));
 
         LogIn_Wallpaper.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Register_Wallpaper.jpg"))); // NOI18N
-        getContentPane().add(LogIn_Wallpaper, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 0, -1, -1));
+        getContentPane().add(LogIn_Wallpaper, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 0, 1290, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

@@ -1,9 +1,12 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package DBConnection;
+
+/*
+By:
+    Renzo Barra
+    Álvaro Moreira
+    Ronaldo Vindas
+*/
+
 
 import java.awt.Image;
 import java.io.FileInputStream;
@@ -138,7 +141,7 @@ public class ConnectDB {
      //=============Tabla: Item ===========================================================================================================//////////////////////////////////////////
     //============================ Paquete ===================================================================================================================////////////////////////
     
-    public static void insertItem(String pTitle, String pEdition, byte[] pCover, String pBarcode, int pItemTypeId, int pStatusId, int pPublisherId ) throws SQLException{
+    public static int insertItem(String pTitle, String pEdition, byte[] pCover, String pBarcode, int pItemTypeId, int pStatusId, int pPublisherId ) throws SQLException{
         String host = "jdbc:oracle:thin:@localhost:1521:DBRONALDO";
         String uName = "PE";
         String uPass = "PE";
@@ -146,17 +149,29 @@ public class ConnectDB {
         
         
         Connection con = DriverManager.getConnection(host, uName, uPass);
-        CallableStatement stmt = con.prepareCall("{ call control_item.insert_item(?,?,?,?,?,?,?)}");
-        stmt.setString(1, pTitle);
-        stmt.setString(2, pEdition);
-        stmt.setObject(3, pCover, java.sql.Types.BLOB);
-        stmt.setString(4, pBarcode);
-        stmt.setInt(5,pItemTypeId );
-        stmt.setInt(6, pStatusId);
-        stmt.setInt(7, pPublisherId);
+        CallableStatement stmt = con.prepareCall("{ ? = call control_item.insert_item(?,?,?,?,?,?,?)}");
+        stmt.registerOutParameter(1, OracleTypes.INTEGER);
+        stmt.setString(2, pTitle);
+        stmt.setString(3, pEdition);
+        stmt.setObject(4, pCover);
+        stmt.setString(5, pBarcode);
+        stmt.setInt(6,pItemTypeId );
+        stmt.setInt(7, pStatusId);
+        stmt.setInt(8, pPublisherId);
         
         
-        stmt.execute();          
+        //stmt.execute();        
+       
+       
+        
+        stmt.executeQuery();
+          
+        int r = stmt.getInt(1);
+        System.out.println(r);
+        return r;
+         
+         
+        
     }
     
     public static void removeItem(int pId) throws SQLException{
@@ -702,9 +717,6 @@ public class ConnectDB {
     }
     
     
-    
-
-    
     public static int getPersonId(String pEmail) throws SQLException{
         String host = "jdbc:oracle:thin:@localhost:1521:DBRONALDO";
         String uName = "PE";
@@ -725,6 +737,31 @@ public class ConnectDB {
    
 
     }
+    
+    public static int getPersonIdByNames(String pFirstName, String pLastName) throws SQLException{
+        String host = "jdbc:oracle:thin:@localhost:1521:DBRONALDO";
+        String uName = "PE";
+        String uPass = "PE";
+        
+        
+        
+        Connection con = DriverManager.getConnection(host, uName, uPass);
+        CallableStatement stmt = con.prepareCall("{ ? = call control_person.getpersonId2(?,?)}");
+       
+        stmt.registerOutParameter(1, OracleTypes.INTEGER);
+        stmt.setString(2, pFirstName);
+        stmt.setString(3, pLastName);
+        stmt.executeQuery();
+        
+        int r = stmt.getInt(1);
+        System.out.println(r);
+        return r;
+   
+
+    }    
+    
+    
+    
     
      public static String getPersonFirstName(int pId) throws SQLException{
         String host = "jdbc:oracle:thin:@localhost:1521:DBRONALDO";
@@ -2528,18 +2565,94 @@ public static void updateLoanHistoryReturnDate(int pperson1_id, int pperson2_id,
         
         }         
     
+//=============Tabla: User Queries ===========================================================================================================//////////////////////////////////////////
+    //============================ Paquete ===================================================================================================================////////////////////////    
     
     
     
+ public static ResultSet UserAllItemsTotal() throws SQLException{
+        String host = "jdbc:oracle:thin:@localhost:1521:DBRONALDO";
+        String uName = "PE";
+        String uPass = "PE";
+        
+        Connection con = DriverManager.getConnection(host, uName, uPass);
+        CallableStatement stmt = con.prepareCall("{ ? = call users_queries.allItemsTotal()}");
+       
+        stmt.registerOutParameter(1, OracleTypes.CURSOR);
+
+        stmt.executeQuery();
+        
+        ResultSet r = ((OracleCallableStatement)stmt).getCursor(1);
+        System.out.println(r.toString());
+        return r;
+        
+        }       
     
     
+ public static ResultSet UserAllLendedItemsTotal() throws SQLException{
+        String host = "jdbc:oracle:thin:@localhost:1521:DBRONALDO";
+        String uName = "PE";
+        String uPass = "PE";
+        
+        Connection con = DriverManager.getConnection(host, uName, uPass);
+        CallableStatement stmt = con.prepareCall("{ ? = call users_queries.allLendedItemsTotal()}");
+       
+        stmt.registerOutParameter(1, OracleTypes.CURSOR);
+
+        stmt.executeQuery();
+        
+        ResultSet r = ((OracleCallableStatement)stmt).getCursor(1);
+        System.out.println(r.toString());
+        return r;
+        
+        }        
     
+ public static ResultSet UserAllItems(String pTitle, String pAuthorFirstName, String pAuthorLastName, String pPublisher ) throws SQLException{
+        String host = "jdbc:oracle:thin:@localhost:1521:DBRONALDO";
+        String uName = "PE";
+        String uPass = "PE";
+        
+        Connection con = DriverManager.getConnection(host, uName, uPass);
+        CallableStatement stmt = con.prepareCall("{ ? = call users_queries.allItems(?,?,?,?)}");
+       
+        stmt.registerOutParameter(1, OracleTypes.CURSOR);
+        stmt.setString(2, pTitle);
+        stmt.setString(3, pAuthorFirstName);
+        stmt.setString(4, pAuthorLastName);
+        stmt.setString(5, pPublisher);
+
+        
+        stmt.executeQuery();
+        
+        ResultSet r = ((OracleCallableStatement)stmt).getCursor(1);
+        System.out.println(r.toString());
+        return r;
+        
+        }        
     
-    
-    
-    
-    
-    
+ public static ResultSet UserAllLendedItems(String pFirstName, String pLastName, String pNumberDays, String pToleranceYellow, String pToleranceRed ) throws SQLException{
+        String host = "jdbc:oracle:thin:@localhost:1521:DBRONALDO";
+        String uName = "PE";
+        String uPass = "PE";
+        
+        Connection con = DriverManager.getConnection(host, uName, uPass);
+        CallableStatement stmt = con.prepareCall("{ ? = call users_queries.allLendedItems(?,?,?,?,?)}");
+       
+        stmt.registerOutParameter(1, OracleTypes.CURSOR);
+        stmt.setString(2, pFirstName);
+        stmt.setString(3, pLastName);
+        stmt.setString(4, pNumberDays);
+        stmt.setString(5, pToleranceYellow);
+        stmt.setString(6, pToleranceRed);
+        
+        stmt.executeQuery();
+        
+        ResultSet r = ((OracleCallableStatement)stmt).getCursor(1);
+        System.out.println(r.toString());
+        return r;
+        
+        }        
+        
     
     
     

@@ -56,6 +56,7 @@ BEFORE INSERT
 ON pe.systemLog
 FOR EACH ROW
 BEGIN
+  :new.sys_date = sysdate;
 	:new.creation_date := SYSTIMESTAMP;
 	:new.creation_user := USER;
 END beforeINSERTsystemLog;

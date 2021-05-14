@@ -54,7 +54,7 @@ BEGIN
     :new.creation_date := SYSDATE;
     :new.creation_user := USER;
     INSERT INTO systemLog(systemLog_id, description, object, type_change)
-    VALUES(s_systemlog.NEXTVAL, 'SE INSERTA UN PERSON TYPE', 'PERSON TYPE', 'INSERT');
+    VALUES(s_systemlog.NEXTVAL, 'A PERSON TYPE IS INSERTED', 'PERSON TYPE', 'INSERT');
 END beforeInsertPersonType; 
 
 /
@@ -67,7 +67,7 @@ BEGIN
     :new.date_last_modification:= SYSDATE;
     :new.user_last_modification:= USER;
     INSERT INTO systemLog(systemLog_id, description, object, type_change)
-    VALUES(s_systemlog.NEXTVAL, 'SE ACTUALIZA UN PERSON TYPE', 'PERSON TYPE', 'UPDATE');
+    VALUES(s_systemlog.NEXTVAL, 'A PERSON TYPE IS UPDATED', 'PERSON TYPE', 'UPDATE');
 END beforeUPDATEPersonType;
 
 /
@@ -78,5 +78,5 @@ ON pe.PersonType
 FOR EACH ROW
 BEGIN
     INSERT INTO systemLog(systemLog_id, description, object, type_change)
-    VALUES(s_systemlog.NEXTVAL, 'SE BORRA UN PERSON TYPE', 'PERSON TYPE', 'DELETE');
+    VALUES(s_systemlog.NEXTVAL, 'A PERSON TYPE IS DELETED', 'PERSON TYPE', 'DELETE');
 END beforeDELETEPersonType;

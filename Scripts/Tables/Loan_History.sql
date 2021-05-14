@@ -74,7 +74,7 @@ BEGIN
     :new.creation_date := SYSDATE;
     :new.creation_user := USER;
     INSERT INTO systemLog(systemLog_id, description, object, type_change)
-    VALUES(s_systemlog.NEXTVAL, 'SE INSERTA UN LOAN HISTORY', 'LOAN HISTORY', 'INSERT');
+    VALUES(s_systemlog.NEXTVAL, 'AN LOAN HISTORY IS INSERTED', 'LOAN HISTORY', 'INSERT');
 END beforeInsertloan_history; 
 
 /
@@ -87,7 +87,7 @@ BEGIN
     :new.date_last_modification:= SYSDATE;
     :new.user_last_modification:= USER;
     INSERT INTO systemLog(systemLog_id, description, object, type_change)
-    VALUES(s_systemlog.NEXTVAL, 'SE ACTUALIZA UN LOAN HISTORY', 'LOAN HISTORY', 'UPDATE');
+    VALUES(s_systemlog.NEXTVAL, 'AN LOAN HISTORY IS UPDATED', 'LOAN HISTORY', 'UPDATE');
 END beforeUPDATEloan_history;
 
 /
@@ -98,5 +98,5 @@ ON pe.loan_history
 FOR EACH ROW
 BEGIN
     INSERT INTO systemLog(systemLog_id, description, object, type_change)
-    VALUES(s_systemlog.NEXTVAL, 'SE BORRA UN LOAN HISTORY', 'LOAN HISTORY', 'DELETE');
+    VALUES(s_systemlog.NEXTVAL, 'AN LOAN HISTORY IS DELETED', 'LOAN HISTORY', 'DELETE');
 END beforeDELETEloan_history; 

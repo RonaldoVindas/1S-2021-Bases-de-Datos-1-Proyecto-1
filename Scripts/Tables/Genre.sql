@@ -50,7 +50,7 @@ BEGIN
     :new.creation_date := SYSDATE;
     :new.creation_user := USER;
     INSERT INTO systemLog(systemLog_id, description, object, type_change)
-    VALUES(s_systemlog.NEXTVAL, 'SE INSERTA UN GENRE', 'GENRE', 'INSERT');
+    VALUES(s_systemlog.NEXTVAL, 'A GENRE IS INSERTED', 'GENRE', 'INSERT');
 END beforeInsertGenre;
 
 /
@@ -62,7 +62,7 @@ BEGIN
     :new.date_last_modification := SYSDATE;
     :new.user_last_modification := USER;
     INSERT INTO systemLog(systemLog_id, description, object, type_change)
-    VALUES(s_systemlog.NEXTVAL, 'SE ACTUALIZA UN GENRE', 'GENRE', 'UPDATE');
+    VALUES(s_systemlog.NEXTVAL, 'A GENRE IS UPDATED', 'GENRE', 'UPDATE');
 END beforeUpdateGenre;
 
 /
@@ -72,5 +72,5 @@ BEFORE DELETE ON pe.genre
 FOR EACH ROW
 BEGIN
     INSERT INTO systemLog(systemLog_id, description, object, type_change)
-    VALUES(s_systemlog.NEXTVAL, 'SE BORRA UN GENRE', 'GENRE', 'DELETE');
+    VALUES(s_systemlog.NEXTVAL, 'A GENRE IS DELETED ', 'GENRE', 'DELETE');
 END beforeDELETEGenre;

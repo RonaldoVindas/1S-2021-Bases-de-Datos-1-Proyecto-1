@@ -1,6 +1,6 @@
 Create or replace package control_item is
 
-PROCEDURE insert_item (ptitle IN VARCHAR2, pedition IN VARCHAR2, pcover IN BLOB, pbarcode IN VARCHAR2, pitemtype_id IN NUMBER, pstatus_id IN NUMBER, ppublisher_id IN NUMBER);
+FUNCTION insert_item (ptitle IN VARCHAR2, pedition IN VARCHAR2, pcover IN BLOB, pbarcode IN VARCHAR2, pitemtype_id IN NUMBER, pstatus_id IN NUMBER, ppublisher_id IN NUMBER) RETURN NUMBER;
 PROCEDURE remove_item (pitem_id IN Number);
 PROCEDURE update_item (pitem_id IN Number, ptitle IN VARCHAR2, pedition IN VARCHAR2, pbarcode IN VARCHAR2, pitemtype_id IN NUMBER, pstatus_id IN NUMBER, ppublisher_id IN NUMBER);
 PROCEDURE update_item_cover (pitem_id IN NUMBER, pcover IN BLOB);
@@ -22,10 +22,14 @@ end control_item;
 /
 CREATE OR REPLACE PACKAGE BODY control_item IS
 
-PROCEDURE insert_item (ptitle IN VARCHAR2, pedition IN VARCHAR2, pcover IN BLOB, pbarcode IN VARCHAR2, pitemtype_id IN NUMBER, pstatus_id IN NUMBER, ppublisher_id IN NUMBER) AS
+FUNCTION insert_item (ptitle IN VARCHAR2, pedition IN VARCHAR2, pcover IN BLOB, pbarcode IN VARCHAR2, pitemtype_id IN NUMBER, pstatus_id IN NUMBER, ppublisher_id IN NUMBER) RETURN NUMBER 
+IS
+vcID NUMBER(8);
 BEGIN
     INSERT INTO item(title, edition, cover_image, barcode, itemtype_id, status_id, publisher_id)
-    VALUES(ptitle, pedition, pcover, pbarcode, pitemtype_id, pstatus_id, ppublisher_id);
+    VALUES(ptitle, pedition, pcover, pbarcode, pitemtype_id, pstatus_id, ppublisher_id)
+    RETURNING item_id INTO vcID;
+    RETURN (vcID);
     COMMIT;
 END insert_item;
 
@@ -75,6 +79,7 @@ BEGIN
         DBMS_OUTPUT.PUT_LINE('An error has ocurred in the attempt to update.');
         DBMS_OUTPUT.PUT_LINE(SQLERRM);
         DBMS_OUTPUT.PUT_LINE(SQLCODE);
+     COMMIT;    
 END update_item;
 
 
@@ -98,6 +103,7 @@ BEGIN
         DBMS_OUTPUT.PUT_LINE('An error has ocurred in the attempt to update.');
         DBMS_OUTPUT.PUT_LINE(SQLERRM);
         DBMS_OUTPUT.PUT_LINE(SQLCODE);
+     COMMIT;    
 END update_item_cover;
 
 
@@ -121,6 +127,7 @@ BEGIN
         DBMS_OUTPUT.PUT_LINE('An error has ocurred in the attempt to update.');
         DBMS_OUTPUT.PUT_LINE(SQLERRM);
         DBMS_OUTPUT.PUT_LINE(SQLCODE);
+     COMMIT;
 END update_item_status;
 
 

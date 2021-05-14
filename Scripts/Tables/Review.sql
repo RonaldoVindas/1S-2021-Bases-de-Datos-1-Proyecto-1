@@ -53,7 +53,7 @@ BEGIN
 	:new.creation_date := SYSDATE;
 	:new.creation_user := USER;
     INSERT INTO systemLog(systemLog_id, description, object, type_change)
-    VALUES(s_systemlog.NEXTVAL, 'SE INSERTA UN REVIEW', 'REVIEW', 'INSERT');
+    VALUES(s_systemlog.NEXTVAL, 'A REVIEW IS INSERTED', 'REVIEW', 'INSERT');
 END beforeINSERTreview;
 
 /
@@ -66,7 +66,7 @@ BEGIN
     :new.date_last_modification:= SYSDATE;
     :new.user_last_modification:= USER;
     INSERT INTO systemLog(systemLog_id, description, object, type_change)
-    VALUES(s_systemlog.NEXTVAL, 'SE ACTUALIZA UN REVIEW', 'REVIEW', 'UPDATE');
+    VALUES(s_systemlog.NEXTVAL, 'A REVIEW IS UPDATED', 'REVIEW', 'UPDATE');
 END beforeUPDATEreview;
 
 /
@@ -77,5 +77,5 @@ ON pe.review
 FOR EACH ROW
 BEGIN
 	INSERT INTO systemLog(systemLog_id, description, object, type_change)
-    VALUES(s_systemlog.NEXTVAL, 'SE BORRA UN REVIEW', 'REVIEW', 'DELETE');
+    VALUES(s_systemlog.NEXTVAL, 'A REVIEW IS DELETED', 'REVIEW', 'DELETE');
 END beforeDELETEreview;

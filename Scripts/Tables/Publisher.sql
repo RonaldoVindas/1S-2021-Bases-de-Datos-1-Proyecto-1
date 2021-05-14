@@ -56,7 +56,7 @@ BEGIN
 	:new.creation_date := SYSDATE;
 	:new.creation_user := USER;
     INSERT INTO systemLog(systemLog_id, description, object, type_change)
-    VALUES(s_systemlog.NEXTVAL, 'SE INSERTA UN PUBLISHER', 'PUBLISHER', 'INSERT');
+    VALUES(s_systemlog.NEXTVAL, 'A PUBLISHER IS INSERTED', 'PUBLISHER', 'INSERT');
 END beforeINSERTpublisher;
 
 /
@@ -69,7 +69,7 @@ BEGIN
     :new.date_last_modification:= SYSDATE;
     :new.user_last_modification:= USER;
     INSERT INTO systemLog(systemLog_id, description, object, type_change)
-    VALUES(s_systemlog.NEXTVAL, 'SE ACTUALIZA UN PUBLISHER', 'PUBLISHER', 'UPDATE');
+    VALUES(s_systemlog.NEXTVAL, 'A PUBLISHER IS UPDATED', 'PUBLISHER', 'UPDATE');
 END beforeUPDATEpublisher;
 
 /
@@ -80,5 +80,5 @@ ON pe.publisher
 FOR EACH ROW
 BEGIN
     INSERT INTO systemLog(systemLog_id, description, object, type_change)
-    VALUES(s_systemlog.NEXTVAL, 'SE BORRA UN PUBLISHER', 'PUBLISHER', 'DELETE');
+    VALUES(s_systemlog.NEXTVAL, 'A PUBLISHER IS DELETED', 'PUBLISHER', 'DELETE');
 END beforeDELETEpublisher;

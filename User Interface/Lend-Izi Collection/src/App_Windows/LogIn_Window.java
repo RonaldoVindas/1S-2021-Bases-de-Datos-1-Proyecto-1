@@ -1,9 +1,11 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package App_Windows;
+/*
+By:
+    Renzo Barra
+    Álvaro Moreira
+    Ronaldo Vindas
+*/
 
 import DBConnection.ConnectDB;
 import java.sql.SQLException;
@@ -39,9 +41,10 @@ public class LogIn_Window extends javax.swing.JFrame {
         Email_Label = new javax.swing.JLabel();
         ForgotPassword_Label = new javax.swing.JLabel();
         Email_TextField = new javax.swing.JTextField();
-        Password_TextField = new javax.swing.JTextField();
         Register_Buttton = new javax.swing.JButton();
         Password_Label = new javax.swing.JLabel();
+        Password_Field_TextField = new javax.swing.JPasswordField();
+        jToggleButton1 = new javax.swing.JToggleButton();
         Return_Button = new javax.swing.JButton();
         RegisterNow_Label = new javax.swing.JLabel();
         Banner_Label = new javax.swing.JLabel();
@@ -74,7 +77,7 @@ public class LogIn_Window extends javax.swing.JFrame {
         MenuBlack_Panel.setBackground(new java.awt.Color(0, 0, 0));
         MenuBlack_Panel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel2.setBackground(new java.awt.Color(51, 51, 51));
+        jPanel2.setBackground(new java.awt.Color(34, 34, 33));
         jPanel2.setBorder(javax.swing.BorderFactory.createMatteBorder(3, 3, 3, 3, new java.awt.Color(147, 46, 236)));
         jPanel2.setForeground(new java.awt.Color(255, 255, 255));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -82,27 +85,30 @@ public class LogIn_Window extends javax.swing.JFrame {
         Email_Label.setFont(new java.awt.Font("Franklin Gothic Book", 1, 20)); // NOI18N
         Email_Label.setForeground(new java.awt.Color(255, 255, 255));
         Email_Label.setText("Email:");
-        jPanel2.add(Email_Label, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, -1, -1));
+        jPanel2.add(Email_Label, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, -1, -1));
 
         ForgotPassword_Label.setFont(new java.awt.Font("Franklin Gothic Book", 1, 12)); // NOI18N
         ForgotPassword_Label.setForeground(new java.awt.Color(255, 255, 255));
         ForgotPassword_Label.setText("Forgot your password?");
-        jPanel2.add(ForgotPassword_Label, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 190, -1, -1));
+        ForgotPassword_Label.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                ForgotPassword_LabelMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                ForgotPassword_LabelMouseExited(evt);
+            }
+        });
+        jPanel2.add(ForgotPassword_Label, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 210, -1, -1));
 
-        Email_TextField.setBackground(new java.awt.Color(255, 255, 255));
-        Email_TextField.setForeground(new java.awt.Color(0, 0, 0));
-        Email_TextField.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(147, 46, 236)));
+        Email_TextField.setBackground(new java.awt.Color(34, 34, 33));
+        Email_TextField.setForeground(new java.awt.Color(255, 255, 255));
+        Email_TextField.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(147, 46, 236)));
         Email_TextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Email_TextFieldActionPerformed(evt);
             }
         });
-        jPanel2.add(Email_TextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 290, 20));
-
-        Password_TextField.setBackground(new java.awt.Color(255, 255, 255));
-        Password_TextField.setForeground(new java.awt.Color(0, 0, 0));
-        Password_TextField.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(147, 46, 236)));
-        jPanel2.add(Password_TextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, 290, 20));
+        jPanel2.add(Email_TextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 340, 30));
 
         Register_Buttton.setBackground(new java.awt.Color(0, 159, 232));
         Register_Buttton.setFont(new java.awt.Font("Franklin Gothic Demi", 1, 24)); // NOI18N
@@ -119,7 +125,36 @@ public class LogIn_Window extends javax.swing.JFrame {
         Password_Label.setFont(new java.awt.Font("Franklin Gothic Book", 1, 20)); // NOI18N
         Password_Label.setForeground(new java.awt.Color(255, 255, 255));
         Password_Label.setText("Password:");
-        jPanel2.add(Password_Label, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, -1, -1));
+        jPanel2.add(Password_Label, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, -1, -1));
+
+        Password_Field_TextField.setBackground(new java.awt.Color(34, 34, 33));
+        Password_Field_TextField.setForeground(new java.awt.Color(255, 255, 255));
+        Password_Field_TextField.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(147, 46, 236)));
+        Password_Field_TextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Password_Field_TextFieldActionPerformed(evt);
+            }
+        });
+        jPanel2.add(Password_Field_TextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 170, 340, 30));
+
+        jToggleButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Password_Icon24.png"))); // NOI18N
+        jToggleButton1.setBorder(null);
+        jToggleButton1.setContentAreaFilled(false);
+        jToggleButton1.setFocusable(false);
+        jToggleButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jToggleButton1MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jToggleButton1MouseExited(evt);
+            }
+        });
+        jToggleButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButton1ActionPerformed(evt);
+            }
+        });
+        jPanel2.add(jToggleButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 160, 40, 30));
 
         MenuBlack_Panel.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 220, 530, 410));
 
@@ -136,12 +171,12 @@ public class LogIn_Window extends javax.swing.JFrame {
                 Return_ButtonActionPerformed(evt);
             }
         });
-        MenuBlack_Panel.add(Return_Button, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 120, 40));
+        MenuBlack_Panel.add(Return_Button, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 90, 40));
 
-        RegisterNow_Label.setFont(new java.awt.Font("Franklin Gothic Demi Cond", 0, 36)); // NOI18N
+        RegisterNow_Label.setFont(new java.awt.Font("Bahnschrift", 0, 36)); // NOI18N
         RegisterNow_Label.setForeground(new java.awt.Color(255, 240, 0));
         RegisterNow_Label.setText("Log In");
-        MenuBlack_Panel.add(RegisterNow_Label, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 110, -1, -1));
+        MenuBlack_Panel.add(RegisterNow_Label, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 120, -1, -1));
 
         Banner_Label.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Banner.jpg"))); // NOI18N
         MenuBlack_Panel.add(Banner_Label, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 640, -1));
@@ -160,7 +195,8 @@ public class LogIn_Window extends javax.swing.JFrame {
 
     private void Register_ButttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Register_ButttonActionPerformed
     String email  = Email_TextField.getText();
-    String password = Password_TextField.getText();
+    //String password = Password_TextField.getText();
+    String password = Password_Field_TextField.getText();
     
     
     
@@ -238,8 +274,38 @@ public class LogIn_Window extends javax.swing.JFrame {
 
     private void Debug_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Debug_ButtonActionPerformed
        Email_TextField.setText("rony1211@gmail.com");
-       Password_TextField.setText("falcon12");
+       //Password_TextField.setText("falcon12");
+       Password_Field_TextField.setText("falcon12");
     }//GEN-LAST:event_Debug_ButtonActionPerformed
+
+    private void ForgotPassword_LabelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ForgotPassword_LabelMouseEntered
+        ForgotPassword_Label.setForeground(new java.awt.Color(233,85,4));
+        
+        
+    }//GEN-LAST:event_ForgotPassword_LabelMouseEntered
+
+    private void ForgotPassword_LabelMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ForgotPassword_LabelMouseExited
+         ForgotPassword_Label.setForeground(new java.awt.Color(255,255,255));
+        
+    }//GEN-LAST:event_ForgotPassword_LabelMouseExited
+
+    private void Password_Field_TextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Password_Field_TextFieldActionPerformed
+
+
+    }//GEN-LAST:event_Password_Field_TextFieldActionPerformed
+
+    private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jToggleButton1ActionPerformed
+
+    private void jToggleButton1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jToggleButton1MouseEntered
+        Password_Field_TextField.setEchoChar((char)0);
+    }//GEN-LAST:event_jToggleButton1MouseEntered
+
+    private void jToggleButton1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jToggleButton1MouseExited
+        Password_Field_TextField.setEchoChar('*');
+       
+    }//GEN-LAST:event_jToggleButton1MouseExited
 
     /**
      * @param args the command line arguments
@@ -286,11 +352,12 @@ public class LogIn_Window extends javax.swing.JFrame {
     private javax.swing.JLabel ForgotPassword_Label;
     private javax.swing.JLabel LogIn_Wallpaper;
     private javax.swing.JPanel MenuBlack_Panel;
+    private javax.swing.JPasswordField Password_Field_TextField;
     private javax.swing.JLabel Password_Label;
-    private javax.swing.JTextField Password_TextField;
     private javax.swing.JLabel RegisterNow_Label;
     private javax.swing.JButton Register_Buttton;
     private javax.swing.JButton Return_Button;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JToggleButton jToggleButton1;
     // End of variables declaration//GEN-END:variables
 }

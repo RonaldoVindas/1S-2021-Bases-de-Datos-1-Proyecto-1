@@ -2359,6 +2359,7 @@ public class Admin_Menu extends javax.swing.JFrame {
         Go_Button.setText("Go!");
         Go_Button.setBorder(javax.swing.BorderFactory.createMatteBorder(3, 3, 3, 3, new java.awt.Color(147, 46, 236)));
         Go_Button.setContentAreaFilled(false);
+        Go_Button.setFocusable(false);
         Go_Button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Go_ButtonActionPerformed(evt);
@@ -2378,7 +2379,7 @@ public class Admin_Menu extends javax.swing.JFrame {
 
         Queries_ComboBox.setBackground(new java.awt.Color(255, 255, 255));
         Queries_ComboBox.setForeground(new java.awt.Color(0, 0, 0));
-        Queries_ComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Not Borrowed Items", "Top Most Borrowed Items", "Most Borrowed Items Per Month", "Total People to Whom iIems are Loaned by Age", "All Items", "All Lended Items" }));
+        Queries_ComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Not Borrowed Items", "Top Most Borrowed Items", "Most Borrowed Items Per Month", "Total People to Whom Items are Loaned by Age", "All Items", "All Lended Items" }));
         Queries_ComboBox.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(147, 46, 236)));
         Queries_ComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -3718,7 +3719,7 @@ public class Admin_Menu extends javax.swing.JFrame {
             DBConnection.ConnectDB.updateItemStatus(selected_item_id, 0);
             
             
-            JOptionPane.showMessageDialog(frame, "Returned item ");
+            JOptionPane.showMessageDialog(frame, "Returned Item Sucessfully");
             
 
             
@@ -3861,7 +3862,7 @@ public class Admin_Menu extends javax.swing.JFrame {
 
                 
             }else{
-                JOptionPane.showMessageDialog(frame,"An item must be selected","Warning:",JOptionPane.WARNING_MESSAGE);
+                JOptionPane.showMessageDialog(frame,"Must Select An Item","Warning:",JOptionPane.WARNING_MESSAGE);
             }
             
             
@@ -3923,13 +3924,13 @@ public class Admin_Menu extends javax.swing.JFrame {
 
       }
       else{
-        JOptionPane.showMessageDialog(frame, "Missing Information.","Warning:", JOptionPane.WARNING_MESSAGE);
+        JOptionPane.showMessageDialog(frame, "Missing Information","Warning:", JOptionPane.WARNING_MESSAGE);
       }
       
     
      } catch (SQLException ex) {
             Logger.getLogger(Admin_Menu.class.getName()).log(Level.SEVERE, null, ex);
-             JOptionPane.showMessageDialog(frame, "Something happenend.","Caution:", JOptionPane.WARNING_MESSAGE);
+             JOptionPane.showMessageDialog(frame, "Something happenend","Caution:", JOptionPane.WARNING_MESSAGE);
      }
           
           
@@ -4997,7 +4998,6 @@ public class Admin_Menu extends javax.swing.JFrame {
         if(UpdateItem_CheckBox.isSelected()){
            
                String new_title = TitleItem_TextField.getText();
-               System.out.println("============");
                
                String new_edition = EditionItem_TextField.getText();
                String new_barcode = BarbcodeItem_TextField.getText();
@@ -5027,10 +5027,7 @@ public class Admin_Menu extends javax.swing.JFrame {
         
         
        if(RemoveItem_CheckBox.isSelected()){
-          int selectedOption = JOptionPane.showConfirmDialog(null, 
-                                  "You want to delete it??", 
-                                  "Select:", 
-                                  JOptionPane.YES_NO_OPTION); 
+          int selectedOption = JOptionPane.showConfirmDialog(null,"You want to delete it??",  "Select:", JOptionPane.YES_NO_OPTION); 
           if (selectedOption == JOptionPane.YES_OPTION) {
 
          
@@ -5838,7 +5835,7 @@ public class Admin_Menu extends javax.swing.JFrame {
        
         String filter_selection = Filter_ComboBox.getSelectedItem().toString(); 
         
-            if(filter_selection.equals("Title")){
+            if(filter_selection.equals("Title") && selection.equals("All Items")){
                 Queries_Table.removeAll();
                 String pTitle = Parameter1_TextField.getText();
 
@@ -5876,7 +5873,7 @@ public class Admin_Menu extends javax.swing.JFrame {
 
              } 
             
-            else if(filter_selection.equals("Author")){
+            else if(filter_selection.equals("Author") && selection.equals("All Items")){
                 Queries_Table.removeAll();
                 String pAuthorFirstName = Parameter1_TextField.getText();
                 String pAuthorLastName = Parameter2_TextField.getText();
@@ -5915,7 +5912,7 @@ public class Admin_Menu extends javax.swing.JFrame {
 
              }  
             
-            else if(filter_selection.equals("Publisher")){
+            else if(filter_selection.equals("Publisher") && selection.equals("All Items")){
                 Queries_Table.removeAll();
                 String pPublisher = Parameter1_TextField.getText();
                
@@ -5955,14 +5952,218 @@ public class Admin_Menu extends javax.swing.JFrame {
              }  
             
             
+           else if(filter_selection.equals("Lent To") && selection.equals("All Lended Items")){
+                Queries_Table.removeAll();
+                String pPersonFirstName = Parameter1_TextField.getText();
+                String pPersonLastName = Parameter2_TextField.getText();
+                
+                DefaultTableModel modelo = new DefaultTableModel();
+             
+                modelo.addColumn("Status");
+                modelo.addColumn("Title");
+                modelo.addColumn("Edition");
+                modelo.addColumn("Barcode");
+                modelo.addColumn("Item Type");
+
+                modelo.addColumn("Publisher");
+                modelo.addColumn("Genre");
+                modelo.addColumn("Lent To");
+                modelo.addColumn("Lent To");
+                modelo.addColumn("Lend Date");
+                modelo.addColumn("Return Date");
+                modelo.addColumn("Amount Days");
+                modelo.addColumn("Tolerance");
+                modelo.addColumn("Max Tolerance");
+
+
+                ResultSet res = DBConnection.ConnectDB.UserAllLendedItems(pPersonFirstName,pPersonLastName,null,null,null,"");
+
+                         String data [] = new String[14];
+
+                         while(res.next()){
+                             data [0] = res.getString(5);
+                             data [1] = res.getString(1);
+                             data [2] = res.getString(2);
+                             data [3] = res.getString(3);
+                             data [4] = res.getString(4);//
+                             data [5] = res.getString(6);
+                             data [6] = res.getString(7);
+                             data [7] = res.getString(8);
+                             data [8] = res.getString(9);
+                             data [9] = res.getString(10);
+                             data [10] = res.getString(11);
+                             data [11] = res.getString(12);
+                             data [12] = res.getString(13);
+                             data [13] = res.getString(14);
+                             
+                            
+                            
+                             modelo.addRow(data);
+                         }
+
+                         Queries_Table.setModel(modelo);    
+
+             }   
+            
+          else if(filter_selection.equals("Amount Days") && selection.equals("All Lended Items")){
+                Queries_Table.removeAll();
+                String pAmountDays = Parameter1_TextField.getText();
+              
+                
+                DefaultTableModel modelo = new DefaultTableModel();
+             
+                modelo.addColumn("Status");
+                modelo.addColumn("Title");
+                modelo.addColumn("Edition");
+                modelo.addColumn("Barcode");
+                modelo.addColumn("Item Type");
+
+                modelo.addColumn("Publisher");
+                modelo.addColumn("Genre");
+                modelo.addColumn("Lent To");
+                modelo.addColumn("Lent To");
+                modelo.addColumn("Lend Date");
+                modelo.addColumn("Return Date");
+                modelo.addColumn("Amount Days");
+                modelo.addColumn("Tolerance");
+                modelo.addColumn("Max Tolerance");
+
+
+                ResultSet res = DBConnection.ConnectDB.UserAllLendedItems(null,null,pAmountDays,null,null,null);
+
+                         String data [] = new String[14];
+
+                         while(res.next()){
+                             data [0] = res.getString(5);
+                             data [1] = res.getString(1);
+                             data [2] = res.getString(2);
+                             data [3] = res.getString(3);
+                             data [4] = res.getString(4);//
+                             data [5] = res.getString(6);
+                             data [6] = res.getString(7);
+                             data [7] = res.getString(8);
+                             data [8] = res.getString(9);
+                             data [9] = res.getString(10);
+                             data [10] = res.getString(11);
+                             data [11] = res.getString(12);
+                             data [12] = res.getString(13);
+                             data [13] = res.getString(14);
+                             
+                            
+                            
+                             modelo.addRow(data);
+                         }
+
+                         Queries_Table.setModel(modelo);    
+
+             }    
             
             
+            else if(filter_selection.equals("Tolerance") && selection.equals("All Lended Items")){
+                Queries_Table.removeAll();
+                String pToleranceYellow = Parameter1_TextField.getText();
+                String pToleranceRed = Parameter2_TextField.getText();
+                
+                DefaultTableModel modelo = new DefaultTableModel();
+             
+                modelo.addColumn("Status");
+                modelo.addColumn("Title");
+                modelo.addColumn("Edition");
+                modelo.addColumn("Barcode");
+                modelo.addColumn("Item Type");
+
+                modelo.addColumn("Publisher");
+                modelo.addColumn("Genre");
+                modelo.addColumn("Lent To");
+                modelo.addColumn("Lent To");
+                modelo.addColumn("Lend Date");
+                modelo.addColumn("Return Date");
+                modelo.addColumn("Amount Days");
+                modelo.addColumn("Tolerance");
+                modelo.addColumn("Max Tolerance");
+
+
+                ResultSet res = DBConnection.ConnectDB.UserAllLendedItems(null,null,null,pToleranceYellow,pToleranceRed,null);
+
+                         String data [] = new String[14];
+
+                         while(res.next()){
+                             data [0] = res.getString(5);
+                             data [1] = res.getString(1);
+                             data [2] = res.getString(2);
+                             data [3] = res.getString(3);
+                             data [4] = res.getString(4);//
+                             data [5] = res.getString(6);
+                             data [6] = res.getString(7);
+                             data [7] = res.getString(8);
+                             data [8] = res.getString(9);
+                             data [9] = res.getString(10);
+                             data [10] = res.getString(11);
+                             data [11] = res.getString(12);
+                             data [12] = res.getString(13);
+                             data [13] = res.getString(14);
+                             
+                            
+                            
+                             modelo.addRow(data);
+                         }
+
+                         Queries_Table.setModel(modelo);    
+
+             }    
             
-            
-            
-            
-            
-            
+           else if(filter_selection.equals("Status") && selection.equals("All Lended Items")){
+                Queries_Table.removeAll();
+                String pStatus = Parameter1_TextField.getText();
+               
+                
+                DefaultTableModel modelo = new DefaultTableModel();
+             
+                modelo.addColumn("Status");
+                modelo.addColumn("Title");
+                modelo.addColumn("Edition");
+                modelo.addColumn("Barcode");
+                modelo.addColumn("Item Type");
+
+                modelo.addColumn("Publisher");
+                modelo.addColumn("Genre");
+                modelo.addColumn("Lent To");
+                modelo.addColumn("Lent To");
+                modelo.addColumn("Lend Date");
+                modelo.addColumn("Return Date");
+                modelo.addColumn("Amount Days");
+                modelo.addColumn("Tolerance");
+                modelo.addColumn("Max Tolerance");
+
+
+                ResultSet res = DBConnection.ConnectDB.UserAllLendedItems(null,null,null,null,null,pStatus);
+
+                         String data [] = new String[14];
+
+                         while(res.next()){
+                             data [0] = res.getString(5);
+                             data [1] = res.getString(1);
+                             data [2] = res.getString(2);
+                             data [3] = res.getString(3);
+                             data [4] = res.getString(4);//
+                             data [5] = res.getString(6);
+                             data [6] = res.getString(7);
+                             data [7] = res.getString(8);
+                             data [8] = res.getString(9);
+                             data [9] = res.getString(10);
+                             data [10] = res.getString(11);
+                             data [11] = res.getString(12);
+                             data [12] = res.getString(13);
+                             data [13] = res.getString(14);
+                             
+                            
+                            
+                             modelo.addRow(data);
+                         }
+
+                         Queries_Table.setModel(modelo);    
+
+             }        
             
             
             
@@ -6060,7 +6261,7 @@ public class Admin_Menu extends javax.swing.JFrame {
             
         }  
 
-        else if(selection.equals("Total People to Whom iIems are Loaned by Age")){
+        else if(selection.equals("Total People to Whom Items are Loaned by Age")){
            
             Parameter2_TextField.setVisible(false);
             Parameter1_TextField.setVisible(false);
@@ -6113,8 +6314,17 @@ public class Admin_Menu extends javax.swing.JFrame {
             Total_TextField.setVisible(true);
             Parameters_Label.setVisible(false);
             Filter_Label.setVisible(true);
+            Filter_ComboBox.removeAllItems();
+            Filter_ComboBox.addItem("Title");
+            Filter_ComboBox.addItem("Author");
+            Filter_ComboBox.addItem("Publisher");
             Filter_ComboBox.setVisible(true);
+            
 
+            
+            
+            
+            
             
             DefaultTableModel modelo = new DefaultTableModel();
              modelo.addColumn("Status");
@@ -6166,7 +6376,7 @@ public class Admin_Menu extends javax.swing.JFrame {
             String amount_days = null  ;
             String toleranceYellow = null;
             String toleranceRed = null;
-            
+            String pStatus = "";
             
             Parameter2_TextField.setVisible(false);
             Parameter1_TextField.setVisible(false);
@@ -6175,7 +6385,13 @@ public class Admin_Menu extends javax.swing.JFrame {
             Total_TextField.setVisible(true);
             Parameters_Label.setVisible(false);
             Filter_Label.setVisible(true);
+            Filter_ComboBox.removeAllItems();
+            Filter_ComboBox.addItem("Lent To");           
+            Filter_ComboBox.addItem("Amount Days");
+            Filter_ComboBox.addItem("Tolerance");
+            Filter_ComboBox.addItem("Status");
             Filter_ComboBox.setVisible(true);
+            
 
             
             DefaultTableModel modelo = new DefaultTableModel();
@@ -6196,7 +6412,7 @@ public class Admin_Menu extends javax.swing.JFrame {
              modelo.addColumn("Tolerance");
              modelo.addColumn("Max Tolerance");
              
-                    ResultSet res = DBConnection.ConnectDB.UserAllLendedItems(pPersonFirstName, pPersonLastName, amount_days ,toleranceYellow , toleranceRed );
+                    ResultSet res = DBConnection.ConnectDB.UserAllLendedItems(pPersonFirstName, pPersonLastName, amount_days ,toleranceYellow , toleranceRed, pStatus );
 
                     String data [] = new String[14];
 
@@ -6278,9 +6494,11 @@ public class Admin_Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_Parameter1_TextFieldActionPerformed
 
     private void Filter_ComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Filter_ComboBoxActionPerformed
-       String selection = Filter_ComboBox.getSelectedItem().toString();
+      try{
+       String query_selection = Queries_ComboBox.getSelectedItem().toString(); 
+       String filter_selection = Filter_ComboBox.getSelectedItem().toString();
        
-       if(selection.equals("Title")){
+       if(query_selection.equals("All Items") && filter_selection.equals("Title")){
            Parameters_Label.setVisible(true);
             Parameter1_TextField.setVisible(true);
             Parameter2_TextField.setVisible(false);
@@ -6290,17 +6508,17 @@ public class Admin_Menu extends javax.swing.JFrame {
             ParametersText_Label.setText("Title Name");
        }
         
-       else if(selection.equals("Author")){
+       else if(query_selection.equals("All Items") && filter_selection.equals("Author")){
             Parameters_Label.setVisible(true);
             Parameter1_TextField.setVisible(true);
             Parameter2_TextField.setVisible(true);
             Parameter1_TextField.setText("");
             Parameter2_TextField.setText("");
             Go_Button.setVisible(true);
-            ParametersText_Label.setText("Author First Name    Author Last Name");
+            ParametersText_Label.setText("Author First Name   Author Last Name");
        }                                                
        
-       if(selection.equals("Publisher")){
+       else if(query_selection.equals("All Items") && filter_selection.equals("Publisher")){
            Parameters_Label.setVisible(true);
             Parameter1_TextField.setVisible(true);
             Parameter2_TextField.setVisible(false);
@@ -6310,6 +6528,61 @@ public class Admin_Menu extends javax.swing.JFrame {
             ParametersText_Label.setText("Publisher Name");
        }
        
+       
+       
+       else if(query_selection.equals("All Lended Items") && filter_selection.equals("Lent To")){
+            Parameters_Label.setVisible(true);
+            Parameter1_TextField.setVisible(true);
+            Parameter2_TextField.setVisible(true);
+            Parameter1_TextField.setText("");
+            Parameter2_TextField.setText("");
+            Go_Button.setVisible(true);
+            ParametersText_Label.setText("Person First Name   Person Last Name");
+       }                                                
+       
+       
+       else if(query_selection.equals("All Lended Items") && filter_selection.equals("Amount Days")){
+            Parameters_Label.setVisible(true);
+            Parameter1_TextField.setVisible(true);
+            Parameter2_TextField.setVisible(false);
+            Parameter1_TextField.setText("");
+            Parameter2_TextField.setText("");
+            Go_Button.setVisible(true);
+            ParametersText_Label.setText("Amount Days");
+       }       
+       
+       else if(query_selection.equals("All Lended Items") && filter_selection.equals("Tolerance")){
+            Parameters_Label.setVisible(true);
+            Parameter1_TextField.setVisible(true);
+            Parameter2_TextField.setVisible(true);
+            Parameter1_TextField.setText("");
+            Parameter2_TextField.setText("");
+            Go_Button.setVisible(true);
+            ParametersText_Label.setText("Tolerance Min     Tolerance Max");
+       }       
+       
+       
+       
+       else if(query_selection.equals("All Lended Items") && filter_selection.equals("Status")){
+            Parameters_Label.setVisible(true);
+            Parameter1_TextField.setVisible(true);
+            Parameter2_TextField.setVisible(false);
+            Parameter1_TextField.setText("");
+            Parameter2_TextField.setText("");
+            Go_Button.setVisible(true);
+            ParametersText_Label.setText("Status Color Name");
+       }       
+       
+       
+       
+       
+       
+       
+       
+      }
+      catch(Exception e){
+          
+      }
        
         
     }//GEN-LAST:event_Filter_ComboBoxActionPerformed

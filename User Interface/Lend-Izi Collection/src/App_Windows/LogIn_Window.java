@@ -222,14 +222,14 @@ public class LogIn_Window extends javax.swing.JFrame {
                    result.setVisible(true);
                }
                else if (personTypePerson == 1){
-                   Users_Menu result = new Users_Menu();
+                  Users_Menu result = new Users_Menu();
                    dispose();
                    result.setVisible(true);
                }
            }
            else{  
             JOptionPane.showMessageDialog(null,
-            "Invalid Password. Try Again",
+            "Invalid Email or Password",
             "Error:",
             JOptionPane.ERROR_MESSAGE);
            }

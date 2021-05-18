@@ -2630,13 +2630,13 @@ public static void updateLoanHistoryReturnDate(int pperson1_id, int pperson2_id,
         
         }        
     
- public static ResultSet UserAllLendedItems(String pFirstName, String pLastName, String pNumberDays, String pToleranceYellow, String pToleranceRed ) throws SQLException{
+ public static ResultSet UserAllLendedItems(String pFirstName, String pLastName, String pNumberDays, String pToleranceYellow, String pToleranceRed, String pStatus ) throws SQLException{
         String host = "jdbc:oracle:thin:@localhost:1521:DBRONALDO";
         String uName = "PE";
         String uPass = "PE";
         
         Connection con = DriverManager.getConnection(host, uName, uPass);
-        CallableStatement stmt = con.prepareCall("{ ? = call users_queries.allLendedItems(?,?,?,?,?)}");
+        CallableStatement stmt = con.prepareCall("{ ? = call users_queries.allLendedItems(?,?,?,?,?,?)}");
        
         stmt.registerOutParameter(1, OracleTypes.CURSOR);
         stmt.setString(2, pFirstName);
@@ -2644,6 +2644,7 @@ public static void updateLoanHistoryReturnDate(int pperson1_id, int pperson2_id,
         stmt.setString(4, pNumberDays);
         stmt.setString(5, pToleranceYellow);
         stmt.setString(6, pToleranceRed);
+        stmt.setString(7, pStatus);
         
         stmt.executeQuery();
         

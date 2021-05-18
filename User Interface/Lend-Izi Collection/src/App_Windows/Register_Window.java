@@ -263,6 +263,7 @@ public class Register_Window extends javax.swing.JFrame {
             Users_Menu result = new Users_Menu();
             dispose();
             result.setVisible(true);
+            
         } catch (SQLException ex) {
             Logger.getLogger(Register_Window.class.getName()).log(Level.SEVERE, null, ex);
         }

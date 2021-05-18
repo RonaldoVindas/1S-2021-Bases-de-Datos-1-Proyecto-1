@@ -66,7 +66,7 @@ CREATE OR REPLACE PACKAGE BODY users_queries IS
 
 -- Devuelve los libros que se encuentran en prestamos con filtros de persona a quien se le presto el libro,
 -- numero de dias, tolerancia minima y maxima de dias prestados y por status
-    FUNCTION allLendedItems (pPersonFirstName IN VARCHAR2, pPersonLastName IN VARCHAR2, pNumberDays IN NUMBER, pNumberToleranceDays IN NUMBER, pNumberToleranceDaysMax IN NUMBER)
+    FUNCTION allLendedItems (pPersonFirstName IN VARCHAR2, pPersonLastName IN VARCHAR2, pNumberDays IN NUMBER, pNumberToleranceDays IN NUMBER, pNumberToleranceDaysMax IN NUMBER, pStatus IN VARCHAR2)
     RETURN SYS_REFCURSOR
         IS 
             vcCursor SYS_REFCURSOR;
@@ -92,9 +92,10 @@ CREATE OR REPLACE PACKAGE BODY users_queries IS
                     pLi.amount_days, pLi.tolerance_days_yellow, pLi.tolerance_days_red, pLi.lend_date, pLi.return_date)
                 WHERE firstName LIKE CONCAT(pPersonFirstName, '%')
                 AND lastName LIKE CONCAT(pPersonLastName, '%')
-                AND amountDays <= NVL(pNumberDays, amountDays)
-                AND yellowDays <= NVL(pNumberToleranceDays, yellowDays)
-                AND redDays <= NVL(pNumberToleranceDaysMax, redDays)
+                AND status LIKE CONCAT(pStatus, '%')
+                AND amountDays = NVL(pNumberDays, amountDays)  
+                AND yellowDays = NVL(pNumberToleranceDays, yellowDays)
+                AND redDays = NVL(pNumberToleranceDaysMax, redDays)
                 AND TRUNC(lendDate - returnDate,0) + yellowDays + redDays
                 <= NVL(pNumberDays, amountDays) + NVL(pNumberToleranceDays, yellowDays) + NVL(pNumberToleranceDaysMax, redDays)
                 GROUP BY title, itemEdition, barcode, itemType, 

@@ -3,7 +3,8 @@ CREATE OR REPLACE PACKAGE users_queries IS
     FUNCTION allItemsTotal RETURN SYS_REFCURSOR;
     FUNCTION allLendedItemsTotal RETURN SYS_REFCURSOR;
     FUNCTION allItems (pTitle IN VARCHAR2, pAuthorFirstName IN VARCHAR2, pAuthorLastName IN VARCHAR2, pPublisher IN VARCHAR2) RETURN SYS_REFCURSOR;
-    FUNCTION allLendedItems (pPersonFirstName IN VARCHAR2, pPersonLastName IN VARCHAR2, pNumberDays IN NUMBER, pNumberToleranceDays IN NUMBER, pNumberToleranceDaysMax IN NUMBER) RETURN SYS_REFCURSOR;
+    FUNCTION allLendedItems (pPersonFirstName IN VARCHAR2, pPersonLastName IN VARCHAR2, pNumberDays IN NUMBER, pNumberToleranceDays IN NUMBER, pNumberToleranceDaysMax IN NUMBER, pStatus IN VARCHAR2)
+    RETURN SYS_REFCURSOR;
 END users_queries;
 /
 

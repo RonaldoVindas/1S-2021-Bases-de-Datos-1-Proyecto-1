@@ -4,6 +4,7 @@ function NotBorrowedTotal return sys_refcursor;
 function TopMostBorrowed(pNumber in number) return sys_refcursor; 
 function MostBorrowedPerMonth(pTimes in number, pMonth in number) return sys_refcursor;
 function AgeOfPeopleLoan return sys_refcursor;
+FUNCTION systemLogOperations(pStartingDate DATE, pEndDate DATE, pObject VARCHAR2, pTypeChange VARCHAR2, pUsername VARCHAR2) RETURN SYS_REFCURSOR;
 end admin_queries;
 
 /
@@ -120,6 +121,22 @@ order by age asc;
 
 return vcCursor;
 end;
+
+FUNCTION systemLogOperations(pStartingDate DATE, pEndDate DATE, pObject VARCHAR2, pTypeChange VARCHAR2, pUsername VARCHAR2) RETURN SYS_REFCURSOR
+        IS
+            vcCursor sys_refcursor;
+        BEGIN 
+            OPEN vcCursor FOR
+                SELECT sl.systemlog_id, sL.description, sL.object, sL.type_change, sl.creation_date, sl.creation_user,
+                sl.date_last_modification, sl.user_last_modification
+                FROM systemLog sL
+                WHERE pStartingDate <= sL.creation_date
+                AND sL.creation_date <= pEndDate
+                AND sL.object LIKE CONCAT(pObject, '%')
+                AND sL.type_change LIKE CONCAT(pTypeChange, '%')
+                AND sL.creation_user LIKE CONCAT(pUsername, '%');
+        RETURN vcCursor;
+END systemLogOperations;
 
 end admin_queries;
 

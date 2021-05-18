@@ -88,7 +88,7 @@ PROCEDURE update_personlenditemRetDate (pperson1_id in NUMBER, pperson2_id IN NU
 e_invalid_personhasitem EXCEPTION;
 BEGIN
     UPDATE personlenditem 
-    SET return_date = preturn_date,
+    SET return_date = preturn_date
      --   amount_days = (select to_date (preturn_date, 'yyyy-mm-dd') - trunc(lend_date) from dual)
     WHERE person1_id = pperson1_id AND person2_id = pperson2_id;
     COMMIT;

@@ -2353,7 +2353,7 @@
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/Images/LateralButton4.png"/>
+              <Image iconType="3" name="/Images/LateralButton3.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Lend Item"/>
             <Property name="alignmentX" type="float" value="5.0"/>
@@ -2380,7 +2380,7 @@
               <Color blue="0" green="0" red="0" type="rgb"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/Images/LateralButton5.png"/>
+              <Image iconType="3" name="/Images/LateralButton4.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="        Receive Item"/>
             <Property name="alignmentX" type="float" value="5.0"/>

@@ -1122,7 +1122,7 @@ public class Users_Menu extends javax.swing.JFrame {
 
         Lateral_Button3.setFont(new java.awt.Font("Bahnschrift", 0, 20)); // NOI18N
         Lateral_Button3.setForeground(new java.awt.Color(255, 255, 255));
-        Lateral_Button3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/LateralButton4.png"))); // NOI18N
+        Lateral_Button3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/LateralButton3.png"))); // NOI18N
         Lateral_Button3.setText("Lend Item");
         Lateral_Button3.setAlignmentX(5.0F);
         Lateral_Button3.setBorderPainted(false);
@@ -1144,7 +1144,7 @@ public class Users_Menu extends javax.swing.JFrame {
 
         Lateral_Button4.setFont(new java.awt.Font("Bahnschrift", 0, 20)); // NOI18N
         Lateral_Button4.setForeground(new java.awt.Color(0, 0, 0));
-        Lateral_Button4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/LateralButton5.png"))); // NOI18N
+        Lateral_Button4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/LateralButton4.png"))); // NOI18N
         Lateral_Button4.setText("        Receive Item");
         Lateral_Button4.setAlignmentX(5.0F);
         Lateral_Button4.setBorderPainted(false);
@@ -1863,43 +1863,43 @@ public class Users_Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_Lateral_Button2ActionPerformed
 
     private void Lateral_Button1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Lateral_Button1MouseEntered
-        Lateral_Button1.setBounds(-60, 170, 440, 60);
+        Lateral_Button1.setBounds(-60, 230, 440, 60);
     }//GEN-LAST:event_Lateral_Button1MouseEntered
 
     private void Lateral_Button1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Lateral_Button1MouseExited
-        Lateral_Button1.setBounds(-140, 170, 440, 60);
+        Lateral_Button1.setBounds(-140, 230, 440, 60);
     }//GEN-LAST:event_Lateral_Button1MouseExited
 
     private void Lateral_Button2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Lateral_Button2MouseEntered
-        Lateral_Button2.setBounds(-60, 230, 440, 60);
+        Lateral_Button2.setBounds(-60, 290, 440, 60);
     }//GEN-LAST:event_Lateral_Button2MouseEntered
 
     private void Lateral_Button2MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Lateral_Button2MouseExited
-       Lateral_Button2.setBounds(-140, 230, 440, 60);
+       Lateral_Button2.setBounds(-140, 290, 440, 60);
     }//GEN-LAST:event_Lateral_Button2MouseExited
 
     private void Lateral_Button3MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Lateral_Button3MouseEntered
-       Lateral_Button3.setBounds(-60, 290, 440, 60);
+       Lateral_Button3.setBounds(-60, 350, 440, 60);
     }//GEN-LAST:event_Lateral_Button3MouseEntered
 
     private void Lateral_Button4MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Lateral_Button4MouseExited
-     Lateral_Button4.setBounds(-140, 350, 440, 60);
+     Lateral_Button4.setBounds(-140, 410, 440, 60);
     }//GEN-LAST:event_Lateral_Button4MouseExited
 
     private void Lateral_Button5MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Lateral_Button5MouseEntered
-       Lateral_Button5.setBounds(-60, 410, 440, 60);
+       Lateral_Button5.setBounds(-60, 470, 440, 60);
     }//GEN-LAST:event_Lateral_Button5MouseEntered
 
     private void Lateral_Button4MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Lateral_Button4MouseEntered
-        Lateral_Button4.setBounds(-60, 350, 440, 60);
+        Lateral_Button4.setBounds(-60, 410, 440, 60);
     }//GEN-LAST:event_Lateral_Button4MouseEntered
 
     private void Lateral_Button3MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Lateral_Button3MouseExited
-       Lateral_Button3.setBounds(-140, 290, 440, 60);
+       Lateral_Button3.setBounds(-140, 350, 440, 60);
     }//GEN-LAST:event_Lateral_Button3MouseExited
 
     private void Lateral_Button5MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Lateral_Button5MouseExited
-       Lateral_Button5.setBounds(-140, 410, 440, 60);
+       Lateral_Button5.setBounds(-140, 470, 440, 60);
     }//GEN-LAST:event_Lateral_Button5MouseExited
 
     private void Exit_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Exit_ButtonActionPerformed

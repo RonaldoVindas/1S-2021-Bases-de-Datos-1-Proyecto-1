@@ -91,77 +91,77 @@ insert into  PersonType(persontype_name) values('Author');
 
 --__________________________tabla Person___________________________________________________
 
-insert into  Person(person_id,first_name,last_name, email, password, phone_number,birth_day, persontype_id) values(117610138,'Ronaldo','Vindas','rony1211@gmail.com','falcon12','88778841',DATE '1999-11-12',0);
-insert into  Person(person_id,first_name,last_name, email, password, phone_number,birth_day, persontype_id) values(801200838,'Renzo','Barra','edgy@gmail.com','Renzo12','98753215',DATE '1999-1-2',0);
-insert into  Person(person_id,first_name,last_name, email, password, phone_number,birth_day, persontype_id) values(402140028,'Alvaro','Moreira','conker@gmail.com','conker19','87258021',DATE '1992-2-19',0);
-insert into  Person(person_id,first_name,last_name, email, password, phone_number,birth_day, persontype_id) values(100000000,'Joseph','Chaves','jox@gmail.com','jox1270','87946321',DATE '2000-5-15',1);
-insert into  Person(person_id,first_name,last_name, email, password, phone_number,birth_day, persontype_id) values(100000001,'Emely','Zarate','Emezar18@gmail.com','Emezar18','26887451',DATE '1995-7-5',1);
-insert into  Person(person_id,first_name,last_name, email, password, phone_number,birth_day, persontype_id) values(100000002,'Valeria','Aguilar','VAguilar@yahoo.com','agva68','22698725',DATE '2002-06-02',1);
-insert into  Person(person_id,first_name,last_name, email, password, phone_number,birth_day, persontype_id) values(100000003,'Anthony','Vargas','Tony1522@gmail.com','tova15','22672146',DATE '2003-06-01',1);
-insert into  Person(person_id,first_name,last_name, email, password, phone_number,birth_day, persontype_id) values(100000004,'Krissia','Pérez','KrissPM@hotmail.com','pekrpm105','22676548',DATE '1999-05-31',1);
-insert into  Person(person_id,first_name,last_name, email, password, phone_number,birth_day, persontype_id) values(100000005,'Emmanuel','Jarquín','Emma123@gmail.com','jaem12','22651278',DATE '1998-05-30',1);
-insert into  Person(person_id,first_name,last_name, email, password, phone_number,birth_day, persontype_id) values(100000006,'Jesús','Aguilar','ChusAM@gmail.com','agjeAm','82654820',DATE '1988-05-29',1);
-insert into  Person(person_id,first_name,last_name, email, password, phone_number,birth_day, persontype_id) values(100000007,'Javier','Barquero','Raydertre@outlook.com','Bajaray','22621897',DATE '1972-05-28',1);
-insert into  Person(person_id,first_name,last_name, email, password, phone_number,birth_day, persontype_id) values(100000008,'Rebecca','Madrigal','RebboxMad@gmail.com','MareMAD','89632570',DATE '2001-05-26',1);
-insert into  Person(person_id,first_name,last_name, email, password, phone_number,birth_day, persontype_id) values(100000009,'Justin','Bogantes','Justino@tec.com','BoJu25','83654015',DATE '1985-05-24',1);
-insert into  Person(person_id,first_name,last_name, email, password, phone_number,birth_day, persontype_id) values(100000010,'Alejandra','Rivera','alitadepol@yahoo.com','holahola','81254798',DATE '1993-05-23',1);
-insert into  Person(person_id,first_name,last_name, email, password, phone_number,birth_day, persontype_id) values(100000011,'Joselyn','Rodríguez','Joss45451@gmail.com','Rojo54','78965215',DATE '1987-05-22',1);
-insert into  Person(person_id,first_name,last_name, email, password, phone_number,birth_day, persontype_id) values(100000012,'Keylor','Navas','SanNavas@hotmail.com','Nakegol','89215821',DATE '1999-05-21',1);
-insert into  Person(person_id,first_name,last_name, email, password, phone_number,birth_day, persontype_id) values(100000013,'Valery','Vega','VValery@yahoo.com.com','vevaer','89646851',DATE '2001-05-19',1);
-insert into  Person(person_id,first_name,last_name, email, password, phone_number,birth_day, persontype_id) values(100000014,'Josue','Siles','Siles@gmail.com','130cm','72357801',DATE '1998-05-18',1);
-insert into  Person(person_id,first_name,last_name, email, password, phone_number,birth_day, persontype_id) values(100000015,'Dennis','angulo','Dernudo@outlook.com','ande8','98746526',DATE '1993-05-17',1);
-insert into  Person(person_id,first_name,last_name, email, password, phone_number,birth_day, persontype_id) values(100000016,'Ishtar','Saborio','servantesCD@outlook.com','DCishr','98746526',DATE '1994-01-10',1);
-insert into  Person(person_id,first_name,last_name, email, password, phone_number,birth_day, persontype_id) values(990000000,'Joanne','Rowling', 'J.K.Rowling@pottermore.com', '1234556', '98765432',DATE '1965-07-30',2);
-insert into  Person(person_id,first_name,last_name, email, password, phone_number,birth_day, persontype_id) values(990000001,'Stephen','King ', 'StephenKing@hotmail.com', '1234557', '98765433',DATE '1947-09-21',2);
-insert into  Person(person_id,first_name,last_name, email, password, phone_number,birth_day, persontype_id) values(990000002,'Isabel','Allende', 'Allende@hotmail.com', '1234558', '98765434',DATE '1942-08-02',2);
-insert into  Person(person_id,first_name,last_name, email, password, phone_number,birth_day, persontype_id) values(990000003,'Brian','Herbert', 'Herbert@hotmail.com', '1234559', '987654355',DATE '1947-06-29',2);
-insert into  Person(person_id,first_name,last_name, email, password, phone_number,birth_day, persontype_id) values(990000004,'Ana','Frank', 'AnaFrank@hotmail.com', '1234560', '98765436',DATE '1929-06-12',2);
-insert into  Person(person_id,first_name,last_name, email, password, phone_number,birth_day, persontype_id) values(990000005,'Joseph','Gelinek', 'JosephGelinek@hotmail.com', '1234561', '98765437',DATE '1758-12-03',2);
-insert into  Person(person_id,first_name,last_name, email, password, phone_number,birth_day, persontype_id) values(990000006,'kimberly','parsons', 'yohalife@hotmail.com', '1234562', '98765438',DATE '1983-07-30',2);
-insert into  Person(person_id,first_name,last_name, email, password, phone_number,birth_day, persontype_id) values(990000007,'Ernest','Cline', 'rpy@hotmail.com', '1234563', '98765439',DATE '1972-03-29',2);
-insert into  Person(person_id,first_name,last_name, email, password, phone_number,birth_day, persontype_id) values(990000008,'Daniel','Defoe', 'dd@hotmail.com', '1234564', '98765440',DATE '1960-10-10',2);
-insert into  Person(person_id,first_name,last_name, email, password, phone_number,birth_day, persontype_id) values(990000009,'Derek','Kolstad', 'Kolstad@hotmail.com', '1234565', '98765441',DATE '1974-07-30',2);
-insert into  Person(person_id,first_name,last_name, email, password, phone_number,birth_day, persontype_id) values(990000010,'George','Lucas', 'jjbean@hotmail.com', '1234566', '98765442',DATE '1944-05-14',2);
-insert into  Person(person_id,first_name,last_name, email, password, phone_number,birth_day, persontype_id) values(990000011,'Brad','Bird', 'Bird@hotmail.com', '1234567', '98765443',DATE '1957-09-24',2);
-insert into  Person(person_id,first_name,last_name, email, password, phone_number,birth_day, persontype_id) values(990000012,'Hayao','Miyazaki', 'Miyazaki@jpn.com', '1234568', '98765444',DATE '1941-01-05',2);
-insert into  Person(person_id,first_name,last_name, email, password, phone_number,birth_day, persontype_id) values(990000013,'Ted','Elliot', 'Elliot@hotmail.com', '1234569', '98765445',DATE ' 1961-07-04',2);
-insert into  Person(person_id,first_name,last_name, email, password, phone_number,birth_day, persontype_id) values(990000014,'Ron','Clements', 'Clements@hotmail.com', '1234570', '98765446',DATE '1953-04-25',2);
-insert into  Person(person_id,first_name,last_name, email, password, phone_number,birth_day, persontype_id) values(990000015,'Peter','Ramsey', 'Ramsey@hotmail.com', '1234571', '98765447',DATE '1962-12-23',2);
-insert into  Person(person_id,first_name,last_name, email, password, phone_number,birth_day, persontype_id) values(990000016,'Roger','Allers', 'Allers@hotmail.com', '1234572', '98765448',DATE '1949-06-29',2);
-insert into  Person(person_id,first_name,last_name, email, password, phone_number,birth_day, persontype_id) values(990000017,'Andy','Muschietti', 'Muschietti@hotmail.com', '1234573', '98765449',DATE '1973-08-26',2);
-insert into  Person(person_id,first_name,last_name, email, password, phone_number,birth_day, persontype_id) values(990000018,'Steven','Spielberg', 'Spielberg@hotmail.com', '1234574', '98765450',DATE '1946-12-18',2);
-insert into  Person(person_id,first_name,last_name, email, password, phone_number,birth_day, persontype_id) values(990000019,'Peter','Jackson', 'Jackson@hotmail.com', '1234575', '98765451',DATE '1961-10-31',2);
-insert into  Person(person_id,first_name,last_name, email, password, phone_number,birth_day, persontype_id) values(990000020,'Gary ','Ross', 'Ross@hotmail.com', '1234576', '98765452',DATE '1956-11-03',2);
-insert into  Person(person_id,first_name,last_name, email, password, phone_number,birth_day, persontype_id) values(990000021,'James','Cameron', 'Cameron@hotmail.com', '1234577', '98765453',DATE '1954-08-16',2);
-insert into  Person(person_id,first_name,last_name, email, password, phone_number,birth_day, persontype_id) values(990000022,'John','Lasseter', 'Lasseter@hotmail.com', '1234578', '98765454',DATE '1957-01-12',2);
-insert into  Person(person_id,first_name,last_name, email, password, phone_number,birth_day, persontype_id) values(990000023,'Jerry','Siegel', 'Siegel@hotmail.com', '1234579', '98765455',DATE '1914-10-17',2);
-insert into  Person(person_id,first_name,last_name, email, password, phone_number,birth_day, persontype_id) values(990000024,'Jim','Starlin', 'Starlin@hotmail.com', '1234580', '98765456',DATE '1949-10-09',2);
-insert into  Person(person_id,first_name,last_name, email, password, phone_number,birth_day, persontype_id) values(990000025,'Scott','Snyder', 'Snyder@hotmail.com', '1234581', '98765457',DATE '1976-01-01',2);
-insert into  Person(person_id,first_name,last_name, email, password, phone_number,birth_day, persontype_id) values(990000026,'Alan','Moore', 'Moore@hotmail.com', '1234582', '98765458',DATE '1953-11-18',2);
-insert into  Person(person_id,first_name,last_name, email, password, phone_number,birth_day, persontype_id) values(990000027,'Mac','Walters', 'Walters@hotmail.com', '1234583', '98765459',DATE '1981-12-21',2);
-insert into  Person(person_id,first_name,last_name, email, password, phone_number,birth_day, persontype_id) values(990000028,'Tom','Taylor', 'Taylor@hotmail.com', '1234583', '98765460',DATE '2001-07-16',2);
-insert into  Person(person_id,first_name,last_name, email, password, phone_number,birth_day, persontype_id) values(990000029,'Nick','Spencer', 'Spencer@hotmail.com', '1234584', '98765461',DATE '1991-10-07',2);
-insert into  Person(person_id,first_name,last_name, email, password, phone_number,birth_day, persontype_id) values(990000030,'Jim','Shooter', 'Shooter@hotmail.com', '1234585', '98765462',DATE '1951-09-27',2);
-insert into  Person(person_id,first_name,last_name, email, password, phone_number,birth_day, persontype_id) values(990000031,'Geoff','Johns', 'Johns@hotmail.com', '1234586', '98765463',DATE '1973-01-25',2);
-insert into  Person(person_id,first_name,last_name, email, password, phone_number,birth_day, persontype_id) values(990000032,'Frank','Miller', 'Miller@hotmail.com', '1234587', '98765464',DATE '1957-01-27',2);
-insert into  Person(person_id,first_name,last_name, email, password, phone_number,birth_day, persontype_id) values(990000033,'Bryan','omalley', 'omalleys@hotmail.com', '1234588', '98765465',DATE '1943-03-16',2);
-insert into  Person(person_id,first_name,last_name, email, password, phone_number,birth_day, persontype_id) values(990000034,'Stan','Lee', 'gstanoleed@hotmail.com', '1234589', '98765466',DATE '1922-12-28',2);
-insert into  Person(person_id,first_name,last_name, email, password, phone_number,birth_day, persontype_id) values(990000035,'Jason','Uyeda', 'Uyeda@hotmail.com', '1234590', '98765467',DATE '1992-05-06',2);
-insert into  Person(person_id,first_name,last_name, email, password, phone_number,birth_day, persontype_id) values(990000036,'Andy','Gavin', 'Gavin@hotmail.com', '1234591', '98765468',DATE '1970-06-11',2);
-insert into  Person(person_id,first_name,last_name, email, password, phone_number,birth_day, persontype_id) values(990000037,'Takao','Shimizu', 'Shimizu@hotmail.com', '1234592', '98765468',DATE '1965-06-29',2);
-insert into  Person(person_id,first_name,last_name, email, password, phone_number,birth_day, persontype_id) values(990000038,'Jason','Jones', 'Jones@hotmail.com', '1234593', '98765469',DATE '1973-06-03',2);
-insert into  Person(person_id,first_name,last_name, email, password, phone_number,birth_day, persontype_id) values(990000039,'Takashi','Tezuka ', 'Tezuka@hotmail.com', '1234594', '98765470',DATE '1960-11-17',2);
-insert into  Person(person_id,first_name,last_name, email, password, phone_number,birth_day, persontype_id) values(990000040,'Alez','Ward', 'Ward@hotmail.com', '1234595', '98765471',DATE '1990-04-30',2);
-insert into  Person(person_id,first_name,last_name, email, password, phone_number,birth_day, persontype_id) values(990000041,'Shun','Nakamura', 'Nakamura@hotmail.com', '1234596', '98765472',DATE '1978-06-24',2);
-insert into  Person(person_id,first_name,last_name, email, password, phone_number,birth_day, persontype_id) values(990000042,'Bernd','Diemer', 'Diemer@hotmail.com', '1234597', '98765473',DATE '1983-02-28',2);
-insert into  Person(person_id,first_name,last_name, email, password, phone_number,birth_day, persontype_id) values(990000043,'Naoto','Oshima', 'Oshima@hotmail.com', '1234598', '98765474',DATE '1964-02-26',2);
-insert into  Person(person_id,first_name,last_name, email, password, phone_number,birth_day, persontype_id) values(990000044,'Yoshinori','Kitase', 'Kitase@hotmail.com', '1234599', '98765474',DATE '1966-09-23',2);
-insert into  Person(person_id,first_name,last_name, email, password, phone_number,birth_day, persontype_id) values(990000045,'Toru','Hagihara', 'Hagihara@hotmail.com', '12345600', '98765475',DATE '1958-04-04',2);
-insert into  Person(person_id,first_name,last_name, email, password, phone_number,birth_day, persontype_id) values(990000046,'Chris','Seavor', 'Seavor@hotmail.com', '1234601', '98765476',DATE '1968-07-20',2);
-insert into  Person(person_id,first_name,last_name, email, password, phone_number,birth_day, persontype_id) values(990000047,'Toshihiro','Nagoshi', 'Nagoshi@hotmail.com', '1234602', '98765477',DATE '1965-06-17',2);
-insert into  Person(person_id,first_name,last_name, email, password, phone_number,birth_day, persontype_id) values(990000048,'Cory','Barlog', 'Barlog@hotmail.com', '1234603', '98765478',DATE '1975-09-02',2);
-insert into  Person(person_id,first_name,last_name, email, password, phone_number,birth_day, persontype_id) values(990000049,'Chris','Colunbus', 'Colunbus@hotmail.com', '1234604', '98765479',DATE '1958-09-10',2);
-insert into  Person(person_id,first_name,last_name, email, password, phone_number,birth_day, persontype_id) values(990000050,'kenji','Kanno', 'Kanno@hotmail.com', '1234605', '98765480',DATE '1952-02-28',2);
+insert into  Person(person_id,first_name,last_name, email, password, phone_number,birth_day, persontype_id) values(117610138,'Ronaldo','Vindas','rony1211@gmail.com',control_person.encryptpassword('falcon12'),'88778841',DATE '1999-11-12',0);
+insert into  Person(person_id,first_name,last_name, email, password, phone_number,birth_day, persontype_id) values(801200838,'Renzo','Barra','edgy@gmail.com',control_person.encryptpassword('Renzo12'),'98753215',DATE '1999-1-2',0);
+insert into  Person(person_id,first_name,last_name, email, password, phone_number,birth_day, persontype_id) values(402140028,'Alvaro','Moreira','conker@gmail.com',control_person.encryptpassword('conker19'),'87258021',DATE '1992-2-19',0);
+insert into  Person(person_id,first_name,last_name, email, password, phone_number,birth_day, persontype_id) values(100000000,'Joseph','Chaves','jox@gmail.com',control_person.encryptpassword('jox1270'),'87946321',DATE '2000-5-15',1);
+insert into  Person(person_id,first_name,last_name, email, password, phone_number,birth_day, persontype_id) values(100000001,'Emely','Zarate','Emezar18@gmail.com',control_person.encryptpassword('Emezar18'),'26887451',DATE '1995-7-5',1);
+insert into  Person(person_id,first_name,last_name, email, password, phone_number,birth_day, persontype_id) values(100000002,'Valeria','Aguilar','VAguilar@yahoo.com',control_person.encryptpassword('agva68'),'22698725',DATE '2002-06-02',1);
+insert into  Person(person_id,first_name,last_name, email, password, phone_number,birth_day, persontype_id) values(100000003,'Anthony','Vargas','Tony1522@gmail.com',control_person.encryptpassword('tova15'),'22672146',DATE '2003-06-01',1);
+insert into  Person(person_id,first_name,last_name, email, password, phone_number,birth_day, persontype_id) values(100000004,'Krissia','Pérez','KrissPM@hotmail.com',control_person.encryptpassword('pekrpm105'),'22676548',DATE '1999-05-31',1);
+insert into  Person(person_id,first_name,last_name, email, password, phone_number,birth_day, persontype_id) values(100000005,'Emmanuel','Jarquín','Emma123@gmail.com',control_person.encryptpassword('jaem12'),'22651278',DATE '1998-05-30',1);
+insert into  Person(person_id,first_name,last_name, email, password, phone_number,birth_day, persontype_id) values(100000006,'Jesús','Aguilar','ChusAM@gmail.com',control_person.encryptpassword('agjeAm'),'82654820',DATE '1988-05-29',1);
+insert into  Person(person_id,first_name,last_name, email, password, phone_number,birth_day, persontype_id) values(100000007,'Javier','Barquero','Raydertre@outlook.com',control_person.encryptpassword('Bajaray'),'22621897',DATE '1972-05-28',1);
+insert into  Person(person_id,first_name,last_name, email, password, phone_number,birth_day, persontype_id) values(100000008,'Rebecca','Madrigal','RebboxMad@gmail.com',control_person.encryptpassword('MareMAD'),'89632570',DATE '2001-05-26',1);
+insert into  Person(person_id,first_name,last_name, email, password, phone_number,birth_day, persontype_id) values(100000009,'Justin','Bogantes','Justino@tec.com',control_person.encryptpassword('BoJu25'),'83654015',DATE '1985-05-24',1);
+insert into  Person(person_id,first_name,last_name, email, password, phone_number,birth_day, persontype_id) values(100000010,'Alejandra','Rivera','alitadepol@yahoo.com',control_person.encryptpassword('holahola'),'81254798',DATE '1993-05-23',1);
+insert into  Person(person_id,first_name,last_name, email, password, phone_number,birth_day, persontype_id) values(100000011,'Joselyn','Rodríguez','Joss45451@gmail.com',control_person.encryptpassword('Rojo54'),'78965215',DATE '1987-05-22',1);
+insert into  Person(person_id,first_name,last_name, email, password, phone_number,birth_day, persontype_id) values(100000012,'Keylor','Navas','SanNavas@hotmail.com',control_person.encryptpassword('Nakegol'),'89215821',DATE '1999-05-21',1);
+insert into  Person(person_id,first_name,last_name, email, password, phone_number,birth_day, persontype_id) values(100000013,'Valery','Vega','VValery@yahoo.com.com',control_person.encryptpassword('vevaer'),'89646851',DATE '2001-05-19',1);
+insert into  Person(person_id,first_name,last_name, email, password, phone_number,birth_day, persontype_id) values(100000014,'Josue','Siles','Siles@gmail.com',control_person.encryptpassword('130cm'),'72357801',DATE '1998-05-18',1);
+insert into  Person(person_id,first_name,last_name, email, password, phone_number,birth_day, persontype_id) values(100000015,'Dennis','angulo','Dernudo@outlook.com',control_person.encryptpassword('ande8'),'98746526',DATE '1993-05-17',1);
+insert into  Person(person_id,first_name,last_name, email, password, phone_number,birth_day, persontype_id) values(100000016,'Ishtar','Saborio','servantesCD@outlook.com',control_person.encryptpassword('DCishr'),'98746526',DATE '1994-01-10',1);
+insert into  Person(person_id,first_name,last_name, email, password, phone_number,birth_day, persontype_id) values(990000000,'Joanne','Rowling', 'J.K.Rowling@pottermore.com',control_person.encryptpassword('1234556'), '98765432',DATE '1965-07-30',2);
+insert into  Person(person_id,first_name,last_name, email, password, phone_number,birth_day, persontype_id) values(990000001,'Stephen','King ', 'StephenKing@hotmail.com', control_person.encryptpassword('1234557'), '98765433',DATE '1947-09-21',2);
+insert into  Person(person_id,first_name,last_name, email, password, phone_number,birth_day, persontype_id) values(990000002,'Isabel','Allende', 'Allende@hotmail.com', control_person.encryptpassword('1234558'), '98765434',DATE '1942-08-02',2);
+insert into  Person(person_id,first_name,last_name, email, password, phone_number,birth_day, persontype_id) values(990000003,'Brian','Herbert', 'Herbert@hotmail.com', control_person.encryptpassword('1234559'), '98765355',DATE '1947-06-29',2);
+insert into  Person(person_id,first_name,last_name, email, password, phone_number,birth_day, persontype_id) values(990000004,'Ana','Frank', 'AnaFrank@hotmail.com', control_person.encryptpassword('1234560'), '98765436',DATE '1929-06-12',2);
+insert into  Person(person_id,first_name,last_name, email, password, phone_number,birth_day, persontype_id) values(990000005,'Joseph','Gelinek', 'JosephGelinek@hotmail.com', control_person.encryptpassword('1234561'), '98765437',DATE '1758-12-03',2);
+insert into  Person(person_id,first_name,last_name, email, password, phone_number,birth_day, persontype_id) values(990000006,'kimberly','parsons', 'yohalife@hotmail.com', control_person.encryptpassword('1234562'), '98765438',DATE '1983-07-30',2);
+insert into  Person(person_id,first_name,last_name, email, password, phone_number,birth_day, persontype_id) values(990000007,'Ernest','Cline', 'rpy@hotmail.com', control_person.encryptpassword('1234563'), '98765439',DATE '1972-03-29',2);
+insert into  Person(person_id,first_name,last_name, email, password, phone_number,birth_day, persontype_id) values(990000008,'Daniel','Defoe', 'dd@hotmail.com', control_person.encryptpassword('1234564'), '98765440',DATE '1960-10-10',2);
+insert into  Person(person_id,first_name,last_name, email, password, phone_number,birth_day, persontype_id) values(990000009,'Derek','Kolstad', 'Kolstad@hotmail.com', control_person.encryptpassword('1234565'), '98765441',DATE '1974-07-30',2);
+insert into  Person(person_id,first_name,last_name, email, password, phone_number,birth_day, persontype_id) values(990000010,'George','Lucas', 'jjbean@hotmail.com', control_person.encryptpassword('1234566'), '98765442',DATE '1944-05-14',2);
+insert into  Person(person_id,first_name,last_name, email, password, phone_number,birth_day, persontype_id) values(990000011,'Brad','Bird', 'Bird@hotmail.com', control_person.encryptpassword('1234567'), '98765443',DATE '1957-09-24',2);
+insert into  Person(person_id,first_name,last_name, email, password, phone_number,birth_day, persontype_id) values(990000012,'Hayao','Miyazaki', 'Miyazaki@jpn.com', control_person.encryptpassword('1234568'), '98765444',DATE '1941-01-05',2);
+insert into  Person(person_id,first_name,last_name, email, password, phone_number,birth_day, persontype_id) values(990000013,'Ted','Elliot', 'Elliot@hotmail.com', control_person.encryptpassword('1234569'), '98765445',DATE ' 1961-07-04',2);
+insert into  Person(person_id,first_name,last_name, email, password, phone_number,birth_day, persontype_id) values(990000014,'Ron','Clements', 'Clements@hotmail.com', control_person.encryptpassword('1234570'), '98765446',DATE '1953-04-25',2);
+insert into  Person(person_id,first_name,last_name, email, password, phone_number,birth_day, persontype_id) values(990000015,'Peter','Ramsey', 'Ramsey@hotmail.com', control_person.encryptpassword('1234571'), '98765447',DATE '1962-12-23',2);
+insert into  Person(person_id,first_name,last_name, email, password, phone_number,birth_day, persontype_id) values(990000016,'Roger','Allers', 'Allers@hotmail.com', control_person.encryptpassword('1234572'), '98765448',DATE '1949-06-29',2);
+insert into  Person(person_id,first_name,last_name, email, password, phone_number,birth_day, persontype_id) values(990000017,'Andy','Muschietti', 'Muschietti@hotmail.com', control_person.encryptpassword('1234573'), '98765449',DATE '1973-08-26',2);
+insert into  Person(person_id,first_name,last_name, email, password, phone_number,birth_day, persontype_id) values(990000018,'Steven','Spielberg', 'Spielberg@hotmail.com', control_person.encryptpassword('1234574'), '98765450',DATE '1946-12-18',2);
+insert into  Person(person_id,first_name,last_name, email, password, phone_number,birth_day, persontype_id) values(990000019,'Peter','Jackson', 'Jackson@hotmail.com', control_person.encryptpassword('1234575'), '98765451',DATE '1961-10-31',2);
+insert into  Person(person_id,first_name,last_name, email, password, phone_number,birth_day, persontype_id) values(990000020,'Gary ','Ross', 'Ross@hotmail.com', control_person.encryptpassword('1234576'), '98765452',DATE '1956-11-03',2);
+insert into  Person(person_id,first_name,last_name, email, password, phone_number,birth_day, persontype_id) values(990000021,'James','Cameron', 'Cameron@hotmail.com', control_person.encryptpassword('1234577'), '98765453',DATE '1954-08-16',2);
+insert into  Person(person_id,first_name,last_name, email, password, phone_number,birth_day, persontype_id) values(990000022,'John','Lasseter', 'Lasseter@hotmail.com', control_person.encryptpassword('1234578'), '98765454',DATE '1957-01-12',2);
+insert into  Person(person_id,first_name,last_name, email, password, phone_number,birth_day, persontype_id) values(990000023,'Jerry','Siegel', 'Siegel@hotmail.com', control_person.encryptpassword('1234579'), '98765455',DATE '1914-10-17',2);
+insert into  Person(person_id,first_name,last_name, email, password, phone_number,birth_day, persontype_id) values(990000024,'Jim','Starlin', 'Starlin@hotmail.com', control_person.encryptpassword('1234580'), '98765456',DATE '1949-10-09',2);
+insert into  Person(person_id,first_name,last_name, email, password, phone_number,birth_day, persontype_id) values(990000025,'Scott','Snyder', 'Snyder@hotmail.com', control_person.encryptpassword('1234581'), '98765457',DATE '1976-01-01',2);
+insert into  Person(person_id,first_name,last_name, email, password, phone_number,birth_day, persontype_id) values(990000026,'Alan','Moore', 'Moore@hotmail.com', control_person.encryptpassword('1234582'), '98765458',DATE '1953-11-18',2);
+insert into  Person(person_id,first_name,last_name, email, password, phone_number,birth_day, persontype_id) values(990000027,'Mac','Walters', 'Walters@hotmail.com', control_person.encryptpassword('1234583'), '98765459',DATE '1981-12-21',2);
+insert into  Person(person_id,first_name,last_name, email, password, phone_number,birth_day, persontype_id) values(990000028,'Tom','Taylor', 'Taylor@hotmail.com', control_person.encryptpassword('1234583'), '98765460',DATE '2001-07-16',2);
+insert into  Person(person_id,first_name,last_name, email, password, phone_number,birth_day, persontype_id) values(990000029,'Nick','Spencer', 'Spencer@hotmail.com', control_person.encryptpassword('1234584'), '98765461',DATE '1991-10-07',2);
+insert into  Person(person_id,first_name,last_name, email, password, phone_number,birth_day, persontype_id) values(990000030,'Jim','Shooter', 'Shooter@hotmail.com', control_person.encryptpassword('1234585'), '98765462',DATE '1951-09-27',2);
+insert into  Person(person_id,first_name,last_name, email, password, phone_number,birth_day, persontype_id) values(990000031,'Geoff','Johns', 'Johns@hotmail.com', control_person.encryptpassword('1234586'), '98765463',DATE '1973-01-25',2);
+insert into  Person(person_id,first_name,last_name, email, password, phone_number,birth_day, persontype_id) values(990000032,'Frank','Miller', 'Miller@hotmail.com', control_person.encryptpassword('1234587'), '98765464',DATE '1957-01-27',2);
+insert into  Person(person_id,first_name,last_name, email, password, phone_number,birth_day, persontype_id) values(990000033,'Bryan','omalley', 'omalleys@hotmail.com', control_person.encryptpassword('1234588'), '98765465',DATE '1943-03-16',2);
+insert into  Person(person_id,first_name,last_name, email, password, phone_number,birth_day, persontype_id) values(990000034,'Stan','Lee', 'gstanoleed@hotmail.com', control_person.encryptpassword('1234589'), '98765466',DATE '1922-12-28',2);
+insert into  Person(person_id,first_name,last_name, email, password, phone_number,birth_day, persontype_id) values(990000035,'Jason','Uyeda', 'Uyeda@hotmail.com', control_person.encryptpassword('1234590'), '98765467',DATE '1992-05-06',2);
+insert into  Person(person_id,first_name,last_name, email, password, phone_number,birth_day, persontype_id) values(990000036,'Andy','Gavin', 'Gavin@hotmail.com', control_person.encryptpassword('1234591'), '98765468',DATE '1970-06-11',2);
+insert into  Person(person_id,first_name,last_name, email, password, phone_number,birth_day, persontype_id) values(990000037,'Takao','Shimizu', 'Shimizu@hotmail.com', control_person.encryptpassword('1234592'), '98765468',DATE '1965-06-29',2);
+insert into  Person(person_id,first_name,last_name, email, password, phone_number,birth_day, persontype_id) values(990000038,'Jason','Jones', 'Jones@hotmail.com', control_person.encryptpassword('1234593'), '98765469',DATE '1973-06-03',2);
+insert into  Person(person_id,first_name,last_name, email, password, phone_number,birth_day, persontype_id) values(990000039,'Takashi','Tezuka ', 'Tezuka@hotmail.com', control_person.encryptpassword('1234594'), '98765470',DATE '1960-11-17',2);
+insert into  Person(person_id,first_name,last_name, email, password, phone_number,birth_day, persontype_id) values(990000040,'Alez','Ward', 'Ward@hotmail.com', control_person.encryptpassword('1234595'), '98765471',DATE '1990-04-30',2);
+insert into  Person(person_id,first_name,last_name, email, password, phone_number,birth_day, persontype_id) values(990000041,'Shun','Nakamura', 'Nakamura@hotmail.com', control_person.encryptpassword('1234596'), '98765472',DATE '1978-06-24',2);
+insert into  Person(person_id,first_name,last_name, email, password, phone_number,birth_day, persontype_id) values(990000042,'Bernd','Diemer', 'Diemer@hotmail.com', control_person.encryptpassword('1234597'), '98765473',DATE '1983-02-28',2);
+insert into  Person(person_id,first_name,last_name, email, password, phone_number,birth_day, persontype_id) values(990000043,'Naoto','Oshima', 'Oshima@hotmail.com', control_person.encryptpassword('1234598'), '98765474',DATE '1964-02-26',2);
+insert into  Person(person_id,first_name,last_name, email, password, phone_number,birth_day, persontype_id) values(990000044,'Yoshinori','Kitase', 'Kitase@hotmail.com', control_person.encryptpassword('1234599'), '98765474',DATE '1966-09-23',2);
+insert into  Person(person_id,first_name,last_name, email, password, phone_number,birth_day, persontype_id) values(990000045,'Toru','Hagihara', 'Hagihara@hotmail.com', control_person.encryptpassword('12345600'), '98765475',DATE '1958-04-04',2);
+insert into  Person(person_id,first_name,last_name, email, password, phone_number,birth_day, persontype_id) values(990000046,'Chris','Seavor', 'Seavor@hotmail.com', control_person.encryptpassword('1234601'), '98765476',DATE '1968-07-20',2);
+insert into  Person(person_id,first_name,last_name, email, password, phone_number,birth_day, persontype_id) values(990000047,'Toshihiro','Nagoshi', 'Nagoshi@hotmail.com', control_person.encryptpassword('1234602'), '98765477',DATE '1965-06-17',2);
+insert into  Person(person_id,first_name,last_name, email, password, phone_number,birth_day, persontype_id) values(990000048,'Cory','Barlog', 'Barlog@hotmail.com', control_person.encryptpassword('1234603'), '98765478',DATE '1975-09-02',2);
+insert into  Person(person_id,first_name,last_name, email, password, phone_number,birth_day, persontype_id) values(990000049,'Chris','Colunbus', 'Colunbus@hotmail.com', control_person.encryptpassword('1234604'), '98765479',DATE '1958-09-10',2);
+insert into  Person(person_id,first_name,last_name, email, password, phone_number,birth_day, persontype_id) values(990000050,'kenji','Kanno', 'Kanno@hotmail.com', control_person.encryptpassword('1234605'), '98765480',DATE '1952-02-28',2);
 
 --__________________________tabla item___________________________________________________
 
@@ -177,7 +177,7 @@ insert into item(title,edition,barcode,itemtype_id,status_id,publisher_id) value
 insert into item(title,edition,barcode,itemtype_id,status_id,publisher_id) values('DUNE LA BATALLA DE CORRIN','Best Seller','000000000010',0,0,8);
 insert into item(title,edition,barcode,itemtype_id,status_id,publisher_id) values('DIARIO DE ANA FRANK','2007','000000000011',0,0,8);
 insert into item(title,edition,barcode,itemtype_id,status_id,publisher_id) values('VIOLIN DEL DIABLO','Best Seller','000000000012',0,0,8);
-insert into item(title,edition,barcode,itemtype_id,status_id,publisher_id) values('YOGA KITCHEN','2020','000000000013',0,0,10,6);
+insert into item(title,edition,barcode,itemtype_id,status_id,publisher_id) values('YOGA KITCHEN','2020','000000000013',0,0,6);
 insert into item(title,edition,barcode,itemtype_id,status_id,publisher_id) values('READY PLAYER ONE (ESPAÑOL)','2018','000000000014',0,0,11);
 insert into item(title,edition,barcode,itemtype_id,status_id,publisher_id) values('LIFE AND ADVENTURES OF ROBINSON CRUSOE','2019','000000000015',0,0,12);
 insert into item(title,edition,barcode,itemtype_id,status_id,publisher_id) values('John Wick','DVD','000000000016',1,0,13);
@@ -225,7 +225,6 @@ insert into item(title,edition,barcode,itemtype_id,status_id,publisher_id) value
 insert into item(title,edition,barcode,itemtype_id,status_id,publisher_id) values('conker bad fur day','N64','000000000058',3,0,5);
 insert into item(title,edition,barcode,itemtype_id,status_id,publisher_id) values('f zero gx','Gamecube','000000000059',3,0,20);
 insert into item(title,edition,barcode,itemtype_id,status_id,publisher_id) values('God of War','PS2','000000000060',3,0,7);
-
 insert into item(title,edition,barcode,itemtype_id,status_id,publisher_id) values('Megaman X','Snes','000000000061',3,0,5);
 --__________________________table PersonHasItem___________________________________________________
 
@@ -290,7 +289,7 @@ insert into PersonHasItem(person_id,item_id) values(100000015,37);
 insert into PersonHasItem(person_id,item_id) values(100000016,6);
 insert into PersonHasItem(person_id,item_id) values(100000016,56);
 
-insert into PersonHasItem(person_id,item_id) values(1176610138,60);
+insert into PersonHasItem(person_id,item_id) values(117610138,60);
 
 --__________________________table Person1KnowsPerson2___________________________________________________
 
@@ -473,7 +472,7 @@ INSERT INTO personcreatesitem(person_id,item_id) values(990000046,57);
 INSERT INTO personcreatesitem(person_id,item_id) values(990000047,58);
 INSERT INTO personcreatesitem(person_id,item_id) values(990000048,59);
 
-__________________________table itemhasgenre__________________________________________________
+--__________________________table itemhasgenre__________________________________________________
 
 
 INSERT INTO ItemHasGenre(item_id,genre_id) values(0,2);
@@ -729,7 +728,7 @@ insert into loan_history(person1_id,person2_id,item_id,lend_date,return_date,amo
 insert into loan_history(person1_id,person2_id,item_id,lend_date,return_date,amount_days,tolerance_days_yellow,tolerance_days_red) values(100000002,100000006,47,TO_DATE('2020/12/22', 'yyyy/mm/dd'),TO_DATE('2021/02/03', 'yyyy/mm/dd'),(select to_date (TO_DATE('2021/02/03', 'yyyy/mm/dd')) - trunc(TO_DATE('2020/12/22', 'yyyy/mm/dd')) from dual),10,2);
 insert into loan_history(person1_id,person2_id,item_id,lend_date,return_date,amount_days,tolerance_days_yellow,tolerance_days_red) values(100000003,100000014,22,TO_DATE('2021/01/01', 'yyyy/mm/dd'),TO_DATE('2021/03/12', 'yyyy/mm/dd'),(select to_date (TO_DATE('2021/03/12', 'yyyy/mm/dd')) - trunc(TO_DATE('2021/01/01', 'yyyy/mm/dd')) from dual),2,1);
 insert into loan_history(person1_id,person2_id,item_id,lend_date,return_date,amount_days,tolerance_days_yellow,tolerance_days_red) values(100000003,100000007,41,TO_DATE('2020/03/25', 'yyyy/mm/dd'),TO_DATE('2020/07/10', 'yyyy/mm/dd'),(select to_date (TO_DATE('2020/07/10', 'yyyy/mm/dd')) - trunc(TO_DATE('2020/03/25', 'yyyy/mm/dd')) from dual),8,3);
-insert into loan_history(person1_id,person2_id,item_id,lend_date,return_date,amount_days,tolerance_days_yellow,tolerance_days_red) values(100000004,100000005,34,TO_DATE('2021/01/01', 'yyyy/mm/dd'),TO_DATE('2021/02/29', 'yyyy/mm/dd'),(select to_date (TO_DATE('2021/01/29', 'yyyy/mm/dd')) - trunc(TO_DATE('2021/01/01', 'yyyy/mm/dd')) from dual),5,2);
+insert into loan_history(person1_id,person2_id,item_id,lend_date,return_date,amount_days,tolerance_days_yellow,tolerance_days_red) values(100000004,100000005,34,TO_DATE('2021/01/01', 'yyyy/mm/dd'),TO_DATE('2021/02/28', 'yyyy/mm/dd'),(select to_date (TO_DATE('2021/01/29', 'yyyy/mm/dd')) - trunc(TO_DATE('2021/01/01', 'yyyy/mm/dd')) from dual),5,2);
 insert into loan_history(person1_id,person2_id,item_id,lend_date,return_date,amount_days,tolerance_days_yellow,tolerance_days_red) values(100000004,100000009,19,TO_DATE('2021/02/25', 'yyyy/mm/dd'),TO_DATE('2021/04/15', 'yyyy/mm/dd'),(select to_date (TO_DATE('2021/04/15', 'yyyy/mm/dd')) - trunc(TO_DATE('2021/02/25', 'yyyy/mm/dd')) from dual),6,1);
 insert into loan_history(person1_id,person2_id,item_id,lend_date,return_date,amount_days,tolerance_days_yellow,tolerance_days_red) values(100000005,100000004,11,TO_DATE('2021/01/13', 'yyyy/mm/dd'),TO_DATE('2021/04/15', 'yyyy/mm/dd'),(select to_date (TO_DATE('2021/04/15', 'yyyy/mm/dd')) - trunc(TO_DATE('2021/01/13', 'yyyy/mm/dd')) from dual),12,3);
 insert into loan_history(person1_id,person2_id,item_id,lend_date,return_date,amount_days,tolerance_days_yellow,tolerance_days_red) values(100000005,100000007,23,TO_DATE('2020/08/01', 'yyyy/mm/dd'),TO_DATE('2020/12/10', 'yyyy/mm/dd'),(select to_date (TO_DATE('2020/12/10', 'yyyy/mm/dd')) - trunc(TO_DATE('2020/08/01', 'yyyy/mm/dd')) from dual),10,2);

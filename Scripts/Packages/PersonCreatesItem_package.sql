@@ -2,7 +2,7 @@ Create or replace package control_personcreatesitem is
 
 
 PROCEDURE insert_personcreatesitem (pperson_id IN NUMBER, pitem_id IN NUMBER);
-PROCEDURE remove_personcreatesitem (pperson_id IN NUMBER);
+PROCEDURE remove_personcreatesitem (pperson_id IN NUMBER, pitem IN NUMBER);
 PROCEDURE update_personcreatesitem (ppersonid_old in NUMBER, pperson_id IN NUMBER, pitem_id IN NUMBER);
 
 FUNCTION getpersoncreatesitemPersonID(pid_item IN NUMBER) RETURN NUMBER;
@@ -23,11 +23,11 @@ BEGIN
 END insert_personcreatesitem;
 
 
-PROCEDURE remove_personcreatesitem (pperson_id IN NUMBER) AS
+PROCEDURE remove_personcreatesitem (pperson_id IN NUMBER, pitem IN NUMBER) AS
 e_invalid_personcreatesitem EXCEPTION;
 BEGIN
 	DELETE FROM personcreatesitem
-	WHERE person_id = pperson_id;
+	WHERE person_id = pperson_id AND item_id = pitem;
 	COMMIT;
     IF SQL%NOTFOUND THEN 
         RAISE e_invalid_personcreatesitem;

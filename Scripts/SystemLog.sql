@@ -1,10 +1,10 @@
 /*Autor: Renzo Barra, 5/25/2021*/
 CREATE TABLE PE.SYSTEMLOG (
-	SYSTEMLOG_ID INT COMMENT 'SystemLog identification code.', 
-	DESCRIPTION VARCHAR(150) COMMENT 'SystemLog description.', 
-	OBJECT VARCHAR(50) COMMENT 'SystemLog reference object.', 
-	TYPE_CHANGE VARCHAR(50) COMMENT 'SystemLog type of change.', 
-	SYS_DATE DATETIME, 
+	SYSTEMLOG_ID INT COMMENT 'SystemLog identification code.',
+	DESCRIPTION VARCHAR(150) COMMENT 'SystemLog description.',
+	OBJECT VARCHAR(50) COMMENT 'SystemLog reference object.',
+	TYPE_CHANGE VARCHAR(50) COMMENT 'SystemLog type of change.',
+	SYS_DATE DATETIME,
 	CREATION_USER VARCHAR(50)
     );
 

@@ -319,7 +319,7 @@ DELIMITER ;
 
 
 USE `pe`;
-DROP procedure IF EXISTS `pe`.`Control_Item_UpdateItem`;
+DROP procedure IF EXISTS `pe`.`Control_Item_UpdateItemCover`;
 
 DELIMITER $$
 USE `pe`$$
@@ -485,8 +485,8 @@ RETURN vcId;
 END$$
 
 DELIMITER ;USE `pe`;
-DROP procedure IF EXISTS `Control_ItemHasGenre_InsertItemHasGenre`;
 
+DROP procedure IF EXISTS `Control_ItemHasGenre_InsertItemHasGenre`;
 DELIMITER $$
 USE `pe`$$
 CREATE PROCEDURE `Control_ItemHasGenre_InsertItemHasGenre` (IN pItem_id INT, IN pGenre_id INT)
@@ -2810,6 +2810,241 @@ from(
     	on pli.item_id = i.item_id
     	where pli.person1_id = pPerson_id    
 	)as a;
+END$$
+
+DELIMITER ;
+
+
+USE `pe`;
+DROP procedure IF EXISTS `Control_Genre_InsertGenre`;
+
+DELIMITER $$
+USE `pe`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `Control_Genre_InsertGenre`(IN pName VARCHAR(20), IN pDescription VARCHAR(140))
+BEGIN
+DECLARE EXIT HANDLER FOR 1062 SELECT 'Duplicate keys error encountered.' Message;
+DECLARE EXIT HANDLER FOR 1105 SELECT 'Unknown error encountered.' Message;
+DECLARE EXIT HANDLER FOR 1176 SELECT 'Key does not exist.' Message;
+DECLARE EXIT HANDLER FOR 1231 SELECT 'Variable cannot be set to that value.' Message;
+DECLARE EXIT HANDLER FOR 1232 SELECT 'Incorrect argument type to variable.' Message;
+
+INSERT INTO genre(genre_name, description)
+VALUES(pName, pDescription);
+COMMIT;
+END$$
+
+DELIMITER ;
+
+USE `pe`;
+DROP function IF EXISTS `pe`.`Control_ItemHasReview_getItemHasReviewReview_id`;
+
+DELIMITER $$
+USE `pe`$$
+CREATE DEFINER=`root`@`localhost` FUNCTION `Control_ItemHasReview_getItemHasReviewReviewId`(pItem_id INT) RETURNS int
+	DETERMINISTIC
+BEGIN
+DECLARE vcId INT;
+SET vcId = (SELECT review_id FROM ItemHasReview WHERE item_id = pItem_id);
+
+RETURN vcId;
+END$$
+
+DELIMITER ;
+;
+
+USE `pe`;
+DROP function IF EXISTS `pe`.`Control_Person1KnosPerson2_getPer1KnowsPer2Person1Id`;
+
+DELIMITER $$
+USE `pe`$$
+CREATE DEFINER=`root`@`localhost` FUNCTION `Control_Person1KnowsPerson2_getPer1KnowsPer2Person1Id`(pPerson2_id INT) RETURNS int
+	DETERMINISTIC
+BEGIN
+DECLARE vcId INT;
+SET vcId = (SELECT person1_id FROM person1knowsperson2 WHERE person2_id = pid_perpPerson2_idson2);
+RETURN vcId;
+END$$
+
+DELIMITER ;
+;
+
+USE `pe`;
+DROP function IF EXISTS `pe`.`Control_PersonLendItem_getPersonLendItemPeron2Id`;
+
+DELIMITER $$
+USE `pe`$$
+CREATE DEFINER=`root`@`localhost` FUNCTION `Control_PersonLendItem_getPersonLendItemPerson2Id`(pPerson1_id INT, pItem_id INT) RETURNS int
+	DETERMINISTIC
+BEGIN
+DECLARE vcId INT;
+SET vcId = ( SELECT person2_id FROM personlenditem WHERE person1_id = pPerson1_id AND item_id = pItem_id);
+RETURN vcId;
+END$$
+
+DELIMITER ;
+;
+
+USE `pe`;
+DROP function IF EXISTS `Control_RelationType_getrelationTypeId`;
+
+DELIMITER $$
+USE `pe`$$
+CREATE DEFINER=`root`@`localhost` FUNCTION `Control_RelationType_getrelationTypeId`(pName VARCHAR(100)) RETURNS int
+	DETERMINISTIC /**/
+BEGIN
+DECLARE vcId INT;
+SET vcId = (SELECT relationtype_id FROM relationtype WHERE relationtype_name = pName);
+RETURN vcId;
+END$$
+
+DELIMITER ;
+
+USE `pe`;
+DROP function IF EXISTS `Control_RelationType_getrelationTypeName`;
+
+DELIMITER $$
+USE `pe`$$
+CREATE DEFINER=`root`@`localhost` FUNCTION `Control_RelationType_getrelationTypeName`(pId INT) RETURNS varchar(100) CHARSET utf8mb4
+	DETERMINISTIC/**/
+BEGIN
+DECLARE vcName VARCHAR(100);
+SET vcName = ( SELECT relationtype_name FROM relationtype WHERE relationtype_id = pId);
+RETURN vcName;
+END$$
+
+DELIMITER ;
+USE `pe`;
+DROP function IF EXISTS `Control_ItemType_getItemTypeName`;
+
+DELIMITER $$
+USE `pe`$$
+CREATE DEFINER=`root`@`localhost` FUNCTION `Control_ItemType_getItemTypeName`(pItemType_id INT) RETURNS varchar(20) CHARSET utf8mb4
+ DETERMINISTIC
+BEGIN
+DECLARE vcName varchar(20);
+SET vcName = (SELECT itemType_name FROM itemtype WHERE itemtype_id = pItemType_id);
+RETURN vcName;
+END$$
+
+DELIMITER ;
+
+USE `pe`;
+DROP procedure IF EXISTS `UserInterface_Queries_GetAuthors`;
+
+DELIMITER $$
+USE `pe`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `UserInterface_Queries_GetAuthors`()
+BEGIN
+select *
+from(
+	select first_name, last_name, email
+	from person
+	where persontype_id = 3
+)as a;
+END$$
+
+DELIMITER ;
+
+
+USE `pe`;
+DROP function IF EXISTS `Control_Item_InsertItemB`;
+
+DELIMITER $$
+USE `pe`$$
+CREATE DEFINER=`root`@`localhost` FUNCTION `Control_Item_InsertItemB`() RETURNS int
+	DETERMINISTIC
+BEGIN
+DECLARE vcId INT;
+SET vcId = (select max(item_id) from item);
+RETURN vcId;
+END$$
+
+DELIMITER ;
+
+USE `pe`;
+DROP procedure IF EXISTS `Control_Item_RemoveItem`;
+
+DELIMITER $$
+USE `pe`$$
+CREATE PROCEDURE `Control_Item_RemoveItem` (IN pId INT)
+BEGIN
+DECLARE EXIT HANDLER FOR 1062 SELECT 'Duplicate keys error encountered.' Message;
+DECLARE EXIT HANDLER FOR 1105 SELECT 'Unknown error encountered.' Message;
+DECLARE EXIT HANDLER FOR 1176 SELECT 'Key does not exist.' Message;
+DECLARE EXIT HANDLER FOR 1231 SELECT 'Variable cannot be set to that value.' Message;
+DECLARE EXIT HANDLER FOR 1232 SELECT 'Incorrect argument type to variable.' Message;
+
+
+DELETE FROM item
+	WHERE item_id = pId;
+	COMMIT;
+END$$
+
+DELIMITER ;
+
+USE `pe`;
+DROP procedure IF EXISTS `Control_Person_UpdatePerson`;
+
+DELIMITER $$
+USE `pe`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `Control_Person_UpdatePerson`(IN pId INT, IN pFirname VARCHAR(50), IN pLasname VARCHAR(50), IN pEmail VARCHAR(50), IN pPassword VARCHAR(25), IN pPhone VARCHAR(8), IN pDate VARCHAR(100) )
+BEGIN
+DECLARE EXIT HANDLER FOR 1062 SELECT 'Duplicate keys error encountered.' Message;
+DECLARE EXIT HANDLER FOR 1105 SELECT 'Unknown error encountered.' Message;
+DECLARE EXIT HANDLER FOR 1176 SELECT 'Key does not exist.' Message;
+DECLARE EXIT HANDLER FOR 1231 SELECT 'Variable cannot be set to that value.' Message;
+DECLARE EXIT HANDLER FOR 1232 SELECT 'Incorrect argument type to variable.' Message;
+
+UPDATE person
+    SET first_name = pFirname,
+    	last_name = pLasname,
+    	email = pEmail,
+    	password = SHA(pPassword),
+    	phone_number = pPhone,
+    	birth_day = str_to_date(pDate, '%Y-%m-%d')
+    WHERE person_id = pId;
+    COMMIT;
+
+END$$
+
+DELIMITER ;
+
+USE `pe`;
+DROP procedure IF EXISTS `UserInterface_Queries_GetItems`;
+
+DELIMITER $$
+USE `pe`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `UserInterface_Queries_GetItems`(IN pPerson_id INT)
+BEGIN
+select * 
+from(/**/
+   SELECT i.title
+   FROM item i
+   INNER JOIN personhasitem phi
+   ON i.item_id = phi.item_id
+   WHERE phi.person_id = pPerson_id AND i.status_id = 1
+    ) as a;
+END$$
+
+DELIMITER ;
+
+USE `pe`;
+DROP procedure IF EXISTS `Admin_Queries_TopMostBorrowedPerMonth`;
+
+DELIMITER $$
+USE `pe`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `Admin_Queries_TopMostBorrowedPerMonth`(pTimes INT, pMonth INT)
+BEGIN
+select * /**/
+from(
+    select i.title, count(lh.item_id)
+    from loan_history lh
+    inner join item i
+    on lh.item_id = i.item_id
+    where lh.lend_date >= DATE_SUB(curdate(),INTERVAL pMonth month)
+    group by i.title
+    having count(lh.item_id) >= pTimes
+    )as a;
 END$$
 
 DELIMITER ;

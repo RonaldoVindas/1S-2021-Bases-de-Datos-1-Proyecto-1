@@ -1,4 +1,7 @@
 /*Autor: Renzo Barra, 5/25/2021*/
+
+/*======================================TABLE======================================*/
+
 CREATE TABLE PE.SYSTEMLOG (
 	SYSTEMLOG_ID INT COMMENT 'SystemLog identification code.',
 	DESCRIPTION VARCHAR(150) COMMENT 'SystemLog description.',
@@ -8,7 +11,11 @@ CREATE TABLE PE.SYSTEMLOG (
 	CREATION_USER VARCHAR(50)
     );
 
+/*======================================COMMENTS======================================*/
+
 ALTER TABLE PE.SYSTEMLOG  COMMENT 'Repository to storage information about systemLog.';
+
+/*======================================PRIMARY KEY======================================*/
 
 ALTER TABLE PE.SYSTEMLOG
 AUTO_INCREMENT = 0,

@@ -1,3 +1,12 @@
+/*Autor: Ronaldo Vindas 5/26/2021*/
+
+/*======================================    QUERIES     ======================================*/
+
+
+
+/*======================================ADMIN QUERIES======================================*/
+
+--------------------------------------------------------------
 USE `pe`;
 DROP procedure IF EXISTS `ADMIN_QUERIES_NotBorrowed`;
 
@@ -17,6 +26,8 @@ from(
 END$$
 
 DELIMITER ;
+
+--------------------------------------------------------------
 
 USE `pe`;
 DROP procedure IF EXISTS `ADMIN_QUERIES_NotBorrowedTotal`;
@@ -57,6 +68,7 @@ END$$
 
 DELIMITER ;
 
+--------------------------------------------------------------
 
 USE `pe`;
 DROP procedure IF EXISTS `ADMIN_QUERIES_MostBorrowedPerMonth`;
@@ -79,6 +91,7 @@ END$$
 
 DELIMITER ;
 
+--------------------------------------------------------------
 
 
 USE `pe`;
@@ -123,6 +136,9 @@ END$$
 
 DELIMITER ;
 
+/*======================================CONTROL GENRE======================================*/
+
+
 USE `pe`;
 DROP procedure IF EXISTS `CONTROL_GENRE_insert_genre`;
 
@@ -144,13 +160,14 @@ END$$
 
 DELIMITER ;
 
+--------------------------------------------------------------
 
 USE `pe`;
-DROP procedure IF EXISTS `Control_Gendre_RemoveGenre`;
+DROP procedure IF EXISTS `Control_Genre_RemoveGenre`;
 
 DELIMITER $$
 USE `pe`$$
-CREATE PROCEDURE `Control_Gendre_RemoveGenre` (IN pid_genre int)
+CREATE PROCEDURE `Control_Genre_RemoveGenre` (IN pid_genre int)
 BEGIN
 DECLARE EXIT HANDLER FOR 1062 SELECT 'Duplicate keys error encountered.' Message;
 DECLARE EXIT HANDLER FOR 1105 SELECT 'Unknown error encountered.' Message;
@@ -165,6 +182,7 @@ END$$
 
 DELIMITER ;
 
+--------------------------------------------------------------
 
 USE `pe`;
 DROP procedure IF EXISTS `Control_Genre_UpdateGenre`;
@@ -193,6 +211,8 @@ END$$
 
 DELIMITER ;
 
+--------------------------------------------------------------
+
 USE `pe`;
 DROP function IF EXISTS `Control_Genre_getGenreName`;
 
@@ -207,6 +227,9 @@ RETURN vcName;
 END$$
 
 DELIMITER ;
+
+--------------------------------------------------------------
+
 
 USE `pe`;
 DROP function IF EXISTS `Control_Genre_getGenreDescription`;
@@ -224,6 +247,8 @@ END$$
 
 DELIMITER ;
 
+--------------------------------------------------------------
+
 USE `pe`;
 DROP function IF EXISTS `Control_Genre_getGenreId`;
 
@@ -239,6 +264,10 @@ RETURN vcId;
 END$$
 
 DELIMITER ;
+
+/*======================================CONTROL ITEM ======================================*/
+
+
 
 USE `pe`;
 DROP procedure IF EXISTS `pe`.`Control_Item_InsertItemA`;
@@ -261,6 +290,9 @@ END$$
 DELIMITER ;
 
 
+--------------------------------------------------------------
+
+
 USE `pe`;
 DROP function IF EXISTS `Control_Item_InsertItemB`;
 
@@ -280,11 +312,17 @@ END$$
 DELIMITER ;
 
 
+--------------------------------------------------------------
+
+
 
 
 DELIMITER ;
 ;
 
+
+
+--------------------------------------------------------------
 
 
 
@@ -317,6 +355,9 @@ END$$
 DELIMITER ;
 
 
+--------------------------------------------------------------
+
+
 
 USE `pe`;
 DROP procedure IF EXISTS `pe`.`Control_Item_UpdateItemCover`;
@@ -340,6 +381,9 @@ END$$
 
 DELIMITER ;
 ;
+
+--------------------------------------------------------------
+
 
 USE `pe`;
 DROP procedure IF EXISTS `Control_Item_UpdateItemStatus`;
@@ -366,6 +410,9 @@ END$$
 
 DELIMITER ;
 
+--------------------------------------------------------------
+
+
 
 USE `pe`;
 DROP function IF EXISTS `Control_Item_getItemTitle`;
@@ -382,6 +429,9 @@ RETURN vcName;
 END$$
 
 DELIMITER ;
+
+--------------------------------------------------------------
+
 
 
 USE `pe`;
@@ -400,6 +450,9 @@ END$$
 
 DELIMITER ;
 
+--------------------------------------------------------------
+
+
 USE `pe`;
 DROP function IF EXISTS `Control_Item_getItemCover`;
 
@@ -415,6 +468,9 @@ RETURN vcCover;
 END$$
 
 DELIMITER ;
+
+
+--------------------------------------------------------------
 
 
 
@@ -435,6 +491,9 @@ END$$
 DELIMITER ;
 
 
+--------------------------------------------------------------
+
+
 
 USE `pe`;
 DROP function IF EXISTS `Control_Item_getItemItemType`;
@@ -451,6 +510,9 @@ RETURN vcId;
 END$$
 
 DELIMITER ;
+
+
+--------------------------------------------------------------
 
 
 USE `pe`;
@@ -470,6 +532,9 @@ END$$
 DELIMITER ;
 
 
+--------------------------------------------------------------
+
+
 USE `pe`;
 DROP function IF EXISTS `Control_Item_getItemPublisher`;
 
@@ -484,7 +549,11 @@ SET vcId = (SELECT publisher_id FROM item WHERE item_id = pid);
 RETURN vcId;
 END$$
 
-DELIMITER ;USE `pe`;
+DELIMITER ;
+
+/*======================================CONTROL ITEM HAS GENRE ======================================*/
+
+USE `pe`;
 
 DROP procedure IF EXISTS `Control_ItemHasGenre_InsertItemHasGenre`;
 DELIMITER $$
@@ -504,6 +573,9 @@ COMMIT;
 END$$
 
 DELIMITER ;
+
+--------------------------------------------------------------
+
 
 USE `pe`;
 DROP procedure IF EXISTS `Control_ItemHasGenre_RemoveItemHasGenre`;
@@ -526,6 +598,9 @@ COMMIT;
 END$$
 
 DELIMITER ;
+
+--------------------------------------------------------------
+
 
 USE `pe`;
 DROP procedure IF EXISTS `Control_ItemHasGenre_UpdateItemHasGenre`;
@@ -554,6 +629,9 @@ END$$
 DELIMITER ;
 
 
+--------------------------------------------------------------
+
+
 USE `pe`;
 DROP function IF EXISTS `Control_ItemHasGenre_getItemHasGenreItemId`;
 
@@ -569,6 +647,9 @@ RETURN vcId;
 END$$
 
 DELIMITER ;
+
+
+--------------------------------------------------------------
 
 
 
@@ -589,6 +670,9 @@ END$$
 DELIMITER ;
 
 
+--------------------------------------------------------------
+
+
 
 USE `pe`;
 DROP function IF EXISTS `Control_ItemHasGenre_getItemHasGenreGenreId`;
@@ -605,6 +689,9 @@ RETURN vcId;
 END$$
 
 DELIMITER ;
+
+/*======================================CONTROL ITEM HAS REVIEW ======================================*/
+
 
 USE `pe`;
 DROP procedure IF EXISTS `Control_ItemHasReview_InsertItemHasReview`;
@@ -629,6 +716,9 @@ END$$
 DELIMITER ;
 
 
+--------------------------------------------------------------
+
+
 
 USE `pe`;
 DROP procedure IF EXISTS `Control_ItemHasReview_RemoveItemHasReview`;
@@ -650,6 +740,9 @@ COMMIT;
 END$$
 
 DELIMITER ;
+
+
+--------------------------------------------------------------
 
 
 
@@ -677,6 +770,9 @@ END$$
 
 DELIMITER ;
 
+--------------------------------------------------------------
+
+
 USE `pe`;
 DROP function IF EXISTS `Control_ItemHasReview_getItemHasReviewItemId`;
 
@@ -692,6 +788,9 @@ RETURN vcID;
 END$$
 
 DELIMITER ;
+
+
+--------------------------------------------------------------
 
 
 
@@ -713,6 +812,9 @@ END$$
 DELIMITER ;
 
 
+/*======================================CONTROL ITEM TYPE ======================================*/
+
+
 USE `pe`;
 DROP procedure IF EXISTS `Control_ItemType_InsertItemType`;
 
@@ -726,6 +828,9 @@ DECLARE EXIT HANDLER FOR 1176 SELECT 'Key does not exist.' Message;
 DECLARE EXIT HANDLER FOR 1231 SELECT 'Variable cannot be set to that value.' Message;
 DECLARE EXIT HANDLER FOR 1232 SELECT 'Incorrect argument type to variable.' Message;
 
+--------------------------------------------------------------
+
+
 
 INSERT INTO ItemType(itemType_name)
 VALUES(pItemtype_name);
@@ -735,6 +840,9 @@ COMMIT;
 END$$
 
 DELIMITER ;
+
+--------------------------------------------------------------
+
 
 USE `pe`;
 DROP procedure IF EXISTS `Control_ItemType_RemoveItemType`;
@@ -756,6 +864,9 @@ COMMIT;
 END$$
 
 DELIMITER ;
+
+--------------------------------------------------------------
+
 
 USE `pe`;
 DROP procedure IF EXISTS `Control_ItemType_UpdateItemType`;
@@ -779,6 +890,9 @@ END$$
 
 DELIMITER ;
 
+--------------------------------------------------------------
+
+
 USE `pe`;
 DROP function IF EXISTS `Control_ItemType_getItemTypeName`;
 
@@ -794,6 +908,11 @@ RETURN vcName;
 END$$
 
 DELIMITER ;
+
+
+--------------------------------------------------------------
+
+
 USE `pe`;
 DROP function IF EXISTS `Control_ItemType_getItemTypeId`;
 
@@ -809,6 +928,9 @@ RETURN vcId;
 END$$
 
 DELIMITER ;
+
+/*======================================CONTROL PERSON ======================================*/
+
 
 USE `pe`;
 DROP procedure IF EXISTS `Control_Person_InsertPerson`;
@@ -832,6 +954,9 @@ END$$
 
 DELIMITER ;
 
+--------------------------------------------------------------
+
+
 
 USE `pe`;
 DROP procedure IF EXISTS `Control_Person_RemovePerson`;
@@ -854,6 +979,9 @@ COMMIT;
 END$$
 
 DELIMITER ;
+
+--------------------------------------------------------------
+
 
 
 USE `pe`;
@@ -883,6 +1011,9 @@ END$$
 
 DELIMITER ;
 
+--------------------------------------------------------------
+
+
 USE `pe`;
 DROP function IF EXISTS `Control_Person_getPersonId`;
 
@@ -899,6 +1030,9 @@ END$$
 
 DELIMITER ;
 
+--------------------------------------------------------------
+
+
 USE `pe`;
 DROP function IF EXISTS `Control_Person_getPersonId2`;
 
@@ -914,6 +1048,9 @@ RETURN vcID;
 END$$
 
 DELIMITER ;
+
+
+--------------------------------------------------------------
 
 
 
@@ -935,6 +1072,9 @@ END$$
 DELIMITER ;
 
 
+--------------------------------------------------------------
+
+
 
 USE `pe`;
 DROP function IF EXISTS `Control_Person_getPersonLastName`;
@@ -952,6 +1092,9 @@ END$$
 
 DELIMITER ;
 
+--------------------------------------------------------------
+
+
 USE `pe`;
 DROP function IF EXISTS `Control_Person_getPersonEmail`;
 
@@ -968,6 +1111,9 @@ END$$
 
 DELIMITER ;
 
+--------------------------------------------------------------
+
+
 USE `pe`;
 DROP function IF EXISTS `Control_Person_getPersonPassword`;
 
@@ -983,6 +1129,9 @@ RETURN vcPassword;
 END$$
 
 DELIMITER ;
+
+--------------------------------------------------------------
+
 
 
 
@@ -1001,6 +1150,9 @@ RETURN vcPhone;
 END$$
 
 DELIMITER ;
+
+
+--------------------------------------------------------------
 
 
 
@@ -1022,6 +1174,9 @@ END$$
 DELIMITER ;
 
 
+--------------------------------------------------------------
+
+
 
 USE `pe`;
 DROP function IF EXISTS `Control_Person_getPersonPersonType`;
@@ -1040,6 +1195,9 @@ END$$
 DELIMITER ;
 
 
+--------------------------------------------------------------
+
+
 USE `pe`;
 DROP function IF EXISTS `EncryptPassword`;
 
@@ -1054,6 +1212,10 @@ RETURN vcEncrypt;
 END$$
 
 DELIMITER ;
+
+--------------------------------------------------------------
+
+/*======================================CONTROL PERSON1 KNOS PERSON2 ======================================*/
 
 USE `pe`;
 DROP procedure IF EXISTS `Control_Person1KnowsPerson2_InsertPer1KnowsPer2`;
@@ -1076,6 +1238,9 @@ END$$
 
 DELIMITER ;
 
+--------------------------------------------------------------
+
+
 USE `pe`;
 DROP procedure IF EXISTS `Control_Person1KnowsPerson2_RemovePer1KnowsPer2`;
 
@@ -1095,6 +1260,9 @@ COMMIT;
 END$$
 
 DELIMITER ;
+
+--------------------------------------------------------------
+
 
 USE `pe`;
 DROP procedure IF EXISTS `Control_Person1KnowsPerson2_UpdatePer1KnowsPer2`;
@@ -1123,7 +1291,7 @@ END$$
 DELIMITER ;
 
 
-
+--------------------------------------------------------------
 
 
 USE `pe`;
@@ -1142,8 +1310,7 @@ END$$
 
 DELIMITER ;
 
-
-
+--------------------------------------------------------------
 
 USE `pe`;
 DROP function IF EXISTS `Control_Person1KnowsPerson2_getPer1KnowsPer2Person2Id`;
@@ -1160,6 +1327,11 @@ RETURN vcId;
 END$$
 
 DELIMITER ;
+
+
+--------------------------------------------------------------
+
+
 
 USE `pe`;
 DROP function IF EXISTS `Control_Person1KnowsPerson2_getPer1KnowsPer2RelTypeId`;
@@ -1178,7 +1350,7 @@ END$$
 DELIMITER ;
 
 
-
+/*======================================CONTROL PERSON CREATES ITEM ======================================*/
 
 
 
@@ -1205,8 +1377,7 @@ END$$
 DELIMITER ;
 
 
-
-
+--------------------------------------------------------------
 
 
 
@@ -1230,6 +1401,9 @@ COMMIT;
 END$$
 
 DELIMITER ;
+
+--------------------------------------------------------------
+
 
 USE `pe`;
 DROP procedure IF EXISTS `Control_PersonCreatesItem_UpdatePersonCreatesItem`;
@@ -1257,7 +1431,7 @@ END$$
 
 DELIMITER ;
 
-
+--------------------------------------------------------------
 
 
 USE `pe`;
@@ -1276,21 +1450,8 @@ END$$
 
 DELIMITER ;
 
-USE `pe`;
-DROP function IF EXISTS `Control_PersonCreatesItem_getPersonCreatesItemItemId`;
+--------------------------------------------------------------
 
-DELIMITER $$
-USE `pe`$$
-CREATE FUNCTION `Control_PersonCreatesItem_getPersonCreatesItemItemId` (pPerson_id INT)
-RETURNS INTEGER
-DETERMINISTIC
-BEGIN
-DECLARE vcId INT;
-SET vcId = (SELECT item_id FROM personcreatesitem WHERE person_id = pid_person);
-RETURN vcId;
-END$$
-
-DELIMITER ;
 
 USE `pe`;
 DROP function IF EXISTS `Control_PersonCreatesItem_getPersonCreatesItemItemId`;
@@ -1307,6 +1468,27 @@ RETURN vcId;
 END$$
 
 DELIMITER ;
+
+--------------------------------------------------------------
+
+
+USE `pe`;
+DROP function IF EXISTS `Control_PersonCreatesItem_getPersonCreatesItemItemId`;
+
+DELIMITER $$
+USE `pe`$$
+CREATE FUNCTION `Control_PersonCreatesItem_getPersonCreatesItemItemId` (pPerson_id INT)
+RETURNS INTEGER
+DETERMINISTIC
+BEGIN
+DECLARE vcId INT;
+SET vcId = (SELECT item_id FROM personcreatesitem WHERE person_id = pid_person);
+RETURN vcId;
+END$$
+
+DELIMITER ;
+
+/*======================================CONTROL PERSON HAS ITEM======================================*/
 
 
 
@@ -1331,12 +1513,7 @@ END$$
 
 DELIMITER ;
 
-
-
-
-
-
-
+--------------------------------------------------------------
 
 
 USE `pe`;
@@ -1358,6 +1535,9 @@ COMMIT;
 END$$
 
 DELIMITER ;
+
+
+--------------------------------------------------------------
 
 
 USE `pe`;
@@ -1382,12 +1562,7 @@ END$$
 
 DELIMITER ;
 
-
-
-
-
-
-
+--------------------------------------------------------------
 
 
 USE `pe`;
@@ -1406,6 +1581,9 @@ END$$
 
 DELIMITER ;
 
+--------------------------------------------------------------
+
+
 USE `pe`;
 DROP function IF EXISTS `Control_PersonHasITem_getPersonHasItemItemId`;
 
@@ -1421,6 +1599,8 @@ RETURN vcId;
 END$$
 
 DELIMITER ;
+
+/*======================================CONTROL PERSON LEND ITEM ======================================*/
 
 
 
@@ -1449,6 +1629,9 @@ END$$
 
 DELIMITER ;
 
+--------------------------------------------------------------
+
+
 USE `pe`;
 DROP procedure IF EXISTS `Control_PersonLendItem_RemovePersonLendItem`;
 
@@ -1471,6 +1654,8 @@ END$$
 
 DELIMITER ;
 
+
+--------------------------------------------------------------
 
 
 
@@ -1504,6 +1689,9 @@ WHERE
 
 
 END$$
+DELIMITER ;
+--------------------------------------------------------------
+
 
 
 USE `pe`;
@@ -1533,7 +1721,7 @@ END$$
 DELIMITER ;
 
 
-
+--------------------------------------------------------------
 
 
 USE `pe`;
@@ -1552,7 +1740,7 @@ END$$
 
 DELIMITER ;
 
-
+--------------------------------------------------------------
 
 
 USE `pe`;
@@ -1571,6 +1759,9 @@ END$$
 
 DELIMITER ;
 
+--------------------------------------------------------------
+
+
 
 USE `pe`;
 DROP function IF EXISTS `Control_PersonLendItem_getPersonLendItemItemId`;
@@ -1588,6 +1779,9 @@ END$$
 
 DELIMITER ;
 
+--------------------------------------------------------------
+
+
 USE `pe`;
 DROP function IF EXISTS `Control_PersonLendItem_getPersonLendItemLendDate`;
 
@@ -1604,7 +1798,7 @@ END$$
 
 DELIMITER ;
 
-
+--------------------------------------------------------------
 
 
 USE `pe`;
@@ -1623,7 +1817,7 @@ END$$
 
 DELIMITER ;
 
-
+--------------------------------------------------------------
 
 
 USE `pe`;
@@ -1643,7 +1837,7 @@ END$$
 DELIMITER ;
 
 
-
+--------------------------------------------------------------
 
 
 USE `pe`;
@@ -1662,6 +1856,7 @@ END$$
 
 DELIMITER ;
 
+--------------------------------------------------------------
 
 
 USE `pe`;
@@ -1680,7 +1875,7 @@ END$$
 
 DELIMITER ;
 
-
+/*======================================CONTROL PERSON TYPE======================================*/
 
 
 
@@ -1705,7 +1900,7 @@ END$$
 
 DELIMITER ;
 
-
+--------------------------------------------------------------
 
 
 USE `pe`;
@@ -1729,6 +1924,9 @@ WHERE
 END$$
 
 DELIMITER ;
+
+
+--------------------------------------------------------------
 
 
 
@@ -1755,6 +1953,9 @@ END$$
 
 DELIMITER ;
 
+--------------------------------------------------------------
+
+
 
 USE `pe`;
 DROP function IF EXISTS `Control_PersonType_getPersonTypeId`;
@@ -1773,6 +1974,9 @@ END$$
 DELIMITER ;
 
 
+--------------------------------------------------------------
+
+
 USE `pe`;
 DROP function IF EXISTS `Control_PersonType_getPersonTypeName`;
 
@@ -1789,6 +1993,7 @@ END$$
 
 DELIMITER ;
 
+/*======================================CONTROL PUBLISHER ======================================*/
 
 
 
@@ -1812,10 +2017,7 @@ END$$
 
 DELIMITER ;
 
-
-
-
-
+--------------------------------------------------------------
 
 
 USE `pe`;
@@ -1838,6 +2040,7 @@ END$$
 
 DELIMITER ;
 
+--------------------------------------------------------------
 
 
 USE `pe`;
@@ -1862,7 +2065,7 @@ END$$
 
 DELIMITER ;
 
-
+--------------------------------------------------------------
 
 
 USE `pe`;
@@ -1882,6 +2085,9 @@ END$$
 DELIMITER ;
 
 
+--------------------------------------------------------------
+
+
 USE `pe`;
 DROP function IF EXISTS `Control_Publisher_getPublisherName`;
 
@@ -1898,7 +2104,7 @@ END$$
 
 DELIMITER ;
 
-
+/*======================================CONTROL RELATION TYPE ======================================*/
 
 
 USE `pe`;
@@ -1923,9 +2129,7 @@ END$$
 DELIMITER ;
 
 
-
-
-
+--------------------------------------------------------------
 
 
 
@@ -1949,10 +2153,7 @@ END$$
 
 DELIMITER ;
 
-
-
-
-
+--------------------------------------------------------------
 
 
 USE `pe`;
@@ -1974,7 +2175,7 @@ END$$
 
 DELIMITER ;
 
-
+--------------------------------------------------------------
 
 
 USE `pe`;
@@ -1993,6 +2194,9 @@ END$$
 
 DELIMITER ;
 
+--------------------------------------------------------------
+
+
 USE `pe`;
 DROP function IF EXISTS `Control_RelationType_getrelationTypeName`;
 
@@ -2009,9 +2213,7 @@ END$$
 
 DELIMITER ;
 
-
-
-
+/*======================================CONTROL REVIEW ======================================*/
 
 USE `pe`;
 DROP procedure IF EXISTS `Control_Review_InsertReview`;
@@ -2033,7 +2235,7 @@ END$$
 
 DELIMITER ;
 
-
+--------------------------------------------------------------
 
 
 USE `pe`;
@@ -2057,8 +2259,7 @@ END$$
 
 DELIMITER ;
 
-
-
+--------------------------------------------------------------
 
 
 USE `pe`;
@@ -2084,6 +2285,7 @@ END$$
 
 DELIMITER ;
 
+--------------------------------------------------------------
 
 
 USE `pe`;
@@ -2102,6 +2304,9 @@ END$$
 
 DELIMITER ;
 
+--------------------------------------------------------------
+
+
 USE `pe`;
 DROP function IF EXISTS `Control_Review_getReviewStars`;
 
@@ -2118,6 +2323,7 @@ END$$
 
 DELIMITER ;
 
+/*======================================CONTROL STATUS ======================================*/
 
 
 USE `pe`;
@@ -2140,6 +2346,7 @@ END$$
 
 DELIMITER ;
 
+--------------------------------------------------------------
 
 
 USE `pe`;
@@ -2160,6 +2367,9 @@ DELETE FROM status
 END$$
 
 DELIMITER ;
+
+--------------------------------------------------------------
+
 
 
 USE `pe`;
@@ -2186,6 +2396,9 @@ END$$
 
 DELIMITER ;
 
+--------------------------------------------------------------
+
+
 
 USE `pe`;
 DROP function IF EXISTS `Control_Status_getStatusId`;
@@ -2203,6 +2416,7 @@ END$$
 
 DELIMITER ;
 
+--------------------------------------------------------------
 
 
 USE `pe`;
@@ -2222,6 +2436,9 @@ END$$
 DELIMITER ;
 
 
+--------------------------------------------------------------
+
+
 USE `pe`;
 DROP function IF EXISTS `Control_Status_getStatusDescription`;
 
@@ -2237,6 +2454,10 @@ RETURN vcDescription;
 END$$
 
 DELIMITER ;
+
+
+/*======================================CONTROL LOAN HISTORY ======================================*/
+
 
 
 
@@ -2264,6 +2485,10 @@ INSERT INTO loan_history (person1_id, person2_id, item_id, lend_date, return_dat
 END$$
 
 DELIMITER ;
+
+--------------------------------------------------------------
+
+
 
 USE `pe`;
 DROP procedure IF EXISTS `Control_Item_UpdateItem`;
@@ -2293,6 +2518,10 @@ END$$
 
 DELIMITER ;
 
+/*====================================== USERS QUERIES ======================================*/
+
+
+
 USE `pe`;
 DROP procedure IF EXISTS `Users_Queries_AllItemsTotal`;
 
@@ -2307,6 +2536,9 @@ FROM (
 END$$
 
 DELIMITER ;
+
+
+--------------------------------------------------------------
 
 
 USE `pe`;
@@ -2325,8 +2557,7 @@ END$$
 DELIMITER ;
 
 
-
-
+--------------------------------------------------------------
 
 
 
@@ -2362,6 +2593,9 @@ ORDER BY title ASC;
 END$$
 
 DELIMITER ;
+
+--------------------------------------------------------------
+
 
 USE `pe`;
 DROP procedure IF EXISTS `User_Queries_AllLendedItems`;
@@ -2404,6 +2638,9 @@ END$$
 
 DELIMITER ;
 
+/*====================================== STATISTICS QUERIES ======================================*/
+
+
 USE `pe`;
 DROP procedure IF EXISTS `Statistics_Queries_TotalItemsPerGenre`;
 
@@ -2422,6 +2659,9 @@ END$$
 DELIMITER ;
 
 
+--------------------------------------------------------------
+
+
 USE `pe`;
 DROP procedure IF EXISTS `Statistics_Queries_TotalLendedItemsNow`;
 
@@ -2435,6 +2675,9 @@ limit 1;
 END$$
 
 DELIMITER ;
+
+--------------------------------------------------------------
+
 
 
 USE `pe`;
@@ -2457,6 +2700,9 @@ DELIMITER ;
 USE `pe`;
 DROP procedure IF EXISTS `Statistics_Queries_TotalLendedItemAge`;
 
+--------------------------------------------------------------
+
+
 
 DELIMITER $$
 USE `pe`$$
@@ -2472,6 +2718,10 @@ SELECT COUNT(item_id) AS total_lended_items, edad
 END$$
 
 DELIMITER ;
+
+/*====================================== USER INTERFACE QUERIES ======================================*/
+
+
 
 USE `pe`;
 DROP procedure IF EXISTS `UserInterface_Queries_GetCollection`;
@@ -2506,8 +2756,7 @@ END$$
 
 DELIMITER ;
 
-
-
+--------------------------------------------------------------
 
 
 USE `pe`;
@@ -2543,11 +2792,7 @@ END$$
 
 DELIMITER ;
 
-
-
-
-
-
+--------------------------------------------------------------
 
 
 
@@ -2566,6 +2811,10 @@ from(
 END$$
 
 DELIMITER ;
+
+--------------------------------------------------------------
+
+
 USE `pe`;
 DROP procedure IF EXISTS `UserInterface_Queries_GetItemTypes`;
 
@@ -2583,8 +2832,7 @@ END$$
 DELIMITER ;
 
 
-
-
+--------------------------------------------------------------
 
 
 USE `pe`;
@@ -2604,6 +2852,9 @@ END$$
 DELIMITER ;
 
 
+--------------------------------------------------------------
+
+
 
 USE `pe`;
 DROP procedure IF EXISTS `UserInterface_Queries_GetGenresWithDescription`;
@@ -2620,6 +2871,9 @@ from(
 END$$
 
 DELIMITER ;
+
+--------------------------------------------------------------
+
 
 
 USE `pe`;
@@ -2638,6 +2892,9 @@ END$$
 
 DELIMITER ;
 
+--------------------------------------------------------------
+
+
 
 
 USE `pe`;
@@ -2655,6 +2912,9 @@ from(
 END$$
 
 DELIMITER ;
+
+
+--------------------------------------------------------------
 
 
 USE `pe`;
@@ -2677,7 +2937,7 @@ END$$
 
 DELIMITER ;
 
-
+--------------------------------------------------------------
 
 
 
@@ -2698,6 +2958,8 @@ END$$
 
 DELIMITER ;
 
+--------------------------------------------------------------
+
 
 
 USE `pe`;
@@ -2716,6 +2978,9 @@ from(
 END$$
 
 DELIMITER ;
+
+
+--------------------------------------------------------------
 
 
 
@@ -2740,6 +3005,9 @@ END$$
 
 DELIMITER ;
 
+--------------------------------------------------------------
+
+
 USE `pe`;
 DROP procedure IF EXISTS `UserInterface_Queries_GetLendedItems`;
 
@@ -2762,6 +3030,9 @@ from(
 END$$
 
 DELIMITER ;
+
+
+--------------------------------------------------------------
 
 
 
@@ -2795,6 +3066,9 @@ END$$
 DELIMITER ;
 
 
+--------------------------------------------------------------
+
+
 USE `pe`;
 DROP procedure IF EXISTS `UserInterface_Queries_UpdateToleranceDays`;
 
@@ -2813,6 +3087,10 @@ from(
 END$$
 
 DELIMITER ;
+
+
+/*====================================== EXTRA QUERIES ======================================*/
+
 
 
 USE `pe`;
@@ -2835,6 +3113,9 @@ END$$
 
 DELIMITER ;
 
+--------------------------------------------------------------
+
+
 USE `pe`;
 DROP function IF EXISTS `pe`.`Control_ItemHasReview_getItemHasReviewReview_id`;
 
@@ -2850,7 +3131,10 @@ RETURN vcId;
 END$$
 
 DELIMITER ;
-;
+
+
+--------------------------------------------------------------
+
 
 USE `pe`;
 DROP function IF EXISTS `pe`.`Control_Person1KnosPerson2_getPer1KnowsPer2Person1Id`;
@@ -2866,7 +3150,10 @@ RETURN vcId;
 END$$
 
 DELIMITER ;
-;
+
+
+--------------------------------------------------------------
+
 
 USE `pe`;
 DROP function IF EXISTS `pe`.`Control_PersonLendItem_getPersonLendItemPeron2Id`;
@@ -2884,6 +3171,10 @@ END$$
 DELIMITER ;
 ;
 
+
+--------------------------------------------------------------
+
+
 USE `pe`;
 DROP function IF EXISTS `Control_RelationType_getrelationTypeId`;
 
@@ -2899,6 +3190,9 @@ END$$
 
 DELIMITER ;
 
+--------------------------------------------------------------
+
+
 USE `pe`;
 DROP function IF EXISTS `Control_RelationType_getrelationTypeName`;
 
@@ -2913,6 +3207,10 @@ RETURN vcName;
 END$$
 
 DELIMITER ;
+
+--------------------------------------------------------------
+
+
 USE `pe`;
 DROP function IF EXISTS `Control_ItemType_getItemTypeName`;
 
@@ -2927,6 +3225,9 @@ RETURN vcName;
 END$$
 
 DELIMITER ;
+
+--------------------------------------------------------------
+
 
 USE `pe`;
 DROP procedure IF EXISTS `UserInterface_Queries_GetAuthors`;
@@ -2946,6 +3247,9 @@ END$$
 DELIMITER ;
 
 
+--------------------------------------------------------------
+
+
 USE `pe`;
 DROP function IF EXISTS `Control_Item_InsertItemB`;
 
@@ -2960,6 +3264,9 @@ RETURN vcId;
 END$$
 
 DELIMITER ;
+
+--------------------------------------------------------------
+
 
 USE `pe`;
 DROP procedure IF EXISTS `Control_Item_RemoveItem`;
@@ -2981,6 +3288,9 @@ DELETE FROM item
 END$$
 
 DELIMITER ;
+
+--------------------------------------------------------------
+
 
 USE `pe`;
 DROP procedure IF EXISTS `Control_Person_UpdatePerson`;
@@ -3009,6 +3319,9 @@ END$$
 
 DELIMITER ;
 
+--------------------------------------------------------------
+
+
 USE `pe`;
 DROP procedure IF EXISTS `UserInterface_Queries_GetItems`;
 
@@ -3027,6 +3340,9 @@ from(/**/
 END$$
 
 DELIMITER ;
+
+--------------------------------------------------------------
+
 
 USE `pe`;
 DROP procedure IF EXISTS `Admin_Queries_TopMostBorrowedPerMonth`;

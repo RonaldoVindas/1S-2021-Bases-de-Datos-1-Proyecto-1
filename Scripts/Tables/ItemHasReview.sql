@@ -1,4 +1,7 @@
-/*Autor: Renzo Barra, 5/25/2021*/
+/*Autor: Renzo Barra,5/25/2021*/
+
+/*======================================TABLE======================================*/
+
 CREATE TABLE PE.ITEMHASREVIEW (
 	ITEM_ID INT NOT NULL COMMENT 'Item identification code.', 
 	REVIEW_ID INT NOT NULL COMMENT 'Review identification code.', 
@@ -8,7 +11,11 @@ CREATE TABLE PE.ITEMHASREVIEW (
 	USER_LAST_MODIFICATION VARCHAR(50)
     );
 
+/*======================================COMMENTS======================================*/
+
 ALTER TABLE PE.ITEMHASREVIEW  COMMENT 'Repository to storage information about the review an Item has.';
+
+/*======================================PRIMARY KEY======================================*/
 
 ALTER TABLE PE.ITEMHASREVIEW
 	ADD PRIMARY KEY (ITEM_ID, REVIEW_ID);

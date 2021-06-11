@@ -1,4 +1,7 @@
 /*Autor: Renzo Barra, 5/25/2021*/
+
+/*======================================TABLE======================================*/
+
 CREATE TABLE PE.ITEMTYPE (
 	ITEMTYPE_ID INT COMMENT 'itemtype name.',
 	ITEMTYPE_NAME VARCHAR(50),
@@ -8,7 +11,11 @@ CREATE TABLE PE.ITEMTYPE (
     USER_LAST_MODIFICATION VARCHAR(50)
     );
 
+/*======================================COMMENTS======================================*/
+
 ALTER TABLE PE.ITEMTYPE  COMMENT 'Repository to storage information about ItemType.';
+
+/*======================================PRIMARY KEY======================================*/
 
 ALTER TABLE PE.ITEMTYPE
 AUTO_INCREMENT = 0,

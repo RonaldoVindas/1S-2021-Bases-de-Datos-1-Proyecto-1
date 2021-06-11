@@ -1,4 +1,6 @@
 /*Autor: Renzo Barra, 5/25/2021*/
+
+/*======================================TABLE======================================*/
 CREATE TABLE PE.ITEM (
 	ITEM_ID INT COMMENT 'Item identification code.',
     TITLE VARCHAR(50) NOT NULL,
@@ -14,7 +16,11 @@ CREATE TABLE PE.ITEM (
     USER_LAST_MODIFICATION VARCHAR(50)
     );
 
+/*======================================COMMENTS======================================*/
+
 ALTER TABLE PE.ITEM  COMMENT 'Repository to storage information about the items in the database.';
+
+/*======================================PRIMARY KEY======================================*/
 
 ALTER TABLE PE.ITEM
 AUTO_INCREMENT = 0,

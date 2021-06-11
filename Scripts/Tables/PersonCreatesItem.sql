@@ -1,4 +1,7 @@
 /*Autor: Renzo Barra, 5/25/2021*/
+
+/*======================================TABLE======================================*/
+
 CREATE TABLE PE.PERSONCREATESITEM (
 	PERSON_ID INT NOT NULL COMMENT 'Person identification code.', 
 	ITEM_ID INT NOT NULL COMMENT 'Item identification code.', 
@@ -8,7 +11,11 @@ CREATE TABLE PE.PERSONCREATESITEM (
 	USER_LAST_MODIFICATION VARCHAR(50)
     );
 
+/*======================================COMMENTS======================================*/
+
 ALTER TABLE PE.PERSONCREATESITEM  COMMENT 'Repository to storage information the items a person creates.';
+
+/*======================================PRIMARY KEY======================================*/
 
 ALTER TABLE PE.PERSONCREATESITEM
 	ADD PRIMARY KEY (PERSON_ID, ITEM_ID),

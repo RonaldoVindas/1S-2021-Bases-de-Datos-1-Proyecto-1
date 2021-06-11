@@ -1,4 +1,7 @@
 /*Autor: Renzo Barra, 5/25/2021*/
+
+/*======================================TABLE======================================*/
+
 CREATE TABLE PE.PERSON (
 	PERSON_ID INT COMMENT 'Person identification code',
 	FIRST_NAME VARCHAR(50) NOT NULL COMMENT 'Person first name.',
@@ -14,7 +17,11 @@ CREATE TABLE PE.PERSON (
 	USER_LAST_MODIFICATION VARCHAR(50)
     );
 
+/*======================================COMMENTS======================================*/
+
 ALTER TABLE PE.PERSON  COMMENT 'Repository to storage information about people in the database.';
+
+/*======================================PRIMARY KEY======================================*/
 
 ALTER TABLE PE.PERSON
 AUTO_INCREMENT = 0,

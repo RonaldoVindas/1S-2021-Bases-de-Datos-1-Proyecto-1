@@ -1,4 +1,7 @@
 /*Autor: Renzo Barra, 5/25/2021*/
+
+/*======================================TABLE======================================*/
+
 CREATE TABLE PE.PERSONLENDITEM (
 	PERSON1_ID INT NOT NULL COMMENT 'Person1 identification code.',
 	PERSON2_ID INT NOT NULL COMMENT 'Person2 identification code.',
@@ -14,7 +17,11 @@ CREATE TABLE PE.PERSONLENDITEM (
 	USER_LAST_MODIFICATION VARCHAR(50)
     );
 
+/*======================================COMMENTS======================================*/
+
 ALTER TABLE PE.PERSONLENDITEM  COMMENT 'Repository to storage information about the items a person lends.';
+
+/*======================================PRIMARY KEY======================================*/
 
 ALTER TABLE PE.PERSONLENDITEM
 	ADD PRIMARY KEY (PERSON1_ID, PERSON2_ID, ITEM_ID),

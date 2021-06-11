@@ -1,4 +1,7 @@
 /*Autor: Renzo Barra, 5/25/2021*/
+
+/*======================================TABLE======================================*/
+
 CREATE TABLE PE.LOAN_HISTORY (
 	LOAN_HISTORY_ID INT COMMENT 'loan_history  identification code.',
 	PERSON1_ID INT COMMENT 'Person1 identification code.',
@@ -15,7 +18,11 @@ CREATE TABLE PE.LOAN_HISTORY (
 	USER_LAST_MODIFICATION VARCHAR(50)
     );
 
+/*======================================COMMENTS======================================*/
+
 ALTER TABLE PE.LOAN_HISTORY  COMMENT 'Repository to storage information about the items a person loan_history.';
+
+/*======================================PRIMARY KEY======================================*/
 
 ALTER TABLE PE.LOAN_HISTORY
 	AUTO_INCREMENT = 0,

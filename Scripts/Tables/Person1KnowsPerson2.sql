@@ -1,4 +1,7 @@
 /*Autor: Renzo Barra, 5/25/2021*/
+
+/*======================================TABLE======================================*/
+
 CREATE TABLE PE.PERSON1KNOWSPERSON2 (
 	PERSON1_ID INT NOT NULL COMMENT 'Person 1 identification code',
 	PERSON2_ID INT NOT NULL COMMENT 'Person 2 identification code.',
@@ -9,7 +12,11 @@ CREATE TABLE PE.PERSON1KNOWSPERSON2 (
 	USER_LAST_MODIFICATION VARCHAR(50)
     );
 
+/*======================================COMMENTS======================================*/
+
 ALTER TABLE PE.PERSON1KNOWSPERSON2 COMMENT 'Repository to storage information about relationships between people in the database.';
+
+/*======================================PRIMARY KEY======================================*/
 
 ALTER TABLE PE.PERSON1KNOWSPERSON2
 	ADD PRIMARY KEY (PERSON1_ID, PERSON2_ID),

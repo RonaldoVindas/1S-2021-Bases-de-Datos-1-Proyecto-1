@@ -1,4 +1,7 @@
 /*Autor: Renzo Barra, 5/25/2021*/
+
+/*======================================TABLE======================================*/
+
 CREATE TABLE PE.PUBLISHER (
 	PUBLISHER_ID INT COMMENT 'publisher identification code.',
 	PUBLISHER_NAME VARCHAR(50) COMMENT 'publisher name.',
@@ -8,7 +11,11 @@ CREATE TABLE PE.PUBLISHER (
 	USER_LAST_MODIFICATION VARCHAR(50)
     );
 
+/*======================================COMMENTS======================================*/
+
 ALTER TABLE PE.PUBLISHER  COMMENT 'Repository to storage information about publishers.';
+
+/*======================================PRIMARY KEY======================================*/
 
 ALTER TABLE PE.PUBLISHER
 AUTO_INCREMENT = 0,

@@ -1,4 +1,7 @@
 /*Autor: Renzo Barra, 5/25/2021*/
+
+/*======================================TABLE======================================*/
+
 CREATE TABLE PE.PERSONHASITEM (
 	PERSON_ID INT NOT NULL COMMENT 'Person identification code.',
 	ITEM_ID INT NOT NULL COMMENT 'Item identification code.',
@@ -8,7 +11,11 @@ CREATE TABLE PE.PERSONHASITEM (
 	USER_LAST_MODIFICATION VARCHAR(50)
     );
 
+/*======================================COMMENTS======================================*/
+
 ALTER TABLE PE.PERSONHASITEM  COMMENT 'Repository to storage information the items a person has.';
+
+/*======================================PRIMARY KEY======================================*/
 
 ALTER TABLE PE.PERSONHASITEM 
 	ADD PRIMARY KEY (PERSON_ID, ITEM_ID),

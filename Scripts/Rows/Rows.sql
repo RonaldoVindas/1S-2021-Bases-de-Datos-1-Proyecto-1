@@ -1,4 +1,9 @@
--- ==========================================================================================================
+/*Autor: Alvaro Moreira V. 5/25/2021*/
+
+
+
+/*======================================TABLE: GENRE ======================================*/
+
 Insert into PE.GENRE (GENRE_NAME,DESCRIPTION) values ('Mystery',' The plot always revolves around a crime of sorts that must be solved—or foiled—by the protagonists.');
 Insert into PE.GENRE (GENRE_NAME,DESCRIPTION) values ('Adventure','Main character repeatedly finds themselves in high stakes situations.');
 Insert into PE.GENRE (GENRE_NAME,DESCRIPTION) values ('Fantasy',' While usually set in a fictional imagined world.');
@@ -16,48 +21,48 @@ Insert into PE.GENRE (GENRE_NAME,DESCRIPTION) values ('2D Animation',' Illusion 
 Insert into PE.GENRE (GENRE_NAME,DESCRIPTION) values ('3D Animation','Animated objects that appear in a three-dimensional space. They can be rotated and moved like real objects..');
 Insert into PE.GENRE (GENRE_NAME,DESCRIPTION) values ('Thriller','Defined by the moods they elicit, giving viewers heightened feelings of suspense, excitement, surprise, anticipation and anxiety');
 Insert into PE.GENRE (GENRE_NAME,DESCRIPTION) values ('Musical','Identifies some pieces of music as belonging to a shared tradition or set of conventions.');
--- ==========================================================================================================
--- INSERTING into PE.REVIEW
-/* SET DEFINE OFF; */
+
+/*======================================TABLE: REVIEW ======================================*/
+
 Insert into PE.REVIEW (STARS) values ('1');
 Insert into PE.REVIEW (STARS) values ('2');
 Insert into PE.REVIEW (STARS) values ('3');
 Insert into PE.REVIEW (STARS) values ('4');
 Insert into PE.REVIEW (STARS) values ('5');
 Insert into PE.REVIEW (STARS) values ('0');
--- ==========================================================================================================
--- INSERTING into PE.STATUS
-/* SET DEFINE OFF; */
+
+/*======================================TABLE: STATUS ======================================*/
+
 Insert into PE.STATUS (STATUS_NAME,DESCRIPTION) values ('Blue','Actually in stock');
 Insert into PE.STATUS (STATUS_NAME,DESCRIPTION) values ('Green','Loaned on business days');
 Insert into PE.STATUS (STATUS_NAME,DESCRIPTION) values ('Yellow','In tolerance days');
 Insert into PE.STATUS (STATUS_NAME,DESCRIPTION) values ('Red','Has not been returned');
 Insert into PE.STATUS (STATUS_NAME,DESCRIPTION) values ('Purple','Return time exceeded');
--- ==========================================================================================================
--- INSERTING into PE.ITEMTYPE
-/* SET DEFINE OFF; */
+
+/*======================================TABLE: ITEM TYPE======================================*/
+
 Insert into PE.ITEMTYPE (ITEMTYPE_NAME) values ('Book');
 Insert into PE.ITEMTYPE (ITEMTYPE_NAME) values ('Movies');
 Insert into PE.ITEMTYPE (ITEMTYPE_NAME) values ('Comic');
 Insert into PE.ITEMTYPE (ITEMTYPE_NAME) values ('VideoGame');
 Insert into PE.ITEMTYPE (ITEMTYPE_NAME) values ('TableTop Game');
--- ==========================================================================================================
--- INSERTING into PE.PERSONTYPE
-/* SET DEFINE OFF; */
+
+/*======================================TABLE: PERSON TYPE ======================================*/
+
 Insert into PE.PERSONTYPE (PERSONTYPE_NAME) values ('Admin');
 Insert into PE.PERSONTYPE (PERSONTYPE_NAME) values ('User');
 Insert into PE.PERSONTYPE (PERSONTYPE_NAME) values ('Author');
--- ==========================================================================================================
--- INSERTING into PE.RELATIONTYPE
-/* SET DEFINE OFF; */
+
+/*======================================TABLE: RELATION TYPE ======================================*/
+
 Insert into PE.RELATIONTYPE (RELATIONTYPE_NAME) values ('Friend');
 Insert into PE.RELATIONTYPE (RELATIONTYPE_NAME) values ('Known');
 Insert into PE.RELATIONTYPE (RELATIONTYPE_NAME) values ('Family');
 Insert into PE.RELATIONTYPE (RELATIONTYPE_NAME) values ('Coworker');
 Insert into PE.RELATIONTYPE (RELATIONTYPE_NAME) values ('Best Friend');
--- ==========================================================================================================
--- INSERTING into PE.PUBLISHER
-/* SET DEFINE OFF; */
+
+/*======================================TABLE: PUBLISHER ======================================*/
+
 Insert into PE.PUBLISHER (PUBLISHER_NAME) values ('Norma Editorial');
 Insert into PE.PUBLISHER (PUBLISHER_NAME) values ('Grup 62');
 Insert into PE.PUBLISHER (PUBLISHER_NAME) values ('Dark Horse');
@@ -86,9 +91,9 @@ Insert into PE.PUBLISHER (PUBLISHER_NAME) values ('Sega');
 Insert into PE.PUBLISHER (PUBLISHER_NAME) values ('Electronic Arts');
 Insert into PE.PUBLISHER (PUBLISHER_NAME) values ('Square enix');
 Insert into PE.PUBLISHER (PUBLISHER_NAME) values ('Konami');
--- ====================================================================================================================
--- INSERTING into PE.ITEM
-/* SET DEFINE OFF; */
+
+/*======================================TABLE: ITEM ======================================*/
+
 insert into PE.ITEM(TITLE,EDITION,BARCODE,ITEMTYPE_ID,STATUS_ID,PUBLISHER_ID) values('Harry Potter y la piedra filosofal','primera','000000000001','1','1','10');
 insert into PE.ITEM(TITLE,EDITION,BARCODE,ITEMTYPE_ID,STATUS_ID,PUBLISHER_ID) values('Harry Potter y la cámara secreta','primera','000000000002','1','1','10');
 insert into PE.ITEM(TITLE,EDITION,BARCODE,ITEMTYPE_ID,STATUS_ID,PUBLISHER_ID) values('Harry Potter y el prisionero de Azkaban','primera','000000000003','1','1','10');
@@ -166,9 +171,9 @@ Insert into PE.ITEM (TITLE,EDITION,BARCODE,ITEMTYPE_ID,STATUS_ID,PUBLISHER_ID) v
 Insert into PE.ITEM (TITLE,EDITION,BARCODE,ITEMTYPE_ID,STATUS_ID,PUBLISHER_ID) values ('War Thunder','Segunda','253636174682','1','1','1');
 Insert into PE.ITEM (TITLE,EDITION,BARCODE,ITEMTYPE_ID,STATUS_ID,PUBLISHER_ID) values ('La Bella y La Bestia','DVD','125467197834','2','2','19');
 Insert into PE.ITEM (TITLE,EDITION,BARCODE,ITEMTYPE_ID,STATUS_ID,PUBLISHER_ID) values ('Age Of Empires 2','PC','101569874753','4','1','7');
--- ==========================================================================================================
--- INSERTING into PE.ITEMHASGENRE
-/* SET DEFINE OFF; */
+
+/*======================================TABLE: ITEM HAS GENRE ======================================*/
+
 Insert into PE.ITEMHASGENRE (ITEM_ID,GENRE_ID) values ('61','6');
 Insert into PE.ITEMHASGENRE (ITEM_ID,GENRE_ID) values ('64','4');
 Insert into PE.ITEMHASGENRE (ITEM_ID,GENRE_ID) values ('71','6');
@@ -354,9 +359,9 @@ Insert into PE.ITEMHASGENRE (ITEM_ID,GENRE_ID) values ('60','12');
 Insert into PE.ITEMHASGENRE (ITEM_ID,GENRE_ID) values ('60','9');
 Insert into PE.ITEMHASGENRE (ITEM_ID,GENRE_ID) values ('60','3');
 Insert into PE.ITEMHASGENRE (ITEM_ID,GENRE_ID) values ('77','8');
--- ==========================================================================================================
--- INSERTING into PE.ITEMHASREVIEW
-/* SET DEFINE OFF; */
+
+/*======================================TABLE: ITEM HAS REVIEW ======================================*/
+
 Insert into PE.ITEMHASREVIEW (ITEM_ID,REVIEW_ID) values ('61','3');
 Insert into PE.ITEMHASREVIEW (ITEM_ID,REVIEW_ID) values ('75','1');
 Insert into PE.ITEMHASREVIEW (ITEM_ID,REVIEW_ID) values ('1','4');
@@ -434,9 +439,10 @@ Insert into PE.ITEMHASREVIEW (ITEM_ID,REVIEW_ID) values ('62','4');
 Insert into PE.ITEMHASREVIEW (ITEM_ID,REVIEW_ID) values ('67','6');
 Insert into PE.ITEMHASREVIEW (ITEM_ID,REVIEW_ID) values ('68','6');
 Insert into PE.ITEMHASREVIEW (ITEM_ID,REVIEW_ID) values ('69','6');
--- ==========================================================================================================
--- INSERTING into PE.PERSON
-/* SET DEFINE OFF; */
+
+/*======================================TABLE: PERSON ======================================*/
+
+
 Insert into PE.PERSON (PERSON_ID,FIRST_NAME,LAST_NAME,EMAIL,PASSWORD,PHONE_NUMBER,BIRTH_DAY,PERSONTYPE_ID) values ('990000052','Dross','Rotzanks','Dross@gmail.com','Iô:QìÄÜE','20361524',str_to_date('11/12/72','%d/%m/%y'),'3');
 Insert into PE.PERSON (PERSON_ID,FIRST_NAME,LAST_NAME,EMAIL,PASSWORD,PHONE_NUMBER,BIRTH_DAY,PERSONTYPE_ID) values ('100012','Dante','Allighieri','DanteInferno@gmail.com','Iô:QìÄÜE','85369498',str_to_date('11/12/72','%d/%m/%y'),'3');
 Insert into PE.PERSON (PERSON_ID,FIRST_NAME,LAST_NAME,EMAIL,PASSWORD,PHONE_NUMBER,BIRTH_DAY,PERSONTYPE_ID) values ('990000051','Arthur ','Doyle','WatsonNSherlock@gmail.com','Iô:QìÄÜE','20210122',str_to_date('11/12/72','%d/%m/%y'),'3');
@@ -445,14 +451,12 @@ Insert into PE.PERSON (PERSON_ID,FIRST_NAME,LAST_NAME,EMAIL,PASSWORD,PHONE_NUMBE
 Insert into PE.PERSON (PERSON_ID,FIRST_NAME,LAST_NAME,EMAIL,PASSWORD,PHONE_NUMBER,BIRTH_DAY,PERSONTYPE_ID) values ('801200838','Renzo','Barra','rgbarram@gmail.com','4yÞ-7•','98753215',str_to_date('02/01/99','%d/%m/%y'),'1');
 Insert into PE.PERSON (PERSON_ID,FIRST_NAME,LAST_NAME,EMAIL,PASSWORD,PHONE_NUMBER,BIRTH_DAY,PERSONTYPE_ID) values ('402140028','Alvaro','Moreira','andrey192006@hotmail.com','êý<U¬(·¾>úÞœ','87258021',str_to_date('19/02/92','%d/%m/%y'),'1');
 Insert into PE.PERSON (PERSON_ID,FIRST_NAME,LAST_NAME,EMAIL,PASSWORD,PHONE_NUMBER,BIRTH_DAY,PERSONTYPE_ID) values ('100000000','Joseph','Chaves','jox@gmail.com','P×ÉrTŸI','87946321',str_to_date('15/05/00','%d/%m/%y'),'2');
-Insert into PE.PERSON (PERSON_ID,FIRST_NAME,LAST_NAME,EMAIL,PASSWORD,PHONE_NUMBER,BIRTH_DAY,PERSONTYPE_ID) values ('100000001','Emely','Zarate','Emezar18@gmail.com','À?ä
-Öâš÷Þê?å¿üó','26887451',str_to_date('05/07/95','%d/%m/%y'),'2');
+Insert into PE.PERSON (PERSON_ID,FIRST_NAME,LAST_NAME,EMAIL,PASSWORD,PHONE_NUMBER,BIRTH_DAY,PERSONTYPE_ID) values ('100000001','Emely','Zarate','Emezar18@gmail.com','À?äÖâš÷Þê?å¿üó','26887451',str_to_date('05/07/95','%d/%m/%y'),'2');
 Insert into PE.PERSON (PERSON_ID,FIRST_NAME,LAST_NAME,EMAIL,PASSWORD,PHONE_NUMBER,BIRTH_DAY,PERSONTYPE_ID) values ('100000002','Valeria','Aguilar','VAguilar@yahoo.com','>»ÆcASø;','22698725',str_to_date('02/06/02','%d/%m/%y'),'2');
 Insert into PE.PERSON (PERSON_ID,FIRST_NAME,LAST_NAME,EMAIL,PASSWORD,PHONE_NUMBER,BIRTH_DAY,PERSONTYPE_ID) values ('100000003','Anthony','Vargas','Tony1522@gmail.com','û®Ý[…Çû','22672146',str_to_date('01/06/03','%d/%m/%y'),'2');
 Insert into PE.PERSON (PERSON_ID,FIRST_NAME,LAST_NAME,EMAIL,PASSWORD,PHONE_NUMBER,BIRTH_DAY,PERSONTYPE_ID) values ('100000004','Krissia','Pérez','KrissPM@hotmail.com','£¹°Œõh(¢¡5[ji^™','22676548',str_to_date('31/05/99','%d/%m/%y'),'2');
 Insert into PE.PERSON (PERSON_ID,FIRST_NAME,LAST_NAME,EMAIL,PASSWORD,PHONE_NUMBER,BIRTH_DAY,PERSONTYPE_ID) values ('100000005','Emmanuel','Jarquín','Emma123@gmail.com','¬ó?	¼/ I','22651278',str_to_date('30/05/98','%d/%m/%y'),'2');
-Insert into PE.PERSON (PERSON_ID,FIRST_NAME,LAST_NAME,EMAIL,PASSWORD,PHONE_NUMBER,BIRTH_DAY,PERSONTYPE_ID) values ('100000006','Jesús','Aguilar','ChusAM@gmail.com','Vcž?­
-gT','82654820',str_to_date('29/05/88','%d/%m/%y'),'2');
+Insert into PE.PERSON (PERSON_ID,FIRST_NAME,LAST_NAME,EMAIL,PASSWORD,PHONE_NUMBER,BIRTH_DAY,PERSONTYPE_ID) values ('100000006','Jesús','Aguilar','ChusAM@gmail.com','Vcž?­gT','82654820',str_to_date('29/05/88','%d/%m/%y'),'2');
 Insert into PE.PERSON (PERSON_ID,FIRST_NAME,LAST_NAME,EMAIL,PASSWORD,PHONE_NUMBER,BIRTH_DAY,PERSONTYPE_ID) values ('100000007','Javier','Barquero','Raydertre@outlook.com','¼Ñˆ$y©Ò','22621897',str_to_date('28/05/72','%d/%m/%y'),'2');
 Insert into PE.PERSON (PERSON_ID,FIRST_NAME,LAST_NAME,EMAIL,PASSWORD,PHONE_NUMBER,BIRTH_DAY,PERSONTYPE_ID) values ('100000008','Rebecca','Madrigal','RebboxMad@gmail.com','Äv  ßOŒ"','89632570',str_to_date('26/05/01','%d/%m/%y'),'2');
 Insert into PE.PERSON (PERSON_ID,FIRST_NAME,LAST_NAME,EMAIL,PASSWORD,PHONE_NUMBER,BIRTH_DAY,PERSONTYPE_ID) values ('100000009','Justin','Bogantes','Justino@tec.com','‡ÔÔQ›Aj÷','83654015',str_to_date('24/05/85','%d/%m/%y'),'2');
@@ -461,8 +465,7 @@ Insert into PE.PERSON (PERSON_ID,FIRST_NAME,LAST_NAME,EMAIL,PASSWORD,PHONE_NUMBE
 Insert into PE.PERSON (PERSON_ID,FIRST_NAME,LAST_NAME,EMAIL,PASSWORD,PHONE_NUMBER,BIRTH_DAY,PERSONTYPE_ID) values ('100000012','Keylor','Navas','SanNavas@hotmail.com','E¯«â»È[‚','89215821',str_to_date('21/05/99','%d/%m/%y'),'2');
 Insert into PE.PERSON (PERSON_ID,FIRST_NAME,LAST_NAME,EMAIL,PASSWORD,PHONE_NUMBER,BIRTH_DAY,PERSONTYPE_ID) values ('100000013','Valery','Vega','VValery@yahoo.com.com','½¡™õ5EØ{','89646851',str_to_date('19/05/01','%d/%m/%y'),'2');
 Insert into PE.PERSON (PERSON_ID,FIRST_NAME,LAST_NAME,EMAIL,PASSWORD,PHONE_NUMBER,BIRTH_DAY,PERSONTYPE_ID) values ('100000014','Josue','Siles','Siles@gmail.com','5:vÌVI','72357801',str_to_date('18/05/98','%d/%m/%y'),'2');
-Insert into PE.PERSON (PERSON_ID,FIRST_NAME,LAST_NAME,EMAIL,PASSWORD,PHONE_NUMBER,BIRTH_DAY,PERSONTYPE_ID) values ('100000015','Dennis','angulo','Dernudo@outlook.com','ì¯â/Õ
-[','98746526',str_to_date('17/05/93','%d/%m/%y'),'2');
+Insert into PE.PERSON (PERSON_ID,FIRST_NAME,LAST_NAME,EMAIL,PASSWORD,PHONE_NUMBER,BIRTH_DAY,PERSONTYPE_ID) values ('100000015','Dennis','angulo','Dernudo@outlook.com','ì¯â/Õ[','98746526',str_to_date('17/05/93','%d/%m/%y'),'2');
 Insert into PE.PERSON (PERSON_ID,FIRST_NAME,LAST_NAME,EMAIL,PASSWORD,PHONE_NUMBER,BIRTH_DAY,PERSONTYPE_ID) values ('100000016','Ishtar','Saborio','servantesCD@outlook.com','„Žs`?,','98746526',str_to_date('10/01/94','%d/%m/%y'),'2');
 Insert into PE.PERSON (PERSON_ID,FIRST_NAME,LAST_NAME,EMAIL,PASSWORD,PHONE_NUMBER,BIRTH_DAY,PERSONTYPE_ID) values ('990000000','Joanne','Rowling','J.K.Rowling@pottermore.com','1234556','98765432',str_to_date('30/07/65','%d/%m/%y'),'3');
 Insert into PE.PERSON (PERSON_ID,FIRST_NAME,LAST_NAME,EMAIL,PASSWORD,PHONE_NUMBER,BIRTH_DAY,PERSONTYPE_ID) values ('990000001','Stephen','King ','StephenKing@hotmail.com','1234557','98765433',str_to_date('21/09/47','%d/%m/%y'),'3');
@@ -517,9 +520,10 @@ Insert into PE.PERSON (PERSON_ID,FIRST_NAME,LAST_NAME,EMAIL,PASSWORD,PHONE_NUMBE
 Insert into PE.PERSON (PERSON_ID,FIRST_NAME,LAST_NAME,EMAIL,PASSWORD,PHONE_NUMBER,BIRTH_DAY,PERSONTYPE_ID) values ('990000050','Kenji','Kanno','Kanno@hotmail.com','1234605','98765480',str_to_date('28/02/52','%d/%m/%y'),'3');
 Insert into PE.PERSON (PERSON_ID,FIRST_NAME,LAST_NAME,EMAIL,PASSWORD,PHONE_NUMBER,BIRTH_DAY,PERSONTYPE_ID) values ('402140027','Adrian','Rivera','riveras@gmail.com','‰ ]äxTz','22565023',str_to_date('12/04/80','%d/%m/%y'),'2');
 Insert into PE.PERSON (PERSON_ID,FIRST_NAME,LAST_NAME,EMAIL,PASSWORD,PHONE_NUMBER,BIRTH_DAY,PERSONTYPE_ID) values ('2','Unknown','Unknown','Unknown@Mystery.com','Iô:QìÄÜE','00000001',str_to_date('11/12/72','%d/%m/%y'),'3');
--- ==========================================================================================================
--- INSERTING into PE.PERSONCREATESITEM
-/* SET DEFINE OFF; */
+
+/*======================================TABLE: PERSON CREATES ITEM ======================================*/
+
+
 Insert into PE.PERSONCREATESITEM (PERSON_ID,ITEM_ID) values ('2','67');
 Insert into PE.PERSONCREATESITEM (PERSON_ID,ITEM_ID) values ('2','76');
 Insert into PE.PERSONCREATESITEM (PERSON_ID,ITEM_ID) values ('990000039','68');
@@ -596,9 +600,10 @@ Insert into PE.PERSONCREATESITEM (PERSON_ID,ITEM_ID) values ('990000018','72');
 Insert into PE.PERSONCREATESITEM (PERSON_ID,ITEM_ID) values ('2','73');
 Insert into PE.PERSONCREATESITEM (PERSON_ID,ITEM_ID) values ('990000037','74');
 Insert into PE.PERSONCREATESITEM (PERSON_ID,ITEM_ID) values ('990000046','77');
--- ==========================================================================================================
--- INSERTING into PE.PERSONHASITEM
-/* SET DEFINE OFF; */
+
+/*======================================TABLE: PERSON HAS ITEM ======================================*/
+
+
 Insert into PE.PERSONHASITEM (PERSON_ID,ITEM_ID) values ('117610138','61');
 Insert into PE.PERSONHASITEM (PERSON_ID,ITEM_ID) values ('117610138','62');
 Insert into PE.PERSONHASITEM (PERSON_ID,ITEM_ID) values ('117610138','65');
@@ -676,9 +681,9 @@ Insert into PE.PERSONHASITEM (PERSON_ID,ITEM_ID) values ('100000016','57');
 Insert into PE.PERSONHASITEM (PERSON_ID,ITEM_ID) values ('402140028','67');
 Insert into PE.PERSONHASITEM (PERSON_ID,ITEM_ID) values ('402140027','68');
 Insert into PE.PERSONHASITEM (PERSON_ID,ITEM_ID) values ('402140028','69');
--- ==========================================================================================================
--- INSERTING into PE.PERSON1KNOWSPERSON2
-/* SET DEFINE OFF; */
+
+/*======================================TABLE:PERSON1 KNOWS PERSON2 ======================================*/
+
 Insert into PE.PERSON1KNOWSPERSON2 (PERSON1_ID,PERSON2_ID,RELATIONTYPE_ID) values ('117610138','402140027','4');
 Insert into PE.PERSON1KNOWSPERSON2 (PERSON1_ID,PERSON2_ID,RELATIONTYPE_ID) values ('117610138','218238697','5');
 Insert into PE.PERSON1KNOWSPERSON2 (PERSON1_ID,PERSON2_ID,RELATIONTYPE_ID) values ('402140028','402140027','3');
@@ -755,9 +760,10 @@ Insert into PE.PERSON1KNOWSPERSON2 (PERSON1_ID,PERSON2_ID,RELATIONTYPE_ID) value
 Insert into PE.PERSON1KNOWSPERSON2 (PERSON1_ID,PERSON2_ID,RELATIONTYPE_ID) values ('100000006','100000015','2');
 Insert into PE.PERSON1KNOWSPERSON2 (PERSON1_ID,PERSON2_ID,RELATIONTYPE_ID) values ('100000016','100000004','1');
 Insert into PE.PERSON1KNOWSPERSON2 (PERSON1_ID,PERSON2_ID,RELATIONTYPE_ID) values ('100000004','100000016','1');
--- ==========================================================================================================
--- INSERTING into PE.LOAN_HISTORY
-/* SET DEFINE OFF; */
+
+/*======================================TABLE: LOAN HISTORY ======================================*/
+
+
 Insert into PE.LOAN_HISTORY (PERSON1_ID,PERSON2_ID,ITEM_ID,LEND_DATE,RETURN_DATE,AMOUNT_DAYS,TOLERANCE_DAYS_YELLOW,TOLERANCE_DAYS_RED) values ('117610138','402140028','61',str_to_date('09/05/21','%d/%m/%y'),str_to_date('21/05/21','%d/%m/%y'),'12','1','1');
 Insert into PE.LOAN_HISTORY (PERSON1_ID,PERSON2_ID,ITEM_ID,LEND_DATE,RETURN_DATE,AMOUNT_DAYS,TOLERANCE_DAYS_YELLOW,TOLERANCE_DAYS_RED) values ('117610138','402140028','61',str_to_date('09/05/21','%d/%m/%y'),str_to_date('09/05/21','%d/%m/%y'),'0','2','1');
 Insert into PE.LOAN_HISTORY (PERSON1_ID,PERSON2_ID,ITEM_ID,LEND_DATE,RETURN_DATE,AMOUNT_DAYS,TOLERANCE_DAYS_YELLOW,TOLERANCE_DAYS_RED) values ('117610138','402140028','61',str_to_date('09/05/21','%d/%m/%y'),str_to_date('10/05/21','%d/%m/%y'),'1','2','1');
@@ -824,9 +830,10 @@ Insert into PE.LOAN_HISTORY (PERSON1_ID,PERSON2_ID,ITEM_ID,LEND_DATE,RETURN_DATE
 Insert into PE.LOAN_HISTORY (PERSON1_ID,PERSON2_ID,ITEM_ID,LEND_DATE,RETURN_DATE,AMOUNT_DAYS,TOLERANCE_DAYS_YELLOW,TOLERANCE_DAYS_RED) values ('402140028','117610138','58',str_to_date('13/05/21','%d/%m/%y'),str_to_date('13/05/21','%d/%m/%y'),'0','2','3');
 Insert into PE.LOAN_HISTORY (PERSON1_ID,PERSON2_ID,ITEM_ID,LEND_DATE,RETURN_DATE,AMOUNT_DAYS,TOLERANCE_DAYS_YELLOW,TOLERANCE_DAYS_RED) values ('117610138','402140028','10',str_to_date('19/05/21','%d/%m/%y'),str_to_date('20/05/21','%d/%m/%y'),'1','1','1');
 Insert into PE.LOAN_HISTORY (PERSON1_ID,PERSON2_ID,ITEM_ID,LEND_DATE,RETURN_DATE,AMOUNT_DAYS,TOLERANCE_DAYS_YELLOW,TOLERANCE_DAYS_RED) values ('117610138','402140028','61',str_to_date('19/05/21','%d/%m/%y'),str_to_date('19/06/21','%d/%m/%y'),'31','2','3');
--- ==========================================================================================================
--- INSERTING into PE.PERSONLENDITEM
-/* SET DEFINE OFF; */
+
+/*======================================TABLE: PERSON LEND ITEM ======================================*/
+
+
 Insert into PE.PERSONLENDITEM (PERSON1_ID,PERSON2_ID,ITEM_ID,LEND_DATE,RETURN_DATE,AMOUNT_DAYS,TOLERANCE_DAYS_YELLOW,TOLERANCE_DAYS_RED) values ('402140028','117610138','63',str_to_date('10/05/21','%d/%m/%y'),str_to_date('18/05/22','%d/%m/%y'),'3','2','3');
 Insert into PE.PERSONLENDITEM (PERSON1_ID,PERSON2_ID,ITEM_ID,LEND_DATE,RETURN_DATE,AMOUNT_DAYS,TOLERANCE_DAYS_YELLOW,TOLERANCE_DAYS_RED) values ('117610138','402140028','61',str_to_date('19/05/21','%d/%m/%y'),str_to_date('19/06/21','%d/%m/%y'),'31','2','3');
 Insert into PE.PERSONLENDITEM (PERSON1_ID,PERSON2_ID,ITEM_ID,LEND_DATE,RETURN_DATE,AMOUNT_DAYS,TOLERANCE_DAYS_YELLOW,TOLERANCE_DAYS_RED) values ('117610138','100000009','47',str_to_date('10/05/21','%d/%m/%y'),str_to_date('20/05/22','%d/%m/%y'),'8','5','2');

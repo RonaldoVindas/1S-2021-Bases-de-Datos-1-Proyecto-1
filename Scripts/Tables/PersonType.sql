@@ -1,4 +1,7 @@
 /*Autor: Renzo Barra, 5/25/2021*/
+
+/*======================================TABLE======================================*/
+
 CREATE TABLE PE.PERSONTYPE (
 	PERSONTYPE_ID INT COMMENT 'Person Type identification code.',
 	PERSONTYPE_NAME VARCHAR(50) NOT NULL COMMENT 'Person Type name.',
@@ -8,7 +11,11 @@ CREATE TABLE PE.PERSONTYPE (
 	USER_LAST_MODIFICATION VARCHAR(50)
     );
 
+/*======================================COMMENTS======================================*/
+
 ALTER TABLE PE.PERSONTYPE  COMMENT 'Repository to storage information about the person types in the database.';
+
+/*======================================PRIMARY KEY======================================*/
 
 ALTER TABLE PE.PERSONTYPE
 AUTO_INCREMENT = 0,

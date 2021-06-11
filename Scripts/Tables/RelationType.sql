@@ -1,4 +1,7 @@
 /*Autor: Renzo Barra, 5/25/2021*/
+
+/*======================================TABLE======================================*/
+
 CREATE TABLE PE.RELATIONTYPE (
 	RELATIONTYPE_ID INT COMMENT 'RelationType identification code.',
 	RELATIONTYPE_NAME VARCHAR(50) NOT NULL COMMENT 'RelationType name.',
@@ -8,7 +11,11 @@ CREATE TABLE PE.RELATIONTYPE (
 	USER_LAST_MODIFICATION VARCHAR(50)
     );
 
+/*======================================COMMENTS======================================*/
+
 ALTER TABLE PE.RELATIONTYPE  COMMENT 'Repository to storage information about relationTypes.';
+
+/*======================================PRIMARY KEY======================================*/
 
 ALTER TABLE PE.RELATIONTYPE
 AUTO_INCREMENT = 0,

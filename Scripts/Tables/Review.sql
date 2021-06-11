@@ -1,4 +1,7 @@
 /*Autor: Renzo Barra, 5/25/2021*/
+
+/*======================================TABLE======================================*/
+
 CREATE TABLE PE.REVIEW (
 	REVIEW_ID INT COMMENT 'RelationType identification code.',
 	STARS INT COMMENT 'Review stars.',
@@ -8,7 +11,11 @@ CREATE TABLE PE.REVIEW (
 	USER_LAST_MODIFICATION VARCHAR(50)
     );
 
+/*======================================COMMENTS======================================*/
+
 ALTER TABLE PE.REVIEW  COMMENT 'Repository to storage information about review.';
+
+/*======================================PRIMARY KEY======================================*/
 
 ALTER TABLE PE.REVIEW
 AUTO_INCREMENT = 0,

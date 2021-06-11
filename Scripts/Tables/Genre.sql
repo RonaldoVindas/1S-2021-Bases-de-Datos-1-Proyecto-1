@@ -1,4 +1,7 @@
 /*Autor: Renzo Barra, 5/25/2021*/
+
+
+/*======================================TABLE======================================*/
 CREATE TABLE PE.GENRE (
 	GENRE_ID BIGINT COMMENT 'Genre identification code.',
     GENRE_NAME VARCHAR(50) NOT NULL COMMENT 'Genre name.',
@@ -9,7 +12,12 @@ CREATE TABLE PE.GENRE (
     USER_LAST_MODIFICATION VARCHAR(50)
     );
 
+/*======================================COMMENTS======================================*/
+
 ALTER TABLE PE.GENRE  COMMENT 'Repository to storage information about the Genres an Item has.';
+
+/*======================================PRIMARY KEY======================================*/
+
 
 ALTER TABLE PE.GENRE
 AUTO_INCREMENT = 0,

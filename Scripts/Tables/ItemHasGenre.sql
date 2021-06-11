@@ -1,4 +1,6 @@
 /*Autor: Renzo Barra, 5/25/2021*/
+
+/*======================================TABLE======================================*/
 CREATE TABLE PE.ITEMHASGENRE (
 	ITEM_ID INT NOT NULL COMMENT 'Item identification code.',
 	GENRE_ID INT NOT NULL COMMENT 'Genre identification code.',
@@ -8,7 +10,11 @@ CREATE TABLE PE.ITEMHASGENRE (
 	USER_LAST_MODIFICATION VARCHAR(50)
     );
 
+/*======================================COMMENTS======================================*/
+
 ALTER TABLE PE.ITEMHASGENRE  COMMENT 'Repository to storage information about the Genres an Item has.';
+
+/*======================================PRIMARY KEY======================================*/
 
 ALTER TABLE PE.ITEMHASGENRE
 	ADD PRIMARY KEY (ITEM_ID, GENRE_ID);

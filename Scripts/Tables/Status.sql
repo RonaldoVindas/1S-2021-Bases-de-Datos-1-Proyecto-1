@@ -1,4 +1,7 @@
 /*Autor: Renzo Barra, 5/25/2021*/
+
+/*======================================TABLE======================================*/
+
 CREATE TABLE PE.STATUS (
 	STATUS_ID INT COMMENT 'status identification code.',
 	STATUS_NAME VARCHAR(50) NOT NULL COMMENT 'status name.',
@@ -9,7 +12,11 @@ CREATE TABLE PE.STATUS (
 	USER_LAST_MODIFICATION VARCHAR(50)
     );
 
+/*======================================COMMENTS======================================*/
+
 ALTER TABLE PE.STATUS  COMMENT 'Repository to storage information about status.';
+
+/*======================================PRIMARY KEY======================================*/
 
 ALTER TABLE PE.STATUS
 AUTO_INCREMENT = 0,
